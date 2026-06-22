@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+---
+
+<html class="dark" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página no encontrada | Vunotek</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+  </head>
+  <body class="bg-background text-on-surface font-body-md overflow-x-hidden min-h-screen flex items-center justify-center">
+    <div class="flex flex-col items-center gap-md text-center px-margin">
+      <a href="/" class="flex items-center gap-3 mb-sm">
+        <span class="font-display-lg text-headline-md font-bold tracking-tight"><span class="text-on-surface">VUNO</span><span class="text-vue-green">TEK</span></span>
+      </a>
+      <h1 class="font-display-lg text-headline-lg text-on-surface">404</h1>
+      <p class="font-body-lg text-body-lg text-slate-text max-w-md">
+        La página que buscas no existe o fue movida.
+      </p>
+      <a href="/" class="font-label-mono text-vue-green hover:underline">Volver al inicio</a>
+    </div>
+
+    <script>
+      const path = location.pathname;
+      if (path.startsWith('/es/') || path === '/es') {
+        const target = path === '/es' ? '/' : path.replace(/^\/es/, '');
+        location.replace(target);
+      }
+    </script>
+  </body>
+</html>

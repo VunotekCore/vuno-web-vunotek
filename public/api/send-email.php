@@ -80,6 +80,10 @@ try {
 
     $mail->addReplyTo($data['email'], $data['name']);
 
+    if (!empty($data['email']) && filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+        $mail->addCC($data['email'], $data['name']);
+    }
+
     $formType = $data['formType'];
 
     if ($formType === 'cotizar') {
@@ -123,7 +127,6 @@ function generateQuoteEmailHTML($data, $config) {
     $company = htmlspecialchars($data['company'] ?? 'No especificada');
     $projectType = htmlspecialchars($data['projectType'] ?? 'No especificado');
     $budget = htmlspecialchars($data['budget'] ?? 'No especificado');
-    $timeline = htmlspecialchars($data['timeline'] ?? 'No especificado');
     $message = nl2br(htmlspecialchars($data['message']));
     $siteName = $config['app']['site_name'] ?? 'Vunotek';
 
@@ -134,16 +137,19 @@ function generateQuoteEmailHTML($data, $config) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { background: linear-gradient(135deg, #0b1326 0%, #1a2332 100%); color: #42b883; padding: 32px; text-align: center; }
-        .header h1 { margin: 0; font-size: 24px; color: #42b883; }
-        .header p { margin: 8px 0 0; color: #94a3b8; font-size: 14px; }
-        .content { background: #f8fafc; padding: 32px; }
-        .field { margin-bottom: 20px; }
-        .label { font-weight: 700; color: #42b883; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-        .value { background: white; padding: 12px; border-radius: 6px; border-left: 3px solid #42b883; color: #1e293b; }
-        .footer { text-align: center; padding: 24px; color: #94a3b8; font-size: 12px; border-top: 1px solid #e2e8f0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; margin: 0; padding: 0; background: #eef2f5; }
+        .container { max-width: 600px; margin: 20px auto; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .header { background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 32px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; color: #ffffff; }
+        .header p { margin: 8px 0 0; color: #d1fae5; font-size: 14px; }
+        .content { background: #f9f9f9; padding: 32px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width:480px) { .grid-2 { grid-template-columns: 1fr; } }
+        .field { margin-bottom: 0; }
+        .label { font-weight: 700; color: #059669; font-size: 13px; margin-bottom: 5px; }
+        .value { background: white; padding: 12px; border-radius: 6px; border-left: 3px solid #059669; color: #1e293b; }
+        .full { grid-column: 1 / -1; margin-top: 16px; }
+        .footer { text-align: center; padding: 24px; color: #666; font-size: 12px; background: #f9f9f9; }
     </style>
 </head>
 <body>
@@ -153,14 +159,15 @@ function generateQuoteEmailHTML($data, $config) {
             <p>Formulario de contacto - $siteName</p>
         </div>
         <div class="content">
-            <div class="field"><div class="label">👤 Nombre</div><div class="value">$name</div></div>
-            <div class="field"><div class="label">📧 Email</div><div class="value"><a href="mailto:$email">$email</a></div></div>
-            <div class="field"><div class="label">📱 Teléfono</div><div class="value">$phone</div></div>
-            <div class="field"><div class="label">🏢 Empresa / Tipo</div><div class="value">$company</div></div>
-            <div class="field"><div class="label">💼 Tipo de Proyecto</div><div class="value">$projectType</div></div>
-            <div class="field"><div class="label">💰 Presupuesto</div><div class="value">$budget</div></div>
-            <div class="field"><div class="label">⏱️ Tiempo Estimado</div><div class="value">$timeline</div></div>
-            <div class="field"><div class="label">💬 Mensaje</div><div class="value">$message</div></div>
+            <div class="grid-2">
+                <div class="field"><div class="label">Nombre</div><div class="value">$name</div></div>
+                <div class="field"><div class="label">Email</div><div class="value"><a href="mailto:$email">$email</a></div></div>
+                <div class="field"><div class="label">Teléfono</div><div class="value">$phone</div></div>
+                <div class="field"><div class="label">Empresa</div><div class="value">$company</div></div>
+                <div class="field"><div class="label">Tipo de Proyecto</div><div class="value">$projectType</div></div>
+                <div class="field"><div class="label">Presupuesto</div><div class="value">$budget</div></div>
+            </div>
+            <div class="full field"><div class="label">Mensaje</div><div class="value">$message</div></div>
         </div>
         <div class="footer">
             <p>Este mensaje fue enviado desde el formulario de contacto de $siteName</p>
@@ -220,18 +227,21 @@ function generateMeetingEmailHTML($data, $config) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { background: linear-gradient(135deg, #0b1326 0%, #1a2332 100%); color: #42b883; padding: 32px; text-align: center; }
-        .header h1 { margin: 0; font-size: 24px; color: #42b883; }
-        .header p { margin: 8px 0 0; color: #94a3b8; font-size: 14px; }
-        .content { background: #f8fafc; padding: 32px; }
-        .highlight { background: #f0fdf4; padding: 16px; border-radius: 8px; border-left: 4px solid #42b883; margin-bottom: 24px; }
-        .highlight strong { color: #166534; }
-        .field { margin-bottom: 20px; }
-        .label { font-weight: 700; color: #42b883; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-        .value { background: white; padding: 12px; border-radius: 6px; border-left: 3px solid #42b883; color: #1e293b; }
-        .footer { text-align: center; padding: 24px; color: #94a3b8; font-size: 12px; border-top: 1px solid #e2e8f0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; margin: 0; padding: 0; background: #eef2f5; }
+        .container { max-width: 600px; margin: 20px auto; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .header { background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 32px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; color: #ffffff; }
+        .header p { margin: 8px 0 0; color: #d1fae5; font-size: 14px; }
+        .content { background: #f9f9f9; padding: 32px; }
+        .highlight { background: #ecfdf5; padding: 16px; border-radius: 8px; border-left: 4px solid #059669; margin-bottom: 24px; }
+        .highlight strong { color: #065f46; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width:480px) { .grid-2 { grid-template-columns: 1fr; } }
+        .field { margin-bottom: 0; }
+        .label { font-weight: 700; color: #059669; font-size: 13px; margin-bottom: 5px; }
+        .value { background: white; padding: 12px; border-radius: 6px; border-left: 3px solid #059669; color: #1e293b; }
+        .full { grid-column: 1 / -1; margin-top: 16px; }
+        .footer { text-align: center; padding: 24px; color: #666; font-size: 12px; background: #f9f9f9; }
     </style>
 </head>
 <body>
@@ -242,15 +252,17 @@ function generateMeetingEmailHTML($data, $config) {
         </div>
         <div class="content">
             <div class="highlight">
-                <strong>📆 Fecha:</strong> $preferredDate<br>
-                <strong>🕐 Hora:</strong> $preferredTime<br>
-                <strong>💻 Tipo:</strong> $meetingType
+                <strong>Fecha:</strong> $preferredDate<br>
+                <strong>Hora:</strong> $preferredTime<br>
+                <strong>Tipo:</strong> $meetingType
             </div>
-            <div class="field"><div class="label">👤 Nombre</div><div class="value">$name</div></div>
-            <div class="field"><div class="label">📧 Email</div><div class="value"><a href="mailto:$email">$email</a></div></div>
-            <div class="field"><div class="label">📱 Teléfono</div><div class="value">$phone</div></div>
-            <div class="field"><div class="label">🏢 Empresa / Tipo</div><div class="value">$company</div></div>
-            <div class="field"><div class="label">💬 Temas a Discutir</div><div class="value">$message</div></div>
+            <div class="grid-2">
+                <div class="field"><div class="label">Nombre</div><div class="value">$name</div></div>
+                <div class="field"><div class="label">Email</div><div class="value"><a href="mailto:$email">$email</a></div></div>
+                <div class="field"><div class="label">Teléfono</div><div class="value">$phone</div></div>
+                <div class="field"><div class="label">Empresa</div><div class="value">$company</div></div>
+            </div>
+            <div class="full field"><div class="label">Temas a Discutir</div><div class="value">$message</div></div>
         </div>
         <div class="footer">
             <p>Este mensaje fue enviado desde el formulario de contacto de $siteName</p>

@@ -18,23 +18,23 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
   class="z-[100] bg-transparent p-0 m-auto"
   style="max-width: none; max-height: none; border: none; background: none;"
 >
-  <div class="bg-surface-charcoal/95 backdrop-blur-sm border border-outline-variant/50 rounded-xl w-[min(90vw,42rem)] max-h-[80vh] flex flex-col shadow-2xl">
-    <!-- Header: editor tabs -->
-    <div class="flex items-center justify-between border-b border-outline-variant/20">
+  <div class="bg-surface-charcoal/95 backdrop-blur-sm border border-outline-variant/50 rounded-xl w-[min(90vw,42rem)] flex flex-col shadow-2xl">
+    <!-- Header: IDE editor tabs -->
+    <div class="flex items-center justify-between border-b border-outline-variant/20 rounded-t-xl overflow-hidden">
       <div class="flex">
         <button
           id="tab-privacy"
           class="tab-btn bg-surface-charcoal text-vue-green border-t-2 border-t-vue-green px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors"
           data-tab="privacy"
         >
-          {pp.content.title}
+          // privacy_policy.md
         </button>
         <button
           id="tab-terms"
           class="tab-btn bg-surface-container-low text-slate-text border-t-2 border-t-transparent px-4 py-2.5 text-xs font-label-mono cursor-pointer hover:text-on-surface transition-colors"
           data-tab="terms"
         >
-          {tp.content.title}
+          // terms_of_service.md
         </button>
       </div>
       <button
@@ -48,7 +48,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     </div>
 
     <!-- Privacy content -->
-    <div id="content-privacy" class="flex-1 overflow-y-auto px-5 py-4 space-y-5 tab-content">
+    <div id="content-privacy" class="tab-content max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5">
       <div class="flex flex-col gap-1">
         <h2 class="font-display-lg text-headline-md text-on-surface">{pp.content.title}</h2>
         <span class="font-label-mono text-[11px] text-slate-text/50">{pp.content.last_updated}</span>
@@ -64,7 +64,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     </div>
 
     <!-- Terms content (hidden by default) -->
-    <div id="content-terms" class="flex-1 overflow-y-auto px-5 py-4 space-y-5 tab-content hidden">
+    <div id="content-terms" class="tab-content max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5 hidden">
       <div class="flex flex-col gap-1">
         <h2 class="font-display-lg text-headline-md text-on-surface">{tp.content.title}</h2>
         <span class="font-label-mono text-[11px] text-slate-text/50">{tp.content.last_updated}</span>

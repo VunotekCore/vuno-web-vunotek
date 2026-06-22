@@ -393,7 +393,7 @@
           "slug": "vuno shop",
           "title": "VUNO SHOP — E-Commerce Platform",
           "desc": "Full-featured e-commerce platform with an Astro-powered storefront, PHP REST API, Stripe payments, multi-currency support, and a comprehensive admin dashboard.",
-          "image_key": "dashboard",
+          "image_key": "shop",
           "features": [
             { "text": "Astro-powered storefront with optimized Core Web Vitals", "image": "shop-frontend" },
             { "text": "Product catalog with advanced filtering by category, color, and size", "image": "shop-catalog" },
@@ -415,7 +415,7 @@
           "slug": "vuno-reservations",
           "title": "VUNO RESERVATIONS — Hotel Property Management System",
           "desc": "Full-featured Property Management System (PMS) for hotels with bilingual booking website, Stripe payments, front desk reception panel, housekeeping management, and occupancy calendar.",
-          "image_key": "dashboard",
+          "image_key": "hotel",
           "features": [
             { "text": "Bilingual (ES/EN) hotel booking website with room catalog and availability", "image": "hotel-website" },
             { "text": "Room detail pages with amenities, capacity, pricing, and image gallery", "image": "hotel-rooms" },
@@ -437,7 +437,7 @@
           "slug": "vuno-envios",
           "title": "VUNO ENVÍOS — Miami-Nicaragua Package Logistics",
           "desc": "Digital logistics platform connecting Miami to Nicaragua with virtual locker addresses, package tracking, air and sea freight shipping, and door-to-door delivery services.",
-          "image_key": "dashboard",
+          "image_key": "logistics",
           "features": [
             { "text": "Virtual Miami locker address for international package reception", "image": "logistics-locker" },
             { "text": "Air and sea freight shipping with real-time rate calculation", "image": "logistics-shipping" },

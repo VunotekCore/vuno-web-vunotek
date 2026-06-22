@@ -30,20 +30,25 @@ const stackColors: Record<string, string> = {
   electron: 'cyan-400',
   salesforce: 'vue-green',
   dotnet: 'node-green',
-  linux: 'orange-400',
+  linux: 'orange-400'
 }
 ---
 
-<!-- ===== SECTION 1: HERO ===== -->
-<!-- Badge, title, description from i18n → pj.hero.{badge,title,description}.
+<!-- ===== SECTION 1: HERO ===== --><!-- Badge, title, description from i18n → pj.hero.{badge,title,description}.
      First section after nav — keep !pt-32 md:!pt-40. No bg class (default). -->
 <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
   <div class="flex flex-col gap-base stagger-header">
-    <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
+    <div
+      class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full"
+    >
       <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
-      <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">{pj.hero.badge}</span>
+      <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase"
+        >{pj.hero.badge}</span
+      >
     </div>
-    <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
+    <h1
+      class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl"
+    >
       {pj.hero.title}
     </h1>
     <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">
@@ -63,88 +68,116 @@ const stackColors: Record<string, string> = {
 <Section class="bg-surface-container-lowest">
   <ScrollReveal>
     <div class="grid grid-cols-1 md:grid-cols-12 gap-md auto-rows-[200px] md:auto-rows-[240px]">
-      {Object.entries(pj.stack_grid).map(([key, tech]: [string, any], i: number) => {
-        if (key === 'additional_tech') {
-          return (
-            <div class="md:col-span-4 bg-surface-charcoal border border-outline-variant/30 rounded-xl overflow-hidden p-md flex flex-col justify-center">
-              <div>
-                <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">{tech.title}</h3>
-                <p class="font-body-md text-body-md text-slate-text mb-md">{tech.subtitle}</p>
-                <div class="flex flex-wrap gap-sm">
-                  {tech.tags.map((item: string) => (
-                    <span class="font-label-mono text-label-mono text-vue-green bg-vue-green/10 border border-vue-green/20 px-3 py-1 rounded-full">{item}</span>
-                  ))}
+      {
+        Object.entries(pj.stack_grid).map(([key, tech]: [string, any], i: number) => {
+          if (key === 'additional_tech') {
+            return (
+              <div class="md:col-span-4 bg-surface-charcoal border border-outline-variant/30 rounded-xl overflow-hidden p-md flex flex-col justify-center">
+                <div>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">
+                    {tech.title}
+                  </h3>
+                  <p class="font-body-md text-body-md text-slate-text mb-md">{tech.subtitle}</p>
+                  <div class="flex flex-wrap gap-sm">
+                    {tech.tags.map((item: string) => (
+                      <span class="font-label-mono text-label-mono text-vue-green bg-vue-green/10 border border-vue-green/20 px-3 py-1 rounded-full">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
+            )
+          }
+          return (
+            <div
+              class:list={[
+                'group bg-surface-charcoal border border-outline-variant/30 rounded-xl transition-all duration-300 overflow-hidden relative tech-hover-card',
+                i === 0
+                  ? 'md:col-span-8 md:row-span-2 p-md md:p-lg flex flex-col justify-between'
+                  : 'md:col-span-4 p-md flex flex-col justify-between'
+              ]}
+              data-color={`var(--color-${stackColors[key] || 'vue-green'})`}
+            >
+              {i === 0 && (
+                <>
+                  <div
+                    class="absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 pointer-events-none z-0"
+                    style="background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66,184,131,0.15), transparent 60%)"
+                    data-grid-glow
+                  />
+                  <div class="flex justify-between items-start">
+                    <svg class="w-8 h-8" role="img" aria-label={key}>
+                      <use href={LOGOS[key] || LOGOS.vue} />
+                    </svg>
+                    <span
+                      class="font-label-mono text-[10px] px-2 py-0.5 rounded border/30 metric-glow"
+                      style={{
+                        color: `var(--color-${stackColors[key] || 'vue-green'})`,
+                        borderColor: `color-mix(in srgb, var(--color-${stackColors[key] || 'vue-green'}) 30%, transparent)`,
+                        backgroundColor: `color-mix(in srgb, var(--color-${stackColors[key] || 'vue-green'}) 10%, transparent)`
+                      }}
+                    >
+                      {tech.label}
+                    </span>
+                  </div>
+                  <div class="relative z-10">
+                    <h3 class="font-headline-lg text-headline-lg mb-sm">{tech.title}</h3>
+                    <p class="font-body-md text-body-md text-slate-text">{tech.desc}</p>
+                  </div>
+                  {tech.tags && (
+                    <div class="flex flex-wrap gap-1">
+                      {tech.tags.map((tag: string) => (
+                        <span class="font-label-mono text-label-mono text-vue-green bg-vue-green/10 border border-vue-green/20 px-3 py-1 rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div class="absolute inset-0 bg-gradient-to-t from-vue-green/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                </>
+              )}
+              {i !== 0 && (
+                <>
+                  <div
+                    class="absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 pointer-events-none z-0"
+                    style="background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66,184,131,0.15), transparent 60%)"
+                    data-grid-glow
+                  />
+                  <div class="flex justify-between items-start">
+                    <svg class="w-8 h-8" role="img" aria-label={key}>
+                      <use href={LOGOS[key] || LOGOS.vue} />
+                    </svg>
+                    <span
+                      class="font-label-mono text-[10px] px-2 py-0.5 rounded border/30 metric-glow"
+                      style={{
+                        color: `var(--color-${stackColors[key] || 'vue-green'})`,
+                        borderColor: `color-mix(in srgb, var(--color-${stackColors[key] || 'vue-green'}) 30%, transparent)`,
+                        backgroundColor: `color-mix(in srgb, var(--color-${stackColors[key] || 'vue-green'}) 10%, transparent)`
+                      }}
+                    >
+                      {tech.label}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 class="font-headline-md text-headline-md mb-xs">{tech.title}</h4>
+                    <p class="text-sm text-slate-text">{tech.desc}</p>
+                  </div>
+                  {tech.tags && (
+                    <div class="flex flex-wrap gap-1 mt-1">
+                      {tech.tags.map((tag: string) => (
+                        <span class="font-label-mono text-label-mono text-vue-green bg-vue-green/10 border border-vue-green/20 px-3 py-1 rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           )
-        }
-        return (
-          <div
-            class:list={[
-              'group bg-surface-charcoal border border-outline-variant/30 rounded-xl transition-all duration-300 overflow-hidden relative tech-hover-card',
-              i === 0 ? 'md:col-span-8 md:row-span-2 p-md md:p-lg flex flex-col justify-between' : 'md:col-span-4 p-md flex flex-col justify-between',
-            ]}
-            data-color={`var(--color-${stackColors[key] || 'vue-green'})`}
-          >
-            {i === 0 && (
-              <>
-                <div class="absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 pointer-events-none z-0" style="background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66,184,131,0.15), transparent 60%)" data-grid-glow></div>
-                <div class="flex justify-between items-start">
-                  <svg class="w-8 h-8" role="img" aria-label={key}><use href={LOGOS[key] || LOGOS.vue}/></svg>
-                  <span
-                    class="font-label-mono text-[10px] px-2 py-0.5 rounded border/30 metric-glow"
-                    style={{
-                      color: `var(--color-${stackColors[key] || 'vue-green'})`,
-                      borderColor: `color-mix(in srgb, var(--color-${stackColors[key] || 'vue-green'}) 30%, transparent)`,
-                      backgroundColor: `color-mix(in srgb, var(--color-${stackColors[key] || 'vue-green'}) 10%, transparent)`,
-                    }}
-                  >{tech.label}</span>
-                </div>
-                <div class="relative z-10">
-                  <h3 class="font-headline-lg text-headline-lg mb-sm">{tech.title}</h3>
-                  <p class="font-body-md text-body-md text-slate-text">{tech.desc}</p>
-                </div>
-                {tech.tags && (
-                  <div class="flex flex-wrap gap-1">
-                    {tech.tags.map((tag: string) => (
-                      <span class="font-label-mono text-label-mono text-vue-green bg-vue-green/10 border border-vue-green/20 px-3 py-1 rounded-full">{tag}</span>
-                    ))}
-                  </div>
-                )}
-                <div class="absolute inset-0 bg-gradient-to-t from-vue-green/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-              </>
-            )}
-            {i !== 0 && (
-              <>
-                <div class="absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 pointer-events-none z-0" style="background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66,184,131,0.15), transparent 60%)" data-grid-glow></div>
-                <div class="flex justify-between items-start">
-                  <svg class="w-8 h-8" role="img" aria-label={key}><use href={LOGOS[key] || LOGOS.vue}/></svg>
-                  <span
-                    class="font-label-mono text-[10px] px-2 py-0.5 rounded border/30 metric-glow"
-                    style={{
-                      color: `var(--color-${stackColors[key] || 'vue-green'})`,
-                      borderColor: `color-mix(in srgb, var(--color-${stackColors[key] || 'vue-green'}) 30%, transparent)`,
-                      backgroundColor: `color-mix(in srgb, var(--color-${stackColors[key] || 'vue-green'}) 10%, transparent)`,
-                    }}
-                  >{tech.label}</span>
-                </div>
-                <div>
-                  <h4 class="font-headline-md text-headline-md mb-xs">{tech.title}</h4>
-                  <p class="text-sm text-slate-text">{tech.desc}</p>
-                </div>
-                {tech.tags && (
-                  <div class="flex flex-wrap gap-1 mt-1">
-                    {tech.tags.map((tag: string) => (
-                      <span class="font-label-mono text-label-mono text-vue-green bg-vue-green/10 border border-vue-green/20 px-3 py-1 rounded-full">{tag}</span>
-                    ))}
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        )
-      })}
+        })
+      }
     </div>
   </ScrollReveal>
 </Section>
@@ -162,28 +195,30 @@ const stackColors: Record<string, string> = {
         <h2 class="font-display-lg text-headline-lg text-on-surface mb-xs">{pj.portfolio.title}</h2>
         <p class="font-body-md text-body-md text-slate-text">{pj.portfolio.subtitle}</p>
       </div>
-      <a class="group flex items-center gap-xs text-vue-green font-label-mono" href="#">
+      <!-- <a class="group flex items-center gap-xs text-vue-green font-label-mono" href="#">
         {pj.portfolio.view_all}
         <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
-      </a>
+      </a> -->
     </div>
   </ScrollReveal>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-    {pj.portfolio.cards.map((card: any, i: number) => {
-      const image = imageLookup[card.image_key]
-      return (
-        <ScrollReveal delay={i * 100} stagger>
-          <PortfolioCard
-            tag={card.tag}
-            title={card.title}
-            description={card.desc}
-            image={image}
-            slug={card.slug}
-            locale={locale}
-          />
-        </ScrollReveal>
-      )
-    })}
+    {
+      pj.portfolio.cards.map((card: any, i: number) => {
+        const image = imageLookup[card.image_key]
+        return (
+          <ScrollReveal delay={i * 100} stagger>
+            <PortfolioCard
+              tag={card.tag}
+              title={card.title}
+              description={card.desc}
+              image={image}
+              slug={card.slug}
+              locale={locale}
+            />
+          </ScrollReveal>
+        )
+      })
+    }
   </div>
 </Section>
 
@@ -204,7 +239,11 @@ const stackColors: Record<string, string> = {
 <!-- ===== STYLES: Section-level. Component styles in their own .astro files. ===== -->
 <style>
   .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
   }
   .tech-hover-card {
     transition: border-color 0.3s ease;
@@ -213,12 +252,24 @@ const stackColors: Record<string, string> = {
     opacity: 0;
     animation: fadeUp 0.6s ease forwards;
   }
-  .stagger-header > :nth-child(1) { animation-delay: 0.1s; }
-  .stagger-header > :nth-child(2) { animation-delay: 0.25s; }
-  .stagger-header > :nth-child(3) { animation-delay: 0.4s; }
+  .stagger-header > :nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .stagger-header > :nth-child(2) {
+    animation-delay: 0.25s;
+  }
+  .stagger-header > :nth-child(3) {
+    animation-delay: 0.4s;
+  }
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
 
@@ -227,28 +278,28 @@ const stackColors: Record<string, string> = {
      data-color matches the stackColors record (e.g. 'var(--color-vue-green)').
      Only runs on the stack grid section. -->
 <script>
-  (document.querySelectorAll('.tech-hover-card') as NodeListOf<HTMLElement>).forEach((card) => {
-    const color = card.getAttribute('data-color');
-    const glow = card.querySelector('[data-grid-glow]') as HTMLElement;
-    if (!color) return;
-    card.style.boxShadow = `0 0 14px color-mix(in srgb, ${color} 10%, transparent)`;
+  ;(document.querySelectorAll('.tech-hover-card') as NodeListOf<HTMLElement>).forEach((card) => {
+    const color = card.getAttribute('data-color')
+    const glow = card.querySelector('[data-grid-glow]') as HTMLElement
+    if (!color) return
+    card.style.boxShadow = `0 0 14px color-mix(in srgb, ${color} 10%, transparent)`
     const onMove = (e: MouseEvent) => {
-      const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mouse-x', `${x}%`);
-      card.style.setProperty('--mouse-y', `${y}%`);
-    };
+      const rect = card.getBoundingClientRect()
+      const x = ((e.clientX - rect.left) / rect.width) * 100
+      const y = ((e.clientY - rect.top) / rect.height) * 100
+      card.style.setProperty('--mouse-x', `${x}%`)
+      card.style.setProperty('--mouse-y', `${y}%`)
+    }
     card.addEventListener('mouseenter', () => {
-      card.style.borderColor = color;
-      card.style.boxShadow = `0 0 28px color-mix(in srgb, ${color} 30%, transparent)`;
-      if (glow) glow.style.opacity = '1';
-    });
-    card.addEventListener('mousemove', onMove);
+      card.style.borderColor = color
+      card.style.boxShadow = `0 0 28px color-mix(in srgb, ${color} 30%, transparent)`
+      if (glow) glow.style.opacity = '1'
+    })
+    card.addEventListener('mousemove', onMove)
     card.addEventListener('mouseleave', () => {
-      card.style.borderColor = '';
-      card.style.boxShadow = `0 0 14px color-mix(in srgb, ${color} 10%, transparent)`;
-      if (glow) glow.style.opacity = '0';
-    });
-  });
+      card.style.borderColor = ''
+      card.style.boxShadow = `0 0 14px color-mix(in srgb, ${color} 10%, transparent)`
+      if (glow) glow.style.opacity = '0'
+    })
+  })
 </script>

@@ -21,8 +21,7 @@ const { card, locale = 'es' } = Astro.props
 const backUrl = locale === 'en' ? '/en/proyectos' : '/proyectos'
 const contactUrl = locale === 'en' ? '/en/contacto' : '/contacto'
 const image = (IMAGES as Record<string, string>)[card.image_key] || undefined
-const placeholderImageKeys = ['pos', 'crm']
-const isPlaceholder = placeholderImageKeys.includes(card.image_key)
+const isPlaceholder = !image
 
 const imageStore = IMAGES as Record<string, string>
 

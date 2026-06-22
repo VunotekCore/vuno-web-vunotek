@@ -399,7 +399,7 @@
           "slug": "vuno-shop",
           "title": "VUNO SHOP — Plataforma de E-Commerce",
           "desc": "Plataforma completa de comercio electrónico con frontend en Astro, API REST en PHP, pagos Stripe, soporte multi-moneda y panel administrativo integral.",
-          "image_key": "dashboard",
+          "image_key": "shop",
           "features": [
             { "text": "Frontend Astro con rendimiento optimizado y Core Web Vitals", "image": "shop-frontend" },
             { "text": "Catálogo de productos con filtros avanzados por categoría, color y talla", "image": "shop-catalog" },
@@ -421,7 +421,7 @@
           "slug": "vuno-reservations",
           "title": "VUNO RESERVATIONS — Sistema de Gestión Hotelera",
           "desc": "Sistema completo de gestión hotelera (PMS) con sitio web de reservas bilingüe, pagos Stripe, panel de recepción, control de housekeeping y calendario de ocupación.",
-          "image_key": "dashboard",
+          "image_key": "hotel",
           "features": [
             { "text": "Sitio web de reservas bilingüe (ES/EN) con catálogo de habitaciones y disponibilidad", "image": "hotel-website" },
             { "text": "Páginas detalle con amenidades, capacidad, precios y galería de imágenes", "image": "hotel-rooms" },
@@ -443,7 +443,7 @@
           "slug": "vuno-envios",
           "title": "VUNO ENVÍOS — Logística de Paquetes Miami-Nicaragua",
           "desc": "Plataforma logística digital conectando Miami con Nicaragua con casillero virtual, rastreo de paquetes, envíos aéreos y marítimos, y entrega puerta a puerta.",
-          "image_key": "dashboard",
+          "image_key": "logistics",
           "features": [
             { "text": "Casillero virtual en Miami para recepción de paquetes internacionales", "image": "logistics-locker" },
             { "text": "Envíos aéreos y marítimos con cálculo de tarifas en tiempo real", "image": "logistics-shipping" },

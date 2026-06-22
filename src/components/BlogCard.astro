@@ -20,7 +20,12 @@ const imageStore = {
   'blog/nodejs-aws-docker': 'https://placehold.co/800x500/1e293b/42b883?text=Node.js+%2B+AWS',
   'blog/typescript-avanzado': 'https://placehold.co/800x500/1e293b/42b883?text=TypeScript',
 }
-const imgSrc = image ? (imageStore as Record<string, string>)[image] || undefined : undefined
+const isDirectUrl = image?.startsWith('http')
+const imgSrc = image
+  ? isDirectUrl
+    ? image
+    : (imageStore as Record<string, string>)[image] || undefined
+  : undefined
 ---
 
 <article class="group cursor-pointer">

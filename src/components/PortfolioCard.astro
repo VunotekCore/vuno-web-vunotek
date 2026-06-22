@@ -14,8 +14,7 @@ const href = slug
     ? `/en/proyectos/${slug}`
     : `/proyectos/${slug}`
   : undefined
-const placeholders = new Set(['vuno-pos', 'vuno-crm'])
-const isPlaceholder = !image || placeholders.has(slug ?? '')
+const isPlaceholder = !image
 ---
 
 {

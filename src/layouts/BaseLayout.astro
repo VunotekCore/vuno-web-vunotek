@@ -10,44 +10,120 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
-const lang = Astro.currentLocale || 'es';
+
+const currentLang = Astro.currentLocale || 'es';
 const currentPath = Astro.url.pathname;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://vunotek.com';
+const gaId = import.meta.env.PUBLIC_GA_ID;
+const isEn = currentLang === 'en';
+
+const currentSlug = currentPath
+  .replace(/^\/en\/?/, '')
+  .replace(/^\//, '')
+  .replace(/\/$/, '');
+
+const ogLocale = isEn ? 'en_US' : 'es_ES';
+const ogImage = `${siteUrl}/logo.webp`;
+
+const esUrl = currentSlug ? `${siteUrl}/${currentSlug}` : `${siteUrl}/`;
+const enUrl = currentSlug ? `${siteUrl}/en/${currentSlug}` : `${siteUrl}/en/`;
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Vunotek',
+  url: siteUrl,
+  logo: `${siteUrl}/logo.webp`,
+  description: 'Engineering Precision for Modern Business',
+  foundingDate: '2024',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'projects@vunotek.com',
+    contactType: 'sales',
+  },
+  sameAs: [
+    'https://github.com/vunotek',
+    'https://linkedin.com/company/vunotek',
+  ],
+};
+
+const webSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Vunotek',
+  url: siteUrl,
+  inLanguage: isEn ? 'en-US' : 'es-ES',
+  description: description,
+};
+
+const gaSrc = gaId ? `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}` : '';
+const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');` : '';
 ---
 
-<html class="dark" lang={lang}>
+<html class="dark" lang={currentLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Vunotek</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href={`${siteUrl}${currentPath}`} />
+
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:title" content={`${title} | Vunotek`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteUrl}${currentPath}`} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Vunotek" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Vunotek`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="canonical" href={`https://vunotek.com${currentPath}`} />
-    <meta property="og:title" content={`${title} | Vunotek`} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={`https://vunotek.com${currentPath}`} />
-    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(orgSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(webSchema)} />
+
+    {gaId && <script is:inline src={gaSrc} />}
+    {gaId && <script is:inline set:html={gaScript} />}
   </head>
   <body class="bg-background text-on-surface font-body-md selection:bg-vue-green/30 selection:text-vue-green overflow-x-hidden">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-vue-green focus:text-forest-deep focus:rounded-lg focus:font-bold">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-surface-charcoal focus:text-vue-green focus:outline-none">
       Skip to main content
     </a>
-
     <Navbar />
-
     <main id="main-content">
       <slot />
     </main>
-
     <Footer />
-
-    <PrivacyModal locale={lang} />
+    <PrivacyModal locale={currentLang} />
+    <script>
+      const saved = localStorage.getItem('locale')
+      if (!saved) {
+        const prefersEn = navigator.language.startsWith('en')
+        const isEn = document.documentElement.lang === 'en'
+        if (prefersEn && !isEn) {
+          localStorage.setItem('locale', 'en')
+          const target = location.pathname === '/' ? '/en' : '/en' + location.pathname
+          location.replace(target)
+        }
+      }
+    </script>
   </body>
 </html>
