@@ -4,93 +4,63 @@ import GlassCard from '../components/GlassCard.astro'
 import ScrollReveal from '../components/ScrollReveal.astro'
 import ContactForm from '../components/ContactForm.astro'
 import SocialLinks from '../components/SocialLinks.astro'
-import Button from '../components/Button.astro'
 
 export interface Props {
   dict: Record<string, unknown>
   locale?: string
 }
 
-const { dict } = Astro.props
+const { dict, locale } = Astro.props
 const cp = dict.contact_page as any
 ---
 
-<!-- ===== SECTION 1: HERO ===== --><!-- bg: surface (default) | cp.hero.{badge,title,description} -->
+<!-- ===== SECTION 1: HERO ===== -->
 <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
   <div class="flex flex-col gap-base stagger-header">
-    <div
-      class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full"
-    >
+    <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
       <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
-      <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase"
-        >{cp.hero.badge}</span
-      >
+      <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">{cp.hero.badge}</span>
     </div>
-    <h1
-      class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl"
-    >
-      <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent"
-        >{cp.hero.title}</span
-      >
+    <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
+      <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent">{cp.hero.title}</span>
     </h1>
-    <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">
-      {cp.hero.description}
-    </p>
+    <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">{cp.hero.description}</p>
   </div>
 </Section>
 
 <!-- ===== SECTION 2: FORM + SIDEBAR ===== -->
-<!-- bg: surface-container-lowest | cp.form_section.{title,fields,options,sidebar} -->
 <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
   <div class="flex flex-col gap-lg">
     <div class="flex flex-col gap-sm">
-      <div
-        class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full"
-      >
+      <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
         <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
-        <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase"
-          >// {cp.form_section.title.toLowerCase().replace(/\s+/g, '_')}</span
-        >
+        <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">// {cp.form_section.title.toLowerCase().replace(/\s+/g, '_')}</span>
       </div>
       <h2 class="font-display-lg text-headline-md text-on-surface">
-        <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent"
-          >{cp.form_section.title}</span
-        >
+        <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent">{cp.form_section.title}</span>
       </h2>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
       <div class="lg:col-span-8">
         <ScrollReveal>
-          <ContactForm fields={cp.form_section.fields} options={cp.form_section.options} />
+          <ContactForm fields={cp.form_section.fields} tabs={cp.form_section.tabs} options={cp.form_section.options} locale={locale} />
         </ScrollReveal>
       </div>
       <aside class="lg:col-span-4 space-y-md">
         <ScrollReveal delay={100}>
           <GlassCard class="p-md">
-            <h3
-              class="font-headline-sm text-headline-sm text-on-surface mb-sm flex items-center gap-base"
-            >
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-sm flex items-center gap-base">
               <span class="material-symbols-outlined text-vue-green">schedule</span>
               {cp.form_section.sidebar.schedule_title}
             </h3>
             <div class="space-y-sm">
               <div class="flex items-start gap-md">
-                <span
-                  class="material-symbols-outlined text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]"
-                  >access_time</span
-                >
-                <p class="font-body-md text-body-md text-on-surface">
-                  {cp.form_section.sidebar.schedule_hours}
-                </p>
+                <span class="material-symbols-outlined text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]">access_time</span>
+                <p class="font-body-md text-body-md text-on-surface">{cp.form_section.sidebar.schedule_hours}</p>
               </div>
               <div class="flex items-start gap-md">
-                <span
-                  class="material-symbols-outlined text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]"
-                  >bolt</span
-                >
-                <p class="font-body-md text-body-md text-slate-text">
-                  {cp.form_section.sidebar.response_time}
-                </p>
+                <span class="material-symbols-outlined text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]">bolt</span>
+                <p class="font-body-md text-body-md text-slate-text">{cp.form_section.sidebar.response_time}</p>
               </div>
             </div>
           </GlassCard>
@@ -104,64 +74,49 @@ const cp = dict.contact_page as any
 </Section>
 
 <!-- ===== SECTION 3: QUICK CHANNELS ===== -->
-<!-- bg: surface (default) | cp.quick_channels.{title,email,location,community} -->
 <Section>
-  <!-- SECTION 4: CTA  -->
-  <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
-    <div class="flex flex-col items-center text-center gap-lg max-w-3xl mx-auto">
-      <h2 class="font-display-lg text-headline-md text-on-surface">
-        {cp.cta_final.title}
-      </h2>
-      <p class="font-body-lg text-body-lg text-slate-text">
-        {cp.cta_final.subtitle}
-      </p>
-      <Button type="button" size="lg">
-        {cp.cta_final.button}
-        <span class="material-symbols-outlined">calendar_month</span>
-      </Button>
-    </div>
-  </Section>
-
-  <style>
-    .material-symbols-outlined {
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-    }
-    .stagger-header > * {
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards;
-    }
-    .stagger-header > :nth-child(1) {
-      animation-delay: 0.1s;
-    }
-    .stagger-header > :nth-child(2) {
-      animation-delay: 0.25s;
-    }
-    .stagger-header > :nth-child(3) {
-      animation-delay: 0.4s;
-    }
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-
-  <script>
-    const user = 'projects'
-    const domain = 'vunotek.com'
-    const el = document.getElementById('secure-email')
-    if (el) {
-      el.textContent = `${user}@${domain}`
-      el.setAttribute('href', `mailto:${user}@${domain}`)
-    }
-  </script>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+    <GlassCard class="p-md text-center">
+      <span class="material-symbols-outlined text-vue-green text-[32px] mb-sm">mail</span>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">{cp.quick_channels.email.label}</h3>
+      <a id="secure-email" class="font-body-lg text-body-lg text-vue-green hover:underline transition-colors" href="#"></a>
+    </GlassCard>
+    <GlassCard class="p-md text-center">
+      <span class="material-symbols-outlined text-vue-green text-[32px] mb-sm">location_on</span>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">{cp.quick_channels.location.label}</h3>
+      <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.location.value}</p>
+    </GlassCard>
+    <GlassCard class="p-md text-center">
+      <span class="material-symbols-outlined text-vue-green text-[32px] mb-sm">hub</span>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">{cp.quick_channels.community.label}</h3>
+      <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.community.value}</p>
+    </GlassCard>
+  </div>
 </Section>
+
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .stagger-header > * {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .stagger-header > :nth-child(1) { animation-delay: 0.1s; }
+  .stagger-header > :nth-child(2) { animation-delay: 0.25s; }
+  .stagger-header > :nth-child(3) { animation-delay: 0.4s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  const user = 'projects'
+  const domain = 'vunotek.com'
+  const el = document.getElementById('secure-email')
+  if (el) {
+    el.textContent = `${user}@${domain}`
+    el.setAttribute('href', `mailto:${user}@${domain}`)
+  }
+</script>

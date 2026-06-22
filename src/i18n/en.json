@@ -512,13 +512,25 @@
     },
     "form_section": {
       "title": "Tell us about your project",
+      "tabs": {
+        "cotizar": "Get a Quote",
+        "agendar": "Schedule Meeting"
+      },
       "fields": {
         "name": "Full name",
         "email": "Corporate email",
+        "phone": "Phone (optional)",
+        "company": "Company",
         "project_type": "Project Type",
         "budget": "Estimated Budget",
         "description": "Project details and technical scope...",
+        "meeting_type": "Meeting Type",
+        "preferred_date": "Preferred Date",
+        "preferred_time": "Preferred Time",
+        "topics": "Topics to discuss...",
         "submit_btn": "Initialize Requirement →",
+        "submit_meeting": "Schedule Meeting →",
+        "sending": "Sending...",
         "privacy_consent": "By submitting this form, you accept our",
         "privacy_link": "Privacy Policy"
       },
@@ -535,6 +547,19 @@
           "$3K - $7K",
           "$7K - $15K",
           "+$15K"
+        ],
+        "meeting_types": [
+          "Virtual (Google Meet)",
+          "In-Person",
+          "Phone Call"
+        ],
+        "meeting_times": [
+          "9:00 AM",
+          "10:00 AM",
+          "11:00 AM",
+          "2:00 PM",
+          "3:00 PM",
+          "4:00 PM"
         ]
       },
       "sidebar": {

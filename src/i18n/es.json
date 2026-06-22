@@ -518,13 +518,25 @@
     },
     "form_section": {
       "title": "Cuéntanos tu proyecto",
+      "tabs": {
+        "cotizar": "Cotizar",
+        "agendar": "Agendar Reunión"
+      },
       "fields": {
         "name": "Nombre completo",
         "email": "Correo corporativo",
+        "phone": "Teléfono (opcional)",
+        "company": "Empresa",
         "project_type": "Tipo de Proyecto",
         "budget": "Presupuesto Estimado",
         "description": "Detalles del proyecto y alcances técnicos...",
+        "meeting_type": "Tipo de Reunión",
+        "preferred_date": "Fecha Preferida",
+        "preferred_time": "Horario Preferido",
+        "topics": "Temas a discutir...",
         "submit_btn": "Iniciar Requerimiento →",
+        "submit_meeting": "Agendar Reunión →",
+        "sending": "Enviando...",
         "privacy_consent": "Al enviar este formulario, aceptas nuestra",
         "privacy_link": "Política de Privacidad"
       },
@@ -541,6 +553,19 @@
           "$3K - $7K",
           "$7K - $15K",
           "+$15K"
+        ],
+        "meeting_types": [
+          "Virtual (Google Meet)",
+          "Presencial",
+          "Llamada Telefónica"
+        ],
+        "meeting_times": [
+          "9:00 AM",
+          "10:00 AM",
+          "11:00 AM",
+          "2:00 PM",
+          "3:00 PM",
+          "4:00 PM"
         ]
       },
       "sidebar": {
