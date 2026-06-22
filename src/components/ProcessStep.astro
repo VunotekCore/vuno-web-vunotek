@@ -1,0 +1,41 @@
+---
+import GlassCard from './GlassCard.astro';
+import TechBadge from './TechBadge.astro';
+
+export interface Props {
+  icon: string;
+  step: string;
+  title: string;
+  description: string;
+  deliverable: string;
+  index: number;
+}
+const { icon, step, title, description, deliverable, index } = Astro.props;
+---
+
+<div class="relative flex flex-col items-center text-center md:text-left md:items-start">
+  <GlassCard class="p-lg w-full relative z-10">
+    <div class="flex flex-col gap-md">
+      <div class="flex items-center justify-between">
+        <span class="material-symbols-outlined text-vue-green text-4xl">{[icon]}</span>
+        <span class="font-label-mono text-label-mono text-vue-green">{step}</span>
+      </div>
+      <h3 class="font-headline-md text-headline-md text-on-surface">{title}</h3>
+      <p class="font-body-md text-body-md text-slate-text">{description}</p>
+      <TechBadge label={deliverable} />
+    </div>
+  </GlassCard>
+  {index < 3 && (
+    <div class="hidden md:block absolute top-1/2 -right-6 z-0 text-vue-green/30 animate-pulse">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  )}
+</div>
+
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+</style>

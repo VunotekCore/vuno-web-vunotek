@@ -1,0 +1,713 @@
+{
+  "nav": {
+    "solutions": "Soluciones",
+    "services": "Servicios",
+    "stack": "Stack",
+    "projects": "Proyectos",
+    "blog": "Blog",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "getStarted": "Comenzar"
+  },
+  "footer": {
+    "brand": {
+      "description": "Infraestructura de software y automatización avanzada. Diseñamos sistemas estables y soluciones modulares de alto rendimiento empresarial."
+    },
+    "columns": {
+      "navigation_title": "Navegación",
+      "legal_title": "Legal",
+      "links": {
+        "solutions": "Soluciones",
+        "services": "Servicios",
+        "stack": "Tech Stack",
+        "blog": "Blog",
+        "about": "Nosotros",
+        "contact": "Contacto",
+        "privacy": "Política de Privacidad",
+        "terms": "Términos de Servicio"
+      }
+    },
+    "tech_bar": {
+      "title": "Core Infrastructure:"
+    },
+    "credits": {
+      "copyright": "© 2026 Vunotek. Todos los derechos reservados.",
+      "version": "V1.0.0-RELEASE",
+      "origin": "ENGINEERED WITH VUE"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "Disponible para proyectos 2026",
+      "title": "Maximizando la Eficiencia con",
+      "titleAccent": "Software Robusto",
+      "titleRest": "y Automatización Avanzada",
+      "description": "Desarrollamos soluciones de alto rendimiento combinando la robustez de .NET, la flexibilidad de Salesforce y la agilidad de Vue.js junto a Node.js. Automatizamos tus procesos para acelerar tu crecimiento.",
+      "cta": "Iniciar un Proyecto",
+      "ctaSecondary": "CONOCE NUESTRO STACK",
+      "statLabels": [
+        "RENDIMIENTO WEB",
+        "LATENCIA API",
+        "TIEMPO DE CONSULTA",
+        "PRECISIÓN DE CONSULTA"
+      ]
+    },
+    "trust": {
+      "title": "Expertos en Vue.js y Ecosistemas Modernos"
+    },
+    "services": {
+      "anchor": "Servicios",
+      "title": "Capacidades Centrales de ",
+      "titleAccent": "Ingeniería",
+      "subtitle": "Infraestructura de software robusta, diseñada para optimizar operaciones y acelerar el crecimiento empresarial.",
+      "items": [
+        {
+          "id": "backend-engineering",
+          "title": "Desarrollo Backend y Ecosistemas de APIs",
+          "description": "Diseño e implementación de arquitecturas sólidas y altamente seguras utilizando .NET Core (C#) y Node.js. Especialistas en optimización de bases de datos, lógica de negocio compleja, automatización de procesos críticos y pasarelas de facturación electrónica multi-país.",
+          "tech": [".NET Core", "C#", "Node.js", "APIs Rest", "SQL Server"]
+        },
+        {
+          "id": "crm-architecture",
+          "title": "Consultoría y Arquitectura Salesforce",
+          "description": "Optimización avanzada de ecosistemas CRM para grandes y medianas empresas. Modelado de datos, configuración avanzada de Apex y Lightning Web Components (LWC), automatización de flujos comerciales, gestión de contratos y sistemas de aprobación complejos sin fricción.",
+          "tech": ["Salesforce", "Apex", "LWC", "Cloud Integrations"]
+        },
+        {
+          "id": "fullstack-platforms",
+          "title": "Aplicaciones Web y Plataformas Modernas",
+          "description": "Desarrollo frontend de alto rendimiento con Vue.js y AstroJs, logrando interfaces rápidas, intuitivas y con tiempos de carga optimizados. Soluciones integradas nativamente en la nube con AWS para garantizar alta disponibilidad y escalabilidad global.",
+          "tech": ["Vue.js", "AstroJs", "AWS", "Tailwind CSS", "JavaScript"]
+        }
+      ]
+    },
+    "products": {
+      "anchor": "Productos",
+      "title": "Ecosistema de Soluciones Propias",
+      "subtitle": "Desarrollamos y operamos plataformas SaaS de alto rendimiento diseñadas para resolver verticales de negocio específicas.",
+      "items": [
+        {
+          "id": "vuno-shop",
+          "name": "vuno-shop",
+          "tagline": "E-Commerce de Próxima Generación",
+          "description": "Plataforma de comercio electrónico de alta velocidad. Optimizada para ofrecer tiempos de respuesta instantáneos, gestión de inventario automatizada e integraciones nativas con pasarelas de pago y facturación avanzada.",
+          "badge": "production"
+        },
+        {
+          "id": "vuno-rentacar",
+          "name": "vuno-rentacar",
+          "tagline": "Gestión Inteligente de Flotas",
+          "description": "Sistema integral para la administración y alquiler de vehículos. Automatiza el flujo de reservas, control de contratos en tiempo real, asignación de flotas y paneles analíticos para la toma de decisiones.",
+          "badge": "production"
+        },
+        {
+          "id": "vuno-hotel",
+          "name": "vuno-hotel",
+          "tagline": "Sistemas de Reservas y Operación Hotelera",
+          "description": "Software robusto de gestión hotelera (PMS). Unifica el control de habitaciones, flujos de check-in/check-out automáticos, asignación de tareas operativas y optimización de canales de reserva sin fricción.",
+          "badge": "production"
+        }
+      ]
+    },
+    "philosophy": {
+      "anchor": "Filosofia",
+      "title": "Ingeniería de Alta Precisión",
+      "subtitle": "Cómo transformamos requerimientos complejos en sistemas estables, escalables y eficientes.",
+      "items": [
+        {
+          "id": "architecture-first",
+          "step": "[01]",
+          "title": "Arquitectura Primero",
+          "description": "No tiramos código sin un plan. Diseñamos estructuras de software robustas basadas en patrones de diseño sólidos, asegurando que cada API, base de datos y módulo de Salesforce esté alineado con los objetivos del negocio."
+        },
+        {
+          "id": "automation-core",
+          "step": "[02]",
+          "title": "Automatización Absoluta",
+          "description": "Eliminamos las tareas repetitivas y la fricción operativa. Desarrollamos flujos autónomos y pipelines de integración que permiten a las empresas operar a su máxima velocidad y capacidad."
+        },
+        {
+          "id": "senior-delivery",
+          "step": "[03]",
+          "title": "Garantía de Nivel Senior",
+          "description": "Sin intermediarios ni código frágil. Cada solución es diseñada y supervisada bajo estrictos estándares de rendimiento, rendimiento de carga optimizado y seguridad en la nube."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Lo Que Dicen Nuestros Clientes",
+      "items": [
+        {
+          "quote": "Daniel transformó nuestro ciclo comercial-financiero completo en Salesforce. La automatización de contratos y facturación multi-país fue impecable.",
+          "name": "Leonel Guillen",
+          "role": "Gerente de TI",
+          "company": "Dicora Centroamérica"
+        },
+        {
+          "quote": "Un profesional con visión técnica y funcional. Su capacidad para entender el negocio y traducirlo a soluciones de software es excepcional.",
+          "name": "Tania Sotelo",
+          "role": "Gerente RRHH",
+          "company": "ASSA"
+        }
+      ]
+    },
+    "process": {
+      "title": "Nuestra Ingeniería",
+      "subtitle": "Cómo transformamos ideas en código de alto rendimiento",
+      "steps": [
+        {
+          "icon": "search",
+          "title": "Discovery & Strategy",
+          "desc": "Análisis técnico profundo de requisitos, arquitectura actual y objetivos de negocio.",
+          "deliverable": "Technical Spec"
+        },
+        {
+          "icon": "architecture",
+          "title": "Architecture & Design",
+          "desc": "Diseñamos la arquitectura del sistema con patrones modulares, escalables y mantenibles.",
+          "deliverable": "Architecture Blueprint"
+        },
+        {
+          "icon": "code",
+          "title": "Development & Iteration",
+          "desc": "Construcción ágil con Vue.js, Node.js y TypeScript. CI/CD, code reviews y testing continuo.",
+          "deliverable": "Sprint Deliverables"
+        },
+        {
+          "icon": "rocket",
+          "title": "Deploy & Scale",
+          "desc": "Despliegue automatizado, monitoreo 24/7 y optimización continua de performance.",
+          "deliverable": "Production Env"
+        }
+      ]
+    },
+    "blog": {
+      "title": "Insights Técnicos",
+      "subtitle": "Artículos sobre ingeniería, automatización y mejores prácticas."
+    },
+    "social": { "title": "Conéctate con Nosotros" },
+    "home_cta": {
+      "cta_column": {
+        "title": "¿Listo para optimizar tu infraestructura digital?",
+        "description": "Hablemos de tu próximo gran proyecto. Diseñamos e implementamos sistemas estables y automatizaciones de alto rendimiento adaptadas a tu negocio.",
+        "button_text": "Iniciar Consultoría Técnica"
+      },
+      "stack_column": {
+        "title": "Ecosistemas Modernos y Alta Disponibilidad",
+        "description": "Desarrollamos soluciones ágiles y veloces utilizando herramientas líderes en la industria de la ingeniería de software.",
+        "items": [
+          { "icon": "view_quilt", "name": "Vue.js" },
+          { "icon": "layers", "name": "AstroJs" },
+          { "icon": "terminal", "name": "Node.js" },
+          { "icon": "cloud_done", "name": "AWS" }
+        ]
+      }
+    }
+  },
+  "services_page": {
+    "meta": {
+      "title": "Servicios de Ingeniería | Vunotek",
+      "section_tag": "// Capacidades Core"
+    },
+    "hero": {
+      "title": "Arquitectura y Desarrollo de Sistemas de",
+      "titleAccent": "Alto Rendimiento",
+      "titleRest": "",
+      "description": "Diseñamos soluciones tecnológicas robustas que eliminan la fricción operativa, optimizan bases de datos y automatizan procesos de negocio complejos bajo estándares senior."
+    },
+    "core_services": [
+      {
+        "id": "enterprise-backend",
+        "index": "[01]",
+        "icon": "dns",
+        "category": "Sistemas Backend & APIs",
+        "title": "Ingeniería de Software Robusta con .NET y Node.js",
+        "business_focus": "Nos enfocamos en la estabilidad de tus datos y la velocidad de tus procesos. Construimos la lógica de negocio que soporta operaciones críticas sin interrupciones.",
+        "capabilities_title": "Capacidades Técnicas:",
+        "capabilities": [
+          "Diseño e implementación de APIs REST robustas y escalables.",
+          "Arquitecturas backend seguras utilizando .NET Core (C#) y Node.js de extremo a extremo.",
+          "Modelado, diseño y optimización avanzada de bases de datos complejas (SQL Server).",
+          "Automatización de procesos críticos de negocio e integraciones de pasarelas de facturación electrónica multi-país."
+        ],
+        "stack_tags": [".NET Core", "C#", "Node.js", "SQL Server", "REST APIs"]
+      },
+      {
+        "id": "salesforce-architecture",
+        "index": "[02]",
+        "icon": "cloud_done",
+        "category": "Consultoría CRM Empresarial",
+        "title": "Arquitectura y Optimización Avanzada de Salesforce",
+        "business_focus": "Transformamos tu plataforma CRM en un motor operativo optimizado. Diseñamos automatizaciones avanzadas que eliminan procesos manuales y unifican tus flujos comerciales.",
+        "capabilities_title": "Capacidades Técnicas:",
+        "capabilities": [
+          "Modelado de datos avanzado y consultoría arquitectónica para ecosistemas CRM.",
+          "Desarrollo a la medida de lógica de negocio compleja utilizando Apex y Lightning Web Components (LWC).",
+          "Automatización integral de flujos comerciales, sistemas de aprobación avanzados y pipelines operativos.",
+          "Integraciones nativas y seguras de Salesforce con APIs y plataformas externas en la nube."
+        ],
+        "stack_tags": ["Salesforce", "Apex", "LWC", "Cloud Integrations", "CRM Optimization"]
+      },
+      {
+        "id": "fullstack-ecosystems",
+        "index": "[03]",
+        "icon": "language",
+        "category": "Desarrollo Web Moderno",
+        "title": "Plataformas Web de Alto Rendimiento y Nube",
+        "business_focus": "Creamos interfaces veloces, intuitivas y ligeras que garantizan una experiencia de usuario fluida, respaldadas por infraestructuras en la nube altamente disponibles.",
+        "capabilities_title": "Capacidades Técnicas:",
+        "capabilities": [
+          "Desarrollo frontend ágil y optimizado con Vue.js y AstroJs.",
+          "Optimización exhaustiva de tiempos de carga, renderizado y Core Web Vitals.",
+          "Despliegue y configuración de arquitecturas serverless y contenedores nativos en AWS.",
+          "Maquetación modular escalable utilizando Tailwind CSS bajo arquitecturas de diseño limpias."
+        ],
+        "stack_tags": ["Vue.js", "AstroJs", "AWS", "Tailwind CSS", "TypeScript"]
+      },
+      {
+        "id": "desktop-engineering",
+        "index": "[04]",
+        "icon": "desktop_windows",
+        "category": "Ingeniería de Escritorio",
+        "title": "Aplicaciones de Escritorio Multiplataforma con Electron",
+        "business_focus": "Aprovechamos el poder de las tecnologías web en el escritorio. Construimos aplicaciones nativas para Windows, macOS y Linux con rendimiento optimizado y profunda integración con el sistema operativo.",
+        "capabilities_title": "Capacidades Técnicas:",
+        "capabilities": [
+          "Optimización de rendimiento Electron con snapshots V8 personalizados y arquitectura multi-proceso.",
+          "Puente de APIs nativas para acceso directo a hardware y sistema de archivos.",
+          "Sistemas de auto-actualización con pipelines CI/CD para distribución multiplataforma.",
+          "Arquitectura IPC multi-proceso con seguridad Context Isolation activada."
+        ],
+        "stack_tags": ["Electron", "Vue.js", "Node.js", "Win/Mac/Linux", "IPC"]
+      }
+    ],
+    "cta": {
+      "title": "¿Listo para Construir el Futuro?",
+      "desc": "Nuestro equipo de ingeniería está listo para asesorarte en tu próximo desafío técnico. Ya sea una migración web masiva o una herramienta de escritorio especializada, entregamos excelencia.",
+      "button": "Agendar Auditoría Técnica",
+      "buttonSecondary": "Ver Nuestro Stack"
+    },
+    "process": {
+      "title": "Protocolo de Ejecución",
+      "steps": [
+        {
+          "name": "Analizar",
+          "desc": "Evaluación profunda de la arquitectura existente y requerimientos lógicos."
+        },
+        {
+          "name": "Diseñar",
+          "desc": "Modelado de datos, definición de patrones y diseño del flujo de APIs."
+        },
+        {
+          "name": "Desplegar",
+          "desc": "Implementación de código limpio, automatizaciones y paso a producción estable."
+        }
+      ]
+    }
+  },
+  "projects_page": {
+    "meta": {
+      "title": "Stack y Proyectos | Vunotek Engineering"
+    },
+    "hero": {
+      "badge": "// Engineering Excellence",
+      "title": "Nuestra Tecnología",
+      "description": "Construimos el futuro digital utilizando un stack moderno, robusto y altamente escalable. Cada herramienta ha sido seleccionada con un único objetivo: garantizar el máximo rendimiento bajo entornos de alta concurrencia."
+    },
+    "stack_grid": {
+      "vue": {
+        "label": "FRONTEND CORE",
+        "title": "Vue.js & Nuxt",
+        "desc": "Infraestructura reactiva de vanguardia. Priorizamos interfaces modulares y ligeras, optimizadas nativamente para maximizar los Core Web Vitals y reducir los tiempos de carga en el navegador.",
+        "tags": ["Pinia", "Vue Router", "VeeValidate", "Vitest"]
+      },
+      "node": {
+        "label": "RUNTIME ASÍNCRONO",
+        "title": "Node.js",
+        "desc": "Procesamiento asíncrono veloz y eficiente, ideal para microservicios y capas de automatización en tiempo real.",
+        "tags": ["Express", "Fastify", "Socket.io", "Sequelize", "Prisma"]
+      },
+      "typescript": {
+        "label": "SAFETY",
+        "title": "TypeScript",
+        "desc": "Tipado estricto en el lado del cliente para garantizar un código libre de excepciones y altamente mantenible a gran escala.",
+        "tags": ["Zod", "tRPC", "Prisma"]
+      },
+      "postgres": {
+        "label": "DATA ARCHITECTURE",
+        "title": "SQL Server & PostgreSQL",
+        "desc": "Modelado y optimización de bases de datos relacionales avanzadas. Experiencia nativa en SQL Server para entornos corporativos y PostgreSQL/MySQL para aplicaciones web de alta concurrencia.",
+        "tags": ["SQL Management", "phpMyAdmin", "pgAdmin"]
+      },
+      "electron": {
+        "label": "DESKTOP",
+        "title": "Electron",
+        "desc": "Capacidad nativa multiplataforma para desplegar aplicaciones de escritorio robustas usando tecnologías web estándar.",
+        "tags": ["Electron Builder", "Vite"]
+      },
+      "salesforce": {
+        "label": "CRM",
+        "title": "Salesforce (Apex / LWC)",
+        "desc": "Extensión avanzada y automatización lógica de procesos de negocio sobre la plataforma de CRM líder a nivel global.",
+        "tags": ["Apex", "LWC", "Flow"]
+      },
+      "dotnet": {
+        "label": "ENTERPRISE BACKEND",
+        "title": ".NET Core (C#) & MVC",
+        "desc": "Arquitecturas empresariales robustas. Desarrollo de APIs y ecosistemas MVC/Razor optimizados para ejecutarse en contenedores ligeros sobre entornos Linux.",
+        "tags": ["Entity Framework", "Razor Pages", "APIs", "NuGet"]
+      },
+      "linux": {
+        "label": "INFRA",
+        "title": "Linux",
+        "desc": "Sistemas operativos y servicios de nube configurados para alta disponibilidad, seguridad perimetral y despliegue continuo.",
+        "tags": ["Docker", "Nginx", "Apache2", "Zentyal"]
+      },
+      "additional_tech": {
+        "title": "Tecnologías y Frameworks Compatibles",
+        "subtitle": "Dominamos herramientas clave para la migración, mantenimiento y optimización de plataformas ya existentes.",
+        "tags": ["MySQL", "Bootstrap", "ASP.NET MVC", "Razor Pages", "Git / GitHub Actions"]
+      }
+    },
+    "portfolio": {
+      "title": "Software en Acción",
+      "subtitle": "Casos prácticos e infraestructura desplegada bajo este ecosistema tecnológico.",
+      "view_all": "Ver todos →",
+      "cards": [
+        {
+          "tag": "POS",
+          "slug": "vuno-pos",
+          "title": "VUNO POS — Sistema de Punto de Venta Empresarial",
+          "desc": "Sistema completo de punto de venta con arquitectura offline-first, multi-tenant, inventario en tiempo real y despliegue nativo vía Electron.",
+          "image_key": "pos",
+          "features": [
+            { "text": "Interfaz POS con búsqueda de productos, navegación por categorías y carrito de compras", "image": "pos-interface" },
+            { "text": "Múltiples métodos de pago (efectivo, tarjeta, cheque) y descuentos por línea", "image": "pos-payments" },
+            { "text": "Administración de caja: apertura/cierre, efectivo esperado, sobrantes y faltantes", "image": "pos-cashdrawer" },
+            { "text": "Ventas offline con cola de sincronización automática vía IndexedDB (Dexie.js)", "image": "pos-offline" },
+            { "text": "Inventario en tiempo real con variantes, kits, lotes, series y alertas de stock mínimo", "image": "pos-inventory" },
+            { "text": "Transferencias de inventario entre ubicaciones y control multi-localización", "image": "pos-transfers" },
+            { "text": "Proveedores, órdenes de compra y recepción de mercancía", "image": "pos-suppliers" },
+            { "text": "App de escritorio nativa (Electron) + PWA instalable", "image": "pos-desktop" },
+            { "text": "Arquitectura multi-tenant con control de acceso basado en roles", "image": "pos-multitenant" },
+            { "text": "Dashboards de administración, cajero y reportes en tiempo real", "image": "pos-dashboards" }
+          ],
+          "tech_stack": ["TypeScript", "Vue.js", "Electron", "Node.js", "IndexedDB", "SQL Server", "PWA"]
+        },
+        {
+          "tag": "E-COMMERCE",
+          "slug": "vuno-shop",
+          "title": "VUNO SHOP — Plataforma de E-Commerce",
+          "desc": "Plataforma completa de comercio electrónico con frontend en Astro, API REST en PHP, pagos Stripe, soporte multi-moneda y panel administrativo integral.",
+          "image_key": "dashboard",
+          "features": [
+            { "text": "Frontend Astro con rendimiento optimizado y Core Web Vitals", "image": "shop-frontend" },
+            { "text": "Catálogo de productos con filtros avanzados por categoría, color y talla", "image": "shop-catalog" },
+            { "text": "Galería interactiva de imágenes con lupa y modal de vista rápida", "image": "shop-gallery" },
+            { "text": "Carrito de compras con persistencia localStorage y sincronización con servidor", "image": "shop-cart" },
+            { "text": "Pagos con tarjeta vía Stripe y transferencia bancaria con carga de comprobante", "image": "shop-payments" },
+            { "text": "Soporte multi-moneda con tasas de cambio configurables", "image": "shop-currency" },
+            { "text": "Cuentas de cliente con historial de pedidos, lista de deseos y direcciones", "image": "shop-accounts" },
+            { "text": "Panel administrativo completo: productos, pedidos, cupones, reseñas y blog", "image": "shop-admin" },
+            { "text": "Gestión de inventario con matriz de variantes y control de stock", "image": "shop-inventory" },
+            { "text": "Autenticación 2FA (TOTP) para seguridad del panel administrativo", "image": "shop-security" },
+            { "text": "Notificaciones email automatizadas con plantillas HTML personalizables", "image": "shop-notifications" },
+            { "text": "Sistema de internacionalización (ES/EN) con cobertura completa de traducciones", "image": "shop-i18n" }
+          ],
+          "tech_stack": ["Astro", "Vue.js", "PHP", "Stripe", "TypeScript", "Tailwind CSS"]
+        },
+        {
+          "tag": "HOTEL",
+          "slug": "vuno-reservations",
+          "title": "VUNO RESERVATIONS — Sistema de Gestión Hotelera",
+          "desc": "Sistema completo de gestión hotelera (PMS) con sitio web de reservas bilingüe, pagos Stripe, panel de recepción, control de housekeeping y calendario de ocupación.",
+          "image_key": "dashboard",
+          "features": [
+            { "text": "Sitio web de reservas bilingüe (ES/EN) con catálogo de habitaciones y disponibilidad", "image": "hotel-website" },
+            { "text": "Páginas detalle con amenidades, capacidad, precios y galería de imágenes", "image": "hotel-rooms" },
+            { "text": "Reservas online con pagos Stripe y opción de transferencia bancaria", "image": "hotel-bookings" },
+            { "text": "Panel de recepción con cuadrícula de habitaciones codificada por colores y búsqueda rápida", "image": "hotel-reception" },
+            { "text": "Flujos de check-in/check-out con generación automática de facturas", "image": "hotel-checkin" },
+            { "text": "Gestión de housekeeping (disponible, ocupado, limpieza, mantenimiento)", "image": "hotel-housekeeping" },
+            { "text": "Calendario de ocupación con vista mensual tipo Gantt", "image": "hotel-calendar" },
+            { "text": "Directorio de huéspedes con historial de estancias y gestión de documentos", "image": "hotel-guests" },
+            { "text": "Ciclo de vida de reservas: pendiente, confirmada, check-in, check-out, cancelada", "image": "hotel-lifecycle" },
+            { "text": "Panel administrativo completo: habitaciones, tarifas, blog y configuración", "image": "hotel-admin" },
+            { "text": "Autenticación 2FA (TOTP) con control de acceso basado en roles", "image": "hotel-security" },
+            { "text": "Notificaciones email automatizadas (confirmación, pago pendiente, cancelación)", "image": "hotel-notifications" }
+          ],
+          "tech_stack": ["Astro", "Vue.js", "Stripe", "TypeScript", "PWA", "Tailwind CSS"]
+        },
+        {
+          "tag": "LOGISTICS",
+          "slug": "vuno-envios",
+          "title": "VUNO ENVÍOS — Logística de Paquetes Miami-Nicaragua",
+          "desc": "Plataforma logística digital conectando Miami con Nicaragua con casillero virtual, rastreo de paquetes, envíos aéreos y marítimos, y entrega puerta a puerta.",
+          "image_key": "dashboard",
+          "features": [
+            { "text": "Casillero virtual en Miami para recepción de paquetes internacionales", "image": "logistics-locker" },
+            { "text": "Envíos aéreos y marítimos con cálculo de tarifas en tiempo real", "image": "logistics-shipping" },
+            { "text": "Rastreo de paquetes multi-paso con stepper animado", "image": "logistics-tracking" },
+            { "text": "Calculadora de costos por peso, categoría y modo de envío", "image": "logistics-calculator" },
+            { "text": "Comparativa de 3 planes (recogida, puerta a puerta, carga masiva)", "image": "logistics-plans" },
+            { "text": "Ubicaciones de bodega Miami y agencia Nicaragua", "image": "logistics-locations" },
+            { "text": "Botón flotante de WhatsApp para comunicación directa", "image": "logistics-whatsapp" },
+            { "text": "Formulario de contacto interactivo con retroalimentación simulada", "image": "logistics-contact" },
+            { "text": "Diseño responsivo bilingüe con animaciones scroll", "image": "logistics-responsive" },
+            { "text": "Guías completas de servicios y procesos logísticos", "image": "logistics-guides" },
+            { "text": "Información de seguro de carga para envíos de alto valor", "image": "logistics-insurance" },
+            { "text": "Diseño mobile-first para rastreo en movimiento", "image": "logistics-mobile" }
+          ],
+          "tech_stack": ["Astro", "Vue.js", "TypeScript", "PWA", "Tailwind CSS", "Node.js"]
+        },
+        {
+          "tag": "CRM",
+          "slug": "vuno-crm",
+          "title": "VUNO CRM — Plataforma de Social Selling",
+          "desc": "CRM SaaS multitenencia especializado en social selling, unificando conversaciones de WhatsApp, Instagram y Facebook con un pipeline de ventas completo desde lead hasta cotización.",
+          "image_key": "crm",
+          "features": [
+            { "text": "Bandeja de entrada social unificada: WhatsApp, Instagram y Facebook", "image": "crm-inbox" },
+            { "text": "Perfiles de cliente 360° con historial de interacciones y valor de por vida", "image": "crm-profiles" },
+            { "text": "Kanban de oportunidades drag-and-drop con automatización de etapas", "image": "crm-kanban" },
+            { "text": "Motor de cotizaciones con análisis de costos, márgenes, descuentos e impuestos", "image": "crm-quotes" },
+            { "text": "Gestión de actividades y tareas con recordatorios automáticos", "image": "crm-tasks" },
+            { "text": "Notificaciones push en tiempo real vía WebSocket", "image": "crm-notifications" },
+            { "text": "Control de acceso basado en roles con permisos granulares por entidad", "image": "crm-rbac" },
+            { "text": "Control de asistencia con GPS y foto de entrada/salida", "image": "crm-attendance" },
+            { "text": "Gestión de empleados con departamentos, puestos y organigrama", "image": "crm-employees" },
+            { "text": "Dashboards interactivos: embudo, ingresos, rendimiento de agentes", "image": "crm-dashboards" },
+            { "text": "Arquitectura SaaS multitenencia con datos aislados por empresa", "image": "crm-saas" },
+            { "text": "Soporte PWA con modo offline y modo oscuro", "image": "crm-pwa" }
+          ],
+          "tech_stack": ["TypeScript", "Vue.js", "Node.js", "WebSocket", "PWA", "PostgreSQL"]
+        }
+      ]
+    },
+    "stats": {
+      "stat_1": { "value": "100%", "label": "TypeScript" },
+      "stat_2": { "value": "95+", "label": "Lighthouse Score" },
+      "stat_3": { "value": "<100ms", "label": "Response Time" },
+      "stat_4": { "value": "24/7", "label": "CI/CD con GitHub" }
+    }
+  },
+  "contact_page": {
+    "meta": {
+      "title": "Contacto | Vunotek",
+      "section_tag": "// contact_handler.sh"
+    },
+    "hero": {
+      "badge": "Contact Engineering",
+      "title": "Construyamos algo significativo",
+      "description": "Ya sea que estés escalando una infraestructura existente, integrando módulos avanzados de Salesforce o requiriendo una arquitectura backend robusta, estamos listos para analizar tus requerimientos técnicos."
+    },
+    "quick_channels": {
+      "title": "Canales Directos",
+      "email": {
+        "label": "Correo Electrónico",
+        "value": "projects@vunotek.com"
+      },
+      "location": {
+        "label": "Ubicación Central",
+        "value": "Managua, Nicaragua"
+      },
+      "community": {
+        "label": "Ecosistema Digital",
+        "value": "GitHub & Linear Workspace"
+      }
+    },
+    "form_section": {
+      "title": "Cuéntanos tu proyecto",
+      "fields": {
+        "name": "Nombre completo",
+        "email": "Correo corporativo",
+        "project_type": "Tipo de Proyecto",
+        "budget": "Presupuesto Estimado",
+        "description": "Detalles del proyecto y alcances técnicos...",
+        "submit_btn": "Iniciar Requerimiento →",
+        "privacy_consent": "Al enviar este formulario, aceptas nuestra",
+        "privacy_link": "Política de Privacidad"
+      },
+      "options": {
+        "types": [
+          "Desarrollo Backend / APIs",
+          "Ecosistema Salesforce",
+          "Aplicaciones Web / SaaS",
+          "Optimización / Infraestructura"
+        ],
+        "budgets": [
+          "Menos de $1K",
+          "$1K - $3K",
+          "$3K - $7K",
+          "$7K - $15K",
+          "+$15K"
+        ]
+      },
+      "sidebar": {
+        "schedule_title": "Disponibilidad Operativa",
+        "schedule_hours": "Lunes a Viernes — 08:00 a 17:00 (CST)",
+        "response_time": "Tiempo medio de respuesta técnica: < 24 horas.",
+        "social_title": "Redes Profesionales"
+      }
+    },
+    "cta_final": {
+      "title": "¿Prefieres una sesión directa?",
+      "subtitle": "Si tienes un requerimiento urgente o prefieres definir el alcance conversando, agenda una sesión técnica de 15 minutos en nuestro calendario operativo.",
+      "button": "Agendar Llamada Técnica"
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "Nuestra Trayectoria | Vunotek",
+      "section_tag": "// agency_profile.conf"
+    },
+    "hero": {
+      "badge": "// Trayectoria y Respaldo",
+      "title": "Respaldando tu Infraestructura",
+      "titleAccent": "con Experiencia Senior",
+      "titleRest": "Real",
+      "description": "Vunotek nace como la consolidación de más de 15 años de evolución en la ingeniería de software. Diseñamos e implementamos sistemas de alta disponibilidad combinando la robustez del desarrollo empresarial con la agilidad de los ecosistemas web modernos."
+    },
+    "pillars": {
+      "mission": {
+        "title": "Nuestra Misión",
+        "desc": "Proveer arquitectura de software de élite y automatizaciones avanzadas que eliminen de raíz la fricción operativa de las empresas, transformando requerimientos complejos en código limpio, seguro y de alto rendimiento."
+      },
+      "vision": {
+        "title": "Nuestra Visión",
+        "desc": "Consolidarnos como la factoría de software de referencia para empresas que exigen infraestructuras estables, liderando el despliegue de soluciones modulares y SaaS altamente eficientes en la nube."
+      },
+      "objectives": {
+        "title": "Objetivos Estratégicos",
+        "items": [
+          "Garantizar tasas de disponibilidad del 99.9% en cada infraestructura desplegada.",
+          "Optimizar bases de datos y APIs para mantener tiempos de respuesta inferiores a los 100ms.",
+          "Asegurar un código 100% trazable, documentado y libre de deuda técnica heredada.",
+          "Extender las capacidades de plataformas CRM líderes como Salesforce mediante lógica nativa avanzada."
+      ]
+    },
+    "stats": {
+      "title": "La Trayectoria en Números",
+      "subtitle": "Métricas reales que respaldan el criterio técnico detrás de cada una de nuestras soluciones.",
+      "items": [
+        { "value": "+15", "label": "Años de Evolución Técnica" },
+        { "value": "+50k", "label": "Líneas de Código Auditadas" },
+        { "value": "100%", "label": "Arquitectura Libre de Deuda" },
+        { "value": "+40", "label": "Integraciones de APIs Exitosas" }
+      ]
+    }
+  },
+    "timeline": {
+      "title": "Evolución y",
+      "titleAccent": "Criterio Arquitectónico",
+      "titleRest": "",
+      "subtitle": "La experiencia que respalda cada línea de código en nuestros proyectos actuales:",
+      "steps": [
+        {
+          "year": "Evolución Backend Core",
+          "title": "Sistemas Empresariales Robustos",
+          "description": "Años dedicados al diseño de lógicas de negocio complejas en .NET Core, modelado avanzado de bases de datos relacionales (SQL Server) e integración de pasarelas críticas de facturación y finanzas."
+        },
+        {
+          "year": "Ecosistemas CRM",
+          "title": "Arquitectura Avanzada en Salesforce",
+          "description": "Especialización en la automatización integral de flujos comerciales masivos, desarrollando componentes nativos de alto rendimiento mediante Apex y Lightning Web Components (LWC)."
+        },
+        {
+          "year": "Revolución Reactiva",
+          "title": "Interfaces Modernas y Nube",
+          "description": "Integración de arquitecturas asíncronas con Node.js y maquetación avanzada con Vue.js/Nuxt, optimizando aplicaciones de extremo a extremo bajo infraestructuras escalables en AWS."
+        }
+      ]
+    },
+    "stats": {
+      "title": "La Trayectoria en Números",
+      "subtitle": "Métricas reales que respaldan el criterio técnico detrás de cada una de nuestras soluciones.",
+      "items": [
+        { "value": "+15", "label": "Años de Evolución Técnica" },
+        { "value": "+50k", "label": "Líneas de Código Auditadas" },
+        { "value": "100%", "label": "Arquitectura Libre de Deuda" },
+        { "value": "+40", "label": "Integraciones de APIs Exitosas" }
+      ]
+    }
+  },
+  "blog": {
+    "meta": {
+      "section_tag": "// Artículos Técnicos"
+    },
+    "hero": {
+      "title": "Blog Técnico",
+      "desc": "Artículos sobre ingeniería de software, automatización empresarial y mejores prácticas de desarrollo."
+    },
+    "back_link": "Volver al blog",
+    "related_title": "Artículos relacionados"
+  },
+  "privacy_page": {
+    "meta": {
+      "title": "Política de Privacidad | Vunotek",
+      "section_tag": "// privacy_policy.md"
+    },
+    "content": {
+      "title": "Política de Privacidad",
+      "last_updated": "Última actualización: Junio 2026",
+      "sections": [
+        {
+          "title": "1. Responsable del Tratamiento",
+          "text": "Vunotek, con domicilio en Managua, Nicaragua, es el responsable del tratamiento de los datos personales recopilados a través de este sitio web. Puedes contactar con nuestra área de infraestructura y control de datos a través del correo electrónico oficial de la agencia."
+        },
+        {
+          "title": "2. Datos que Recopilamos",
+          "text": "Únicamente recopilamos los datos que proporcionas voluntariamente a través de nuestro formulario de contacto técnico: nombre completo, correo electrónico corporativo, tipo de proyecto, presupuesto estimado y la descripción técnica de tus requerimientos."
+        },
+        {
+          "title": "3. Finalidad del Tratamiento",
+          "text": "Los datos recopilados se utilizan exclusivamente para analizar los requerimientos de software solicitados, estructurar propuestas técnicas y comerciales, y establecer comunicación directa contigo o tu empresa. No realizamos perfiles comerciales automatizados ni campañas de spam."
+        },
+        {
+          "title": "4. Almacenamiento y Seguridad de Datos",
+          "text": "La seguridad de tu información es nuestra prioridad. Los datos enviados se procesan e integran de forma segura utilizando protocolos cifrados (HTTPS/SSL) y se almacenan bajo infraestructuras en la nube protegidas con estrictos controles de acceso."
+        },
+        {
+          "title": "5. Transferencia a Terceros",
+          "text": "Vunotek no vende, alquila ni comparte tus datos personales con terceros. Los datos solo podrán ser procesados por herramientas y proveedores de infraestructura técnica indispensables para la operación del servicio (como gestores de bases de datos o servicios de hosting de confianza), bajo estrictos acuerdos de confidencialidad."
+        },
+        {
+          "title": "6. Tus Derechos",
+          "text": "Tienes derecho a acceder, rectificar, limitar o solicitar la eliminación de tus datos personales de nuestros registros en cualquier momento. Para ejercer estos derechos, basta con enviar una solicitud formal desde tu correo corporativo hacia nuestros canales de contacto directos."
+        }
+      ]
+    }
+  },
+  "terms_page": {
+    "meta": {
+      "title": "Términos de Servicio | Vunotek",
+      "section_tag": "// terms_of_service.md"
+    },
+    "content": {
+      "title": "Términos de Servicio",
+      "last_updated": "Última actualización: Junio 2026",
+      "sections": [
+        {
+          "title": "1. Objeto y Alcance",
+          "text": "Este sitio web tiene un carácter exclusivamente informativo y de prospección comercial. Describe los servicios de ingeniería de software, arquitectura en la nube, desarrollo backend y consultoría Salesforce ofrecidos por Vunotek."
+        },
+        {
+          "title": "2. Estimaciones y Presupuestos",
+          "text": "Los rangos de presupuesto y tipos de proyecto seleccionados en el formulario de contacto son meramente estimaciones iniciales para orientar la viabilidad técnica. No constituyen una oferta comercial vinculante ni un contrato de servicios definitivo. Cada proyecto requiere un documento de alcance (SOW) firmado por ambas partes."
+        },
+        {
+          "title": "3. Propiedad Intelectual de la Web",
+          "text": "Todos los contenidos, diseños, código fuente de la plantilla, logotipos y combinaciones de marca expuestos en este sitio web son propiedad exclusiva de Vunotek. Queda prohibida su reproducción total o parcial sin autorización expresa."
+        },
+        {
+          "title": "4. Exclusión de Responsabilidad",
+          "text": "Vunotek no se hace responsable de las decisiones empresariales tomadas por los usuarios con base en la información general provista en este sitio web. Los compromisos de rendimiento del software (SLA), como tiempos de respuesta o disponibilidad de infraestructura, se garantizan únicamente bajo contratos de servicios específicos."
+        },
+        {
+          "title": "5. Marcas Registradas de Terceros",
+          "text": "Todos los logotipos, nombres de productos y marcas comerciales (como Salesforce, .NET, Vue.js, entre otros) que se muestran en la sección de tecnologías son propiedad exclusiva de sus respectivos titulares. Su uso en este sitio web es puramente informativo, con fines de referencia técnica, y no implica ninguna relación de afiliación, patrocinio o respaldo oficial por parte de dichas marcas hacia Vunotek."
+        }
+      ]
+    }
+  }
+}

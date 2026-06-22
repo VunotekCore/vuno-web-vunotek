@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Servicios from '../../templates/Servicios.astro'
+import { getTranslations } from '../../i18n/utils'
+
+const dict = getTranslations(Astro.currentLocale ?? 'es') as any
+const svp = dict.services_page
+---
+
+<BaseLayout title={svp.meta.title} description={svp.hero.description}>
+  <Servicios dict={dict} locale={Astro.currentLocale ?? 'es'} />
+</BaseLayout>

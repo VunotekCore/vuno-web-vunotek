@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PrivacyModal from '../components/PrivacyModal.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const lang = Astro.currentLocale || 'es';
+const currentPath = Astro.url.pathname;
+---
+
+<html class="dark" lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Vunotek</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href={`https://vunotek.com${currentPath}`} />
+    <meta property="og:title" content={`${title} | Vunotek`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://vunotek.com${currentPath}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-background text-on-surface font-body-md selection:bg-vue-green/30 selection:text-vue-green overflow-x-hidden">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-vue-green focus:text-forest-deep focus:rounded-lg focus:font-bold">
+      Skip to main content
+    </a>
+
+    <Navbar />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <PrivacyModal locale={lang} />
+  </body>
+</html>

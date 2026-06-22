@@ -1,0 +1,62 @@
+---
+import Section from '../components/Section.astro'
+import ScrollReveal from '../components/ScrollReveal.astro'
+import BlogCard from '../components/BlogCard.astro'
+import type { CollectionEntry } from 'astro:content'
+
+export interface Props {
+  posts: CollectionEntry<'blog'>[]
+  heroTitle: string
+  heroDesc: string
+  sectionTag?: string
+  locale?: string
+}
+
+const { posts, heroTitle, heroDesc, sectionTag } = Astro.props
+---
+
+<Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
+  <div class="flex flex-col gap-base stagger-header">
+    <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
+      <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
+      <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">{sectionTag || '// blog'}</span>
+    </div>
+    <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
+      {heroTitle}
+    </h1>
+    <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">
+      {heroDesc}
+    </p>
+  </div>
+</Section>
+
+<Section class="bg-surface-container-lowest border-y border-outline-variant/10">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+    {posts.map((post, i) => (
+      <ScrollReveal delay={i * 100} stagger>
+        <BlogCard
+          title={post.data.title}
+          excerpt={post.data.excerpt}
+          date={post.data.date.toISOString().split('T')[0]}
+          category={post.data.category}
+          slug={post.id}
+          image={post.data.image}
+        />
+      </ScrollReveal>
+    ))}
+  </div>
+</Section>
+
+<style>
+  .stagger-header > * {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .stagger-header > :nth-child(1) { animation-delay: 0.1s; }
+  .stagger-header > :nth-child(2) { animation-delay: 0.25s; }
+  .stagger-header > :nth-child(3) { animation-delay: 0.4s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

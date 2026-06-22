@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import Blog from '../../../templates/Blog.astro'
+import { getCollection } from 'astro:content'
+import { getTranslations } from '../../../i18n/utils'
+
+const dict = getTranslations('en') as any
+const bg = dict.blog
+const allPosts = await getCollection('blog')
+const posts = allPosts
+  .filter((p) => p.data.locale === 'en')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+---
+
+<BaseLayout title={bg.hero.title + ' | Vunotek'} description={bg.hero.desc}>
+  <Blog
+    posts={posts}
+    heroTitle={bg.hero.title}
+    heroDesc={bg.hero.desc}
+    sectionTag={bg.meta?.section_tag}
+    locale="en"
+  />
+</BaseLayout>

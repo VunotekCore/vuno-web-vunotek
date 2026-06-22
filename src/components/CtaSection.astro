@@ -1,0 +1,51 @@
+---
+import ScrollReveal from './ScrollReveal.astro'
+
+export interface Props {
+  cta: {
+    title: string
+    description: string
+    button_text: string
+  }
+  stack: {
+    title: string
+    description: string
+    items: Array<{ icon: string; name: string }>
+  }
+  ctaHref: string
+}
+
+const { cta, stack, ctaHref } = Astro.props
+---
+
+<ScrollReveal>
+  <div class="bg-surface-container border border-outline-variant/20 rounded-xl p-xl lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-xl">
+    <div class="flex flex-col gap-md justify-center">
+      <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">
+        {cta.title}
+      </h2>
+      <p class="font-body-lg text-body-lg text-slate-text">{cta.description}</p>
+      <a
+        href={ctaHref}
+        class="bg-vue-green text-forest-deep px-xl py-4 rounded-full font-bold text-body-lg hover:scale-105 transition-transform inline-block w-full sm:w-auto text-center"
+      >
+        {cta.button_text}
+      </a>
+    </div>
+
+    <div class="bg-surface-container-high border border-outline-variant/20 rounded-lg p-lg flex flex-col gap-base">
+      <div>
+        <h3 class="font-display-lg text-headline-md text-on-surface mb-sm">{stack.title}</h3>
+        <p class="font-body-md text-body-md text-slate-text">{stack.description}</p>
+      </div>
+      <div class="grid grid-cols-2 gap-md flex-1">
+        {stack.items.map((item) => (
+          <div class="bg-surface-container border border-outline-variant/20 rounded-lg p-md flex items-center gap-sm hover:border-vue-green/40 transition-colors">
+            <span class="material-symbols-outlined text-vue-green text-3xl">{item.icon}</span>
+            <span class="font-label-mono text-label-mono text-on-surface">{item.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</ScrollReveal>

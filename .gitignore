@@ -17,6 +17,12 @@ pnpm-debug.log*
 .env
 .env.production
 
+# PHP sensitive config
+public/api/config.php
+
+# PHP dependencies
+composer.lock
+
 # macOS-specific files
 .DS_Store
 

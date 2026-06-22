@@ -1,0 +1,31 @@
+---
+// @component ScrollIndicator
+// Subtle animated mouse icon indicating scrollable content below.
+// Used at the bottom of full-viewport hero sections.
+---
+
+<div class="scroll-indicator" aria-hidden="true">
+  <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="20" height="36" rx="10" stroke="currentColor" stroke-width="2" />
+    <circle cx="12" cy="10" r="2.5" fill="var(--color-vue-green)" class="scroll-dot" />
+  </svg>
+</div>
+
+<style>
+  .scroll-indicator {
+    color: var(--color-slate-text, #94a3b8);
+  }
+  .scroll-dot {
+    animation: scroll-down 2s ease-in-out infinite;
+  }
+  @keyframes scroll-down {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+  }
+</style>

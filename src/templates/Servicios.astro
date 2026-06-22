@@ -1,0 +1,103 @@
+---
+import Section from '../components/Section.astro'
+import GlassCard from '../components/GlassCard.astro'
+import Button from '../components/Button.astro'
+import ServicesTechnical from '../components/ServicesTechnical.astro'
+import ScrollReveal from '../components/ScrollReveal.astro'
+import ProcessIndicator from '../components/ProcessIndicator.astro'
+
+export interface Props {
+  dict: Record<string, unknown>
+  locale: string
+}
+
+const { dict, locale } = Astro.props
+const svp = dict.services_page as any
+const p = (path: string) => (locale === 'en' ? `/en${path}` : path)
+---
+
+<!-- ============================================================
+  SECTION 1 — HERO / DOCUMENTATION HEADER
+  Muestra: tag (// core_capabilities.json), título con acento
+  gradient, descripción principal.
+  Datos: svp.hero, svp.meta.section_tag
+  Posición: primer bloque visible, fondo por defecto.
+  NOTA: pt-20/pt-24 matchea padding superior del Hero (Home page).
+  ============================================================ -->
+<Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
+  <div class="flex flex-col gap-base stagger-header">
+    <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
+      <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
+      <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">{svp.meta.section_tag}</span>
+    </div>
+    <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
+      {svp.hero.title}<br />
+      <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent">{svp.hero.titleAccent}</span> {svp.hero.titleRest}
+    </h1>
+    <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">
+      {svp.hero.description}
+    </p>
+  </div>
+</Section>
+
+<style>
+  .stagger-header > * {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .stagger-header > :nth-child(1) { animation-delay: 0.1s; }
+  .stagger-header > :nth-child(2) { animation-delay: 0.25s; }
+  .stagger-header > :nth-child(3) { animation-delay: 0.4s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<!-- ============================================================
+  SECTION 2 — CORE SERVICES TABLE
+  Tabla técnica con 4 servicios: Backend, Salesforce, Web,
+  Desktop. Cada uno con icono, descripción, tecnologías.
+  Datos: svp.core_services[]
+  CTA: enlace a /proyectos
+  ============================================================ -->
+<Section class="bg-surface-container-lowest border-y border-outline-variant/10">
+  <ScrollReveal>
+    <ServicesTechnical
+      items={svp.core_services}
+      ctaLabel={locale === 'en' ? 'View platforms built with this stack →' : 'Ver plataformas construidas con este stack →'}
+      ctaHref={p('/proyectos')}
+    />
+  </ScrollReveal>
+</Section>
+
+<!-- ============================================================
+  SECTION 3 — EXECUTION PROTOCOL
+  Timeline de 3 pasos (Analizar → Diseñar → Desplegar).
+  Datos: svp.process, svp.process.steps[]
+  ============================================================ -->
+<Section class="!py-base md:!py-lg">
+  <ProcessIndicator title={svp.process.title} steps={svp.process.steps} />
+</Section>
+
+<!-- ============================================================
+  SECTION 4 — FINAL CTA
+  GlassCard con título, descripción, 2 botones:
+    - Principal → /contacto (Agendar Auditoría Técnica)
+    - Secundario → /proyectos (Ver Nuestro Stack)
+  Datos: svp.cta
+  ============================================================ -->
+<Section class="bg-surface-container-lowest border-y border-outline-variant/10">
+  <ScrollReveal>
+    <GlassCard class="p-xl text-center relative overflow-hidden">
+      <div class="relative z-10 flex flex-col gap-base items-center">
+        <h2 class="font-display-lg text-headline-lg text-on-surface">{svp.cta.title}</h2>
+        <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">{svp.cta.desc}</p>
+        <div class="flex flex-col sm:flex-row gap-md justify-center pt-sm">
+          <Button href={p('/contacto')} size="lg">{svp.cta.button}</Button>
+          <Button variant="secondary" href={p('/proyectos')} size="lg">{svp.cta.buttonSecondary}</Button>
+        </div>
+      </div>
+    </GlassCard>
+  </ScrollReveal>
+</Section>

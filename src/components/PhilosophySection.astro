@@ -1,0 +1,117 @@
+---
+import ScrollReveal from './ScrollReveal.astro'
+
+export interface Props {
+  anchor: string
+  title: string
+  subtitle: string
+  items: Array<{
+    id: string
+    step: string
+    title: string
+    description: string
+  }>
+}
+
+const { anchor, title, subtitle, items } = Astro.props
+---
+
+<div class="flex flex-col gap-lg">
+  <ScrollReveal>
+    <div class="flex flex-col gap-base">
+      <span
+        class="inline-flex items-center gap-sm bg-vue-green/10 border border-vue-green/20 w-fit px-4 py-1 rounded-full font-label-mono text-label-mono text-vue-green tracking-wider uppercase"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-vue-green"></span>
+        {anchor}
+      </span>
+      <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">
+        {title}
+      </h2>
+      <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">
+        {subtitle}
+      </p>
+    </div>
+  </ScrollReveal>
+
+  <!-- Desktop: Horizontal pipeline (≥1024px) -->
+  <div class="relative hidden lg:block">
+    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[18px] h-px bg-gradient-to-r from-outline-variant/10 via-outline-variant/30 to-outline-variant/10"></div>
+
+    <div class="relative grid grid-cols-3 gap-8">
+      {items.map((item, i) => (
+        <div class="relative flex flex-col items-center">
+          <div class="w-4 h-4 rounded-full bg-vue-green ring-[4px] ring-surface-container-lowest z-10"></div>
+
+          {i < items.length - 1 && (
+            <div class="absolute top-[14px] -right-[19px] z-20">
+              <svg class="w-4 h-4 text-outline-variant/40" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M6 4l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+</div>
+
+<style>
+  @keyframes pipeline-flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .philosophy-card:hover {
+    border-color: var(--color-vue-green) !important;
+    box-shadow: 0 0 24px color-mix(in srgb, var(--color-vue-green) 12%, transparent);
+  }
+</style>
+
+          )}
+
+          <ScrollReveal delay={i * 100} stagger>
+            <article class="philosophy-card w-full mt-3 bg-surface-container border border-outline-variant/10 rounded-xl p-lg flex flex-col gap-base">
+              <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">
+                {item.step}
+              </span>
+              <h3 class="font-display-lg text-headline-md text-on-surface">
+                {item.title}
+              </h3>
+              <p class="font-body-md text-body-md text-slate-text">
+                {item.description}
+              </p>
+            </article>
+          </ScrollReveal>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Mobile: Vertical timeline (<1024px) -->
+  <div class="flex flex-col lg:hidden">
+    {items.map((item, i) => (
+      <ScrollReveal delay={i * 100} stagger>
+        <div class="relative flex gap-lg pl-lg pb-xl last:pb-0">
+          <div class="flex flex-col items-center">
+            <div class="w-3.5 h-3.5 rounded-full bg-vue-green ring-[3px] ring-surface-container-lowest flex-shrink-0 z-10"></div>
+            {i < items.length - 1 && (
+              <div class="w-px flex-1 bg-outline-variant/20 mt-1"></div>
+            )}
+          </div>
+          <div class="flex flex-col gap-sm min-w-0">
+            <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">
+              {item.step}
+            </span>
+            <h3 class="font-display-lg text-headline-md text-on-surface">
+              {item.title}
+            </h3>
+            <p class="font-body-md text-body-md text-slate-text">
+              {item.description}
+            </p>
+          </div>
+        </div>
+      </ScrollReveal>
+    ))}
+  </div>
+</div>

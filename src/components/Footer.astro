@@ -1,0 +1,85 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+const locale = Astro.currentLocale || 'es';
+const isEn = locale === 'en';
+const t = useTranslations(locale);
+const p = (path: string) => isEn ? `/en${path}` : path;
+
+const f = (path: string) => t(`footer.${path}`);
+const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind CSS'];
+---
+
+<footer class="border-t border-outline-variant/20">
+  <div class="max-w-[min(90vw,1600px)] mx-auto px-margin">
+
+    <!-- Block 1: Brand + Navigation -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-lg py-lg md:py-xl">
+      <!-- Brand column -->
+      <div class="md:col-span-5 flex flex-col gap-md">
+        <a href={p('/')} class="flex items-center gap-3">
+          <img src="/logo.webp" alt="Vunotek" class="h-8 w-auto" />
+          <span class="font-display-lg text-headline-md font-bold">
+            <span class="text-on-surface">VUNO</span><span class="text-vue-green">TEK</span>
+          </span>
+        </a>
+        <p class="font-body-md text-body-md text-slate-text">
+          {f('brand.description')}
+        </p>
+      </div>
+
+      <!-- Navigation column -->
+      <div class="md:col-span-4 flex flex-col gap-base">
+        <span class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs">
+          {f('columns.navigation_title')}
+        </span>
+        <div class="grid grid-cols-2 gap-x-md gap-y-sm">
+          <a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-vue-green transition-colors">{f('columns.links.solutions')}
+          <a href={p('/servicios')} class="font-body-md text-body-md text-slate-text hover:text-vue-green transition-colors">{f('columns.links.services')}</a>
+          <a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-vue-green transition-colors">{f('columns.links.stack')}</a>
+          <a href={isEn ? '/en/blog' : '/blog'} class="font-body-md text-body-md text-slate-text hover:text-vue-green transition-colors">{f('columns.links.blog')}</a>
+          <a href={p('/about')} class="font-body-md text-body-md text-slate-text hover:text-vue-green transition-colors">{f('columns.links.about')}</a>
+          <a href={p('/contacto')} class="font-body-md text-body-md text-slate-text hover:text-vue-green transition-colors">{f('columns.links.contact')}</a>
+        </div>
+      </div>
+
+      <!-- Legal column -->
+      <div class="md:col-span-3 flex flex-col gap-base">
+        <span class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs">
+          {f('columns.legal_title')}
+        </span>
+        <div class="flex flex-col gap-sm">
+          <button type="button" data-open-privacy class="font-body-md text-body-md text-slate-text hover:text-vue-green transition-colors text-left">{f('columns.links.privacy')}</button>
+          <button type="button" data-open-terms class="font-body-md text-body-md text-slate-text hover:text-vue-green transition-colors text-left">{f('columns.links.terms')}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Block 2: Tech bar -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-sm py-md border-y border-outline-variant/10">
+      <span class="font-label-mono text-label-mono text-slate-text uppercase tracking-widest text-xs flex-shrink-0">
+        {f('tech_bar.title')}
+      </span>
+      <div class="flex flex-wrap gap-sm">
+        {techItems.map((tech) => (
+          <span class="font-label-mono text-label-mono text-vue-green/80 bg-vue-green/8 border border-vue-green/15 px-2.5 py-0.5 rounded text-xs">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Block 3: Credits -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-md py-md">
+      <p class="font-body-md text-body-md text-slate-text/70 text-xs">
+        {f('credits.copyright')}
+      </p>
+      <div class="flex items-center gap-md">
+        <span class="font-label-mono text-label-mono text-vue-green/60 text-xs">{f('credits.version')}</span>
+        <span class="w-px h-3 bg-outline-variant/20"></span>
+        <span class="font-label-mono text-label-mono text-slate-text/50 text-xs">{f('credits.origin')}</span>
+      </div>
+    </div>
+
+  </div>
+</footer>

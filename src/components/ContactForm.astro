@@ -1,0 +1,124 @@
+---
+import GlassCard from './GlassCard.astro';
+import Button from './Button.astro';
+
+export interface Props {
+  fields: {
+    name: string;
+    email: string;
+    project_type: string;
+    budget: string;
+    description: string;
+    submit_btn: string;
+    privacy_consent: string;
+    privacy_link: string;
+  };
+  options: {
+    types: string[];
+    budgets: string[];
+  };
+}
+const { fields, options } = Astro.props;
+---
+
+<GlassCard class="p-lg">
+  <form action="#" class="space-y-md">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+      <div class="space-y-xs">
+        <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.name}</label>
+        <input class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200" placeholder="John Doe" type="text" required />
+      </div>
+      <div class="space-y-xs">
+        <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.email}</label>
+        <input class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200" placeholder="john@enterprise.com" type="email" required />
+      </div>
+    </div>
+    <div class="space-y-xs">
+      <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.project_type}</label>
+      <div class="flex flex-wrap gap-sm" data-pill-group="project_type">
+        <input type="hidden" name="project_type" />
+        {options.types.map((type: string) => (
+          <button type="button" class="pill-option" data-value={type}>{type}</button>
+        ))}
+      </div>
+    </div>
+    <div class="space-y-xs">
+      <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.budget}</label>
+      <div class="flex flex-wrap gap-sm" data-pill-group="budget">
+        <input type="hidden" name="budget" />
+        {options.budgets.map((b: string) => (
+          <button type="button" class="pill-option" data-value={b}>{b}</button>
+        ))}
+      </div>
+    </div>
+    <div class="space-y-xs">
+      <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.description}</label>
+      <textarea class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200 resize-none" placeholder={fields.description} rows={5} required></textarea>
+    </div>
+    <div class="pt-sm">
+      <Button type="submit" size="lg" class="shadow-lg shadow-vue-green/10" data-submit>
+        {fields.submit_btn}
+        <span class="material-symbols-outlined">send</span>
+      </Button>
+      <p class="font-label-mono text-[11px] text-slate-text/60 mt-3 text-center">
+        {fields.privacy_consent}
+        <button type="button" data-open-privacy class="text-vue-green hover:underline transition-colors">
+          {fields.privacy_link}
+        </button>
+      </p>
+    </div>
+  </form>
+</GlassCard>
+
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .pill-option {
+    padding: 0.5rem 1.125rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--color-surface-dim);
+    color: var(--color-on-surface);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    line-height: 1.4;
+    user-select: none;
+  }
+  .pill-option:hover {
+    border-color: var(--color-vue-green);
+    color: var(--color-vue-green);
+  }
+  .pill-option.active {
+    background: var(--color-vue-green);
+    color: var(--color-forest-deep);
+    border-color: var(--color-vue-green);
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('input:not([type="hidden"]), textarea').forEach((el) => {
+    el.addEventListener('focus', () => {
+      const label = el.closest('.space-y-xs')?.querySelector('label');
+      if (label) label.style.color = '#42b883';
+    });
+    el.addEventListener('blur', () => {
+      const label = el.closest('.space-y-xs')?.querySelector('label');
+      if (label) label.style.color = '';
+    });
+  });
+
+  document.querySelectorAll('[data-pill-group]').forEach((group) => {
+    const hidden = group.querySelector('input[type="hidden"]') as HTMLInputElement | null;
+    group.querySelectorAll('.pill-option').forEach((pill) => {
+      pill.addEventListener('click', () => {
+        group.querySelectorAll('.pill-option').forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+        if (hidden) hidden.value = pill.getAttribute('data-value') ?? '';
+      });
+    });
+  });
+</script>

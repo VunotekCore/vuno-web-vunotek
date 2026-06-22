@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ProyectoDetalle from '../../templates/ProyectoDetalle.astro'
+import { getTranslations } from '../../i18n/utils'
+import type { GetStaticPathsItem } from 'astro'
+
+export async function getStaticPaths(): Promise<GetStaticPathsItem[]> {
+  const dict = getTranslations('es') as any
+  const cards = dict.projects_page.portfolio.cards as any[]
+  return cards
+    .filter((c: any) => c.slug)
+    .map((card: any) => ({
+      params: { slug: card.slug },
+      props: { card },
+    }))
+}
+
+type CardProp = {
+  tag: string
+  title: string
+  desc: string
+  image_key: string
+  features: { text: string; image: string }[]
+  tech_stack: string[]
+}
+
+const { card } = Astro.props as { card: CardProp }
+---
+
+<BaseLayout title={`${card.title} | Vunotek`} description={card.desc}>
+  <ProyectoDetalle card={card} locale="es" />
+</BaseLayout>

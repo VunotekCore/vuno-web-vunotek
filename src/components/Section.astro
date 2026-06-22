@@ -1,0 +1,17 @@
+---
+export interface Props {
+  id?: string;
+  class?: string;
+  containerClass?: string;
+}
+---
+
+<section
+  id={Astro.props.id}
+  class:list={['py-lg md:py-xl', Astro.props.class]}
+  style="scroll-margin-top: 80px;"
+>
+  <div class:list={['max-w-[min(90vw,1600px)] mx-auto px-margin', Astro.props.containerClass]}>
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,57 @@
+---
+import ScrollReveal from './ScrollReveal.astro'
+
+export interface Props {
+  title: string
+  steps: Array<{
+    name: string
+    desc: string
+  }>
+}
+
+const { title, steps } = Astro.props
+---
+
+<div class="flex flex-col gap-lg">
+  <ScrollReveal>
+    <div class="flex items-center gap-sm">
+      <span class="w-1.5 h-1.5 rounded-full bg-vue-green flex-shrink-0"></span>
+      <h2 class="font-display-lg text-headline-md text-on-surface">{title}</h2>
+    </div>
+  </ScrollReveal>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+    {steps.map((step, i) => (
+      <ScrollReveal delay={i * 150}>
+        <div class="relative flex items-stretch gap-0">
+          <div class="flex-1 bg-surface-container-low border border-outline-variant/10 rounded-xl p-lg flex flex-col gap-sm transition-all duration-300 hover:border-vue-green/50 relative overflow-hidden"
+            data-glass-card
+            style="--mouse-x: 50%; --mouse-y: 50%;"
+          >
+            <div class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300"
+              style="background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66,184,131,0.08), transparent 60%);"
+              data-glass-glow
+            />
+            <div class="relative z-10 flex flex-col gap-sm">
+              <div class="flex items-center gap-sm">
+                <span class="font-label-mono text-label-mono text-vue-green/50 text-xs">[{String(i + 1).padStart(2, '0')}]</span>
+                <span class="h-px flex-1 bg-outline-variant/10"></span>
+              </div>
+              <h3 class="font-display-lg text-headline-md text-on-surface">{step.name}</h3>
+              <p class="font-body-md text-body-md text-slate-text">{step.desc}</p>
+            </div>
+          </div>
+
+          {i < steps.length - 1 && (
+            <div class="hidden md:flex items-center justify-center w-8 flex-shrink-0">
+              <svg class="w-5 h-5 text-outline-variant/30" viewBox="0 0 16 16" fill="none">
+                <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          )}
+        </div>
+      </ScrollReveal>
+    ))}
+  </div>
+</div>
+

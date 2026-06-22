@@ -1,0 +1,74 @@
+---
+import ScrollReveal from './ScrollReveal.astro'
+
+export interface Props {
+  anchor: string
+  title: string
+  subtitle: string
+  items: Array<{
+    id: string
+    name: string
+    tagline: string
+    description: string
+    badge: string
+  }>
+}
+
+const { anchor, title, subtitle, items } = Astro.props
+
+const accentColors: Record<string, { border: string; glow: string; text: string }> = {
+  'vuno-shop': { border: '#06b6d4', glow: 'rgba(6,182,212,0.12)', text: '#06b6d4' },
+  'vuno-rentacar': { border: '#f59e0b', glow: 'rgba(245,158,11,0.12)', text: '#f59e0b' },
+  'vuno-hotel': { border: '#a855f7', glow: 'rgba(168,85,247,0.12)', text: '#a855f7' },
+}
+---
+
+<div class="flex flex-col gap-lg">
+  <ScrollReveal>
+    <div class="flex flex-col gap-base">
+      <span class="inline-flex items-center gap-sm bg-vue-green/10 border border-vue-green/20 w-fit px-4 py-1 rounded-full font-label-mono text-label-mono text-vue-green tracking-wider uppercase">
+        <span class="w-1.5 h-1.5 rounded-full bg-vue-green"></span>
+        {anchor}
+      </span>
+      <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">
+        {title}
+      </h2>
+      <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">{subtitle}</p>
+    </div>
+  </ScrollReveal>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+    {items.map((item, i) => {
+      const accent = accentColors[item.id] || { border: '#42b883', glow: 'rgba(66,184,131,0.12)', text: '#42b883' }
+      return (
+        <ScrollReveal delay={i * 100} stagger>
+          <article
+            class="product-card relative bg-surface-container border border-outline-variant/20 rounded-xl p-lg flex flex-col gap-base h-full transition-all duration-300"
+            style={`--accent-border: ${accent.border}; --accent-glow: ${accent.glow}; --accent-text: ${accent.text};`}
+          >
+            <div
+              class="absolute top-3 right-3 font-label-mono text-label-mono flex items-center gap-1.5 rounded-md border px-2 py-0.5"
+              style={`border-color: color-mix(in srgb, var(--accent-border) 30%, transparent); color: var(--accent-text); background: color-mix(in srgb, var(--accent-border) 8%, transparent);`}
+            >
+              <span class="w-1.5 h-1.5 rounded-full" style={`background: var(--accent-text);`}></span>
+              <span class="tracking-wider">{item.badge}</span>
+            </div>
+
+            <span class="font-label-mono text-label-mono pt-lg" style={`color: var(--accent-text);`}>
+              {item.name}
+            </span>
+            <h3 class="font-display-lg text-headline-md text-on-surface">{item.tagline}</h3>
+            <p class="font-body-md text-body-md text-slate-text">{item.description}</p>
+          </article>
+        </ScrollReveal>
+      )
+    })}
+  </div>
+</div>
+
+<style>
+  .product-card:hover {
+    border-color: var(--accent-border) !important;
+    box-shadow: 0 0 24px var(--accent-glow);
+  }
+</style>

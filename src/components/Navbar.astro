@@ -1,0 +1,106 @@
+---
+import LocaleSwitch from './LocaleSwitch.astro';
+import { useTranslations } from '../i18n/utils';
+
+const locale = Astro.currentLocale || 'es';
+const isEn = locale === 'en';
+const t = useTranslations(locale);
+const p = (path: string) => isEn ? `/en${path}` : path;
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { href: p('/'), label: t('nav.solutions') },
+  { href: p('/servicios'), label: t('nav.services') },
+  { href: p('/proyectos'), label: t('nav.stack') },
+  { href: p('/blog'), label: t('nav.blog') },
+  { href: p('/about'), label: t('nav.about') },
+  { href: p('/contacto'), label: t('nav.contact') },
+];
+
+function isActive(href: string) {
+  if (href === p('/')) return currentPath === p('/') || currentPath === '';
+  return currentPath.startsWith(href);
+}
+---
+
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-all duration-300 ease-in-out h-20" id="navbar">
+  <div class="flex justify-between items-center px-margin max-w-[min(90vw,1600px)] mx-auto h-full">
+    <a href={p('/')} class="flex items-center gap-3">
+      <img src="/logo.webp" alt="Vunotek" class="h-8 w-auto" />
+      <span class="font-display-lg text-headline-md md:text-headline-lg font-bold tracking-tight max-[400px]:hidden"><span class="text-on-surface">VUNO</span><span class="text-vue-green">TEK</span></span>
+    </a>
+
+    <div class="flex items-center gap-base">
+      <div class="hidden lg:flex items-center gap-lg">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'font-body-md text-body-md transition-colors duration-200',
+              isActive(link.href)
+                ? 'text-vue-green font-bold border-b-2 border-vue-green pb-1'
+                : 'text-on-surface-variant hover:text-vue-green',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+      <LocaleSwitch />
+      <button class="lg:hidden text-on-surface p-2" aria-label="Toggle menu" id="menu-toggle">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden bg-surface/95 backdrop-blur-md border-t border-outline-variant/20">
+    <div class="px-margin py-md flex flex-col gap-base">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'font-body-md text-body-md py-2 transition-colors',
+            isActive(link.href) ? 'text-vue-green font-bold' : 'text-on-surface-variant hover:text-vue-green',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={p('/contacto')}
+        class="bg-vue-green text-forest-deep px-6 py-3 rounded-lg font-semibold text-center mt-sm"
+      >
+        {t('nav.getStarted')}
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('navbar')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    const icon = toggle.querySelector('.material-symbols-outlined');
+    if (icon) icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+  });
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (window.scrollY > 50) {
+          nav.classList.add('h-16', 'bg-surface/95');
+          nav.classList.remove('h-20');
+        } else {
+          nav.classList.remove('h-16', 'bg-surface/95');
+          nav.classList.add('h-20');
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+</script>

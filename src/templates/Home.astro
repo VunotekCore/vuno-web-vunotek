@@ -1,0 +1,78 @@
+---
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
+import ServicesGrid from '../components/ServicesGrid.astro'
+import ProductsGrid from '../components/ProductsGrid.astro'
+import CtaSection from '../components/CtaSection.astro'
+import PhilosophySection from '../components/PhilosophySection.astro'
+import TrustBar from '../components/TrustBar.astro'
+
+export interface Props {
+  dict: Record<string, unknown>
+  locale: string
+}
+
+const { dict, locale } = Astro.props
+const gh = dict.home as any
+const p = (path: string) => (locale === 'en' ? `/en${path}` : path)
+
+const trustItems = [
+  { icon: 'cloud_done', name: 'AWS' },
+  { icon: 'terminal', name: 'Node.js' },
+  { icon: 'view_quilt', name: 'Vue.js' },
+  { icon: 'layers', name: 'AstroJs' },
+]
+---
+
+<Hero
+  variant="code"
+  badge={gh.hero.badge}
+  title={gh.hero.title}
+  titleAccent={gh.hero.titleAccent}
+  titleRest={gh.hero.titleRest}
+  description={gh.hero.description}
+  cta={{ label: gh.hero.cta, href: p('/contacto') }}
+  ctaSecondary={{ label: gh.hero.ctaSecondary, href: p('/proyectos') }}
+  statLabels={gh.hero.statLabels}
+/>
+
+<Section class="bg-surface-container-lowest border-y border-outline-variant/10">
+  <ServicesGrid
+    anchor={gh.services.anchor}
+    title={gh.services.title}
+    titleAccent={gh.services.titleAccent}
+    titleRest={gh.services.titleRest}
+    subtitle={gh.services.subtitle}
+    items={gh.services.items}
+  />
+</Section>
+
+<Section>
+  <ProductsGrid
+    anchor={gh.products.anchor}
+    title={gh.products.title}
+    subtitle={gh.products.subtitle}
+    items={gh.products.items}
+  />
+</Section>
+
+<Section class="bg-surface-container-lowest border-y border-outline-variant/10">
+  <PhilosophySection
+    anchor={gh.philosophy.anchor}
+    title={gh.philosophy.title}
+    subtitle={gh.philosophy.subtitle}
+    items={gh.philosophy.items}
+  />
+</Section>
+
+<Section>
+  <CtaSection
+    cta={gh.home_cta.cta_column}
+    stack={gh.home_cta.stack_column}
+    ctaHref={p('/contacto')}
+  />
+</Section>
+
+<Section class="bg-surface-container-lowest border-y border-outline-variant/10">
+  <TrustBar title={gh.trust.title} items={trustItems} />
+</Section>

@@ -1,0 +1,48 @@
+---
+export interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  slug: string;
+  image?: string;
+}
+const { title, excerpt, date, category, slug, image } = Astro.props;
+const isEn = (Astro.currentLocale || 'es') === 'en';
+const prefix = isEn ? '/en' : '';
+
+const imageStore = {
+  'blog/salesforce-automation': 'https://placehold.co/800x500/1e293b/42b883?text=Salesforce',
+  'blog/e-invoicing-central-america': 'https://placehold.co/800x500/1e293b/42b883?text=E-Invoicing',
+  'blog/vue3-astro': 'https://placehold.co/800x500/1e293b/42b883?text=Vue+3+%2B+Astro',
+  'blog/sql-server-optimization': 'https://placehold.co/800x500/1e293b/42b883?text=SQL+Server',
+  'blog/offline-first': 'https://placehold.co/800x500/1e293b/42b883?text=Offline+First',
+  'blog/nodejs-aws-docker': 'https://placehold.co/800x500/1e293b/42b883?text=Node.js+%2B+AWS',
+  'blog/typescript-avanzado': 'https://placehold.co/800x500/1e293b/42b883?text=TypeScript',
+}
+const imgSrc = image ? (imageStore as Record<string, string>)[image] || undefined : undefined
+---
+
+<article class="group cursor-pointer">
+  <a href={`${prefix}/blog/${slug}`} class="block">
+    <div class="aspect-[16/10] glass-panel rounded-xl mb-md flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-vue-green/50">
+      {imgSrc ? (
+        <img src={imgSrc} alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+      ) : (
+        <span class="material-symbols-outlined text-6xl text-outline/30">description</span>
+      )}
+    </div>
+    <div class="flex items-center gap-2 mb-sm">
+      <span class="font-label-mono text-[11px] text-vue-green bg-vue-green/10 px-2 py-0.5 rounded">{category}</span>
+      <span class="font-label-mono text-[11px] text-slate-text">{date}</span>
+    </div>
+    <h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-vue-green transition-colors mb-xs">{title}</h4>
+    <p class="font-body-md text-body-md text-slate-text line-clamp-2">{excerpt}</p>
+  </a>
+</article>
+
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+</style>

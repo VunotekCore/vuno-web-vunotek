@@ -1,0 +1,15 @@
+---
+export interface Props {
+  value: string;
+  label: string;
+}
+---
+
+<div class="text-center">
+  <div class="text-headline-lg md:text-display-lg-mobile font-display-lg text-vue-green mb-xs metric-glow">
+    {Astro.props.value}
+  </div>
+  <div class="font-label-mono text-label-mono text-slate-text uppercase tracking-widest">
+    {Astro.props.label}
+  </div>
+</div>

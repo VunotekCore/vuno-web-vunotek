@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Home from '../../templates/Home.astro'
+import { getTranslations } from '../../i18n/utils'
+
+const dict = getTranslations(Astro.currentLocale ?? 'es') as any
+const gh = dict.home
+---
+
+<BaseLayout title="Engineering Precision for Modern Business" description={gh.hero.description}>
+  <Home dict={dict} locale={Astro.currentLocale ?? 'es'} />
+</BaseLayout>

@@ -1,0 +1,333 @@
+---
+import ScrollIndicator from './ScrollIndicator.astro';
+
+export interface Props {
+  variant?: 'code' | 'gradient' | 'centered' | 'contact';
+  badge?: string;
+  title: string;
+  titleAccent?: string;
+  titleRest?: string;
+  description: string;
+  cta?: { label: string; href?: string };
+  ctaSecondary?: { label: string; href?: string };
+  statLabels?: string[];
+}
+---
+
+<section class="relative overflow-hidden min-h-dvh flex flex-col" style="scroll-margin-top: 80px;">
+  <div class="max-w-[min(90vw,1600px)] mx-auto px-margin flex-1 flex flex-col">
+
+    {
+      Astro.props.variant === 'code' && (
+        <div class="grid md:grid-cols-2 gap-md md:gap-lg items-start md:items-center flex-1 pt-20 md:pt-24">
+          <div class="flex flex-col gap-md left-col">
+            {Astro.props.badge && (
+              <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
+                <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">{Astro.props.badge}</span>
+              </div>
+            )}
+            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
+              {Astro.props.title} <span class="text-vue-green" id="hero-accent">{Astro.props.titleAccent}</span> {Astro.props.titleRest}
+            </h1>
+            <p class="font-body-lg text-body-lg text-slate-text max-w-[36rem]">{Astro.props.description}</p>
+            <div class="flex flex-wrap gap-md mt-sm">
+              {Astro.props.cta && (
+                <a href={Astro.props.cta.href || '#'} class="bg-vue-green text-forest-deep px-8 py-4 rounded-lg font-bold text-body-md hover:shadow-[0_0_20px_rgba(66,184,131,0.4)] transition-all">
+                  {Astro.props.cta.label}
+                </a>
+              )}
+              {Astro.props.ctaSecondary && (
+                <a href={Astro.props.ctaSecondary.href || '#'} class="border border-vue-green text-vue-green px-8 py-4 rounded-lg font-label-mono text-label-mono hover:bg-vue-green/10 transition-all">
+                  {Astro.props.ctaSecondary.label}
+                </a>
+              )}
+            </div>
+          </div>
+          <div class="hidden md:block relative">
+            <div class="glass-panel p-gutter rounded-xl shadow-2xl relative overflow-hidden" id="code-panel">
+              <div class="flex items-center justify-between mb-md">
+                <div class="flex gap-2">
+                  <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                </div>
+                <span id="code-lang" class="font-label-mono text-label-mono text-on-secondary-container/50 tracking-wider">JavaScript</span>
+              </div>
+              <div id="code-lines" class="font-label-mono text-label-mono space-y-2 min-h-[200px]"></div>
+              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-vue-green/20 blur-3xl rounded-full"></div>
+            </div>
+            <div class="absolute -bottom-8 -left-8 glass-panel p-md rounded-lg border-vue-green/20" id="stats-card" data-stat-labels={JSON.stringify(Astro.props.statLabels ?? [])}>
+              <div class="flex items-center gap-md">
+                <div class="bg-vue-green/20 p-2 rounded-lg">
+                  <span class="material-symbols-outlined text-vue-green text-2xl">speed</span>
+                </div>
+                <div>
+                  <p class="font-display-lg text-headline-md text-vue-green m-0" id="stat-value">99.9%</p>
+                  <p class="font-label-mono text-xs text-slate-text"><span id="stat-label">{Astro.props.statLabels?.[0] ?? 'CORE WEB VITALS'}</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      Astro.props.variant === 'gradient' && (
+        <div class="flex-1 flex flex-col justify-start md:justify-center pt-20 md:pt-24 relative">
+          <div class="absolute -top-20 -right-20 w-96 h-96 bg-vue-green/5 rounded-full blur-[100px]"></div>
+          <div class="max-w-3xl">
+            <h1 class="font-display-lg text-display-lg mb-md leading-tight">
+              {Astro.props.title} <span class="text-gradient">{Astro.props.titleAccent}</span> {Astro.props.titleRest}
+            </h1>
+            <p class="text-body-lg font-body-lg text-slate-text mb-lg">{Astro.props.description}</p>
+            {(Astro.props.cta || Astro.props.ctaSecondary) && (
+              <div class="flex flex-wrap gap-md">
+                {Astro.props.cta && (
+                  <a href={Astro.props.cta.href || '#'} class="bg-vue-green text-forest-deep px-8 py-4 rounded-lg font-bold hover:brightness-110 transition-all">{Astro.props.cta.label}</a>
+                )}
+                {Astro.props.ctaSecondary && (
+                  <a href={Astro.props.ctaSecondary.href || '#'} class="border border-vue-green text-vue-green px-8 py-4 rounded-lg font-label-mono hover:bg-vue-green/10 transition-all">{Astro.props.ctaSecondary.label}</a>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )
+    }
+
+    {
+      Astro.props.variant === 'centered' && (
+        <div class="flex-1 flex items-start justify-start md:items-center md:justify-center bg-surface-container-lowest relative pt-20 md:pt-24">
+          <div class="relative z-10 text-center px-margin">
+            {Astro.props.badge && (
+              <div class="inline-block px-sm py-xs bg-primary-container/30 border border-vue-green/30 rounded-full mb-md">
+                <span class="font-label-mono text-label-mono text-vue-green uppercase tracking-widest">{Astro.props.badge}</span>
+              </div>
+            )}
+            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">
+              {Astro.props.title} <span class="text-vue-green">{Astro.props.titleAccent}</span> {Astro.props.titleRest}
+            </h1>
+            <p class="font-body-lg text-body-lg text-slate-text max-w-2xl mx-auto">{Astro.props.description}</p>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      Astro.props.variant === 'contact' && (
+        <div class="flex-1 flex flex-col justify-start md:justify-center pt-20 md:pt-24">
+          {Astro.props.badge && (
+            <span class="font-label-mono text-label-mono text-vue-green tracking-widest uppercase mb-base block">{Astro.props.badge}</span>
+          )}
+          <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">
+            {Astro.props.title} <span class="text-vue-green">{Astro.props.titleAccent}</span> {Astro.props.titleRest}
+          </h1>
+          <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">{Astro.props.description}</p>
+        </div>
+      )
+    }
+
+    <div class="flex justify-center pt-8 pb-8">
+      <ScrollIndicator />
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const container = document.getElementById('code-lines') as HTMLElement;
+  const statsCardEl = document.getElementById('stats-card') as HTMLElement;
+  const statLabels: string[] = statsCardEl?.dataset?.statLabels ? JSON.parse(statsCardEl.dataset.statLabels) : ['CORE WEB VITALS', 'API LATENCY', 'QUERY TIME', 'QUERY ACCURACY'];
+
+  interface CodeLine {
+    t: string;
+    c: string;
+    i: number;
+  }
+
+  interface Snippet {
+    lang: string;
+    lines: CodeLine[];
+    stat: { value: string; label: string };
+  }
+
+  const snippets: Snippet[] = [
+      {
+        lang: 'JavaScript',
+        lines: [
+          { t: 'export default defineComponent({', c: 'text-secondary', i: 0 },
+          { t: 'setup() {', c: 'text-secondary', i: 1 },
+          { t: 'const metrics = useVunoMetrics();', c: 'text-vue-green', i: 2 },
+          { t: 'const grow = (biz) => biz.scale();', c: 'text-vue-green', i: 2 },
+          { t: 'return { metrics, grow }', c: 'text-secondary', i: 2 },
+          { t: '}', c: 'text-secondary', i: 1 },
+          { t: '})', c: 'text-secondary', i: 0 },
+        ],
+        stat: { value: '99.9%', label: 'CORE WEB VITALS' },
+      },
+      {
+        lang: 'TypeScript',
+        lines: [
+          { t: 'import { serve } from \'@hono/node\';', c: 'text-secondary', i: 0 },
+          { t: 'type Metrics = { ok: boolean; data: unknown };', c: 'text-vue-green', i: 0 },
+          { t: 'const app = new Hono();', c: 'text-secondary', i: 0 },
+          { t: 'app.get(\'/api/scale\', async (c) => {', c: 'text-secondary', i: 0 },
+          { t: 'const data: Metrics = await db.query(sql);', c: 'text-vue-green', i: 1 },
+          { t: 'return c.json({ ok: true, data });', c: 'text-vue-green', i: 1 },
+          { t: '});', c: 'text-secondary', i: 0 },
+          { t: 'serve({ fetch: app.fetch });', c: 'text-secondary', i: 0 },
+        ],
+        stat: { value: '<45ms', label: 'API LATENCY' },
+      },
+      {
+        lang: 'C#',
+        lines: [
+          { t: '[ApiController]', c: 'text-vue-green', i: 0 },
+          { t: '[Route("api/[controller]")]', c: 'text-vue-green', i: 0 },
+          { t: 'public class MetricsController : ControllerBase', c: 'text-secondary', i: 0 },
+          { t: '{', c: 'text-secondary', i: 0 },
+          { t: '[HttpGet]', c: 'text-vue-green', i: 1 },
+          { t: 'public async Task<IActionResult> Get()', c: 'text-secondary', i: 1 },
+          { t: '{', c: 'text-secondary', i: 1 },
+          { t: 'var data = await _db.QueryAsync(sql);', c: 'text-vue-green', i: 2 },
+          { t: 'return Ok(data);', c: 'text-vue-green', i: 2 },
+          { t: '}', c: 'text-secondary', i: 1 },
+          { t: '}', c: 'text-secondary', i: 0 },
+        ],
+        stat: { value: '<50ms', label: 'QUERY TIME' },
+      },
+      {
+        lang: 'Apex',
+        lines: [
+          { t: 'public with sharing class MetricsService {', c: 'text-secondary', i: 0 },
+          { t: '@AuraEnabled', c: 'text-vue-green', i: 1 },
+          { t: 'public static List<Metric__c> getMetrics() {', c: 'text-secondary', i: 1 },
+          { t: 'return [SELECT Id, Name, Value__c', c: 'text-vue-green', i: 2 },
+          { t: 'FROM Metric__c', c: 'text-vue-green', i: 2 },
+          { t: 'ORDER BY CreatedDate DESC', c: 'text-vue-green', i: 2 },
+          { t: 'LIMIT 100];', c: 'text-vue-green', i: 2 },
+          { t: '}', c: 'text-secondary', i: 1 },
+          { t: '}', c: 'text-secondary', i: 0 },
+        ],
+        stat: { value: '99.99%', label: 'QUERY ACCURACY' },
+      },
+    ];
+
+    const indentMap = ['', 'ml-4', 'ml-8'];
+    const langEl = document.getElementById('code-lang') as HTMLElement;
+    const accentEl = document.getElementById('hero-accent') as HTMLElement;
+    let current = 0;
+    let lineIdx = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    function pad(n: number) {
+      return String(n + 1).padStart(2, '0');
+    }
+
+    function renderSnippet(idx: number, revealUpTo: number) {
+      const sn = snippets[idx];
+      container.innerHTML = sn.lines
+        .map(
+          (l: CodeLine, i: number) =>
+            `<p class="${l.c} ${indentMap[l.i] || ''}" style="opacity:${i <= revealUpTo ? 1 : 0}; transition: opacity 0.4s ease">` +
+            `<span class="text-on-secondary-container/50">${pad(i)}</span> ${l.t}` +
+            `${i === revealUpTo ? '<span class="animate-pulse text-vue-green">▊</span>' : ''}` +
+            `</p>`
+        )
+        .join('');
+    }
+
+    function updateStat(sn: Snippet) {
+      const el = document.getElementById('stat-value');
+      const labelEl = document.getElementById('stat-label');
+      if (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px)';
+        setTimeout(() => {
+          el.textContent = sn.stat.value;
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 200);
+      }
+      if (labelEl && statLabels[current]) {
+        labelEl.textContent = statLabels[current];
+      }
+    }
+
+    function nextSnippet() {
+      current = (current + 1) % snippets.length;
+      lineIdx = 0;
+      const sn = snippets[current];
+      container.innerHTML = sn.lines
+        .map(
+          (l: CodeLine, i: number) =>
+            `<p class="${l.c} ${indentMap[l.i] || ''}" style="opacity:0; transition: opacity 0.4s ease">` +
+            `<span class="text-on-secondary-container/50">${pad(i)}</span> ${l.t}</p>`
+        )
+        .join('');
+      if (langEl) langEl.textContent = sn.lang;
+      if (accentEl) {
+        accentEl.classList.add('hero-glow-pulse');
+        setTimeout(() => accentEl.classList.remove('hero-glow-pulse'), 600);
+      }
+      updateStat(sn);
+      revealLines();
+    }
+
+    function revealLines() {
+      const sn = snippets[current];
+      if (lineIdx >= sn.lines.length) {
+        clearTimeout(timer);
+        timer = setTimeout(nextSnippet, 3000);
+        return;
+      }
+      renderSnippet(current, lineIdx);
+      lineIdx++;
+      const delay = lineIdx === 1 ? 400 : 120;
+      timer = setTimeout(revealLines, delay);
+    }
+
+    renderSnippet(0, -1);
+    revealLines();
+</script>
+
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  #stat-value {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  #code-lang {
+    transition: color 0.4s ease;
+  }
+  .hero-glow-pulse {
+    animation: glowPulse 0.6s ease-out;
+  }
+  @keyframes glowPulse {
+    0% { text-shadow: 0 0 0px rgba(66,184,131,0); }
+    50% { text-shadow: 0 0 30px rgba(66,184,131,0.6), 0 0 60px rgba(66,184,131,0.3); }
+    100% { text-shadow: 0 0 0px rgba(66,184,131,0); }
+  }
+  #code-panel {
+    animation: panelBreath 4s ease-in-out infinite;
+  }
+  @keyframes panelBreath {
+    0%, 100% { box-shadow: 0 0 0px rgba(66,184,131,0); }
+    50% { box-shadow: 0 0 40px rgba(66,184,131,0.08); }
+  }
+  .left-col > * {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .left-col > :nth-child(1) { animation-delay: 0.1s; }
+  .left-col > :nth-child(2) { animation-delay: 0.25s; }
+  .left-col > :nth-child(3) { animation-delay: 0.4s; }
+  .left-col > :nth-child(4) { animation-delay: 0.55s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

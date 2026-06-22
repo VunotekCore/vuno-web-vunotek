@@ -1,0 +1,46 @@
+---
+export interface Props {
+  class?: string;
+  hover?: boolean;
+}
+---
+
+<div
+  class:list={[
+    'glass-panel rounded-xl relative overflow-hidden transition-all duration-300',
+    Astro.props.hover !== false && 'hover:border-vue-green/50',
+    Astro.props.class,
+  ]}
+  style="--mouse-x: 50%; --mouse-y: 50%;"
+  data-glass-card
+>
+  <div
+    class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300"
+    style="background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66,184,131,0.08), transparent 60%);"
+    data-glass-glow
+  />
+  <div class="relative z-10">
+    <slot />
+  </div>
+</div>
+
+<script>
+  (document.querySelectorAll('[data-glass-card]') as NodeListOf<HTMLElement>).forEach((card) => {
+    card.addEventListener('mousemove', (e: Event) => {
+      const rect = card.getBoundingClientRect();
+      const me = e as MouseEvent;
+      const x = ((me.clientX - rect.left) / rect.width) * 100;
+      const y = ((me.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+    });
+    card.addEventListener('mouseenter', () => {
+      const glow = card.querySelector('[data-glass-glow]') as HTMLElement;
+      if (glow) glow.style.opacity = '1';
+    });
+    card.addEventListener('mouseleave', () => {
+      const glow = card.querySelector('[data-glass-glow]') as HTMLElement;
+      if (glow) glow.style.opacity = '0';
+    });
+  });
+</script>

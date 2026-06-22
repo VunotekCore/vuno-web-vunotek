@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vunotek | High-Performance Engineering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "outline": "#89938d",
+                    "error-container": "#93000a",
+                    "tertiary-fixed-dim": "#77dd6d",
+                    "surface-dim": "#0b1326",
+                    "secondary": "#69dca4",
+                    "on-secondary-container": "#00311e",
+                    "primary": "#95d3ba",
+                    "on-tertiary-container": "#62c75a",
+                    "on-tertiary-fixed": "#002202",
+                    "on-secondary": "#003823",
+                    "surface-variant": "#2d3449",
+                    "secondary-fixed": "#86f9be",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#95d3ba",
+                    "forest-deep": "#022c22",
+                    "surface": "#0b1326",
+                    "surface-container-highest": "#2d3449",
+                    "inverse-primary": "#2b6954",
+                    "tertiary-fixed": "#92fa86",
+                    "error": "#ffb4ab",
+                    "on-surface": "#dae2fd",
+                    "on-background": "#dae2fd",
+                    "primary-container": "#064e3b",
+                    "tertiary-container": "#00500a",
+                    "node-green": "#339933",
+                    "surface-tint": "#95d3ba",
+                    "surface-container": "#171f33",
+                    "tertiary": "#77dd6d",
+                    "surface-container-high": "#222a3d",
+                    "on-tertiary-fixed-variant": "#00530b",
+                    "inverse-surface": "#dae2fd",
+                    "on-primary-fixed-variant": "#0b513d",
+                    "on-secondary-fixed": "#002112",
+                    "inverse-on-surface": "#283044",
+                    "on-primary-fixed": "#002117",
+                    "on-tertiary": "#003a05",
+                    "slate-text": "#94a3b8",
+                    "on-primary-container": "#80bea6",
+                    "primary-fixed": "#b0f0d6",
+                    "secondary-fixed-dim": "#69dca4",
+                    "on-secondary-fixed-variant": "#005234",
+                    "outline-variant": "#404944",
+                    "surface-bright": "#31394d",
+                    "vue-green": "#42b883",
+                    "on-primary": "#003829",
+                    "secondary-container": "#28a471",
+                    "surface-container-low": "#131b2e",
+                    "on-surface-variant": "#bfc9c3",
+                    "surface-charcoal": "#1e293b",
+                    "surface-container-lowest": "#060e20",
+                    "background": "#0b1326"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "xl": "80px",
+                    "gutter": "24px",
+                    "margin": "32px",
+                    "lg": "48px",
+                    "xs": "4px",
+                    "base": "8px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "label-mono": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        .code-glow {
+            text-shadow: 0 0 10px rgba(66, 184, 131, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background selection:bg-vue-green/30 selection:text-vue-green">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-margin max-w-[1200px] mx-auto h-20">
+<a class="font-display-lg text-headline-md font-bold text-vue-green tracking-tight" href="#">Vunotek</a>
+<div class="hidden md:flex items-center gap-md">
+<a class="font-body-md text-body-md text-vue-green font-bold border-b-2 border-vue-green pb-1 transition-all duration-300 ease-in-out" href="#">Solutions</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vue-green transition-colors duration-200" href="#">Services</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vue-green transition-colors duration-200" href="#">Tech Stack</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vue-green transition-colors duration-200" href="#">Case Studies</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-vue-green transition-colors duration-200" href="#">About</a>
+</div>
+<div class="flex items-center gap-base">
+<button class="bg-vue-green text-forest-deep px-6 py-2 rounded font-semibold transition-all duration-200 hover:brightness-110 active:scale-95">
+                    Get Started
+                </button>
+<button class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-40 pb-xl overflow-hidden">
+<!-- Background Animation Placeholder -->
+<div class="absolute inset-0 -z-10 opacity-30">
+
+</div>
+<div class="max-w-[1200px] mx-auto px-margin grid md:grid-cols-2 gap-lg items-center">
+<div class="flex flex-col gap-md">
+<div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
+<span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
+<span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">Disponible para proyectos 2024</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
+                        Construimos el <span class="text-vue-green">Futuro</span> de la Web y el Escritorio
+                    </h1>
+<p class="font-body-lg text-body-lg text-slate-text max-w-xl">
+                        Desarrollo de alto rendimiento con Vue.js y Node.js. Creamos soluciones escalables que impulsan el crecimiento tecnológico de tu empresa.
+                    </p>
+<div class="flex flex-wrap gap-md mt-sm">
+<button class="bg-vue-green text-forest-deep px-8 py-4 rounded font-bold text-body-md hover:shadow-[0_0_20px_rgba(66,184,131,0.4)] transition-all">
+                            Empezar Proyecto
+                        </button>
+<button class="border border-vue-green text-vue-green px-8 py-4 rounded font-label-mono text-label-mono hover:bg-vue-green/10 transition-all">
+                            CONOCE NUESTRO STACK
+                        </button>
+</div>
+</div>
+<!-- Abstract Visual: Code Snippet / UI Glassmorphism -->
+<div class="hidden md:block relative">
+<div class="glass-panel p-gutter rounded-xl shadow-2xl relative overflow-hidden">
+<div class="flex gap-2 mb-md">
+<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+</div>
+<div class="font-label-mono text-label-mono space-y-2">
+<p class="text-secondary"><span class="text-on-secondary-container/50">01</span> export default defineComponent({</p>
+<p class="text-secondary ml-4"><span class="text-on-secondary-container/50">02</span> setup() {</p>
+<p class="text-vue-green ml-8"><span class="text-on-secondary-container/50">03</span> const performance = useVunoMetrics();</p>
+<p class="text-vue-green ml-8"><span class="text-on-secondary-container/50">04</span> const scale = (biz) =&gt; biz.grow();</p>
+<p class="text-secondary ml-8"><span class="text-on-secondary-container/50">05</span> return { scale, performance }</p>
+<p class="text-secondary ml-4"><span class="text-on-secondary-container/50">06</span> }</p>
+<p class="text-secondary"><span class="text-on-secondary-container/50">07</span> })</p>
+</div>
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-vue-green/20 blur-3xl rounded-full"></div>
+</div>
+<!-- Stats Floating Card -->
+<div class="absolute -bottom-8 -left-8 glass-panel p-md rounded-lg border-vue-green/20">
+<div class="flex items-center gap-md">
+<div class="bg-vue-green/20 p-2 rounded">
+<span class="material-symbols-outlined text-vue-green">speed</span>
+</div>
+<div>
+<p class="font-display-lg text-headline-md text-vue-green m-0">99.9%</p>
+<p class="font-label-mono text-xs text-slate-text">CORE WEB VITALS</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="py-lg bg-surface-container-lowest border-y border-outline-variant/10">
+<div class="max-w-[1200px] mx-auto px-margin text-center">
+<h2 class="font-headline-md text-headline-md text-slate-text mb-lg">Expertos en Vue.js y Ecosistemas Modernos</h2>
+<div class="flex flex-wrap justify-center items-center gap-xl opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-vue-green text-4xl">cloud_done</span>
+<span class="font-display-lg text-headline-md font-bold">AWS</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-vue-green text-4xl">terminal</span>
+<span class="font-display-lg text-headline-md font-bold">Node.js</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-vue-green text-4xl">view_quilt</span>
+<span class="font-display-lg text-headline-md font-bold">Vue.js</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-vue-green text-4xl">layers</span>
+<span class="font-display-lg text-headline-md font-bold">Nuxt</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section (Bento Grid Style) -->
+<section class="py-xl max-w-[1200px] mx-auto px-margin">
+<div class="mb-lg">
+<h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">Soluciones de Ingeniería <br/><span class="text-vue-green">Sin Compromisos</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Service 1: Web Dev -->
+<div class="md:col-span-2 group glass-panel p-lg rounded-xl transition-all duration-300 hover:border-vue-green/50 flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-vue-green text-5xl mb-md" data-weight="fill">language</span>
+<h3 class="font-display-lg text-headline-md mb-base">Web Development</h3>
+<p class="font-body-md text-slate-text max-w-md">
+                            Desarrollamos aplicaciones web progresivas (PWA) de alto rendimiento. Optimizamos cada byte para garantizar tiempos de carga instantáneos y experiencias fluidas.
+                        </p>
+</div>
+<img alt="Web Dev" class="absolute right-[-10%] bottom-[-10%] w-2/3 opacity-20 group-hover:opacity-40 transition-opacity duration-500 grayscale group-hover:grayscale-0" data-alt="A clean and modern wide-angle photograph of a high-end web development setup in a dark studio. The scene features a sleek ultra-wide monitor displaying a complex code editor with Vue.js syntax highlighting in greens and whites. Subtle emerald lighting accents the metallic surfaces of the workspace, creating a professional and engineering-focused atmosphere consistent with a tech agency's branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArWjTgD-UmOG6IpF9z6_L3cUWFQIBIApmcRsF8fuiW0z7IAuR8-xJEvv1joKUBRRljBcPep3Tkxlx5GukXhFDZG7IqLMkvoz4qcmszKwTXjazUmH_zNdVyyuKpSjABlq56zOvc7He4NyPjeYR394-5KqjT_6SToAIRpjQLRtUTCENXCHjNdUNVqePx4GNoNy9J-yXRbSDOlwGnD15FtfNfNXfVs36CxITLK-z22iCf5BHcUl_ixQBfevzsp78YyhIN8liadP4oJq37"/>
+</div>
+<!-- Service 2: Desktop -->
+<div class="group glass-panel p-lg rounded-xl transition-all duration-300 hover:border-vue-green/50">
+<span class="material-symbols-outlined text-vue-green text-5xl mb-md" data-weight="fill">desktop_windows</span>
+<h3 class="font-display-lg text-headline-md mb-base">Desktop Apps</h3>
+<p class="font-body-md text-slate-text">
+                        Aplicaciones nativas multiplataforma utilizando Electron y Tauri. Rendimiento de escritorio con la agilidad del desarrollo web.
+                    </p>
+</div>
+<!-- Service 3: Consulting -->
+<div class="group glass-panel p-lg rounded-xl transition-all duration-300 hover:border-vue-green/50">
+<span class="material-symbols-outlined text-vue-green text-5xl mb-md" data-weight="fill">lightbulb</span>
+<h3 class="font-display-lg text-headline-md mb-base">Tech Consulting</h3>
+<p class="font-body-md text-slate-text">
+                        Auditorías de arquitectura, optimización de performance y migración de stacks heredados a ecosistemas modernos.
+                    </p>
+</div>
+<!-- Service 4: Scalability -->
+<div class="md:col-span-2 group glass-panel p-lg rounded-xl transition-all duration-300 hover:border-vue-green/50 flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-vue-green text-5xl mb-md" data-weight="fill">database</span>
+<h3 class="font-display-lg text-headline-md mb-base">Backend Engineering</h3>
+<p class="font-body-md text-slate-text max-w-md">
+                            Arquitecturas robustas con Node.js y bases de datos NoSQL/SQL. Escalabilidad horizontal diseñada para manejar millones de peticiones.
+                        </p>
+</div>
+<div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-vue-green/5 group-hover:to-vue-green/10 transition-all"></div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xl">
+<div class="max-w-[1000px] mx-auto px-margin">
+<div class="bg-gradient-to-r from-surface-charcoal to-surface-container p-xl rounded-xl border border-outline-variant/30 text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-[200px]" data-weight="fill">code</span>
+</div>
+<h2 class="font-display-lg text-headline-lg mb-md">¿Listo para elevar tu presencia digital?</h2>
+<p class="font-body-lg text-slate-text mb-lg max-w-2xl mx-auto">
+                        Hablemos de tu próximo gran proyecto. Nuestros ingenieros están listos para transformar tus ideas en código de alto rendimiento.
+                    </p>
+<button class="bg-vue-green text-forest-deep px-xl py-4 rounded-full font-bold text-body-lg hover:scale-105 transition-transform">
+                        Contactar con un Experto
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="max-w-[1200px] mx-auto px-margin py-xl">
+<div class="flex flex-col md:flex-row justify-between items-start gap-xl mb-lg">
+<div class="flex flex-col gap-md max-w-xs">
+<a class="font-display-lg text-headline-md font-bold text-vue-green" href="#">Vunotek</a>
+<p class="font-body-md text-slate-text">
+                        Agencia boutique de desarrollo especializada en Vue.js, Node.js y arquitecturas de alto rendimiento.
+                    </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-lg w-full md:w-auto">
+<div class="flex flex-col gap-base">
+<span class="font-label-mono text-label-mono text-on-surface uppercase mb-xs">Empresa</span>
+<a class="font-body-md text-slate-text hover:text-vue-green transition-colors" href="#">About</a>
+<a class="font-body-md text-slate-text hover:text-vue-green transition-colors" href="#">Case Studies</a>
+<a class="font-body-md text-slate-text hover:text-vue-green transition-colors" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-base">
+<span class="font-label-mono text-label-mono text-on-surface uppercase mb-xs">Legal</span>
+<a class="font-body-md text-slate-text hover:text-vue-green transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-slate-text hover:text-vue-green transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-base">
+<span class="font-label-mono text-label-mono text-on-surface uppercase mb-xs">Social</span>
+<a class="font-body-md text-slate-text hover:text-vue-green transition-colors" href="#">Github</a>
+<a class="font-body-md text-slate-text hover:text-vue-green transition-colors" href="#">LinkedIn</a>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-md border-t border-outline-variant/10 pt-lg">
+<p class="font-body-md text-body-md text-slate-text opacity-90">© 2024 Vunotek Engineering. All rights reserved.</p>
+<div class="flex gap-md">
+<span class="text-vue-green font-label-mono text-xs">V0.8.2-STABLE</span>
+<span class="text-slate-text font-label-mono text-xs">MADE IN EUROPE</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Header scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('h-20');
+                nav.classList.add('h-16');
+            } else {
+                nav.classList.remove('py-2');
+                nav.classList.add('h-20');
+                nav.classList.remove('h-16');
+            }
+        });
+
+        // Hover animation logic for cards
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

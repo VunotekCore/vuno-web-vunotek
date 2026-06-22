@@ -1,0 +1,154 @@
+---
+import { getTranslations } from '../i18n/utils'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale = 'es' } = Astro.props
+const dict = getTranslations(locale) as any
+const pp = dict.privacy_page
+const tp = dict.terms_page
+const privacySections = pp.content.sections as Array<{ title: string; text: string }>
+const termsSections = tp.content.sections as Array<{ title: string; text: string }>
+---
+
+<dialog
+  id="legal-modal"
+  class="z-[100] bg-transparent p-0 m-auto"
+  style="max-width: none; max-height: none; border: none; background: none;"
+>
+  <div class="bg-surface-charcoal/95 backdrop-blur-sm border border-outline-variant/50 rounded-xl w-[min(90vw,42rem)] max-h-[80vh] flex flex-col shadow-2xl">
+    <!-- Header: editor tabs -->
+    <div class="flex items-center justify-between border-b border-outline-variant/20">
+      <div class="flex">
+        <button
+          id="tab-privacy"
+          class="tab-btn bg-surface-charcoal text-vue-green border-t-2 border-t-vue-green px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors"
+          data-tab="privacy"
+        >
+          {pp.content.title}
+        </button>
+        <button
+          id="tab-terms"
+          class="tab-btn bg-surface-container-low text-slate-text border-t-2 border-t-transparent px-4 py-2.5 text-xs font-label-mono cursor-pointer hover:text-on-surface transition-colors"
+          data-tab="terms"
+        >
+          {tp.content.title}
+        </button>
+      </div>
+      <button
+        id="legal-close"
+        class="text-slate-text hover:text-vue-green transition-colors p-2 mr-2"
+        aria-label="Close"
+        type="button"
+      >
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Privacy content -->
+    <div id="content-privacy" class="flex-1 overflow-y-auto px-5 py-4 space-y-5 tab-content">
+      <div class="flex flex-col gap-1">
+        <h2 class="font-display-lg text-headline-md text-on-surface">{pp.content.title}</h2>
+        <span class="font-label-mono text-[11px] text-slate-text/50">{pp.content.last_updated}</span>
+      </div>
+      {
+        privacySections.map((section) => (
+          <div class="space-y-1.5">
+            <h3 class="font-headline-sm text-headline-sm text-vue-green">{section.title}</h3>
+            <p class="font-body-md text-body-md text-slate-text leading-relaxed">{section.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Terms content (hidden by default) -->
+    <div id="content-terms" class="flex-1 overflow-y-auto px-5 py-4 space-y-5 tab-content hidden">
+      <div class="flex flex-col gap-1">
+        <h2 class="font-display-lg text-headline-md text-on-surface">{tp.content.title}</h2>
+        <span class="font-label-mono text-[11px] text-slate-text/50">{tp.content.last_updated}</span>
+      </div>
+      {
+        termsSections.map((section) => (
+          <div class="space-y-1.5">
+            <h3 class="font-headline-sm text-headline-sm text-vue-green">{section.title}</h3>
+            <p class="font-body-md text-body-md text-slate-text leading-relaxed">{section.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Footer: close button -->
+    <div class="px-5 py-3 border-t border-outline-variant/20 flex justify-end">
+      <button
+        id="legal-close-bottom"
+        class="font-label-mono text-label-mono text-vue-green border border-vue-green/30 px-4 py-1.5 rounded-lg hover:bg-vue-green/10 transition-colors"
+        type="button"
+      >
+        [Cerrar]
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const modal = document.getElementById('legal-modal') as HTMLDialogElement;
+  if (!modal) throw new Error('legal-modal not found');
+
+  const close = document.getElementById('legal-close') as HTMLElement | null;
+  const closeBottom = document.getElementById('legal-close-bottom') as HTMLElement | null;
+
+  const openModal = (tab: 'privacy' | 'terms') => {
+    // Switch tab buttons
+    document.querySelectorAll('.tab-btn').forEach((btn) => {
+      const isActive = btn.getAttribute('data-tab') === tab;
+      btn.className = isActive
+        ? 'tab-btn bg-surface-charcoal text-vue-green border-t-2 border-t-vue-green px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors'
+        : 'tab-btn bg-surface-container-low text-slate-text border-t-2 border-t-transparent px-4 py-2.5 text-xs font-label-mono cursor-pointer hover:text-on-surface transition-colors';
+    });
+    // Switch content
+    document.querySelectorAll('.tab-content').forEach((el) => {
+      (el as HTMLElement).classList.toggle('hidden', el.id !== `content-${tab}`);
+    });
+    modal.showModal();
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => { modal.close(); document.body.style.overflow = ''; };
+
+  document.querySelectorAll('[data-open-privacy]').forEach((el) => {
+    el.addEventListener('click', (e) => { e.preventDefault(); openModal('privacy'); });
+  });
+
+  document.querySelectorAll('[data-open-terms]').forEach((el) => {
+    el.addEventListener('click', (e) => { e.preventDefault(); openModal('terms'); });
+  });
+
+  // Tab click handlers
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-tab') as 'privacy' | 'terms';
+      openModal(tab);
+    });
+  });
+
+  close?.addEventListener('click', closeModal);
+  closeBottom?.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  modal.addEventListener('close', () => { document.body.style.overflow = ''; });
+</script>
+
+<style>
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+</style>

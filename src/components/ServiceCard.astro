@@ -1,0 +1,29 @@
+---
+import GlassCard from './GlassCard.astro';
+
+export interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  image?: string;
+  span?: boolean;
+}
+const { icon, title, description, image, span = false } = Astro.props;
+---
+
+<GlassCard class:list={[span ? 'md:col-span-2' : '', 'p-lg flex flex-col justify-between overflow-hidden relative group']}>
+  <div class="relative z-10">
+    <span class="material-symbols-outlined text-vue-green text-5xl mb-md">{[icon]}</span>
+    <h3 class="font-display-lg text-headline-md mb-base">{title}</h3>
+    <p class="font-body-md text-slate-text max-w-md">{description}</p>
+  </div>
+  {image && (
+    <img
+      src={image}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="absolute right-[-10%] bottom-[-10%] w-2/3 opacity-20 group-hover:opacity-40 transition-opacity duration-500 grayscale group-hover:grayscale-0 pointer-events-none"
+    />
+  )}
+</GlassCard>

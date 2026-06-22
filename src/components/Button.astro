@@ -1,0 +1,37 @@
+---
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+}
+
+const { variant = 'primary', size = 'md', href, type = 'button' } = Astro.props;
+
+const base = 'inline-flex items-center justify-center gap-base font-bold transition-all cursor-pointer';
+
+const variants: Record<string, string> = {
+  primary: 'bg-vue-green text-forest-deep hover:shadow-[0_0_20px_rgba(66,184,131,0.4)]',
+  secondary: 'border border-vue-green text-vue-green hover:bg-vue-green/10',
+  ghost: 'text-on-surface-variant hover:text-vue-green',
+};
+
+const sizes: Record<string, string> = {
+  sm: 'px-4 py-2 text-sm rounded-lg',
+  md: 'px-6 py-3 text-body-md rounded-lg',
+  lg: 'px-8 py-4 text-body-md rounded-lg',
+};
+---
+
+{
+  href ? (
+    <a href={href} class:list={[base, variants[variant], sizes[size], Astro.props.class]}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={[base, variants[variant], sizes[size], Astro.props.class]}>
+      <slot />
+    </button>
+  )
+}

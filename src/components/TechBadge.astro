@@ -1,0 +1,14 @@
+---
+export interface Props {
+  label: string
+  color?: string
+}
+const { label, color = 'vue-green' } = Astro.props
+---
+
+<span
+  class="inline-block px-2 py-1 bg-surface-container-high rounded text-xs font-label-mono border/30"
+  style={`color: var(--color-${color}); border-color: color-mix(in srgb, var(--color-${color}) 30%, transparent);`}
+>
+  {label}
+</span>
