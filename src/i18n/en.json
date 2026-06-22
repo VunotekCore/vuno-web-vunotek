@@ -390,7 +390,7 @@
         },
         {
           "tag": "E-COMMERCE",
-          "slug": "vuno shop",
+          "slug": "vuno-shop",
           "title": "VUNO SHOP — E-Commerce Platform",
           "desc": "Full-featured e-commerce platform with an Astro-powered storefront, PHP REST API, Stripe payments, multi-currency support, and a comprehensive admin dashboard.",
           "image_key": "shop",

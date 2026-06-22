@@ -28,3 +28,10 @@ composer.lock
 
 # jetbrains setting folder
 .idea/
+
+# Agent configuration files
+AGENTS.md
+.agents/
+
+# Design mockups
+html-design/
