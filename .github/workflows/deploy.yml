@@ -1,4 +1,4 @@
-name: Deploy to Hostinger
+name: Deploy vunotek site  to Hostinger
 on:
   push:
     branches: [main]
