@@ -190,10 +190,10 @@
         "title": "Modern Ecosystems & High Availability",
         "description": "We engineer fast, agile solutions leveraging industry-leading tools in software infrastructure.",
         "items": [
-          { "icon": "view_quilt", "name": "Vue.js" },
-          { "icon": "layers", "name": "AstroJs" },
-          { "icon": "terminal", "name": "Node.js" },
-          { "icon": "cloud_done", "name": "AWS" }
+          { "icon": "rocket_launch", "name": "Scalable Architecture" },
+          { "icon": "sync", "name": "Continuous Automation" },
+          { "icon": "monitoring", "name": "24/7 Monitoring" },
+          { "icon": "support_agent", "name": "Dedicated Support" }
         ]
       }
     }
@@ -528,8 +528,8 @@
         "preferred_date": "Preferred Date",
         "preferred_time": "Preferred Time",
         "topics": "Topics to discuss...",
-        "submit_btn": "Initialize Requirement →",
-        "submit_meeting": "Schedule Meeting →",
+        "submit_btn": "Initialize Requirement",
+        "submit_meeting": "Schedule Meeting",
         "sending": "Sending...",
         "privacy_consent": "By submitting this form, you accept our",
         "privacy_link": "Privacy Policy"

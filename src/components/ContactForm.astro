@@ -18,13 +18,15 @@ export interface Props {
 const { fields, tabs, options } = Astro.props;
 ---
 
-<GlassCard class="p-lg">
+<GlassCard class="p-lg max-sm:p-md">
   <div class="flex gap-base mb-lg" role="tablist">
-    <button type="button" id="tab-cotizar" class="contact-tab active flex-1 rounded-lg border-2 border-[#059669] bg-[#059669] px-lg py-md font-bold text-white transition-all" role="tab" aria-selected="true">
-      {tabs.cotizar}
+    <button type="button" id="tab-cotizar" class="contact-tab active flex-1 rounded-lg border-2 border-[#059669] bg-[#059669] px-lg max-sm:px-md py-md font-bold text-white transition-all inline-flex items-center justify-center gap-sm" role="tab" aria-selected="true" aria-label={tabs.cotizar} title={tabs.cotizar}>
+      <span class="material-symbols-outlined text-[18px]">request_quote</span>
+      <span class="hidden sm:inline">{tabs.cotizar}</span>
     </button>
-    <button type="button" id="tab-agendar" class="contact-tab flex-1 rounded-lg border-2 border-outline-variant/30 bg-surface-dim px-lg py-md font-bold text-on-surface transition-all" role="tab" aria-selected="false">
-      {tabs.agendar}
+    <button type="button" id="tab-agendar" class="contact-tab flex-1 rounded-lg border-2 border-outline-variant/30 bg-surface-dim px-lg max-sm:px-md py-md font-bold text-on-surface transition-all inline-flex items-center justify-center gap-sm" role="tab" aria-selected="false" aria-label={tabs.agendar} title={tabs.agendar}>
+      <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+      <span class="hidden sm:inline">{tabs.agendar}</span>
     </button>
   </div>
 
@@ -117,10 +119,10 @@ const { fields, tabs, options } = Astro.props;
     </div>
 
     <div class="pt-sm">
-      <button type="submit" id="submit-btn" class="w-full md:w-auto inline-flex items-center justify-center gap-sm bg-[#059669] text-white font-bold px-xl py-md rounded-lg text-body-lg transition-all duration-200 hover:bg-[#047857] hover:shadow-lg hover:shadow-[#059669]/30 cursor-pointer border-none">
-        <span id="submit-text" data-cotizar={fields.submit_btn} data-agendar={fields.submit_meeting}>{fields.submit_btn}</span>
-        <span class="material-symbols-outlined" id="submit-icon">send</span>
-      </button>
+<button type="submit" id="submit-btn" class="w-full md:w-auto inline-flex items-center justify-center gap-sm bg-[#059669] text-white font-bold px-xl max-sm:px-lg py-md rounded-lg text-body-lg transition-all duration-200 hover:bg-[#047857] hover:shadow-lg hover:shadow-[#059669]/30 cursor-pointer border-none" title={fields.submit_btn}>
+  <span id="submit-text" class="hidden sm:inline" data-cotizar={fields.submit_btn} data-agendar={fields.submit_meeting}>{fields.submit_btn}</span>
+  <span class="material-symbols-outlined" id="submit-icon">send</span>
+</button>
       <p class="font-label-mono text-[11px] text-slate-text/60 mt-3 text-center">
         {fields.privacy_consent}
         <button type="button" data-open-privacy class="text-[#059669] hover:underline transition-colors cursor-pointer bg-transparent border-none font-label-mono text-[11px]">
@@ -236,6 +238,7 @@ const { fields, tabs, options } = Astro.props;
     const label = isCotizar ? submitLabels.cotizar : submitLabels.agendar;
     submitText.textContent = label.text;
     submitIcon.textContent = label.icon;
+    if (submitBtn) submitBtn.setAttribute('title', label.text);
 
     const fieldMap: [string, boolean][] = [['projectType', isCotizar], ['preferredDate', !isCotizar], ['preferredTime', !isCotizar], ['meetingType', !isCotizar]];
     fieldMap.forEach(([id, required]) => {

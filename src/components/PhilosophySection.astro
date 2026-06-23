@@ -28,14 +28,14 @@ const { anchor, title, subtitle, items } = Astro.props
       <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">
         {title}
       </h2>
-      <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">
+      <p class="font-body-lg text-body-lg max-sm:text-body-md text-slate-text max-w-2xl">
         {subtitle}
       </p>
     </div>
   </ScrollReveal>
 
-  <!-- Desktop: Horizontal pipeline (≥1024px) -->
-  <div class="relative hidden lg:block">
+  <!-- Desktop: Horizontal pipeline (≥1190px) -->
+  <div class="relative hidden min-[1190px]:block">
     <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[18px] h-px bg-gradient-to-r from-outline-variant/10 via-outline-variant/30 to-outline-variant/10"></div>
 
     <div class="relative grid grid-cols-3 gap-8">
@@ -71,7 +71,7 @@ const { anchor, title, subtitle, items } = Astro.props
           )}
 
           <ScrollReveal delay={i * 100} stagger>
-            <article class="philosophy-card w-full mt-3 bg-surface-container border border-outline-variant/10 rounded-xl p-lg flex flex-col gap-base">
+            <article class="philosophy-card w-full mt-3 bg-surface-container border border-outline-variant/10 rounded-xl max-sm:p-md p-lg flex flex-col gap-base">
               <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">
                 {item.step}
               </span>
@@ -88,11 +88,11 @@ const { anchor, title, subtitle, items } = Astro.props
     </div>
   </div>
 
-  <!-- Mobile: Vertical timeline (<1024px) -->
-  <div class="flex flex-col lg:hidden">
+  <!-- Mobile: Vertical timeline (<1190px) -->
+  <div class="flex flex-col min-[1190px]:hidden">
     {items.map((item, i) => (
       <ScrollReveal delay={i * 100} stagger>
-        <div class="relative flex gap-lg pl-lg pb-xl last:pb-0">
+        <div class="relative flex gap-lg max-sm:pl-md pl-lg max-sm:pb-lg pb-xl last:pb-0">
           <div class="flex flex-col items-center">
             <div class="w-3.5 h-3.5 rounded-full bg-vue-green ring-[3px] ring-surface-container-lowest flex-shrink-0 z-10"></div>
             {i < items.length - 1 && (

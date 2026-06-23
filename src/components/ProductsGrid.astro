@@ -33,17 +33,17 @@ const accentColors: Record<string, { border: string; glow: string; text: string 
       <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">
         {title}
       </h2>
-      <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">{subtitle}</p>
+      <p class="font-body-lg text-body-lg max-sm:text-body-md text-slate-text max-w-2xl">{subtitle}</p>
     </div>
   </ScrollReveal>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
     {items.map((item, i) => {
       const accent = accentColors[item.id] || { border: '#42b883', glow: 'rgba(66,184,131,0.12)', text: '#42b883' }
       return (
         <ScrollReveal delay={i * 100} stagger>
           <article
-            class="product-card relative bg-surface-container border border-outline-variant/20 rounded-xl p-lg flex flex-col gap-base h-full transition-all duration-300"
+            class="product-card relative bg-surface-container border border-outline-variant/20 rounded-xl max-sm:p-md p-lg flex flex-col gap-base h-full transition-all duration-300"
             style={`--accent-border: ${accent.border}; --accent-glow: ${accent.glow}; --accent-text: ${accent.text};`}
           >
             <div

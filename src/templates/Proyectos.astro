@@ -51,7 +51,7 @@ const stackColors: Record<string, string> = {
     >
       {pj.hero.title}
     </h1>
-    <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">
+    <p class="font-body-lg text-body-lg max-sm:text-body-md text-slate-text max-w-3xl">
       {pj.hero.description}
     </p>
   </div>
@@ -67,16 +67,34 @@ const stackColors: Record<string, string> = {
      Background: bg-surface-container-lowest. -->
 <Section class="bg-surface-container-lowest">
   <ScrollReveal>
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-md auto-rows-[200px] md:auto-rows-[240px]">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-md max-sm:auto-rows-auto auto-rows-[200px] md:auto-rows-[240px]">
       {
         Object.entries(pj.stack_grid).map(([key, tech]: [string, any], i: number) => {
           if (key === 'additional_tech') {
             return (
-              <div class="md:col-span-4 bg-surface-charcoal border border-outline-variant/30 rounded-xl overflow-hidden p-md flex flex-col justify-center">
-                <div>
-                  <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">
-                    {tech.title}
-                  </h3>
+              <div class="md:col-span-4 bg-surface-charcoal border border-outline-variant/30 rounded-xl overflow-hidden p-md flex flex-col justify-between group relative tech-hover-card"
+                data-color="var(--color-vue-green)"
+              >
+                <div class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 z-0"
+                  style="background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66,184,131,0.15), transparent 60%)"
+                  data-grid-glow
+                />
+                <div class="relative z-10">
+                  <div class="flex justify-between items-start mb-sm">
+                    <svg class="w-8 h-8" role="img" aria-label="additional">
+                      <use href={LOGOS.vue} />
+                    </svg>
+                    <span class="font-label-mono text-[10px] px-2 py-0.5 rounded border/30"
+                      style={{
+                        color: 'var(--color-vue-green)',
+                        borderColor: 'color-mix(in srgb, var(--color-vue-green) 30%, transparent)',
+                        backgroundColor: 'color-mix(in srgb, var(--color-vue-green) 10%, transparent)'
+                      }}
+                    >
+                      COMPATIBLE
+                    </span>
+                  </div>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">{tech.title}</h3>
                   <p class="font-body-md text-body-md text-slate-text mb-md">{tech.subtitle}</p>
                   <div class="flex flex-wrap gap-sm">
                     {tech.tags.map((item: string) => (
@@ -190,7 +208,7 @@ const stackColors: Record<string, string> = {
      Background: bg-surface-container-low. -->
 <Section class="bg-surface-container-low">
   <ScrollReveal>
-    <div class="flex flex-col md:flex-row justify-between items-end mb-lg gap-md">
+    <div class="flex flex-col md:flex-row justify-between items-end max-sm:mb-md mb-lg gap-md">
       <div>
         <h2 class="font-display-lg text-headline-lg text-on-surface mb-xs">{pj.portfolio.title}</h2>
         <p class="font-body-md text-body-md text-slate-text">{pj.portfolio.subtitle}</p>
@@ -201,7 +219,7 @@ const stackColors: Record<string, string> = {
       </a> -->
     </div>
   </ScrollReveal>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
     {
       pj.portfolio.cards.map((card: any, i: number) => {
         const image = imageLookup[card.image_key]

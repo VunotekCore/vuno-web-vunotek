@@ -42,23 +42,23 @@ const ab = dict.about as any
 <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
   <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
     <ScrollReveal>
-      <GlassCard class="p-lg h-full flex flex-col">
+      <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
         <span class="material-symbols-outlined text-vue-green text-3xl mb-md">flag</span>
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">{ab.pillars.mission.title}</h3>
+        <h3 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface mb-sm">{ab.pillars.mission.title}</h3>
         <p class="font-body-md text-body-md text-slate-text flex-1">{ab.pillars.mission.desc}</p>
       </GlassCard>
     </ScrollReveal>
 
     <ScrollReveal delay={100}>
-      <GlassCard class="p-lg h-full flex flex-col">
+      <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
         <span class="material-symbols-outlined text-vue-green text-3xl mb-md">visibility</span>
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">{ab.pillars.vision.title}</h3>
+        <h3 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface mb-sm">{ab.pillars.vision.title}</h3>
         <p class="font-body-md text-body-md text-slate-text flex-1">{ab.pillars.vision.desc}</p>
       </GlassCard>
     </ScrollReveal>
 
     <ScrollReveal delay={200}>
-      <GlassCard class="p-lg h-full flex flex-col">
+      <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
         <span class="material-symbols-outlined text-vue-green text-3xl mb-md">checklist</span>
         <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">{ab.pillars.objectives.title}</h3>
         <ul class="space-y-sm flex-1">
@@ -81,7 +81,7 @@ const ab = dict.about as any
   ============================================================ -->
 <Section>
   <ScrollReveal>
-    <h2 class="font-display-lg text-headline-lg mb-sm text-center">
+    <h2 class="font-display-lg text-headline-lg max-sm:text-headline-md mb-sm text-center">
       {ab.timeline.title}<br />
       <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent">{ab.timeline.titleAccent}</span> {ab.timeline.titleRest}
     </h2>
@@ -101,9 +101,9 @@ const ab = dict.about as any
                   {i === 0 ? 'code' : i === 1 ? 'database' : 'neurology'}
                 </span>
                             </div>
-              <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider uppercase whitespace-nowrap">{step.year}</span>
+              <span class="font-label-mono text-label-mono max-sm:text-[11px] text-vue-green/70 tracking-wider uppercase whitespace-nowrap">{step.year}</span>
             </div>
-            <GlassCard class="p-lg flex-1">
+            <GlassCard class="p-lg max-sm:p-md flex-1">
               <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">{step.title}</h3>
               <p class="font-body-md text-body-md text-slate-text">{step.description}</p>
             </GlassCard>
@@ -120,7 +120,7 @@ const ab = dict.about as any
   ============================================================ -->
 <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
   <ScrollReveal>
-    <h2 class="font-display-lg text-headline-lg mb-sm text-center">{ab.stats.title}</h2>
+    <h2 class="font-display-lg text-headline-lg max-sm:text-headline-md mb-sm text-center">{ab.stats.title}</h2>
     <p class="font-body-lg text-body-lg text-slate-text max-w-2xl mx-auto text-center mb-xl">{ab.stats.subtitle}</p>
   </ScrollReveal>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-lg">

@@ -24,7 +24,7 @@ const { title, steps } = Astro.props
     {steps.map((step, i) => (
       <ScrollReveal delay={i * 150}>
         <div class="relative flex items-stretch gap-0">
-          <div class="flex-1 bg-surface-container-low border border-outline-variant/10 rounded-xl p-lg flex flex-col gap-sm transition-all duration-300 hover:border-vue-green/50 relative overflow-hidden"
+          <div class="flex-1 bg-surface-container-low border border-outline-variant/10 rounded-xl max-sm:p-md p-lg flex flex-col gap-sm transition-all duration-300 hover:border-vue-green/50 relative overflow-hidden"
             data-glass-card
             style="--mouse-x: 50%; --mouse-y: 50%;"
           >

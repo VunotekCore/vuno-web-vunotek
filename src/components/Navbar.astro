@@ -31,7 +31,7 @@ function isActive(href: string) {
     </a>
 
     <div class="flex items-center gap-base">
-      <div class="hidden lg:flex items-center gap-lg">
+      <div class="hidden min-[1190px]:flex items-center gap-lg">
         {links.map((link) => (
           <a
             href={link.href}
@@ -47,14 +47,14 @@ function isActive(href: string) {
         ))}
       </div>
       <LocaleSwitch />
-      <button class="lg:hidden text-on-surface p-2" aria-label="Toggle menu" id="menu-toggle">
+      <button class="min-[1190px]:hidden text-on-surface p-2" aria-label="Toggle menu" id="menu-toggle">
         <span class="material-symbols-outlined text-2xl">menu</span>
       </button>
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden lg:hidden bg-surface/95 backdrop-blur-md border-t border-outline-variant/20">
-    <div class="px-margin py-md flex flex-col gap-base">
+  <div id="mobile-menu" class="hidden min-[1190px]:hidden bg-surface/95 backdrop-blur-md border-t border-outline-variant/20">
+    <div class="px-margin py-md flex flex-col items-center text-center gap-base">
       {links.map((link) => (
         <a
           href={link.href}

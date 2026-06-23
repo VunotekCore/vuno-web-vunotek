@@ -34,7 +34,7 @@ const p = (path: string) => (locale === 'en' ? `/en${path}` : path)
       {svp.hero.title}<br />
       <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent">{svp.hero.titleAccent}</span> {svp.hero.titleRest}
     </h1>
-    <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">
+    <p class="font-body-lg text-body-lg max-sm:text-body-md text-slate-text max-w-3xl">
       {svp.hero.description}
     </p>
   </div>
@@ -94,8 +94,14 @@ const p = (path: string) => (locale === 'en' ? `/en${path}` : path)
         <h2 class="font-display-lg text-headline-lg text-on-surface">{svp.cta.title}</h2>
         <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">{svp.cta.desc}</p>
         <div class="flex flex-col sm:flex-row gap-md justify-center pt-sm">
-          <Button href={p('/contacto')} size="lg">{svp.cta.button}</Button>
-          <Button variant="secondary" href={p('/proyectos')} size="lg">{svp.cta.buttonSecondary}</Button>
+          <Button href={p('/contacto')} size="lg" title={svp.cta.button}>
+            <span class="material-symbols-outlined text-2xl">forum</span>
+            <span class="sm:inline hidden">{svp.cta.button}</span>
+          </Button>
+          <Button variant="secondary" href={p('/proyectos')} size="lg" title={svp.cta.buttonSecondary}>
+            <span class="material-symbols-outlined text-2xl">layers</span>
+            <span class="sm:inline hidden">{svp.cta.buttonSecondary}</span>
+          </Button>
         </div>
       </div>
     </GlassCard>

@@ -41,14 +41,14 @@ const iconMap: Record<string, string> = {
         )}
         {titleRest}
       </h2>
-      <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">{subtitle}</p>
+      <p class="font-body-lg text-body-lg max-sm:text-body-md text-slate-text max-w-2xl">{subtitle}</p>
     </div>
   </ScrollReveal>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
     {items.map((item, i) => (
       <ScrollReveal delay={i * 100} stagger>
-        <GlassCard class="p-lg flex flex-col gap-md h-full">
+        <GlassCard class="max-sm:p-md p-lg flex flex-col gap-md h-full">
           <span class="material-symbols-outlined text-vue-green text-5xl">{iconMap[item.id] || 'code'}</span>
           <h3 class="font-display-lg text-headline-md">{item.title}</h3>
           <p class="font-body-md text-slate-text">{item.description}</p>

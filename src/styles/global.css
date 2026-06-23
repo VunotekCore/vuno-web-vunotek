@@ -1,4 +1,13 @@
 @import "tailwindcss";
+
+/* Breakpoint reference (Tailwind v4 native):
+   ═══════════════════════════════════════
+   <640px  =  max-sm:*     (mobile)
+   640-767 =  sm:max-md:*  (mobile-land)
+   768-1023 = md:max-lg:*  (tablet)
+   1024+   =  lg:*         (desktop)
+   1280+   =  xl:*         (wide)
+   ═══════════════════════════════════════ */
 @import "@fontsource/hanken-grotesk/400.css";
 @import "@fontsource/hanken-grotesk/600.css";
 @import "@fontsource/hanken-grotesk/700.css";
@@ -80,6 +89,9 @@
   --text-headline-lg: 32px;
   --text-headline-lg--line-height: 40px;
   --text-headline-lg--font-weight: 600;
+  --text-headline-lg-mobile: 26px;
+  --text-headline-lg-mobile--line-height: 34px;
+  --text-headline-lg-mobile--font-weight: 600;
   --text-headline-md: 24px;
   --text-headline-md--line-height: 32px;
   --text-headline-md--font-weight: 600;
@@ -180,6 +192,7 @@ body {
   }
 }
 
+/* mobile-land (640-767) + tablet (768-1023) */
 @media (width >= 640px) and (width < 1024px) {
   :root {
     --spacing-margin: 24px;
