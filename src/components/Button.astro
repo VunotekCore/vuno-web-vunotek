@@ -5,9 +5,10 @@ export interface Props {
   href?: string;
   type?: 'button' | 'submit';
   class?: string;
+  title?: string;
 }
 
-const { variant = 'primary', size = 'md', href, type = 'button' } = Astro.props;
+const { variant = 'primary', size = 'md', href, type = 'button', title } = Astro.props;
 
 const base = 'inline-flex items-center justify-center gap-base font-bold transition-all cursor-pointer';
 
@@ -26,11 +27,11 @@ const sizes: Record<string, string> = {
 
 {
   href ? (
-    <a href={href} class:list={[base, variants[variant], sizes[size], Astro.props.class]}>
+    <a href={href} title={title} class:list={[base, variants[variant], sizes[size], Astro.props.class]}>
       <slot />
     </a>
   ) : (
-    <button type={type} class:list={[base, variants[variant], sizes[size], Astro.props.class]}>
+    <button type={type} title={title} class:list={[base, variants[variant], sizes[size], Astro.props.class]}>
       <slot />
     </button>
   )
