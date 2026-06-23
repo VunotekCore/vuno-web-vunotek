@@ -196,10 +196,10 @@
         "title": "Ecosistemas Modernos y Alta Disponibilidad",
         "description": "Desarrollamos soluciones ágiles y veloces utilizando herramientas líderes en la industria de la ingeniería de software.",
         "items": [
-          { "icon": "view_quilt", "name": "Vue.js" },
-          { "icon": "layers", "name": "AstroJs" },
-          { "icon": "terminal", "name": "Node.js" },
-          { "icon": "cloud_done", "name": "AWS" }
+          { "icon": "rocket_launch", "name": "Arquitectura Escalable" },
+          { "icon": "sync", "name": "Automatización Continua" },
+          { "icon": "monitoring", "name": "Monitoreo 24/7" },
+          { "icon": "support_agent", "name": "Soporte Dedicado" }
         ]
       }
     }
@@ -534,8 +534,8 @@
         "preferred_date": "Fecha Preferida",
         "preferred_time": "Horario Preferido",
         "topics": "Temas a discutir...",
-        "submit_btn": "Iniciar Requerimiento →",
-        "submit_meeting": "Agendar Reunión →",
+        "submit_btn": "Iniciar Requerimiento",
+        "submit_meeting": "Agendar Reunión",
         "sending": "Enviando...",
         "privacy_consent": "Al enviar este formulario, aceptas nuestra",
         "privacy_link": "Política de Privacidad"

@@ -44,7 +44,7 @@ const cp = dict.contact_page as any
         class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full"
       >
         <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
-        <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase"
+        <span class="font-label-mono text-label-mono max-sm:text-[11px] text-vue-green tracking-wider uppercase whitespace-nowrap"
           >// {cp.form_section.title.toLowerCase().replace(/\s+/g, '_')}</span
         >
       </div>
@@ -78,7 +78,7 @@ const cp = dict.contact_page as any
               <div class="flex items-start gap-md">
                 <span
                   class="material-symbols-outlined text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]"
-                  >access_time</span
+                  >calendar_month</span
                 >
                 <p class="font-body-md text-body-md text-on-surface">
                   {cp.form_section.sidebar.schedule_hours}
@@ -87,7 +87,7 @@ const cp = dict.contact_page as any
               <div class="flex items-start gap-md">
                 <span
                   class="material-symbols-outlined text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]"
-                  >bolt</span
+                  >timer</span
                 >
                 <p class="font-body-md text-body-md text-slate-text">
                   {cp.form_section.sidebar.response_time}
@@ -108,7 +108,7 @@ const cp = dict.contact_page as any
 <Section>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
     <GlassCard class="p-md text-center">
-      <span class="material-symbols-outlined text-vue-green text-[32px] mb-sm">mail</span>
+      <span class="material-symbols-outlined text-vue-green text-[32px] max-sm:text-[24px] mb-sm">mail</span>
       <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
         {cp.quick_channels.email.label}
       </h3>
@@ -118,14 +118,14 @@ const cp = dict.contact_page as any
         href="#"></a>
     </GlassCard>
     <GlassCard class="p-md text-center">
-      <span class="material-symbols-outlined text-vue-green text-[32px] mb-sm">location_on</span>
+      <span class="material-symbols-outlined text-vue-green text-[32px] max-sm:text-[24px] mb-sm">location_on</span>
       <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
         {cp.quick_channels.location.label}
       </h3>
       <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.location.value}</p>
     </GlassCard>
     <GlassCard class="p-md text-center">
-      <span class="material-symbols-outlined text-vue-green text-[32px] mb-sm">hub</span>
+      <span class="material-symbols-outlined text-vue-green text-[32px] max-sm:text-[24px] mb-sm">hub</span>
       <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
         {cp.quick_channels.community.label}
       </h3>
