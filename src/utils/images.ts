@@ -1,23 +1,21 @@
-import { imageKitSrc, imgResponsive, type ImageKitOptions } from './imagekit'
+import { IK_BASE, ikSrcset } from './imagekit'
 
-function img(path: string, opts?: ImageKitOptions): string {
-  return imageKitSrc(path, { quality: 85, format: 'auto', ...opts })
+function ik(path: string): string {
+  return `${IK_BASE}/${path.replace(/^\//, '')}`
 }
 
-export { img, imageKitSrc, imgResponsive, type ImageKitOptions }
-
 export const IMAGES = {
-  webDev: img('hero/web-dev.webp', { width: 1200 }),
-  vueCode: img('hero/vue-code.webp', { width: 800 }),
-  workstation: img('services/workstation.webp', { width: 800 }),
-  serverRoom: img('services/server-room.webp', { width: 800 }),
-  dashboard: img('portfolio/dashboard.webp', { width: 800 }),
-  shop: img('vuno-web/products/ecomerce.webp', { width: 800 }),
-  hotel: img('vuno-web/products/reservations.webp', { width: 800 }),
-  logistics: img('vuno-web/products/logistics.webp', { width: 800 }),
-  crm: img('vuno-web/products/crm.webp', { width: 800 }),
-  pos: img('vuno-web/products/Vuno-POS.webp', { width: 800 }),
-  bridge: img('contact/bridge.webp', { width: 1200 })
+  webDev: ik('hero/web-dev.webp'),
+  vueCode: ik('hero/vue-code.webp'),
+  workstation: ik('services/workstation.webp'),
+  serverRoom: ik('services/server-room.webp'),
+  dashboard: ik('portfolio/dashboard.webp'),
+  shop: ik('vuno-web/products/ecomerce.webp'),
+  hotel: ik('vuno-web/products/reservations.webp'),
+  logistics: ik('vuno-web/products/logistics.webp'),
+  crm: ik('vuno-web/products/crm.webp'),
+  pos: ik('vuno-web/products/Vuno-POS.webp'),
+  bridge: ik('contact/bridge.webp'),
 } as const
 
 export const IMAGE_DIMS: Record<string, { width: number; height: number }> = {
@@ -51,8 +49,8 @@ const IMAGE_PATHS: Record<string, string> = {
 export function getResponsiveAttrs(key: string): { srcset: string; sizes: string } | null {
   const path = IMAGE_PATHS[key]
   if (!path) return null
-  const widths = [400, 800, 1200]
-  const srcset = widths.map((w) => `${imageKitSrc(path, { quality: 85, format: 'auto', width: w })} ${w}w`).join(', ')
-  const sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px'
-  return { srcset, sizes }
+  return {
+    srcset: ikSrcset(path, [400, 800, 1200]),
+    sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px',
+  }
 }
