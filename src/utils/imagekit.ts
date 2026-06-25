@@ -31,3 +31,22 @@ export function imageKitSrc(path: string, opts: ImageKitOptions = {}): string {
   }
   return `${base}/${cleanPath}`;
 }
+
+type SrcSetEntry = { width: number; height?: number }
+
+export function imageKitSrcSet(path: string, variants: SrcSetEntry[], opts?: ImageKitOptions): string {
+  return variants
+    .map((v) => {
+      const url = imageKitSrc(path, { ...opts, width: v.width, height: v.height })
+      return `${url} ${v.width}w`
+    })
+    .join(', ')
+}
+
+export function imgResponsive(path: string, opts?: ImageKitOptions): { src: string; srcset: string; sizes: string } {
+  const widths = [400, 800, 1200]
+  const src = imageKitSrc(path, { ...opts, width: 800 })
+  const srcset = imageKitSrcSet(path, widths.map((w) => ({ width: w })), opts)
+  const sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px'
+  return { src, srcset, sizes }
+}

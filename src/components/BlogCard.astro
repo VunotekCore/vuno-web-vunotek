@@ -32,7 +32,7 @@ const imgSrc = image
   <a href={`${prefix}/blog/${slug}`} class="block">
     <div class="aspect-[16/10] glass-panel rounded-xl mb-md flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-vue-green/50">
       {imgSrc ? (
-        <img src={imgSrc} alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+        <img src={imgSrc} alt="" width="640" height="400" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
       ) : (
         <span class="material-symbols-outlined text-6xl text-outline/30">description</span>
       )}

@@ -3,7 +3,7 @@ import Section from '../components/Section.astro'
 import GlassCard from '../components/GlassCard.astro'
 import ScrollReveal from '../components/ScrollReveal.astro'
 import Button from '../components/Button.astro'
-import { IMAGES } from '../utils/images'
+import { IMAGES, IMAGE_DIMS } from '../utils/images'
 
 export interface Props {
   card: {
@@ -20,7 +20,9 @@ export interface Props {
 const { card, locale = 'es' } = Astro.props
 const backUrl = locale === 'en' ? '/en/proyectos' : '/proyectos'
 const contactUrl = locale === 'en' ? '/en/contacto' : '/contacto'
-const image = (IMAGES as Record<string, string>)[card.image_key] || undefined
+const imageKey = card.image_key
+const image = (IMAGES as Record<string, string>)[imageKey] || undefined
+const imgDims = (IMAGE_DIMS as Record<string, { width: number; height: number }>)[imageKey]
 const isPlaceholder = !image
 
 const imageStore = IMAGES as Record<string, string>
@@ -87,6 +89,11 @@ const techIcons: Record<string, string> = {
         <img
           src={image}
           alt=""
+          width={imgDims?.width || 800}
+          height={imgDims?.height || 600}
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
           class="w-full h-full object-contain transition-all duration-700 group-hover:scale-[1.03]"
         />
       </div>
@@ -130,6 +137,8 @@ const techIcons: Record<string, string> = {
             <img
               src={resolveImage(feature.image)}
               alt=""
+              width="800"
+              height="600"
               class="w-full h-full object-cover transition-all duration-500 group-hover:scale-[1.04]"
               loading="lazy"
             />

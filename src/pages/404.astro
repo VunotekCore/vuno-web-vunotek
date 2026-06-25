@@ -24,12 +24,5 @@ import '../styles/global.css';
       <a href="/" class="font-label-mono text-vue-green hover:underline">Volver al inicio</a>
     </div>
 
-    <script>
-      const path = location.pathname;
-      if (path.startsWith('/es/') || path === '/es') {
-        const target = path === '/es' ? '/' : path.replace(/^\/es/, '');
-        location.replace(target);
-      }
-    </script>
   </body>
 </html>
