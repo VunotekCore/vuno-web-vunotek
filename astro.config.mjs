@@ -10,7 +10,7 @@ export default defineConfig({
   build: {
     format: 'directory',
     assets: '_astro',
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   prefetch: {
     prefetchAll: true,

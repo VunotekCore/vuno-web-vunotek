@@ -69,6 +69,9 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
 
+    <link rel="preconnect" href="https://ik.imagekit.io" />
+    {gaId && <link rel="preconnect" href="https://www.googletagmanager.com" />}
+
     <link rel="canonical" href={`${siteUrl}${currentPath}`} />
 
     <link rel="alternate" hreflang="es" href={esUrl} />
