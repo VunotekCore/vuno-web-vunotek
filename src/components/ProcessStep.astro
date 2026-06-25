@@ -1,6 +1,7 @@
 ---
 import GlassCard from './GlassCard.astro';
 import TechBadge from './TechBadge.astro';
+import Icon from './Icon.astro';
 
 export interface Props {
   icon: string;
@@ -17,7 +18,7 @@ const { icon, step, title, description, deliverable, index } = Astro.props;
   <GlassCard class="p-lg w-full relative z-10">
     <div class="flex flex-col gap-md">
       <div class="flex items-center justify-between">
-        <span class="material-symbols-outlined text-vue-green text-4xl">{[icon]}</span>
+        <Icon name={icon} class="text-vue-green text-4xl" />
         <span class="font-label-mono text-label-mono text-vue-green">{step}</span>
       </div>
       <h3 class="font-headline-md text-headline-md text-on-surface">{title}</h3>
@@ -34,8 +35,4 @@ const { icon, step, title, description, deliverable, index } = Astro.props;
   )}
 </div>
 
-<style>
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-</style>
+

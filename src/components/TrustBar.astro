@@ -1,5 +1,6 @@
 ---
 import ScrollReveal from './ScrollReveal.astro'
+import Icon from './Icon.astro';
 
 export interface Props {
   title: string
@@ -15,7 +16,7 @@ const { title, items } = Astro.props
     <div class="flex flex-wrap justify-center items-center gap-md max-sm:gap-sm sm:gap-xl opacity-60 hover:opacity-100 transition-opacity">
       {items.map((item) => (
         <div class="flex items-center gap-sm">
-          <span class="material-symbols-outlined text-vue-green max-sm:text-3xl text-4xl">{item.icon}</span>
+          <Icon name={item.icon} class="text-vue-green max-sm:text-3xl text-4xl" />
           <span class="font-display-lg text-headline-md font-bold">{item.name}</span>
         </div>
       ))}

@@ -1,5 +1,6 @@
 ---
 import ScrollReveal from './ScrollReveal.astro'
+import Icon from './Icon.astro';
 
 export interface ServiceItem {
   id: string
@@ -31,7 +32,7 @@ const { items, ctaLabel, ctaHref } = Astro.props
         <!-- Header: icon + step badge + category -->
         <div class="flex items-center gap-sm mb-base">
           {item.icon && (
-            <span class="material-symbols-outlined text-vue-green text-xl">{item.icon}</span>
+            <Icon name={item.icon} class="text-vue-green text-xl" />
           )}
           <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">{item.index}</span>
           <span class="h-px w-6 bg-vue-green/30"></span>
@@ -101,8 +102,4 @@ const { items, ctaLabel, ctaHref } = Astro.props
   ))}
 </div>
 
-<style>
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-</style>
+

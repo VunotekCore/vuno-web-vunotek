@@ -6,6 +6,7 @@ import BlogCard from '../../components/BlogCard.astro'
 import { getCollection } from 'astro:content'
 import type { GetStaticPathsItem } from 'astro'
 import { getTranslations } from '../../i18n/utils'
+import Icon from '../../components/Icon.astro';
 
 export async function getStaticPaths(): Promise<GetStaticPathsItem[]> {
   const posts = await getCollection('blog')
@@ -52,7 +53,7 @@ const related = allBlogPosts
 <BaseLayout title={`${post.data.title} | Vunotek`} description={post.data.excerpt}>
   <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
     <a href="/blog" class="inline-flex items-center gap-xs text-vue-green font-label-mono hover:underline mb-lg">
-      <span class="material-symbols-outlined text-sm">arrow_back</span>
+      <Icon name="arrow_back" class="text-sm" />
       {bg.back_link}
     </a>
 
@@ -109,11 +110,7 @@ const related = allBlogPosts
 </BaseLayout>
 
 <style>
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-
-  .blog-content {
+.blog-content {
     font-size: 1.0625rem;
     line-height: 1.85;
     color: #c8d0e0;
