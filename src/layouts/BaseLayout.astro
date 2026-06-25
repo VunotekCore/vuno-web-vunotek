@@ -93,27 +93,11 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-
     <script type="application/ld+json" is:inline set:html={JSON.stringify(orgSchema)} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(webSchema)} />
 
     {gaId && <script is:inline src={gaSrc} async />}
     {gaId && <script is:inline set:html={gaScript} />}
-
-    <script is:inline>
-      (function() {
-        var saved = localStorage.getItem('locale')
-        if (!saved) {
-          var prefersEn = navigator.language.startsWith('en')
-          var isEn = document.documentElement.lang === 'en'
-          if (prefersEn && !isEn) {
-            localStorage.setItem('locale', 'en')
-            var target = location.pathname === '/' ? '/en' : '/en' + location.pathname
-            location.replace(target)
-          }
-        }
-      })()
-    </script>
   </head>
   <body class="bg-background text-on-surface font-body-md selection:bg-vue-green/30 selection:text-vue-green overflow-x-hidden">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-surface-charcoal focus:text-vue-green focus:outline-none">
