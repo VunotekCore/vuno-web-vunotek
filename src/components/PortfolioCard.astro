@@ -6,9 +6,11 @@ export interface Props {
   image: string | undefined
   slug: string | undefined
   locale?: string
+  srcset?: string
+  sizes?: string
 }
 
-const { tag, title, description, image, slug, locale = 'es' } = Astro.props
+const { tag, title, description, image, slug, locale = 'es', srcset, sizes } = Astro.props
 const href = slug
   ? locale === 'en'
     ? `/en/proyectos/${slug}`
@@ -36,6 +38,8 @@ const isPlaceholder = !image
             decoding="async"
             width="640"
             height="360"
+            srcset={srcset}
+            sizes={sizes}
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
         )}
@@ -64,6 +68,8 @@ const isPlaceholder = !image
             decoding="async"
             width="640"
             height="360"
+            srcset={srcset}
+            sizes={sizes}
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
         )}

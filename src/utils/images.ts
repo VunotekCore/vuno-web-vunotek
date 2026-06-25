@@ -33,3 +33,26 @@ export const IMAGE_DIMS: Record<string, { width: number; height: number }> = {
   pos: { width: 800, height: 600 },
   bridge: { width: 1200, height: 800 },
 } as const
+
+const IMAGE_PATHS: Record<string, string> = {
+  webDev: 'hero/web-dev.webp',
+  vueCode: 'hero/vue-code.webp',
+  workstation: 'services/workstation.webp',
+  serverRoom: 'services/server-room.webp',
+  dashboard: 'portfolio/dashboard.webp',
+  shop: 'vuno-web/products/ecomerce.webp',
+  hotel: 'vuno-web/products/reservations.webp',
+  logistics: 'vuno-web/products/logistics.webp',
+  crm: 'vuno-web/products/crm.webp',
+  pos: 'vuno-web/products/Vuno-POS.webp',
+  bridge: 'contact/bridge.webp',
+}
+
+export function getResponsiveAttrs(key: string): { srcset: string; sizes: string } | null {
+  const path = IMAGE_PATHS[key]
+  if (!path) return null
+  const widths = [400, 800, 1200]
+  const srcset = widths.map((w) => `${imageKitSrc(path, { quality: 85, format: 'auto', width: w })} ${w}w`).join(', ')
+  const sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px'
+  return { srcset, sizes }
+}

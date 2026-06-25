@@ -3,7 +3,7 @@ import Section from '../components/Section.astro'
 import ScrollReveal from '../components/ScrollReveal.astro'
 import PortfolioCard from '../components/PortfolioCard.astro'
 import StatCard from '../components/StatCard.astro'
-import { IMAGES } from '../utils/images'
+import { IMAGES, getResponsiveAttrs } from '../utils/images'
 import { LOGOS } from '../utils/logos'
 
 export interface Props {
@@ -223,6 +223,7 @@ const stackColors: Record<string, string> = {
     {
       pj.portfolio.cards.map((card: any, i: number) => {
         const image = imageLookup[card.image_key]
+        const responsive = getResponsiveAttrs(card.image_key)
         return (
           <ScrollReveal delay={i * 100} stagger>
             <PortfolioCard
@@ -230,6 +231,8 @@ const stackColors: Record<string, string> = {
               title={card.title}
               description={card.desc}
               image={image}
+              srcset={responsive?.srcset}
+              sizes={responsive?.sizes}
               slug={card.slug}
               locale={locale}
             />
