@@ -5,6 +5,17 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://vunotek.com',
+  compressHTML: true,
+  scopedStyleStrategy: 'class',
+  build: {
+    format: 'directory',
+    assets: '_astro',
+    inlineStylesheets: 'auto',
+  },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
   integrations: [
     sitemap({
       i18n: {
@@ -17,7 +28,11 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      cssMinify: 'lightningcss',
+      assetsInlineLimit: 4096,
+    },
   },
   i18n: {
     defaultLocale: 'es',
