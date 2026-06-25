@@ -3,6 +3,7 @@ import Section from '../components/Section.astro'
 import ScrollReveal from '../components/ScrollReveal.astro'
 import GlassCard from '../components/GlassCard.astro'
 import StatCard from '../components/StatCard.astro'
+import Icon from '../components/Icon.astro';
 
 export interface Props {
   dict: Record<string, unknown>
@@ -43,7 +44,7 @@ const ab = dict.about as any
   <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
     <ScrollReveal>
       <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
-        <span class="material-symbols-outlined text-vue-green text-3xl mb-md">flag</span>
+        <Icon name="flag" class="text-vue-green text-3xl mb-md" />
         <h3 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface mb-sm">{ab.pillars.mission.title}</h3>
         <p class="font-body-md text-body-md text-slate-text flex-1">{ab.pillars.mission.desc}</p>
       </GlassCard>
@@ -51,7 +52,7 @@ const ab = dict.about as any
 
     <ScrollReveal delay={100}>
       <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
-        <span class="material-symbols-outlined text-vue-green text-3xl mb-md">visibility</span>
+        <Icon name="visibility" class="text-vue-green text-3xl mb-md" />
         <h3 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface mb-sm">{ab.pillars.vision.title}</h3>
         <p class="font-body-md text-body-md text-slate-text flex-1">{ab.pillars.vision.desc}</p>
       </GlassCard>
@@ -59,12 +60,12 @@ const ab = dict.about as any
 
     <ScrollReveal delay={200}>
       <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
-        <span class="material-symbols-outlined text-vue-green text-3xl mb-md">checklist</span>
+        <Icon name="checklist" class="text-vue-green text-3xl mb-md" />
         <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">{ab.pillars.objectives.title}</h3>
         <ul class="space-y-sm flex-1">
           {ab.pillars.objectives.items.map((item: string) => (
             <li class="flex items-start gap-sm">
-              <span class="material-symbols-outlined text-vue-green text-lg mt-0.5 shrink-0">check_circle</span>
+              <Icon name="check_circle" class="text-vue-green text-lg mt-0.5 shrink-0" />
               <span class="font-body-md text-body-md text-slate-text">{item}</span>
             </li>
           ))}
@@ -97,9 +98,7 @@ const ab = dict.about as any
           <div class="relative flex flex-col md:flex-row md:items-start gap-md md:gap-lg">
             <div class="flex items-center gap-md md:flex-col md:items-center md:w-48 md:shrink-0">
               <div class="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-lowest border-2 border-vue-green/40 font-label-mono text-label-mono text-vue-green shadow-lg shrink-0">
-                <span class="material-symbols-outlined text-xl">
-                  {i === 0 ? 'code' : i === 1 ? 'database' : 'neurology'}
-                </span>
+                <Icon name={i === 0 ? 'code' : i === 1 ? 'database' : 'neurology'} class="text-xl" />
                             </div>
               <span class="font-label-mono text-label-mono max-sm:text-[11px] text-vue-green/70 tracking-wider uppercase whitespace-nowrap">{step.year}</span>
             </div>
@@ -133,10 +132,7 @@ const ab = dict.about as any
 </Section>
 
 <style>
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-  .stagger-header > * {
+.stagger-header > * {
     opacity: 0;
     animation: fadeUp 0.6s ease forwards;
   }

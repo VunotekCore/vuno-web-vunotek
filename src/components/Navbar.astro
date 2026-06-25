@@ -1,6 +1,7 @@
 ---
 import LocaleSwitch from './LocaleSwitch.astro';
 import { useTranslations } from '../i18n/utils';
+import Icon from './Icon.astro';
 
 const locale = Astro.currentLocale || 'es';
 const isEn = locale === 'en';
@@ -48,7 +49,7 @@ function isActive(href: string) {
       </div>
       <LocaleSwitch />
       <button class="min-[1190px]:hidden text-on-surface p-2" aria-label="Toggle menu" id="menu-toggle">
-        <span class="material-symbols-outlined text-2xl">menu</span>
+        <Icon name="menu" class="text-2xl" />
       </button>
     </div>
   </div>
@@ -83,8 +84,8 @@ function isActive(href: string) {
 
   toggle.addEventListener('click', () => {
     menu.classList.toggle('hidden');
-    const icon = toggle.querySelector('.material-symbols-outlined');
-    if (icon) icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+    const useEl = toggle.querySelector('use');
+    if (useEl) useEl.setAttribute('href', `/sprite.svg#${menu.classList.contains('hidden') ? 'menu' : 'close'}`);
   });
 
   let ticking = false;

@@ -1,5 +1,6 @@
 ---
 import ScrollIndicator from './ScrollIndicator.astro'
+import Icon from './Icon.astro';
 
 export interface Props {
   variant?: 'code' | 'gradient' | 'centered' | 'contact'
@@ -111,7 +112,7 @@ export interface Props {
                     title={Astro.props.cta.label}
                     class="flex items-center justify-center w-full text-center bg-vue-green text-forest-deep px-8 py-4 rounded-lg font-label-mono text-body-md uppercase hover:shadow-[0_0_20px_rgba(66,184,131,0.4)] transition-all max-sm:flex-1 max-sm:px-3 max-sm:py-2"
                   >
-                    <span class="material-symbols-outlined max-sm:text-xl">rocket_launch</span>
+                    <Icon name="rocket_launch" class="max-sm:text-xl" />
                     <span class="sm:inline hidden">{Astro.props.cta.label}</span>
                   </a>
                 )}
@@ -121,7 +122,7 @@ export interface Props {
                     title={Astro.props.ctaSecondary.label}
                     class="flex items-center justify-center w-full text-center border border-vue-green text-vue-green px-8 py-4 rounded-lg font-label-mono text-label-mono uppercase hover:bg-vue-green/10 transition-all max-sm:flex-1 max-sm:px-3 max-sm:py-2"
                   >
-                    <span class="material-symbols-outlined max-sm:text-xl">code</span>
+                    <Icon name="code" class="max-sm:text-xl" />
                     <span class="sm:inline hidden">{Astro.props.ctaSecondary.label}</span>
                   </a>
                 )}
@@ -135,7 +136,7 @@ export interface Props {
             >
               <div class="flex items-center gap-md max-md:gap-1">
                 <div class="bg-vue-green/20 p-2 max-md:p-1 rounded-lg">
-                  <span class="material-symbols-outlined text-vue-green text-2xl max-md:text-lg">speed</span>
+                  <Icon name="speed" class="text-vue-green text-2xl max-md:text-lg" />
                 </div>
                 <div>
                   <p class="font-display-lg text-headline-md max-md:text-sm text-vue-green m-0" id="stat-value">
@@ -430,14 +431,7 @@ export interface Props {
 </script>
 
 <style>
-  .material-symbols-outlined {
-    font-variation-settings:
-      'FILL' 0,
-      'wght' 400,
-      'GRAD' 0,
-      'opsz' 24;
-  }
-  #stat-value {
+#stat-value {
     transition:
       opacity 0.3s ease,
       transform 0.3s ease;

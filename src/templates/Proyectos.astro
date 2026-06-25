@@ -215,7 +215,7 @@ const stackColors: Record<string, string> = {
       </div>
       <!-- <a class="group flex items-center gap-xs text-vue-green font-label-mono" href="#">
         {pj.portfolio.view_all}
-        <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+        <Icon name="arrow_forward" class="transition-transform group-hover:translate-x-1" />
       </a> -->
     </div>
   </ScrollReveal>
@@ -259,14 +259,7 @@ const stackColors: Record<string, string> = {
 
 <!-- ===== STYLES: Section-level. Component styles in their own .astro files. ===== -->
 <style>
-  .material-symbols-outlined {
-    font-variation-settings:
-      'FILL' 0,
-      'wght' 400,
-      'GRAD' 0,
-      'opsz' 24;
-  }
-  .tech-hover-card {
+.tech-hover-card {
     transition: border-color 0.3s ease;
   }
   .stagger-header > * {

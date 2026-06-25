@@ -1,6 +1,7 @@
 ---
 import GlassCard from './GlassCard.astro'
 import ScrollReveal from './ScrollReveal.astro'
+import Icon from './Icon.astro';
 
 export interface Props {
   anchor: string
@@ -49,7 +50,7 @@ const iconMap: Record<string, string> = {
     {items.map((item, i) => (
       <ScrollReveal delay={i * 100} stagger>
         <GlassCard class="max-sm:p-md p-lg flex flex-col gap-md h-full">
-          <span class="material-symbols-outlined text-vue-green text-5xl">{iconMap[item.id] || 'code'}</span>
+          <Icon name={iconMap[item.id] || 'code'} class="text-vue-green text-5xl" />
           <h3 class="font-display-lg text-headline-md">{item.title}</h3>
           <p class="font-body-md text-slate-text">{item.description}</p>
           <div class="flex flex-wrap gap-sm mt-auto pt-md">
