@@ -375,18 +375,53 @@
           "desc": "Full-featured Point-of-Sale system with offline-first architecture, multi-tenant support, real-time inventory management, and native desktop deployment via Electron.",
           "image_key": "pos",
           "features": [
-            { "text": "POS interface with product search, category browsing, and cart management", "image": "pos-interface" },
-            { "text": "Multiple payment methods (cash, credit, debit, check) and per-line discounts", "image": "pos-payments" },
-            { "text": "Cash drawer management: open/close, expected cash, overage/shortage detection", "image": "pos-cashdrawer" },
-            { "text": "Offline sales with automatic sync queue via IndexedDB (Dexie.js)", "image": "pos-offline" },
-            { "text": "Real-time inventory with variants, kits, lots, serial numbers, and low-stock alerts", "image": "pos-inventory" },
-            { "text": "Stock transfers between locations and multi-location control", "image": "pos-transfers" },
-            { "text": "Supplier management, purchase orders, and goods receiving", "image": "pos-suppliers" },
+            {
+              "text": "POS interface with product search, category browsing, and cart management",
+              "image": "pos-interface"
+            },
+            {
+              "text": "Multiple payment methods (cash, credit, debit, check) and per-line discounts",
+              "image": "pos-payments"
+            },
+            {
+              "text": "Cash drawer management: open/close, expected cash, overage/shortage detection",
+              "image": "pos-cashdrawer"
+            },
+            {
+              "text": "Offline sales with automatic sync queue via IndexedDB (Dexie.js)",
+              "image": "pos-offline"
+            },
+            {
+              "text": "Real-time inventory with variants, kits, lots, serial numbers, and low-stock alerts",
+              "image": "pos-inventory"
+            },
+            {
+              "text": "Stock transfers between locations and multi-location control",
+              "image": "pos-transfers"
+            },
+            {
+              "text": "Supplier management, purchase orders, and goods receiving",
+              "image": "pos-suppliers"
+            },
             { "text": "Native desktop app (Electron) + installable PWA", "image": "pos-desktop" },
-            { "text": "Multi-tenant architecture with role-based access control", "image": "pos-multitenant" },
-            { "text": "Admin, cashier dashboards and real-time sales reports", "image": "pos-dashboards" }
+            {
+              "text": "Multi-tenant architecture with role-based access control",
+              "image": "pos-multitenant"
+            },
+            {
+              "text": "Admin, cashier dashboards and real-time sales reports",
+              "image": "pos-dashboards"
+            }
           ],
-          "tech_stack": ["TypeScript", "Vue.js", "Electron", "Node.js", "IndexedDB", "SQL Server", "PWA"]
+          "tech_stack": [
+            "TypeScript",
+            "Vue.js",
+            "Electron",
+            "Node.js",
+            "IndexedDB",
+            "SQL Server",
+            "PWA"
+          ]
         },
         {
           "tag": "E-COMMERCE",
@@ -395,18 +430,54 @@
           "desc": "Full-featured e-commerce platform with an Astro-powered storefront, PHP REST API, Stripe payments, multi-currency support, and a comprehensive admin dashboard.",
           "image_key": "shop",
           "features": [
-            { "text": "Astro-powered storefront with optimized Core Web Vitals", "image": "shop-frontend" },
-            { "text": "Product catalog with advanced filtering by category, color, and size", "image": "shop-catalog" },
-            { "text": "Interactive image gallery with magnifier and quick-view modal", "image": "shop-gallery" },
-            { "text": "Shopping cart with localStorage persistence and server-side sync", "image": "shop-cart" },
-            { "text": "Stripe credit card payments and bank transfer with receipt upload", "image": "shop-payments" },
-            { "text": "Multi-currency support with configurable exchange rates", "image": "shop-currency" },
-            { "text": "Customer accounts with order history, wishlist, and address management", "image": "shop-accounts" },
-            { "text": "Comprehensive admin panel with product, order, coupon, and blog CRUD", "image": "shop-admin" },
-            { "text": "Inventory management with variant matrix and stock tracking", "image": "shop-inventory" },
-            { "text": "TOTP 2FA authentication for admin panel security", "image": "shop-security" },
-            { "text": "Automated email notifications with customizable HTML templates", "image": "shop-notifications" },
-            { "text": "Built-in i18n (Spanish/English) with full translation coverage", "image": "shop-i18n" }
+            {
+              "text": "Astro-powered storefront with optimized Core Web Vitals",
+              "image": "shop-frontend"
+            },
+            {
+              "text": "Product catalog with advanced filtering by category, color, and size",
+              "image": "shop-catalog"
+            },
+            {
+              "text": "Interactive image gallery with magnifier and quick-view modal",
+              "image": "shop-gallery"
+            },
+            {
+              "text": "Shopping cart with localStorage persistence and server-side sync",
+              "image": "shop-cart"
+            },
+            {
+              "text": "Stripe credit card payments and bank transfer with receipt upload",
+              "image": "shop-payments"
+            },
+            {
+              "text": "Multi-currency support with configurable exchange rates",
+              "image": "shop-currency"
+            },
+            {
+              "text": "Customer accounts with order history, wishlist, and address management",
+              "image": "shop-accounts"
+            },
+            {
+              "text": "Comprehensive admin panel with product, order, coupon, and blog CRUD",
+              "image": "shop-admin"
+            },
+            {
+              "text": "Inventory management with variant matrix and stock tracking",
+              "image": "shop-inventory"
+            },
+            {
+              "text": "TOTP 2FA authentication for admin panel security",
+              "image": "shop-security"
+            },
+            {
+              "text": "Automated email notifications with customizable HTML templates",
+              "image": "shop-notifications"
+            },
+            {
+              "text": "Built-in i18n (Spanish/English) with full translation coverage",
+              "image": "shop-i18n"
+            }
           ],
           "tech_stack": ["Astro", "Vue.js", "PHP", "Stripe", "TypeScript", "Tailwind CSS"]
         },
@@ -417,18 +488,54 @@
           "desc": "Full-featured Property Management System (PMS) for hotels with bilingual booking website, Stripe payments, front desk reception panel, housekeeping management, and occupancy calendar.",
           "image_key": "hotel",
           "features": [
-            { "text": "Bilingual (ES/EN) hotel booking website with room catalog and availability", "image": "hotel-website" },
-            { "text": "Room detail pages with amenities, capacity, pricing, and image gallery", "image": "hotel-rooms" },
-            { "text": "Online booking with Stripe payments and bank transfer options", "image": "hotel-bookings" },
-            { "text": "Front desk panel with color-coded room status grid and quick search", "image": "hotel-reception" },
-            { "text": "Check-in/check-out workflows with automatic invoice generation", "image": "hotel-checkin" },
-            { "text": "Housekeeping status management (available, occupied, cleaning, maintenance)", "image": "hotel-housekeeping" },
-            { "text": "Occupancy calendar with Gantt-style monthly grid view", "image": "hotel-calendar" },
-            { "text": "Guest directory with stay history and document management", "image": "hotel-guests" },
-            { "text": "Reservation lifecycle: pending, confirmed, checked-in, checked-out, cancelled", "image": "hotel-lifecycle" },
-            { "text": "Comprehensive admin panel: rooms, rates, blog, and configuration", "image": "hotel-admin" },
-            { "text": "TOTP 2FA authentication with role-based access control", "image": "hotel-security" },
-            { "text": "Automated email notifications (confirmation, pending, cancellation)", "image": "hotel-notifications" }
+            {
+              "text": "Bilingual (ES/EN) hotel booking website with room catalog and availability",
+              "image": "hotel-website"
+            },
+            {
+              "text": "Room detail pages with amenities, capacity, pricing, and image gallery",
+              "image": "hotel-rooms"
+            },
+            {
+              "text": "Online booking with Stripe payments and bank transfer options",
+              "image": "hotel-bookings"
+            },
+            {
+              "text": "Front desk panel with color-coded room status grid and quick search",
+              "image": "hotel-reception"
+            },
+            {
+              "text": "Check-in/check-out workflows with automatic invoice generation",
+              "image": "hotel-checkin"
+            },
+            {
+              "text": "Housekeeping status management (available, occupied, cleaning, maintenance)",
+              "image": "hotel-housekeeping"
+            },
+            {
+              "text": "Occupancy calendar with Gantt-style monthly grid view",
+              "image": "hotel-calendar"
+            },
+            {
+              "text": "Guest directory with stay history and document management",
+              "image": "hotel-guests"
+            },
+            {
+              "text": "Reservation lifecycle: pending, confirmed, checked-in, checked-out, cancelled",
+              "image": "hotel-lifecycle"
+            },
+            {
+              "text": "Comprehensive admin panel: rooms, rates, blog, and configuration",
+              "image": "hotel-admin"
+            },
+            {
+              "text": "TOTP 2FA authentication with role-based access control",
+              "image": "hotel-security"
+            },
+            {
+              "text": "Automated email notifications (confirmation, pending, cancellation)",
+              "image": "hotel-notifications"
+            }
           ],
           "tech_stack": ["Astro", "Vue.js", "Stripe", "TypeScript", "PWA", "Tailwind CSS"]
         },
@@ -439,18 +546,54 @@
           "desc": "Digital logistics platform connecting Miami to Nicaragua with virtual locker addresses, package tracking, air and sea freight shipping, and door-to-door delivery services.",
           "image_key": "logistics",
           "features": [
-            { "text": "Virtual Miami locker address for international package reception", "image": "logistics-locker" },
-            { "text": "Air and sea freight shipping with real-time rate calculation", "image": "logistics-shipping" },
-            { "text": "Multi-step package tracking with animated status stepper", "image": "logistics-tracking" },
-            { "text": "Shipping cost estimator by weight, category, and shipping mode", "image": "logistics-calculator" },
-            { "text": "3-tier pricing comparison (pickup, door-to-door, bulk cargo)", "image": "logistics-plans" },
-            { "text": "Miami warehouse and Nicaragua agency with location info", "image": "logistics-locations" },
-            { "text": "WhatsApp floating button for instant customer communication", "image": "logistics-whatsapp" },
-            { "text": "Interactive contact form with simulated send feedback", "image": "logistics-contact" },
-            { "text": "Responsive bilingual-friendly design with scroll animations", "image": "logistics-responsive" },
-            { "text": "Comprehensive service guides and logistics process information", "image": "logistics-guides" },
-            { "text": "Cargo insurance information for high-value shipments", "image": "logistics-insurance" },
-            { "text": "Mobile-first responsive design for on-the-go tracking", "image": "logistics-mobile" }
+            {
+              "text": "Virtual Miami locker address for international package reception",
+              "image": "logistics-locker"
+            },
+            {
+              "text": "Air and sea freight shipping with real-time rate calculation",
+              "image": "logistics-shipping"
+            },
+            {
+              "text": "Multi-step package tracking with animated status stepper",
+              "image": "logistics-tracking"
+            },
+            {
+              "text": "Shipping cost estimator by weight, category, and shipping mode",
+              "image": "logistics-calculator"
+            },
+            {
+              "text": "3-tier pricing comparison (pickup, door-to-door, bulk cargo)",
+              "image": "logistics-plans"
+            },
+            {
+              "text": "Miami warehouse and Nicaragua agency with location info",
+              "image": "logistics-locations"
+            },
+            {
+              "text": "WhatsApp floating button for instant customer communication",
+              "image": "logistics-whatsapp"
+            },
+            {
+              "text": "Interactive contact form with simulated send feedback",
+              "image": "logistics-contact"
+            },
+            {
+              "text": "Responsive bilingual-friendly design with scroll animations",
+              "image": "logistics-responsive"
+            },
+            {
+              "text": "Comprehensive service guides and logistics process information",
+              "image": "logistics-guides"
+            },
+            {
+              "text": "Cargo insurance information for high-value shipments",
+              "image": "logistics-insurance"
+            },
+            {
+              "text": "Mobile-first responsive design for on-the-go tracking",
+              "image": "logistics-mobile"
+            }
           ],
           "tech_stack": ["Astro", "Vue.js", "TypeScript", "PWA", "Tailwind CSS", "Node.js"]
         },
@@ -461,17 +604,50 @@
           "desc": "Multi-tenant SaaS CRM specialized in social selling, unifying WhatsApp, Instagram, and Facebook conversations with a full sales pipeline from lead to opportunity to quote to close.",
           "image_key": "crm",
           "features": [
-            { "text": "Unified social inbox aggregating WhatsApp, Instagram, and Facebook conversations", "image": "crm-inbox" },
-            { "text": "360° customer profiles with interaction history and lifetime value tracking", "image": "crm-profiles" },
-            { "text": "Drag-and-drop opportunity kanban with sales stage automation", "image": "crm-kanban" },
-            { "text": "Quoting engine with line items, cost & margin analysis, discount and tax", "image": "crm-quotes" },
-            { "text": "Activity and task management with automatic follow-up reminders", "image": "crm-tasks" },
-            { "text": "Real-time push notifications via WebSocket for new messages and updates", "image": "crm-notifications" },
-            { "text": "Role-based access control with granular per-entity permissions", "image": "crm-rbac" },
-            { "text": "Attendance tracking with GPS coordinates and photo check-in/out", "image": "crm-attendance" },
-            { "text": "Employee management with departments, positions, and organizational chart", "image": "crm-employees" },
-            { "text": "Interactive dashboards and reports: funnel, revenue, agent performance", "image": "crm-dashboards" },
-            { "text": "Multi-tenant SaaS architecture with isolated per-company data", "image": "crm-saas" },
+            {
+              "text": "Unified social inbox aggregating WhatsApp, Instagram, and Facebook conversations",
+              "image": "crm-inbox"
+            },
+            {
+              "text": "360° customer profiles with interaction history and lifetime value tracking",
+              "image": "crm-profiles"
+            },
+            {
+              "text": "Drag-and-drop opportunity kanban with sales stage automation",
+              "image": "crm-kanban"
+            },
+            {
+              "text": "Quoting engine with line items, cost & margin analysis, discount and tax",
+              "image": "crm-quotes"
+            },
+            {
+              "text": "Activity and task management with automatic follow-up reminders",
+              "image": "crm-tasks"
+            },
+            {
+              "text": "Real-time push notifications via WebSocket for new messages and updates",
+              "image": "crm-notifications"
+            },
+            {
+              "text": "Role-based access control with granular per-entity permissions",
+              "image": "crm-rbac"
+            },
+            {
+              "text": "Attendance tracking with GPS coordinates and photo check-in/out",
+              "image": "crm-attendance"
+            },
+            {
+              "text": "Employee management with departments, positions, and organizational chart",
+              "image": "crm-employees"
+            },
+            {
+              "text": "Interactive dashboards and reports: funnel, revenue, agent performance",
+              "image": "crm-dashboards"
+            },
+            {
+              "text": "Multi-tenant SaaS architecture with isolated per-company data",
+              "image": "crm-saas"
+            },
             { "text": "PWA support with offline caching and dark mode", "image": "crm-pwa" }
           ],
           "tech_stack": ["TypeScript", "Vue.js", "Node.js", "WebSocket", "PWA", "PostgreSQL"]
@@ -499,7 +675,7 @@
       "title": "Direct Channels",
       "email": {
         "label": "Engineering Email",
-        "value": "projects@vunotek.com"
+        "value": "comercial@vunotek.com"
       },
       "location": {
         "label": "Central Location",
@@ -541,26 +717,9 @@
           "Web Apps / SaaS",
           "Optimization / Infrastructure"
         ],
-        "budgets": [
-          "Under $1K",
-          "$1K - $3K",
-          "$3K - $7K",
-          "$7K - $15K",
-          "+$15K"
-        ],
-        "meeting_types": [
-          "Virtual (Google Meet)",
-          "In-Person",
-          "Phone Call"
-        ],
-        "meeting_times": [
-          "9:00 AM",
-          "10:00 AM",
-          "11:00 AM",
-          "2:00 PM",
-          "3:00 PM",
-          "4:00 PM"
-        ]
+        "budgets": ["Under $1K", "$1K - $3K", "$3K - $7K", "$7K - $15K", "+$15K"],
+        "meeting_types": ["Virtual (Google Meet)", "In-Person", "Phone Call"],
+        "meeting_times": ["9:00 AM", "10:00 AM", "11:00 AM", "2:00 PM", "3:00 PM", "4:00 PM"]
       },
       "sidebar": {
         "schedule_title": "Operational Availability",
@@ -603,19 +762,19 @@
           "Optimize databases and APIs to sustain system response times under 100ms.",
           "Ensure 100% traceable, fully documented source code free from legacy technical debt.",
           "Expand the capabilities of market-leading CRM platforms like Salesforce via advanced native logic."
-      ]
+        ]
+      },
+      "stats": {
+        "title": "Our Background in Numbers",
+        "subtitle": "Real-world metrics backing the technical judgment engineered into every system we build.",
+        "items": [
+          { "value": "+15", "label": "Years of Technical Evolution" },
+          { "value": "+50k", "label": "Lines of Code Audited" },
+          { "value": "100%", "label": "Debt-Free Software Architecture" },
+          { "value": "+40", "label": "Successful API Integrations" }
+        ]
+      }
     },
-    "stats": {
-      "title": "Our Background in Numbers",
-      "subtitle": "Real-world metrics backing the technical judgment engineered into every system we build.",
-      "items": [
-        { "value": "+15", "label": "Years of Technical Evolution" },
-        { "value": "+50k", "label": "Lines of Code Audited" },
-        { "value": "100%", "label": "Debt-Free Software Architecture" },
-        { "value": "+40", "label": "Successful API Integrations" }
-      ]
-    }
-  },
     "timeline": {
       "title": "Evolution &",
       "titleAccent": "Architectural Judgment",
