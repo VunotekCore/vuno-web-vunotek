@@ -109,34 +109,40 @@ const cp = dict.contact_page as any
 <!-- ===== SECTION 3: QUICK CHANNELS ===== -->
 <Section>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-    <GlassCard class="p-md flex items-start gap-md">
-      <Icon name="mail" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
-      <div>
-        <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
-          {cp.quick_channels.email.label}
-        </h3>
-        <a
-          id="secure-email"
-          class="font-body-lg text-body-lg text-vue-green hover:underline transition-colors"
-          href="#"></a>
+    <GlassCard class="p-md">
+      <div class="flex items-start gap-md">
+        <Icon name="mail" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
+            {cp.quick_channels.email.label}
+          </h3>
+          <a
+            id="secure-email"
+            class="font-body-lg text-body-lg text-vue-green hover:underline transition-colors"
+            href="#"></a>
+        </div>
       </div>
     </GlassCard>
-    <GlassCard class="p-md flex items-start gap-md">
-      <Icon name="location_on" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
-      <div>
-        <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
-          {cp.quick_channels.location.label}
-        </h3>
-        <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.location.value}</p>
+    <GlassCard class="p-md">
+      <div class="flex items-start gap-md">
+        <Icon name="location_on" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
+            {cp.quick_channels.location.label}
+          </h3>
+          <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.location.value}</p>
+        </div>
       </div>
     </GlassCard>
-    <GlassCard class="p-md flex items-start gap-md">
-      <Icon name="hub" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
-      <div>
-        <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
-          {cp.quick_channels.community.label}
-        </h3>
-        <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.community.value}</p>
+    <GlassCard class="p-md">
+      <div class="flex items-start gap-md">
+        <Icon name="hub" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
+            {cp.quick_channels.community.label}
+          </h3>
+          <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.community.value}</p>
+        </div>
       </div>
     </GlassCard>
   </div>
