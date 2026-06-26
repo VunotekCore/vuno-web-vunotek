@@ -4,13 +4,12 @@ export interface Props {
   delay?: number;
   stagger?: boolean;
 }
-const { delay = 0, stagger = false } = Astro.props;
+const { delay = 0 } = Astro.props;
 ---
 
 <div
   class:list={[
-    'transition-all duration-700',
-    stagger ? '' : 'opacity-0 translate-y-8',
+    'transition-all duration-700 opacity-0 translate-y-8',
     Astro.props.class,
   ]}
   style={`transition-delay: ${delay}ms;`}
