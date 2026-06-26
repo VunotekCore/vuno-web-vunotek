@@ -34,7 +34,9 @@ const { delay = 0, stagger = false } = Astro.props;
     { threshold: 0.1 }
   );
 
-  document.querySelectorAll('[data-scroll-reveal]').forEach((el) => {
-    observer.observe(el);
+  requestAnimationFrame(() => {
+    document.querySelectorAll('[data-scroll-reveal]').forEach((el) => {
+      observer.observe(el);
+    });
   });
 </script>
