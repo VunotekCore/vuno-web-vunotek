@@ -381,18 +381,56 @@
           "desc": "Sistema completo de punto de venta con arquitectura offline-first, multi-tenant, inventario en tiempo real y despliegue nativo vía Electron.",
           "image_key": "pos",
           "features": [
-            { "text": "Interfaz POS con búsqueda de productos, navegación por categorías y carrito de compras", "image": "pos-interface" },
-            { "text": "Múltiples métodos de pago (efectivo, tarjeta, cheque) y descuentos por línea", "image": "pos-payments" },
-            { "text": "Administración de caja: apertura/cierre, efectivo esperado, sobrantes y faltantes", "image": "pos-cashdrawer" },
-            { "text": "Ventas offline con cola de sincronización automática vía IndexedDB (Dexie.js)", "image": "pos-offline" },
-            { "text": "Inventario en tiempo real con variantes, kits, lotes, series y alertas de stock mínimo", "image": "pos-inventory" },
-            { "text": "Transferencias de inventario entre ubicaciones y control multi-localización", "image": "pos-transfers" },
-            { "text": "Proveedores, órdenes de compra y recepción de mercancía", "image": "pos-suppliers" },
-            { "text": "App de escritorio nativa (Electron) + PWA instalable", "image": "pos-desktop" },
-            { "text": "Arquitectura multi-tenant con control de acceso basado en roles", "image": "pos-multitenant" },
-            { "text": "Dashboards de administración, cajero y reportes en tiempo real", "image": "pos-dashboards" }
+            {
+              "text": "Interfaz POS con búsqueda de productos, navegación por categorías y carrito de compras",
+              "image": "pos-interface"
+            },
+            {
+              "text": "Múltiples métodos de pago (efectivo, tarjeta, cheque) y descuentos por línea",
+              "image": "pos-payments"
+            },
+            {
+              "text": "Administración de caja: apertura/cierre, efectivo esperado, sobrantes y faltantes",
+              "image": "pos-cashdrawer"
+            },
+            {
+              "text": "Ventas offline con cola de sincronización automática vía IndexedDB (Dexie.js)",
+              "image": "pos-offline"
+            },
+            {
+              "text": "Inventario en tiempo real con variantes, kits, lotes, series y alertas de stock mínimo",
+              "image": "pos-inventory"
+            },
+            {
+              "text": "Transferencias de inventario entre ubicaciones y control multi-localización",
+              "image": "pos-transfers"
+            },
+            {
+              "text": "Proveedores, órdenes de compra y recepción de mercancía",
+              "image": "pos-suppliers"
+            },
+            {
+              "text": "App de escritorio nativa (Electron) + PWA instalable",
+              "image": "pos-desktop"
+            },
+            {
+              "text": "Arquitectura multi-tenant con control de acceso basado en roles",
+              "image": "pos-multitenant"
+            },
+            {
+              "text": "Dashboards de administración, cajero y reportes en tiempo real",
+              "image": "pos-dashboards"
+            }
           ],
-          "tech_stack": ["TypeScript", "Vue.js", "Electron", "Node.js", "IndexedDB", "SQL Server", "PWA"]
+          "tech_stack": [
+            "TypeScript",
+            "Vue.js",
+            "Electron",
+            "Node.js",
+            "IndexedDB",
+            "SQL Server",
+            "PWA"
+          ]
         },
         {
           "tag": "E-COMMERCE",
@@ -401,18 +439,54 @@
           "desc": "Plataforma completa de comercio electrónico con frontend en Astro, API REST en PHP, pagos Stripe, soporte multi-moneda y panel administrativo integral.",
           "image_key": "shop",
           "features": [
-            { "text": "Frontend Astro con rendimiento optimizado y Core Web Vitals", "image": "shop-frontend" },
-            { "text": "Catálogo de productos con filtros avanzados por categoría, color y talla", "image": "shop-catalog" },
-            { "text": "Galería interactiva de imágenes con lupa y modal de vista rápida", "image": "shop-gallery" },
-            { "text": "Carrito de compras con persistencia localStorage y sincronización con servidor", "image": "shop-cart" },
-            { "text": "Pagos con tarjeta vía Stripe y transferencia bancaria con carga de comprobante", "image": "shop-payments" },
-            { "text": "Soporte multi-moneda con tasas de cambio configurables", "image": "shop-currency" },
-            { "text": "Cuentas de cliente con historial de pedidos, lista de deseos y direcciones", "image": "shop-accounts" },
-            { "text": "Panel administrativo completo: productos, pedidos, cupones, reseñas y blog", "image": "shop-admin" },
-            { "text": "Gestión de inventario con matriz de variantes y control de stock", "image": "shop-inventory" },
-            { "text": "Autenticación 2FA (TOTP) para seguridad del panel administrativo", "image": "shop-security" },
-            { "text": "Notificaciones email automatizadas con plantillas HTML personalizables", "image": "shop-notifications" },
-            { "text": "Sistema de internacionalización (ES/EN) con cobertura completa de traducciones", "image": "shop-i18n" }
+            {
+              "text": "Frontend Astro con rendimiento optimizado y Core Web Vitals",
+              "image": "shop-frontend"
+            },
+            {
+              "text": "Catálogo de productos con filtros avanzados por categoría, color y talla",
+              "image": "shop-catalog"
+            },
+            {
+              "text": "Galería interactiva de imágenes con lupa y modal de vista rápida",
+              "image": "shop-gallery"
+            },
+            {
+              "text": "Carrito de compras con persistencia localStorage y sincronización con servidor",
+              "image": "shop-cart"
+            },
+            {
+              "text": "Pagos con tarjeta vía Stripe y transferencia bancaria con carga de comprobante",
+              "image": "shop-payments"
+            },
+            {
+              "text": "Soporte multi-moneda con tasas de cambio configurables",
+              "image": "shop-currency"
+            },
+            {
+              "text": "Cuentas de cliente con historial de pedidos, lista de deseos y direcciones",
+              "image": "shop-accounts"
+            },
+            {
+              "text": "Panel administrativo completo: productos, pedidos, cupones, reseñas y blog",
+              "image": "shop-admin"
+            },
+            {
+              "text": "Gestión de inventario con matriz de variantes y control de stock",
+              "image": "shop-inventory"
+            },
+            {
+              "text": "Autenticación 2FA (TOTP) para seguridad del panel administrativo",
+              "image": "shop-security"
+            },
+            {
+              "text": "Notificaciones email automatizadas con plantillas HTML personalizables",
+              "image": "shop-notifications"
+            },
+            {
+              "text": "Sistema de internacionalización (ES/EN) con cobertura completa de traducciones",
+              "image": "shop-i18n"
+            }
           ],
           "tech_stack": ["Astro", "Vue.js", "PHP", "Stripe", "TypeScript", "Tailwind CSS"]
         },
@@ -423,18 +497,54 @@
           "desc": "Sistema completo de gestión hotelera (PMS) con sitio web de reservas bilingüe, pagos Stripe, panel de recepción, control de housekeeping y calendario de ocupación.",
           "image_key": "hotel",
           "features": [
-            { "text": "Sitio web de reservas bilingüe (ES/EN) con catálogo de habitaciones y disponibilidad", "image": "hotel-website" },
-            { "text": "Páginas detalle con amenidades, capacidad, precios y galería de imágenes", "image": "hotel-rooms" },
-            { "text": "Reservas online con pagos Stripe y opción de transferencia bancaria", "image": "hotel-bookings" },
-            { "text": "Panel de recepción con cuadrícula de habitaciones codificada por colores y búsqueda rápida", "image": "hotel-reception" },
-            { "text": "Flujos de check-in/check-out con generación automática de facturas", "image": "hotel-checkin" },
-            { "text": "Gestión de housekeeping (disponible, ocupado, limpieza, mantenimiento)", "image": "hotel-housekeeping" },
-            { "text": "Calendario de ocupación con vista mensual tipo Gantt", "image": "hotel-calendar" },
-            { "text": "Directorio de huéspedes con historial de estancias y gestión de documentos", "image": "hotel-guests" },
-            { "text": "Ciclo de vida de reservas: pendiente, confirmada, check-in, check-out, cancelada", "image": "hotel-lifecycle" },
-            { "text": "Panel administrativo completo: habitaciones, tarifas, blog y configuración", "image": "hotel-admin" },
-            { "text": "Autenticación 2FA (TOTP) con control de acceso basado en roles", "image": "hotel-security" },
-            { "text": "Notificaciones email automatizadas (confirmación, pago pendiente, cancelación)", "image": "hotel-notifications" }
+            {
+              "text": "Sitio web de reservas bilingüe (ES/EN) con catálogo de habitaciones y disponibilidad",
+              "image": "hotel-website"
+            },
+            {
+              "text": "Páginas detalle con amenidades, capacidad, precios y galería de imágenes",
+              "image": "hotel-rooms"
+            },
+            {
+              "text": "Reservas online con pagos Stripe y opción de transferencia bancaria",
+              "image": "hotel-bookings"
+            },
+            {
+              "text": "Panel de recepción con cuadrícula de habitaciones codificada por colores y búsqueda rápida",
+              "image": "hotel-reception"
+            },
+            {
+              "text": "Flujos de check-in/check-out con generación automática de facturas",
+              "image": "hotel-checkin"
+            },
+            {
+              "text": "Gestión de housekeeping (disponible, ocupado, limpieza, mantenimiento)",
+              "image": "hotel-housekeeping"
+            },
+            {
+              "text": "Calendario de ocupación con vista mensual tipo Gantt",
+              "image": "hotel-calendar"
+            },
+            {
+              "text": "Directorio de huéspedes con historial de estancias y gestión de documentos",
+              "image": "hotel-guests"
+            },
+            {
+              "text": "Ciclo de vida de reservas: pendiente, confirmada, check-in, check-out, cancelada",
+              "image": "hotel-lifecycle"
+            },
+            {
+              "text": "Panel administrativo completo: habitaciones, tarifas, blog y configuración",
+              "image": "hotel-admin"
+            },
+            {
+              "text": "Autenticación 2FA (TOTP) con control de acceso basado en roles",
+              "image": "hotel-security"
+            },
+            {
+              "text": "Notificaciones email automatizadas (confirmación, pago pendiente, cancelación)",
+              "image": "hotel-notifications"
+            }
           ],
           "tech_stack": ["Astro", "Vue.js", "Stripe", "TypeScript", "PWA", "Tailwind CSS"]
         },
@@ -445,18 +555,54 @@
           "desc": "Plataforma logística digital conectando Miami con Nicaragua con casillero virtual, rastreo de paquetes, envíos aéreos y marítimos, y entrega puerta a puerta.",
           "image_key": "logistics",
           "features": [
-            { "text": "Casillero virtual en Miami para recepción de paquetes internacionales", "image": "logistics-locker" },
-            { "text": "Envíos aéreos y marítimos con cálculo de tarifas en tiempo real", "image": "logistics-shipping" },
-            { "text": "Rastreo de paquetes multi-paso con stepper animado", "image": "logistics-tracking" },
-            { "text": "Calculadora de costos por peso, categoría y modo de envío", "image": "logistics-calculator" },
-            { "text": "Comparativa de 3 planes (recogida, puerta a puerta, carga masiva)", "image": "logistics-plans" },
-            { "text": "Ubicaciones de bodega Miami y agencia Nicaragua", "image": "logistics-locations" },
-            { "text": "Botón flotante de WhatsApp para comunicación directa", "image": "logistics-whatsapp" },
-            { "text": "Formulario de contacto interactivo con retroalimentación simulada", "image": "logistics-contact" },
-            { "text": "Diseño responsivo bilingüe con animaciones scroll", "image": "logistics-responsive" },
-            { "text": "Guías completas de servicios y procesos logísticos", "image": "logistics-guides" },
-            { "text": "Información de seguro de carga para envíos de alto valor", "image": "logistics-insurance" },
-            { "text": "Diseño mobile-first para rastreo en movimiento", "image": "logistics-mobile" }
+            {
+              "text": "Casillero virtual en Miami para recepción de paquetes internacionales",
+              "image": "logistics-locker"
+            },
+            {
+              "text": "Envíos aéreos y marítimos con cálculo de tarifas en tiempo real",
+              "image": "logistics-shipping"
+            },
+            {
+              "text": "Rastreo de paquetes multi-paso con stepper animado",
+              "image": "logistics-tracking"
+            },
+            {
+              "text": "Calculadora de costos por peso, categoría y modo de envío",
+              "image": "logistics-calculator"
+            },
+            {
+              "text": "Comparativa de 3 planes (recogida, puerta a puerta, carga masiva)",
+              "image": "logistics-plans"
+            },
+            {
+              "text": "Ubicaciones de bodega Miami y agencia Nicaragua",
+              "image": "logistics-locations"
+            },
+            {
+              "text": "Botón flotante de WhatsApp para comunicación directa",
+              "image": "logistics-whatsapp"
+            },
+            {
+              "text": "Formulario de contacto interactivo con retroalimentación simulada",
+              "image": "logistics-contact"
+            },
+            {
+              "text": "Diseño responsivo bilingüe con animaciones scroll",
+              "image": "logistics-responsive"
+            },
+            {
+              "text": "Guías completas de servicios y procesos logísticos",
+              "image": "logistics-guides"
+            },
+            {
+              "text": "Información de seguro de carga para envíos de alto valor",
+              "image": "logistics-insurance"
+            },
+            {
+              "text": "Diseño mobile-first para rastreo en movimiento",
+              "image": "logistics-mobile"
+            }
           ],
           "tech_stack": ["Astro", "Vue.js", "TypeScript", "PWA", "Tailwind CSS", "Node.js"]
         },
@@ -467,17 +613,50 @@
           "desc": "CRM SaaS multitenencia especializado en social selling, unificando conversaciones de WhatsApp, Instagram y Facebook con un pipeline de ventas completo desde lead hasta cotización.",
           "image_key": "crm",
           "features": [
-            { "text": "Bandeja de entrada social unificada: WhatsApp, Instagram y Facebook", "image": "crm-inbox" },
-            { "text": "Perfiles de cliente 360° con historial de interacciones y valor de por vida", "image": "crm-profiles" },
-            { "text": "Kanban de oportunidades drag-and-drop con automatización de etapas", "image": "crm-kanban" },
-            { "text": "Motor de cotizaciones con análisis de costos, márgenes, descuentos e impuestos", "image": "crm-quotes" },
-            { "text": "Gestión de actividades y tareas con recordatorios automáticos", "image": "crm-tasks" },
-            { "text": "Notificaciones push en tiempo real vía WebSocket", "image": "crm-notifications" },
-            { "text": "Control de acceso basado en roles con permisos granulares por entidad", "image": "crm-rbac" },
-            { "text": "Control de asistencia con GPS y foto de entrada/salida", "image": "crm-attendance" },
-            { "text": "Gestión de empleados con departamentos, puestos y organigrama", "image": "crm-employees" },
-            { "text": "Dashboards interactivos: embudo, ingresos, rendimiento de agentes", "image": "crm-dashboards" },
-            { "text": "Arquitectura SaaS multitenencia con datos aislados por empresa", "image": "crm-saas" },
+            {
+              "text": "Bandeja de entrada social unificada: WhatsApp, Instagram y Facebook",
+              "image": "crm-inbox"
+            },
+            {
+              "text": "Perfiles de cliente 360° con historial de interacciones y valor de por vida",
+              "image": "crm-profiles"
+            },
+            {
+              "text": "Kanban de oportunidades drag-and-drop con automatización de etapas",
+              "image": "crm-kanban"
+            },
+            {
+              "text": "Motor de cotizaciones con análisis de costos, márgenes, descuentos e impuestos",
+              "image": "crm-quotes"
+            },
+            {
+              "text": "Gestión de actividades y tareas con recordatorios automáticos",
+              "image": "crm-tasks"
+            },
+            {
+              "text": "Notificaciones push en tiempo real vía WebSocket",
+              "image": "crm-notifications"
+            },
+            {
+              "text": "Control de acceso basado en roles con permisos granulares por entidad",
+              "image": "crm-rbac"
+            },
+            {
+              "text": "Control de asistencia con GPS y foto de entrada/salida",
+              "image": "crm-attendance"
+            },
+            {
+              "text": "Gestión de empleados con departamentos, puestos y organigrama",
+              "image": "crm-employees"
+            },
+            {
+              "text": "Dashboards interactivos: embudo, ingresos, rendimiento de agentes",
+              "image": "crm-dashboards"
+            },
+            {
+              "text": "Arquitectura SaaS multitenencia con datos aislados por empresa",
+              "image": "crm-saas"
+            },
             { "text": "Soporte PWA con modo offline y modo oscuro", "image": "crm-pwa" }
           ],
           "tech_stack": ["TypeScript", "Vue.js", "Node.js", "WebSocket", "PWA", "PostgreSQL"]
@@ -505,7 +684,7 @@
       "title": "Canales Directos",
       "email": {
         "label": "Correo Electrónico",
-        "value": "projects@vunotek.com"
+        "value": "comercial@vunotek.com"
       },
       "location": {
         "label": "Ubicación Central",
@@ -547,26 +726,9 @@
           "Aplicaciones Web / SaaS",
           "Optimización / Infraestructura"
         ],
-        "budgets": [
-          "Menos de $1K",
-          "$1K - $3K",
-          "$3K - $7K",
-          "$7K - $15K",
-          "+$15K"
-        ],
-        "meeting_types": [
-          "Virtual (Google Meet)",
-          "Presencial",
-          "Llamada Telefónica"
-        ],
-        "meeting_times": [
-          "9:00 AM",
-          "10:00 AM",
-          "11:00 AM",
-          "2:00 PM",
-          "3:00 PM",
-          "4:00 PM"
-        ]
+        "budgets": ["Menos de $1K", "$1K - $3K", "$3K - $7K", "$7K - $15K", "+$15K"],
+        "meeting_types": ["Virtual (Google Meet)", "Presencial", "Llamada Telefónica"],
+        "meeting_times": ["9:00 AM", "10:00 AM", "11:00 AM", "2:00 PM", "3:00 PM", "4:00 PM"]
       },
       "sidebar": {
         "schedule_title": "Disponibilidad Operativa",
@@ -609,19 +771,19 @@
           "Optimizar bases de datos y APIs para mantener tiempos de respuesta inferiores a los 100ms.",
           "Asegurar un código 100% trazable, documentado y libre de deuda técnica heredada.",
           "Extender las capacidades de plataformas CRM líderes como Salesforce mediante lógica nativa avanzada."
-      ]
+        ]
+      },
+      "stats": {
+        "title": "La Trayectoria en Números",
+        "subtitle": "Métricas reales que respaldan el criterio técnico detrás de cada una de nuestras soluciones.",
+        "items": [
+          { "value": "+15", "label": "Años de Evolución Técnica" },
+          { "value": "+50k", "label": "Líneas de Código Auditadas" },
+          { "value": "100%", "label": "Arquitectura Libre de Deuda" },
+          { "value": "+40", "label": "Integraciones de APIs Exitosas" }
+        ]
+      }
     },
-    "stats": {
-      "title": "La Trayectoria en Números",
-      "subtitle": "Métricas reales que respaldan el criterio técnico detrás de cada una de nuestras soluciones.",
-      "items": [
-        { "value": "+15", "label": "Años de Evolución Técnica" },
-        { "value": "+50k", "label": "Líneas de Código Auditadas" },
-        { "value": "100%", "label": "Arquitectura Libre de Deuda" },
-        { "value": "+40", "label": "Integraciones de APIs Exitosas" }
-      ]
-    }
-  },
     "timeline": {
       "title": "Evolución y",
       "titleAccent": "Criterio Arquitectónico",

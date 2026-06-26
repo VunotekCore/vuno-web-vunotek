@@ -4,7 +4,7 @@ import GlassCard from '../components/GlassCard.astro'
 import ScrollReveal from '../components/ScrollReveal.astro'
 import ContactForm from '../components/ContactForm.astro'
 import SocialLinks from '../components/SocialLinks.astro'
-import Icon from '../components/Icon.astro';
+import Icon from '../components/Icon.astro'
 
 export interface Props {
   dict: Record<string, unknown>
@@ -45,7 +45,8 @@ const cp = dict.contact_page as any
         class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full"
       >
         <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
-        <span class="font-label-mono text-label-mono max-sm:text-[11px] text-vue-green tracking-wider uppercase whitespace-nowrap"
+        <span
+          class="font-label-mono text-label-mono max-sm:text-[11px] text-vue-green tracking-wider uppercase whitespace-nowrap"
           >// {cp.form_section.title.toLowerCase().replace(/\s+/g, '_')}</span
         >
       </div>
@@ -77,13 +78,19 @@ const cp = dict.contact_page as any
             </h3>
             <div class="space-y-sm">
               <div class="flex items-start gap-md">
-                <Icon name="calendar_month" class="text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]" />
+                <Icon
+                  name="calendar_month"
+                  class="text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]"
+                />
                 <p class="font-body-md text-body-md text-on-surface">
                   {cp.form_section.sidebar.schedule_hours}
                 </p>
               </div>
               <div class="flex items-start gap-md">
-                <Icon name="timer" class="text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]" />
+                <Icon
+                  name="timer"
+                  class="text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]"
+                />
                 <p class="font-body-md text-body-md text-slate-text">
                   {cp.form_section.sidebar.response_time}
                 </p>
@@ -102,35 +109,47 @@ const cp = dict.contact_page as any
 <!-- ===== SECTION 3: QUICK CHANNELS ===== -->
 <Section>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-    <GlassCard class="p-md text-center">
-      <Icon name="mail" class="text-vue-green text-[32px] max-sm:text-[24px] mb-sm" />
-      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
-        {cp.quick_channels.email.label}
-      </h3>
-      <a
-        id="secure-email"
-        class="font-body-lg text-body-lg text-vue-green hover:underline transition-colors"
-        href="#"></a>
+    <GlassCard class="p-md">
+      <div class="flex items-start gap-md">
+        <Icon name="mail" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
+            {cp.quick_channels.email.label}
+          </h3>
+          <a
+            id="secure-email"
+            class="font-body-lg text-body-lg text-vue-green hover:underline transition-colors"
+            href="#"></a>
+        </div>
+      </div>
     </GlassCard>
-    <GlassCard class="p-md text-center">
-      <Icon name="location_on" class="text-vue-green text-[32px] max-sm:text-[24px] mb-sm" />
-      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
-        {cp.quick_channels.location.label}
-      </h3>
-      <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.location.value}</p>
+    <GlassCard class="p-md">
+      <div class="flex items-start gap-md">
+        <Icon name="location_on" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
+            {cp.quick_channels.location.label}
+          </h3>
+          <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.location.value}</p>
+        </div>
+      </div>
     </GlassCard>
-    <GlassCard class="p-md text-center">
-      <Icon name="hub" class="text-vue-green text-[32px] max-sm:text-[24px] mb-sm" />
-      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
-        {cp.quick_channels.community.label}
-      </h3>
-      <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.community.value}</p>
+    <GlassCard class="p-md">
+      <div class="flex items-start gap-md">
+        <Icon name="groups" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
+            {cp.quick_channels.community.label}
+          </h3>
+          <p class="font-body-lg text-body-lg text-slate-text">{cp.quick_channels.community.value}</p>
+        </div>
+      </div>
     </GlassCard>
   </div>
 </Section>
 
 <style>
-.stagger-header > * {
+  .stagger-header > * {
     opacity: 0;
     animation: fadeUp 0.6s ease forwards;
   }
@@ -156,7 +175,7 @@ const cp = dict.contact_page as any
 </style>
 
 <script>
-  const user = 'projects'
+  const user = 'comercial'
   const domain = 'vunotek.com'
   const el = document.getElementById('secure-email')
   if (el) {

@@ -36,53 +36,44 @@ const { anchor, title, subtitle, items } = Astro.props
 
   <!-- Desktop: Horizontal pipeline (≥1190px) -->
   <div class="relative hidden min-[1190px]:block">
-    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[18px] h-px bg-gradient-to-r from-outline-variant/10 via-outline-variant/30 to-outline-variant/10"></div>
+    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[7px] h-0.5 bg-gradient-to-r from-vue-green/30 via-vue-green/50 to-vue-green/30"></div>
 
     <div class="relative grid grid-cols-3 gap-8">
       {items.map((item, i) => (
         <div class="relative flex flex-col items-center">
-          <div class="w-4 h-4 rounded-full bg-vue-green ring-[4px] ring-surface-container-lowest z-10"></div>
+          <div
+            class="anim-dot w-4 h-4 rounded-full bg-vue-green ring-[4px] ring-surface-container-lowest z-10"
+            style={`animation-delay: ${i * 3}s`}
+          ></div>
 
           {i < items.length - 1 && (
-            <div class="absolute top-[14px] -right-[19px] z-20">
-              <svg class="w-4 h-4 text-outline-variant/40" viewBox="0 0 16 16" fill="none">
+            <div
+              class="absolute top-[-2px] -right-[26px] z-20 anim-chevron"
+              style={`animation-delay: ${i * 3}s`}
+            >
+              <svg class="w-5 h-5" viewBox="0 0 16 16" fill="none">
                 <path
                   d="M6 4l4 4-4 4"
                   stroke="currentColor"
-                  stroke-width="1.5"
+                  stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
               </svg>
-</div>
-
-<style>
-  @keyframes pipeline-flow {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
-
-  .philosophy-card:hover {
-    border-color: var(--color-vue-green) !important;
-    box-shadow: 0 0 24px color-mix(in srgb, var(--color-vue-green) 12%, transparent);
-  }
-</style>
-
+            </div>
           )}
 
-          <ScrollReveal delay={i * 100} stagger>
-            <article class="philosophy-card w-full mt-3 bg-surface-container border border-outline-variant/10 rounded-xl max-sm:p-md p-lg flex flex-col gap-base">
-              <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">
-                {item.step}
-              </span>
-              <h3 class="font-display-lg text-headline-md text-on-surface">
-                {item.title}
-              </h3>
-              <p class="font-body-md text-body-md text-slate-text">
-                {item.description}
-              </p>
-            </article>
-          </ScrollReveal>
+          <article class="philosophy-card w-full mt-3 bg-surface-container border border-outline-variant/10 rounded-xl max-sm:p-md p-lg flex flex-col gap-base">
+            <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">
+              {item.step}
+            </span>
+            <h3 class="font-display-lg text-headline-md text-on-surface">
+              {item.title}
+            </h3>
+            <p class="font-body-md text-body-md text-slate-text">
+              {item.description}
+            </p>
+          </article>
         </div>
       ))}
     </div>
@@ -91,12 +82,12 @@ const { anchor, title, subtitle, items } = Astro.props
   <!-- Mobile: Vertical timeline (<1190px) -->
   <div class="flex flex-col min-[1190px]:hidden">
     {items.map((item, i) => (
-      <ScrollReveal delay={i * 100} stagger>
+      <ScrollReveal delay={i * 100}>
         <div class="relative flex gap-lg max-sm:pl-md pl-lg max-sm:pb-lg pb-xl last:pb-0">
           <div class="flex flex-col items-center">
             <div class="w-3.5 h-3.5 rounded-full bg-vue-green ring-[3px] ring-surface-container-lowest flex-shrink-0 z-10"></div>
             {i < items.length - 1 && (
-              <div class="w-px flex-1 bg-outline-variant/20 mt-1"></div>
+              <div class="w-0.5 flex-1 bg-vue-green/30 mt-1"></div>
             )}
           </div>
           <div class="flex flex-col gap-sm min-w-0">
@@ -115,3 +106,39 @@ const { anchor, title, subtitle, items } = Astro.props
     ))}
   </div>
 </div>
+
+<style>
+  @keyframes dot-glow {
+    0%, 22% {
+      box-shadow: 0 0 0 6px var(--color-vue-green), 0 0 24px color-mix(in srgb, var(--color-vue-green) 40%, transparent);
+      transform: scale(1.4);
+    }
+    28%, 100% {
+      box-shadow: 0 0 0 4px var(--color-surface-container-lowest);
+      transform: scale(1);
+    }
+  }
+
+  @keyframes chevron-glow {
+    0%, 22% {
+      opacity: 1;
+      color: var(--color-vue-green);
+    }
+    28%, 100% {
+      opacity: 0.15;
+    }
+  }
+
+  .anim-dot {
+    animation: dot-glow 9s infinite;
+  }
+
+  .anim-chevron {
+    animation: chevron-glow 9s infinite;
+  }
+
+  .philosophy-card:hover {
+    border-color: var(--color-vue-green) !important;
+    box-shadow: 0 0 24px color-mix(in srgb, var(--color-vue-green) 12%, transparent);
+  }
+</style>
