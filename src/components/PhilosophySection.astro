@@ -36,7 +36,7 @@ const { anchor, title, subtitle, items } = Astro.props
 
   <!-- Desktop: Horizontal pipeline (≥1190px) -->
   <div class="relative hidden min-[1190px]:block">
-    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[16px] h-0.5 bg-gradient-to-r from-vue-green/30 via-vue-green/50 to-vue-green/30"></div>
+    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[7px] h-0.5 bg-gradient-to-r from-vue-green/30 via-vue-green/50 to-vue-green/30"></div>
 
     <div class="relative grid grid-cols-3 gap-8">
       {items.map((item, i) => (
@@ -48,14 +48,14 @@ const { anchor, title, subtitle, items } = Astro.props
 
           {i < items.length - 1 && (
             <div
-              class="absolute top-[14px] -right-[19px] z-20 anim-chevron"
+              class="absolute top-[3px] -right-[26px] z-20 anim-chevron"
               style={`animation-delay: ${i * 3}s`}
             >
-              <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+              <svg class="w-5 h-5" viewBox="0 0 16 16" fill="none">
                 <path
                   d="M6 4l4 4-4 4"
                   stroke="currentColor"
-                  stroke-width="1.5"
+                  stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
