@@ -36,7 +36,7 @@ const { anchor, title, subtitle, items } = Astro.props
 
   <!-- Desktop: Horizontal pipeline (≥1190px) -->
   <div class="relative hidden min-[1190px]:block">
-    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[18px] h-px bg-gradient-to-r from-outline-variant/10 via-outline-variant/30 to-outline-variant/10"></div>
+    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[18px] h-px bg-gradient-to-r from-vue-green/10 via-vue-green/30 to-vue-green/10"></div>
 
     <div class="relative grid grid-cols-3 gap-8">
       {items.map((item, i) => (
@@ -83,7 +83,7 @@ const { anchor, title, subtitle, items } = Astro.props
           <div class="flex flex-col items-center">
             <div class="w-3.5 h-3.5 rounded-full bg-vue-green ring-[3px] ring-surface-container-lowest flex-shrink-0 z-10"></div>
             {i < items.length - 1 && (
-              <div class="w-px flex-1 bg-outline-variant/20 mt-1"></div>
+              <div class="w-px flex-1 bg-vue-green/20 mt-1"></div>
             )}
           </div>
           <div class="flex flex-col gap-sm min-w-0">
