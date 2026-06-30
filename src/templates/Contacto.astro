@@ -19,19 +19,17 @@ const cp = dict.contact_page as any
 <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
   <div class="flex flex-col gap-base stagger-header">
     <div
-      class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full"
+      class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full"
     >
-      <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
-      <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase"
+      <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse"></span>
+      <span class="font-label-mono text-label-mono text-electric-blue tracking-wider uppercase"
         >{cp.hero.badge}</span
       >
     </div>
     <h1
       class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl"
     >
-      <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent"
-        >{cp.hero.title}</span
-      >
+      {cp.hero.title}
     </h1>
     <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">{cp.hero.description}</p>
   </div>
@@ -42,18 +40,16 @@ const cp = dict.contact_page as any
   <div class="flex flex-col gap-lg">
     <div class="flex flex-col gap-sm">
       <div
-        class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full"
+        class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full"
       >
-        <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
+        <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse"></span>
         <span
-          class="font-label-mono text-label-mono max-sm:text-[11px] text-vue-green tracking-wider uppercase whitespace-nowrap"
+          class="font-label-mono text-label-mono max-sm:text-[11px] text-electric-blue tracking-wider uppercase whitespace-nowrap"
           >// {cp.form_section.title.toLowerCase().replace(/\s+/g, '_')}</span
         >
       </div>
       <h2 class="font-display-lg text-headline-md text-on-surface">
-        <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent"
-          >{cp.form_section.title}</span
-        >
+        {cp.form_section.title}
       </h2>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
@@ -73,14 +69,14 @@ const cp = dict.contact_page as any
             <h3
               class="font-headline-sm text-headline-sm text-on-surface mb-sm flex items-center gap-base"
             >
-              <Icon name="schedule" class="text-vue-green" />
+              <Icon name="schedule" class="text-electric-blue" />
               {cp.form_section.sidebar.schedule_title}
             </h3>
             <div class="space-y-sm">
               <div class="flex items-start gap-md">
                 <Icon
                   name="calendar_month"
-                  class="text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]"
+                  class="text-electric-blue p-xs bg-primary-container/20 rounded-lg text-[18px]"
                 />
                 <p class="font-body-md text-body-md text-on-surface">
                   {cp.form_section.sidebar.schedule_hours}
@@ -89,7 +85,7 @@ const cp = dict.contact_page as any
               <div class="flex items-start gap-md">
                 <Icon
                   name="timer"
-                  class="text-vue-green p-xs bg-primary-container/20 rounded-lg text-[18px]"
+                  class="text-electric-blue p-xs bg-primary-container/20 rounded-lg text-[18px]"
                 />
                 <p class="font-body-md text-body-md text-slate-text">
                   {cp.form_section.sidebar.response_time}
@@ -111,21 +107,21 @@ const cp = dict.contact_page as any
   <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
     <GlassCard class="p-md">
       <div class="flex items-start gap-md">
-        <Icon name="mail" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <Icon name="mail" class="text-electric-blue text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
         <div>
           <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
             {cp.quick_channels.email.label}
           </h3>
           <a
             id="secure-email"
-            class="font-body-lg text-body-lg text-vue-green hover:underline transition-colors"
+            class="font-body-lg text-body-lg text-electric-blue hover:underline transition-colors"
             href="#"></a>
         </div>
       </div>
     </GlassCard>
     <GlassCard class="p-md">
       <div class="flex items-start gap-md">
-        <Icon name="location_on" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <Icon name="location_on" class="text-electric-blue text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
         <div>
           <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
             {cp.quick_channels.location.label}
@@ -136,7 +132,7 @@ const cp = dict.contact_page as any
     </GlassCard>
     <GlassCard class="p-md">
       <div class="flex items-start gap-md">
-        <Icon name="groups" class="text-vue-green text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
+        <Icon name="groups" class="text-electric-blue text-[32px] max-sm:text-[24px] shrink-0 mt-1" />
         <div>
           <h3 class="font-headline-sm text-headline-sm text-on-surface mb-xs">
             {cp.quick_channels.community.label}

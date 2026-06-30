@@ -32,10 +32,10 @@ const { items, ctaLabel, ctaHref } = Astro.props
         <!-- Header: icon + step badge + category -->
         <div class="flex items-center gap-sm mb-base">
           {item.icon && (
-            <Icon name={item.icon} class="text-vue-green text-xl" />
+            <Icon name={item.icon} class="text-electric-blue text-xl" />
           )}
-          <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">{item.index}</span>
-          <span class="h-px w-6 bg-vue-green/30"></span>
+          <span class="font-label-mono text-label-mono text-electric-blue/70 tracking-wider">{item.index}</span>
+          <span class="h-px w-6 bg-electric-blue/30"></span>
           <span class="font-label-mono text-label-mono text-slate-text uppercase tracking-widest text-xs">
             {item.category}
           </span>
@@ -53,7 +53,7 @@ const { items, ctaLabel, ctaHref } = Astro.props
             </p>
             <div class="flex flex-wrap gap-sm mt-auto pt-sm">
               {item.stack_tags.map((tag) => (
-                <span class="font-label-mono text-label-mono text-vue-green bg-vue-green/10 border border-vue-green/20 px-2.5 py-0.5 rounded-md">
+                <span class="font-label-mono text-label-mono text-electric-blue bg-electric-blue/10 border border-electric-blue/20 px-2.5 py-0.5 rounded-md">
                   {tag}
                 </span>
               ))}
@@ -62,22 +62,22 @@ const { items, ctaLabel, ctaHref } = Astro.props
 
           <!-- Right: Technical capabilities -->
           <div class="lg:col-span-6">
-            <div class="bg-surface-container-low border border-outline-variant/10 rounded-xl max-sm:px-md px-lg py-md flex flex-col gap-sm h-full transition-all duration-300 hover:border-vue-green/50 relative overflow-hidden"
+            <div class="bg-surface-container-low border border-outline-variant/10 rounded-xl max-sm:px-md px-lg py-md flex flex-col gap-sm h-full transition-all duration-300 hover:border-electric-blue/50 relative overflow-hidden"
               data-glass-card
               style="--mouse-x: 50%; --mouse-y: 50%;"
             >
               <div class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300"
-                style="background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66,184,131,0.08), transparent 60%);"
+                style="background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0,168,255,0.08), transparent 60%);"
                 data-glass-glow
               />
               <div class="relative z-10">
-                <h3 class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase text-xs">
+                <h3 class="font-label-mono text-label-mono text-electric-blue tracking-wider uppercase text-xs">
                   {item.capabilities_title}
                 </h3>
                 <ul class="flex flex-col gap-xs">
                   {item.capabilities.map((cap) => (
                     <li class="flex items-start gap-sm">
-                      <span class="text-vue-green font-label-mono text-xs mt-0.5 flex-shrink-0">▹</span>
+                      <span class="text-electric-blue font-label-mono text-xs mt-0.5 flex-shrink-0">▹</span>
                       <span class="font-body-md text-body-md text-slate-text">{cap}</span>
                     </li>
                   ))}
@@ -91,7 +91,7 @@ const { items, ctaLabel, ctaHref } = Astro.props
         <div class="mt-base">
           <a
             href={ctaHref}
-            class="inline-flex items-center gap-sm font-label-mono text-label-mono text-vue-green/70 hover:text-vue-green transition-colors group text-xs"
+            class="inline-flex items-center gap-sm font-label-mono text-label-mono text-electric-blue/70 hover:text-electric-blue transition-colors group text-xs"
           >
             {ctaLabel}
             <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>

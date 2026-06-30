@@ -58,19 +58,19 @@ const techIcons: Record<string, string> = {
 
 <section class="relative overflow-hidden !pt-32 md:!pt-40 pb-lg md:pb-xl px-margin" style="scroll-margin-top: 80px;">
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <div class="absolute inset-0" style="background-image: radial-gradient(rgba(66,184,131,0.06) 1px, transparent 1px); background-size: 32px 32px;"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(rgba(0,168,255,0.06) 1px, transparent 1px); background-size: 32px 32px;"></div>
   </div>
 
   <div class="max-w-[min(90vw,1600px)] mx-auto relative">
-    <a href={backUrl} class="inline-flex items-center gap-xs text-vue-green font-label-mono hover:underline mb-lg">
+    <a href={backUrl} class="inline-flex items-center gap-xs text-electric-blue font-label-mono hover:underline mb-lg">
       <Icon name="arrow_back" class="text-sm" />
       {locale === 'en' ? 'Back to projects' : 'Volver a proyectos'}
     </a>
 
     <div class="flex flex-col gap-base stagger-header">
-      <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
-        <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse" />
-        <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">{card.tag}</span>
+      <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse" />
+        <span class="font-label-mono text-label-mono text-electric-blue tracking-wider uppercase">{card.tag}</span>
       </div>
 
       <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
@@ -101,7 +101,7 @@ const techIcons: Record<string, string> = {
           class="w-full h-full object-contain transition-all duration-700 group-hover:scale-[1.03]"
         />
       </div>
-      <div class="absolute inset-0 ring-1 ring-inset ring-vue-green/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div class="absolute inset-0 ring-1 ring-inset ring-electric-blue/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       <div class="absolute bottom-3 right-3 bg-surface-charcoal/80 backdrop-blur-sm rounded-lg px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5">
         <Icon name="zoom_out_map" class="text-slate-text text-sm" />
         <span class="font-label-mono text-label-mono text-slate-text/80 text-xs">{locale === 'en' ? 'Expand' : 'Ampliar'}</span>
@@ -114,10 +114,10 @@ const techIcons: Record<string, string> = {
 {isPlaceholder && (
   <Section class="!pt-0 !pb-lg md:!pb-xl">
       <div class="relative overflow-hidden rounded-xl border border-outline-variant/30 max-w-5xl mx-auto aspect-[4/3] bg-surface-charcoal flex items-center justify-center">
-      <div class="absolute inset-0" style="background-image: radial-gradient(rgba(66,184,131,0.06) 1px, transparent 1px); background-size: 24px 24px;"></div>
+      <div class="absolute inset-0" style="background-image: radial-gradient(rgba(0,168,255,0.06) 1px, transparent 1px); background-size: 24px 24px;"></div>
       <div class="flex flex-col items-center gap-sm relative z-10">
-        <div class="w-20 h-20 rounded-2xl bg-vue-green/10 border border-vue-green/30 flex items-center justify-center">
-          <Icon name="grid_view" class="text-4xl text-vue-green" />
+        <div class="w-20 h-20 rounded-2xl bg-electric-blue/10 border border-electric-blue/30 flex items-center justify-center">
+          <Icon name="grid_view" class="text-4xl text-electric-blue" />
         </div>
         <span class="font-label-mono text-label-mono text-slate-text/60 uppercase">{card.tag}</span>
         <span class="font-body-sm text-body-sm text-slate-text/40">{locale === 'en' ? 'Preview coming soon' : 'Vista previa próximamente'}</span>
@@ -147,14 +147,14 @@ const techIcons: Record<string, string> = {
               loading="lazy"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-surface-charcoal/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div class="absolute inset-0 ring-1 ring-inset ring-vue-green/20 rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <div class="absolute inset-0 ring-1 ring-inset ring-electric-blue/20 rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             <div class="absolute top-3 right-3 bg-surface-charcoal/70 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <Icon name="zoom_out_map" class="text-slate-text text-sm" />
             </div>
           </div>
           <div class="p-md">
             <div class="flex items-start gap-md">
-              <Icon name="check_circle" class="text-vue-green text-xl mt-0.5 shrink-0" />
+              <Icon name="check_circle" class="text-electric-blue text-xl mt-0.5 shrink-0" />
               <p class="font-body-md text-body-md text-slate-text">{feature.text}</p>
             </div>
           </div>
@@ -175,8 +175,8 @@ const techIcons: Record<string, string> = {
     <div class="flex flex-wrap gap-sm">
       {card.tech_stack.map((tech) => (
         <ScrollReveal>
-          <div class="inline-flex items-center gap-base bg-surface-charcoal border border-outline-variant/30 rounded-full px-5 py-2.5 transition-all duration-300 hover:border-vue-green/50 hover:bg-vue-green/5 hover:shadow-[0_0_16px_rgba(66,184,131,0.12)]">
-            <Icon name={techIcons[tech] || 'code'} class="text-vue-green text-lg" />
+          <div class="inline-flex items-center gap-base bg-surface-charcoal border border-outline-variant/30 rounded-full px-5 py-2.5 transition-all duration-300 hover:border-electric-blue/50 hover:bg-electric-blue/5 hover:shadow-[0_0_16px_rgba(0,168,255,0.12)]">
+            <Icon name={techIcons[tech] || 'code'} class="text-electric-blue text-lg" />
             <span class="font-label-mono text-label-mono text-slate-text">{tech}</span>
           </div>
         </ScrollReveal>
