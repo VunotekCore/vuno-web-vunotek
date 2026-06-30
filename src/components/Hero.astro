@@ -22,16 +22,16 @@ export interface Props {
         <div class="grid md:grid-cols-2 gap-md md:gap-md items-start md:items-center flex-1 max-sm:pt-24 pt-24 md:pt-24 max-sm:items-stretch">
           <div class="flex flex-col gap-md left-col max-md:hidden">
             {Astro.props.badge && (
-              <div class="inline-flex items-center max-sm:gap-xs gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full max-sm:px-3 max-sm:py-1 max-sm:mb-4 sm:max-md:mb-4">
-                <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse shrink-0" />
-                <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase max-sm:text-xs max-sm:tracking-normal md:max-lg:text-xs md:max-lg:tracking-normal">
+              <div class="inline-flex items-center max-sm:gap-xs gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full max-sm:px-3 max-sm:py-1 max-sm:mb-4 sm:max-md:mb-4">
+                <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse shrink-0" />
+                <span class="font-label-mono text-label-mono text-electric-blue tracking-wider uppercase max-sm:text-xs max-sm:tracking-normal md:max-lg:text-xs md:max-lg:tracking-normal">
                   {Astro.props.badge}
                 </span>
               </div>
             )}
             <h1 class="font-display-lg md:max-lg:text-2xl lg:text-4xl lg:max-[1164px]:text-2xl leading-tight max-sm:text-xl sm:text-2xl max-sm:text-center sm:text-center md:max-lg:text-left lg:text-left max-sm:mb-4 sm:max-md:mb-4">
               {Astro.props.title}{' '}
-              <span class="text-vue-green" id="hero-accent">
+              <span class="text-electric-blue" id="hero-accent">
                 {Astro.props.titleAccent}
               </span>{' '}
               {Astro.props.titleRest}
@@ -43,7 +43,7 @@ export interface Props {
               {Astro.props.cta && (
                 <a
                   href={Astro.props.cta.href || '#'}
-                  class="bg-vue-green text-forest-deep px-8 py-4 rounded-lg font-label-mono text-body-md uppercase hover:shadow-[0_0_20px_rgba(66,184,131,0.4)] transition-all max-sm:w-full max-sm:text-center sm:max-md:flex-1 sm:max-md:text-center md:max-lg:w-full md:max-lg:text-center lg:max-xl:flex-1 lg:max-xl:text-center lg:max-xl:text-sm lg:max-xl:px-2"
+                  class="bg-electric-blue text-azure-deep px-8 py-4 rounded-lg font-label-mono text-body-md uppercase hover:shadow-[0_0_20px_rgba(0,168,255,0.4)] transition-all max-sm:w-full max-sm:text-center sm:max-md:flex-1 sm:max-md:text-center md:max-lg:w-full md:max-lg:text-center lg:max-xl:flex-1 lg:max-xl:text-center lg:max-xl:text-sm lg:max-xl:px-2"
                 >
                   {Astro.props.cta.label}
                 </a>
@@ -51,7 +51,7 @@ export interface Props {
               {Astro.props.ctaSecondary && (
                 <a
                   href={Astro.props.ctaSecondary.href || '#'}
-                  class="border border-vue-green text-vue-green px-8 py-4 rounded-lg font-label-mono text-label-mono uppercase hover:bg-vue-green/10 transition-all max-sm:w-full max-sm:text-center sm:max-md:flex-1 sm:max-md:text-center md:max-lg:w-full md:max-lg:text-center lg:max-xl:flex-1 lg:max-xl:text-center lg:max-xl:text-xs lg:max-xl:px-2"
+                  class="border border-electric-blue text-electric-blue px-8 py-4 rounded-lg font-label-mono text-label-mono uppercase hover:bg-electric-blue/10 transition-all max-sm:w-full max-sm:text-center sm:max-md:flex-1 sm:max-md:text-center md:max-lg:w-full md:max-lg:text-center lg:max-xl:flex-1 lg:max-xl:text-center lg:max-xl:text-xs lg:max-xl:px-2"
                 >
                   {Astro.props.ctaSecondary.label}
                 </a>
@@ -92,17 +92,17 @@ export interface Props {
               >
                 {/* <p class="text-on-secondary-container/50">// ── hero.config.ts ──</p> */}
                 {/* <p class="text-on-secondary-container/50">&nbsp;</p> */}
-                <p class="text-secondary">export const hero = &#123;</p>
-                <p class="text-vue-green ml-4">
+                <p class="text-sky-300">export const hero = &#123;</p>
+                <p class="text-cyan-400 ml-4">
                   title:&nbsp;&nbsp;&nbsp;&nbsp;"{Astro.props.title}"
                 </p>
-                <p class="text-vue-green ml-4">
+                <p class="text-cyan-400 ml-4">
                   accent:&nbsp;&nbsp;"{Astro.props.titleAccent ?? ''}"
                 </p>
-                <p class="text-vue-green ml-4">
+                <p class="text-cyan-400 ml-4">
                   desc:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{Astro.props.description}"
                 </p>
-                <p class="text-secondary">&#125;</p>
+                <p class="text-sky-300">&#125;</p>
                 {/* <p class="text-on-secondary-container/50">&nbsp;</p> */}
               </div>
               <div class="flex flex-col gap-md md:hidden mt-md max-sm:flex-row max-sm:gap-sm">
@@ -110,7 +110,7 @@ export interface Props {
                   <a
                     href={Astro.props.cta.href || '#'}
                     title={Astro.props.cta.label}
-                    class="flex items-center justify-center w-full text-center bg-vue-green text-forest-deep px-8 py-4 rounded-lg font-label-mono text-body-md uppercase hover:shadow-[0_0_20px_rgba(66,184,131,0.4)] transition-all max-sm:flex-1 max-sm:px-3 max-sm:py-2"
+                    class="flex items-center justify-center w-full text-center bg-electric-blue text-azure-deep px-8 py-4 rounded-lg font-label-mono text-body-md uppercase hover:shadow-[0_0_20px_rgba(0,168,255,0.4)] transition-all max-sm:flex-1 max-sm:px-3 max-sm:py-2"
                   >
                     <Icon name="rocket_launch" class="max-sm:text-xl" />
                     <span class="sm:inline hidden">{Astro.props.cta.label}</span>
@@ -120,26 +120,26 @@ export interface Props {
                   <a
                     href={Astro.props.ctaSecondary.href || '#'}
                     title={Astro.props.ctaSecondary.label}
-                    class="flex items-center justify-center w-full text-center border border-vue-green text-vue-green px-8 py-4 rounded-lg font-label-mono text-label-mono uppercase hover:bg-vue-green/10 transition-all max-sm:flex-1 max-sm:px-3 max-sm:py-2"
+                    class="flex items-center justify-center w-full text-center border border-electric-blue text-electric-blue px-8 py-4 rounded-lg font-label-mono text-label-mono uppercase hover:bg-electric-blue/10 transition-all max-sm:flex-1 max-sm:px-3 max-sm:py-2"
                   >
                     <Icon name="code" class="max-sm:text-xl" />
                     <span class="sm:inline hidden">{Astro.props.ctaSecondary.label}</span>
                   </a>
                 )}
               </div>
-              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-vue-green/20 blur-3xl rounded-full" />
+              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-electric-blue/20 blur-3xl rounded-full" />
             </div>
             <div
-              class="absolute -bottom-8 -right-8 glass-panel p-md rounded-lg border-vue-green/20 max-md:absolute max-md:top-2 max-md:right-2 max-md:bottom-auto max-md:p-2 max-md:bg-surface-container/60"
+              class="absolute -bottom-8 -right-8 glass-panel p-md rounded-lg border-electric-blue/20 max-md:absolute max-md:top-2 max-md:right-2 max-md:bottom-auto max-md:p-2 max-md:bg-surface-container/60"
               id="stats-card"
               data-stat-labels={JSON.stringify(Astro.props.statLabels ?? [])}
             >
               <div class="flex items-center gap-md max-md:gap-1">
-                <div class="bg-vue-green/20 p-2 max-md:p-1 rounded-lg">
-                  <Icon name="speed" class="text-vue-green text-2xl max-md:text-lg" />
+                <div class="bg-electric-blue/20 p-2 max-md:p-1 rounded-lg">
+                  <Icon name="speed" class="text-electric-blue text-2xl max-md:text-lg" />
                 </div>
                 <div>
-                  <p class="font-display-lg text-headline-md max-md:text-sm text-vue-green m-0" id="stat-value">
+                  <p class="font-display-lg text-headline-md max-md:text-sm text-electric-blue m-0" id="stat-value">
                     99.9%
                   </p>
                   <p class="font-label-mono text-xs max-md:text-[10px] text-slate-text">
@@ -156,7 +156,7 @@ export interface Props {
     {
       Astro.props.variant === 'gradient' && (
         <div class="flex-1 flex flex-col justify-start md:justify-center pt-20 md:pt-24 relative">
-          <div class="absolute -top-20 -right-20 w-96 h-96 bg-vue-green/5 rounded-full blur-[100px]" />
+          <div class="absolute -top-20 -right-20 w-96 h-96 bg-electric-blue/5 rounded-full blur-[100px]" />
           <div class="max-w-3xl">
             <h1 class="font-display-lg text-display-lg mb-md leading-tight">
               {Astro.props.title} <span class="text-gradient">{Astro.props.titleAccent}</span>{' '}
@@ -168,7 +168,7 @@ export interface Props {
                 {Astro.props.cta && (
                   <a
                     href={Astro.props.cta.href || '#'}
-                    class="bg-vue-green text-forest-deep px-8 py-4 rounded-lg font-bold hover:brightness-110 transition-all"
+                    class="bg-electric-blue text-azure-deep px-8 py-4 rounded-lg font-bold hover:brightness-110 transition-all"
                   >
                     {Astro.props.cta.label}
                   </a>
@@ -176,7 +176,7 @@ export interface Props {
                 {Astro.props.ctaSecondary && (
                   <a
                     href={Astro.props.ctaSecondary.href || '#'}
-                    class="border border-vue-green text-vue-green px-8 py-4 rounded-lg font-label-mono hover:bg-vue-green/10 transition-all"
+                    class="border border-electric-blue text-electric-blue px-8 py-4 rounded-lg font-label-mono hover:bg-electric-blue/10 transition-all"
                   >
                     {Astro.props.ctaSecondary.label}
                   </a>
@@ -193,14 +193,14 @@ export interface Props {
         <div class="flex-1 flex items-start justify-start md:items-center md:justify-center bg-surface-container-lowest relative pt-20 md:pt-24">
           <div class="relative z-10 text-center px-margin">
             {Astro.props.badge && (
-              <div class="inline-block px-sm py-xs bg-primary-container/30 border border-vue-green/30 rounded-full mb-md">
-                <span class="font-label-mono text-label-mono text-vue-green uppercase tracking-widest">
+              <div class="inline-block px-sm py-xs bg-primary-container/30 border border-electric-blue/30 rounded-full mb-md">
+                <span class="font-label-mono text-label-mono text-electric-blue uppercase tracking-widest">
                   {Astro.props.badge}
                 </span>
               </div>
             )}
             <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">
-              {Astro.props.title} <span class="text-vue-green">{Astro.props.titleAccent}</span>{' '}
+              {Astro.props.title} <span class="text-electric-blue">{Astro.props.titleAccent}</span>{' '}
               {Astro.props.titleRest}
             </h1>
             <p class="font-body-lg text-body-lg text-slate-text max-w-2xl mx-auto">
@@ -215,12 +215,12 @@ export interface Props {
       Astro.props.variant === 'contact' && (
         <div class="flex-1 flex flex-col justify-start md:justify-center pt-20 md:pt-24">
           {Astro.props.badge && (
-            <span class="font-label-mono text-label-mono text-vue-green tracking-widest uppercase mb-base block">
+            <span class="font-label-mono text-label-mono text-electric-blue tracking-widest uppercase mb-base block">
               {Astro.props.badge}
             </span>
           )}
           <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">
-            {Astro.props.title} <span class="text-vue-green">{Astro.props.titleAccent}</span>{' '}
+            {Astro.props.title} <span class="text-electric-blue">{Astro.props.titleAccent}</span>{' '}
             {Astro.props.titleRest}
           </h1>
           <p class="font-body-lg text-body-lg text-slate-text max-w-2xl">
@@ -259,72 +259,72 @@ export interface Props {
     {
       lang: 'JavaScript',
       lines: [
-        { t: 'export default defineComponent({', c: 'text-secondary', i: 0 },
-        { t: 'setup() {', c: 'text-secondary', i: 1 },
-        { t: 'const metrics = useVunoMetrics();', c: 'text-vue-green', i: 2 },
-        { t: 'const isLoading = ref(false);', c: 'text-vue-green', i: 2 },
-        { t: 'const grow = (biz) => biz.scale();', c: 'text-vue-green', i: 2 },
-        { t: 'watchEffect(() => {', c: 'text-secondary', i: 2 },
-        { t: 'metrics.track(grow);', c: 'text-vue-green', i: 2 },
-        { t: '});', c: 'text-secondary', i: 2 },
-        { t: 'return { metrics, grow, isLoading }', c: 'text-secondary', i: 2 },
-        { t: '}', c: 'text-secondary', i: 1 },
-        { t: '})', c: 'text-secondary', i: 0 }
+        { t: 'export default defineComponent({', c: 'text-sky-300', i: 0 },
+        { t: 'setup() {', c: 'text-sky-300', i: 1 },
+        { t: 'const metrics = useVunoMetrics();', c: 'text-cyan-400', i: 2 },
+        { t: 'const isLoading = ref(false);', c: 'text-cyan-400', i: 2 },
+        { t: 'const grow = (biz) => biz.scale();', c: 'text-cyan-400', i: 2 },
+        { t: 'watchEffect(() => {', c: 'text-sky-300', i: 2 },
+        { t: 'metrics.track(grow);', c: 'text-cyan-400', i: 2 },
+        { t: '});', c: 'text-sky-300', i: 2 },
+        { t: 'return { metrics, grow, isLoading }', c: 'text-sky-300', i: 2 },
+        { t: '}', c: 'text-sky-300', i: 1 },
+        { t: '})', c: 'text-sky-300', i: 0 }
       ],
       stat: { value: '99.9%', label: 'CORE WEB VITALS' }
     },
     {
       lang: 'TypeScript',
       lines: [
-        { t: "import { serve } from '@hono/node';", c: 'text-secondary', i: 0 },
-        { t: 'type Metrics = { ok: boolean; data: unknown };', c: 'text-vue-green', i: 0 },
-        { t: 'const app = new Hono();', c: 'text-secondary', i: 0 },
-        { t: "app.get('/api/scale', async (c) => {", c: 'text-secondary', i: 0 },
-        { t: 'const data: Metrics = await db.query(sql);', c: 'text-vue-green', i: 1 },
-        { t: 'return c.json({ ok: true, data });', c: 'text-vue-green', i: 1 },
-        { t: '});', c: 'text-secondary', i: 0 },
-        { t: "app.post('/api/scale', async (c) => {", c: 'text-secondary', i: 0 },
-        { t: 'return c.json({ ok: true });', c: 'text-vue-green', i: 1 },
-        { t: '});', c: 'text-secondary', i: 0 },
-        { t: 'serve({ fetch: app.fetch });', c: 'text-secondary', i: 0 }
+        { t: "import { serve } from '@hono/node';", c: 'text-sky-300', i: 0 },
+        { t: 'type Metrics = { ok: boolean; data: unknown };', c: 'text-cyan-400', i: 0 },
+        { t: 'const app = new Hono();', c: 'text-sky-300', i: 0 },
+        { t: "app.get('/api/scale', async (c) => {", c: 'text-sky-300', i: 0 },
+        { t: 'const data: Metrics = await db.query(sql);', c: 'text-cyan-400', i: 1 },
+        { t: 'return c.json({ ok: true, data });', c: 'text-cyan-400', i: 1 },
+        { t: '});', c: 'text-sky-300', i: 0 },
+        { t: "app.post('/api/scale', async (c) => {", c: 'text-sky-300', i: 0 },
+        { t: 'return c.json({ ok: true });', c: 'text-cyan-400', i: 1 },
+        { t: '});', c: 'text-sky-300', i: 0 },
+        { t: 'serve({ fetch: app.fetch });', c: 'text-sky-300', i: 0 }
       ],
       stat: { value: '<45ms', label: 'API LATENCY' }
     },
     {
       lang: 'C#',
       lines: [
-        { t: '[ApiController]', c: 'text-vue-green', i: 0 },
-        { t: '[Route("api/[controller]")]', c: 'text-vue-green', i: 0 },
-        { t: 'public class MetricsController : ControllerBase', c: 'text-secondary', i: 0 },
-        { t: '{', c: 'text-secondary', i: 0 },
-        { t: '[HttpGet]', c: 'text-vue-green', i: 1 },
-        { t: 'public async Task<IActionResult> Get()', c: 'text-secondary', i: 1 },
-        { t: '{', c: 'text-secondary', i: 1 },
-        { t: 'var data = await _db.QueryAsync(sql);', c: 'text-vue-green', i: 2 },
-        { t: 'return Ok(data);', c: 'text-vue-green', i: 2 },
-        { t: '}', c: 'text-secondary', i: 1 },
-        { t: '}', c: 'text-secondary', i: 0 }
+        { t: '[ApiController]', c: 'text-cyan-400', i: 0 },
+        { t: '[Route("api/[controller]")]', c: 'text-cyan-400', i: 0 },
+        { t: 'public class MetricsController : ControllerBase', c: 'text-sky-300', i: 0 },
+        { t: '{', c: 'text-sky-300', i: 0 },
+        { t: '[HttpGet]', c: 'text-cyan-400', i: 1 },
+        { t: 'public async Task<IActionResult> Get()', c: 'text-sky-300', i: 1 },
+        { t: '{', c: 'text-sky-300', i: 1 },
+        { t: 'var data = await _db.QueryAsync(sql);', c: 'text-cyan-400', i: 2 },
+        { t: 'return Ok(data);', c: 'text-cyan-400', i: 2 },
+        { t: '}', c: 'text-sky-300', i: 1 },
+        { t: '}', c: 'text-sky-300', i: 0 }
       ],
       stat: { value: '<50ms', label: 'QUERY TIME' }
     },
     {
       lang: 'Apex',
       lines: [
-        { t: '@AuraEnabled', c: 'text-vue-green', i: 0 },
-        { t: 'public static List<Metric__c> getMetrics() {', c: 'text-secondary', i: 0 },
-        { t: 'return [SELECT Id, Name, Value__c', c: 'text-vue-green', i: 1 },
-        { t: 'FROM Metric__c', c: 'text-vue-green', i: 1 },
-        { t: 'ORDER BY CreatedDate DESC', c: 'text-vue-green', i: 1 },
-        { t: 'LIMIT 100];', c: 'text-vue-green', i: 1 },
-        { t: '}', c: 'text-secondary', i: 0 },
-        { t: '@AuraEnabled', c: 'text-vue-green', i: 0 },
-        { t: 'public static Metric__c getById(Id recId) {', c: 'text-secondary', i: 0 },
+        { t: '@AuraEnabled', c: 'text-cyan-400', i: 0 },
+        { t: 'public static List<Metric__c> getMetrics() {', c: 'text-sky-300', i: 0 },
+        { t: 'return [SELECT Id, Name, Value__c', c: 'text-cyan-400', i: 1 },
+        { t: 'FROM Metric__c', c: 'text-cyan-400', i: 1 },
+        { t: 'ORDER BY CreatedDate DESC', c: 'text-cyan-400', i: 1 },
+        { t: 'LIMIT 100];', c: 'text-cyan-400', i: 1 },
+        { t: '}', c: 'text-sky-300', i: 0 },
+        { t: '@AuraEnabled', c: 'text-cyan-400', i: 0 },
+        { t: 'public static Metric__c getById(Id recId) {', c: 'text-sky-300', i: 0 },
         {
           t: 'return [SELECT Id, Name FROM Metric__c WHERE Id = :recId LIMIT 1];',
-          c: 'text-vue-green',
+          c: 'text-cyan-400',
           i: 1
         },
-        { t: '}', c: 'text-secondary', i: 0 }
+        { t: '}', c: 'text-sky-300', i: 0 }
       ],
       stat: { value: '99.99%', label: 'QUERY ACCURACY' }
     }
@@ -348,7 +348,7 @@ export interface Props {
         (l: CodeLine, i: number) =>
           `<p class="${l.c} ${indentMap[l.i] || ''}" style="opacity:${i <= revealUpTo ? 1 : 0}; transition: opacity 0.4s ease">` +
           `<span class="text-on-secondary-container/50">${pad(i)}</span> ${l.t}` +
-          `${i === revealUpTo ? '<span class="animate-pulse text-vue-green">▊</span>' : ''}` +
+          `${i === revealUpTo ? '<span class="animate-pulse text-cyan-400">▊</span>' : ''}` +
           `</p>`
       )
       .join('')
@@ -417,7 +417,7 @@ export interface Props {
       }
       lines[idx].style.opacity = '1'
       lines.forEach(l => l.querySelector('.cursor')?.remove())
-      lines[idx].insertAdjacentHTML('beforeend', '<span class="cursor animate-pulse text-vue-green">▊</span>')
+      lines[idx].insertAdjacentHTML('beforeend', '<span class="cursor animate-pulse text-cyan-400">▊</span>')
       idx++
       setTimeout(revealNext, idx === 1 ? 600 : 120)
     }
@@ -444,15 +444,15 @@ export interface Props {
   }
   @keyframes glowPulse {
     0% {
-      text-shadow: 0 0 0px rgba(66, 184, 131, 0);
+      text-shadow: 0 0 0px rgba(34, 211, 238, 0);
     }
     50% {
       text-shadow:
-        0 0 30px rgba(66, 184, 131, 0.6),
-        0 0 60px rgba(66, 184, 131, 0.3);
+        0 0 30px rgba(34, 211, 238, 0.6),
+        0 0 60px rgba(34, 211, 238, 0.3);
     }
     100% {
-      text-shadow: 0 0 0px rgba(66, 184, 131, 0);
+      text-shadow: 0 0 0px rgba(34, 211, 238, 0);
     }
   }
   #code-panel {
@@ -461,10 +461,10 @@ export interface Props {
   @keyframes panelBreath {
     0%,
     100% {
-      box-shadow: 0 0 0px rgba(66, 184, 131, 0);
+      box-shadow: 0 0 0px rgba(34, 211, 238, 0);
     }
     50% {
-      box-shadow: 0 0 40px rgba(66, 184, 131, 0.08);
+      box-shadow: 0 0 40px rgba(34, 211, 238, 0.08);
     }
   }
   .left-col > * {

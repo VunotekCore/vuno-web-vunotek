@@ -21,13 +21,13 @@ const ab = dict.about as any
   ============================================================ -->
 <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
   <div class="flex flex-col gap-base stagger-header">
-    <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-vue-green/30 w-fit px-4 py-1.5 rounded-full">
-      <span class="w-2 h-2 rounded-full bg-vue-green animate-pulse"></span>
-      <span class="font-label-mono text-label-mono text-vue-green tracking-wider uppercase">{ab.hero.badge}</span>
+    <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full">
+      <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse"></span>
+      <span class="font-label-mono text-label-mono text-electric-blue tracking-wider uppercase">{ab.hero.badge}</span>
     </div>
     <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
       {ab.hero.title}<br />
-      <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent">{ab.hero.titleAccent}</span> {ab.hero.titleRest}
+      <span class="bg-gradient-to-r from-electric-blue to-sky-400 bg-clip-text text-transparent">{ab.hero.titleAccent}</span> {ab.hero.titleRest}
     </h1>
     <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">
       {ab.hero.description}
@@ -44,7 +44,7 @@ const ab = dict.about as any
   <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
     <ScrollReveal>
       <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
-        <Icon name="flag" class="text-vue-green text-3xl mb-md" />
+        <Icon name="flag" class="text-electric-blue text-3xl mb-md" />
         <h3 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface mb-sm">{ab.pillars.mission.title}</h3>
         <p class="font-body-md text-body-md text-slate-text flex-1">{ab.pillars.mission.desc}</p>
       </GlassCard>
@@ -52,7 +52,7 @@ const ab = dict.about as any
 
     <ScrollReveal delay={100}>
       <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
-        <Icon name="visibility" class="text-vue-green text-3xl mb-md" />
+        <Icon name="visibility" class="text-electric-blue text-3xl mb-md" />
         <h3 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface mb-sm">{ab.pillars.vision.title}</h3>
         <p class="font-body-md text-body-md text-slate-text flex-1">{ab.pillars.vision.desc}</p>
       </GlassCard>
@@ -60,12 +60,12 @@ const ab = dict.about as any
 
     <ScrollReveal delay={200}>
       <GlassCard class="p-lg max-sm:p-md h-full flex flex-col">
-        <Icon name="checklist" class="text-vue-green text-3xl mb-md" />
+        <Icon name="checklist" class="text-electric-blue text-3xl mb-md" />
         <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">{ab.pillars.objectives.title}</h3>
         <ul class="space-y-sm flex-1">
           {ab.pillars.objectives.items.map((item: string) => (
             <li class="flex items-start gap-sm">
-              <Icon name="check_circle" class="text-vue-green text-lg mt-0.5 shrink-0" />
+              <Icon name="check_circle" class="text-electric-blue text-lg mt-0.5 shrink-0" />
               <span class="font-body-md text-body-md text-slate-text">{item}</span>
             </li>
           ))}
@@ -84,7 +84,7 @@ const ab = dict.about as any
   <ScrollReveal>
     <h2 class="font-display-lg text-headline-lg max-sm:text-headline-md mb-sm text-center">
       {ab.timeline.title}<br />
-      <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent">{ab.timeline.titleAccent}</span> {ab.timeline.titleRest}
+      <span class="bg-gradient-to-r from-electric-blue to-sky-400 bg-clip-text text-transparent">{ab.timeline.titleAccent}</span> {ab.timeline.titleRest}
     </h2>
     <p class="font-body-lg text-body-lg text-slate-text max-w-2xl mx-auto text-center mb-xl">{ab.timeline.subtitle}</p>
   </ScrollReveal>
@@ -97,10 +97,10 @@ const ab = dict.about as any
         <ScrollReveal delay={i * 150} stagger>
           <div class="relative flex flex-col md:flex-row md:items-start gap-md md:gap-lg">
             <div class="flex items-center gap-md md:flex-col md:items-center md:w-48 md:shrink-0">
-              <div class="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-lowest border-2 border-vue-green/40 font-label-mono text-label-mono text-vue-green shadow-lg shrink-0">
+              <div class="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-lowest border-2 border-electric-blue/40 font-label-mono text-label-mono text-electric-blue shadow-lg shrink-0">
                 <Icon name={i === 0 ? 'code' : i === 1 ? 'database' : 'neurology'} class="text-xl" />
                             </div>
-              <span class="font-label-mono text-label-mono max-sm:text-[11px] text-vue-green/70 tracking-wider uppercase whitespace-nowrap">{step.year}</span>
+              <span class="font-label-mono text-label-mono max-sm:text-[11px] text-electric-blue/70 tracking-wider uppercase whitespace-nowrap">{step.year}</span>
             </div>
             <GlassCard class="p-lg max-sm:p-md flex-1">
               <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">{step.title}</h3>

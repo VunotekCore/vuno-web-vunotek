@@ -25,7 +25,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
       <div class="flex">
         <button
           id="tab-privacy"
-          class="tab-btn bg-surface-charcoal text-vue-green border-t-2 border-t-vue-green px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors"
+          class="tab-btn bg-surface-charcoal text-electric-blue border-t-2 border-t-electric-blue px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors"
           data-tab="privacy"
         >
           // privacy_policy.md
@@ -40,7 +40,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
       </div>
       <button
         id="legal-close"
-        class="text-slate-text hover:text-vue-green transition-colors p-2 mr-2"
+        class="text-slate-text hover:text-electric-blue transition-colors p-2 mr-2"
         aria-label="Close"
         type="button"
       >
@@ -57,7 +57,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
       {
         privacySections.map((section) => (
           <div class="space-y-1.5">
-            <h3 class="font-headline-sm text-headline-sm text-vue-green">{section.title}</h3>
+            <h3 class="font-headline-sm text-headline-sm text-electric-blue">{section.title}</h3>
             <p class="font-body-md text-body-md text-slate-text leading-relaxed">{section.text}</p>
           </div>
         ))
@@ -73,7 +73,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
       {
         termsSections.map((section) => (
           <div class="space-y-1.5">
-            <h3 class="font-headline-sm text-headline-sm text-vue-green">{section.title}</h3>
+            <h3 class="font-headline-sm text-headline-sm text-electric-blue">{section.title}</h3>
             <p class="font-body-md text-body-md text-slate-text leading-relaxed">{section.text}</p>
           </div>
         ))
@@ -84,7 +84,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     <div class="px-5 py-3 border-t border-outline-variant/20 flex justify-end">
       <button
         id="legal-close-bottom"
-        class="font-label-mono text-label-mono text-vue-green border border-vue-green/30 px-4 py-1.5 rounded-lg hover:bg-vue-green/10 transition-colors"
+        class="font-label-mono text-label-mono text-electric-blue border border-electric-blue/30 px-4 py-1.5 rounded-lg hover:bg-electric-blue/10 transition-colors"
         type="button"
       >
         [Cerrar]
@@ -105,7 +105,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     document.querySelectorAll('.tab-btn').forEach((btn) => {
       const isActive = btn.getAttribute('data-tab') === tab;
       btn.className = isActive
-        ? 'tab-btn bg-surface-charcoal text-vue-green border-t-2 border-t-vue-green px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors'
+        ? 'tab-btn bg-surface-charcoal text-electric-blue border-t-2 border-t-electric-blue px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors'
         : 'tab-btn bg-surface-container-low text-slate-text border-t-2 border-t-transparent px-4 py-2.5 text-xs font-label-mono cursor-pointer hover:text-on-surface transition-colors';
     });
     // Switch content

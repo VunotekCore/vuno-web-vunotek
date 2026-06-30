@@ -32,12 +32,12 @@
   --color-inverse-on-surface: #283044;
   --color-outline: #89938d;
   --color-outline-variant: #404944;
-  --color-surface-tint: #95d3ba;
-  --color-primary: #95d3ba;
-  --color-on-primary: #003829;
-  --color-primary-container: #064e3b;
-  --color-on-primary-container: #80bea6;
-  --color-inverse-primary: #2b6954;
+  --color-surface-tint: #80D4FF;
+  --color-primary: #80D4FF;
+  --color-on-primary: #003549;
+  --color-primary-container: #00476D;
+  --color-on-primary-container: #C2E8FF;
+  --color-inverse-primary: #0090D4;
   --color-secondary: #69dca4;
   --color-on-secondary: #003823;
   --color-secondary-container: #28a471;
@@ -50,10 +50,10 @@
   --color-on-error: #690005;
   --color-error-container: #93000a;
   --color-on-error-container: #ffdad6;
-  --color-primary-fixed: #b0f0d6;
-  --color-primary-fixed-dim: #95d3ba;
-  --color-on-primary-fixed: #002117;
-  --color-on-primary-fixed-variant: #0b513d;
+  --color-primary-fixed: #C2E8FF;
+  --color-primary-fixed-dim: #80D4FF;
+  --color-on-primary-fixed: #001F2E;
+  --color-on-primary-fixed-variant: #00476D;
   --color-secondary-fixed: #86f9be;
   --color-secondary-fixed-dim: #69dca4;
   --color-on-secondary-fixed: #002112;
@@ -65,9 +65,8 @@
   --color-background: #0b1326;
   --color-on-background: #dae2fd;
   --color-surface-variant: #2d3449;
-  --color-vue-green: #42b883;
-  --color-node-green: #339933;
-  --color-forest-deep: #022c22;
+  --color-electric-blue: #00A8FF;
+  --color-azure-deep: #001a33;
   --color-surface-charcoal: #1e293b;
   --color-slate-text: #94a3b8;
 
@@ -132,8 +131,8 @@ body {
 }
 
 ::selection {
-  background-color: color-mix(in srgb, var(--color-vue-green) 30%, transparent);
-  color: var(--color-vue-green);
+  background-color: color-mix(in srgb, var(--color-electric-blue) 30%, transparent);
+  color: var(--color-electric-blue);
 }
 
 .glass-panel {
@@ -143,18 +142,18 @@ body {
 }
 
 .glass-panel:hover {
-  border-color: rgba(66, 184, 131, 0.5);
+  border-color: rgba(0, 168, 255, 0.5);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-vue-green) 0%, var(--color-node-green) 100%);
+  background: linear-gradient(135deg, var(--color-electric-blue) 0%, #60CFFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .metric-glow {
-  text-shadow: 0 0 15px rgba(66, 184, 131, 0.4);
+  text-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
 }
 
 .code-glow {
@@ -163,8 +162,8 @@ body {
 
 .form-input-focus:focus {
   outline: none;
-  box-shadow: 0 0 0 2px var(--color-node-green);
-  border-color: var(--color-node-green);
+  box-shadow: 0 0 0 2px var(--color-electric-blue);
+  border-color: var(--color-electric-blue);
 }
 
 ::-webkit-scrollbar {

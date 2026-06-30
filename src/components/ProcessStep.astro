@@ -18,8 +18,8 @@ const { icon, step, title, description, deliverable, index } = Astro.props;
   <GlassCard class="p-lg w-full relative z-10">
     <div class="flex flex-col gap-md">
       <div class="flex items-center justify-between">
-        <Icon name={icon} class="text-vue-green text-4xl" />
-        <span class="font-label-mono text-label-mono text-vue-green">{step}</span>
+        <Icon name={icon} class="text-electric-blue text-4xl" />
+        <span class="font-label-mono text-label-mono text-electric-blue">{step}</span>
       </div>
       <h3 class="font-headline-md text-headline-md text-on-surface">{title}</h3>
       <p class="font-body-md text-body-md text-slate-text">{description}</p>
@@ -27,7 +27,7 @@ const { icon, step, title, description, deliverable, index } = Astro.props;
     </div>
   </GlassCard>
   {index < 3 && (
-    <div class="hidden md:block absolute top-1/2 -right-6 z-0 text-vue-green/30 animate-pulse">
+    <div class="hidden md:block absolute top-1/2 -right-6 z-0 text-electric-blue/30 animate-pulse">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5l7 7-7 7" />
       </svg>

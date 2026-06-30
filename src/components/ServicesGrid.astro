@@ -29,14 +29,14 @@ const iconMap: Record<string, string> = {
 <div class="flex flex-col gap-lg">
   <ScrollReveal>
     <div class="flex flex-col gap-base">
-      <span class="inline-flex items-center gap-sm bg-vue-green/10 border border-vue-green/20 w-fit px-4 py-1 rounded-full font-label-mono text-label-mono text-vue-green tracking-wider uppercase">
-        <span class="w-1.5 h-1.5 rounded-full bg-vue-green"></span>
+      <span class="inline-flex items-center gap-sm bg-electric-blue/10 border border-electric-blue/20 w-fit px-4 py-1 rounded-full font-label-mono text-label-mono text-electric-blue tracking-wider uppercase">
+        <span class="w-1.5 h-1.5 rounded-full bg-electric-blue"></span>
         {anchor}
       </span>
       <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">
         {title}
         {titleAccent && (
-          <span class="bg-gradient-to-r from-vue-green to-emerald-400 bg-clip-text text-transparent">
+          <span class="bg-gradient-to-r from-electric-blue to-sky-400 bg-clip-text text-transparent">
             {titleAccent}
           </span>
         )}
@@ -50,12 +50,12 @@ const iconMap: Record<string, string> = {
     {items.map((item, i) => (
       <ScrollReveal delay={i * 100} stagger>
         <GlassCard class="max-sm:p-md p-lg flex flex-col gap-md h-full">
-          <Icon name={iconMap[item.id] || 'code'} class="text-vue-green text-5xl" />
+          <Icon name={iconMap[item.id] || 'code'} class="text-electric-blue text-5xl" />
           <h3 class="font-display-lg text-headline-md">{item.title}</h3>
           <p class="font-body-md text-slate-text">{item.description}</p>
           <div class="flex flex-wrap gap-sm mt-auto pt-md">
             {item.tech.map((t) => (
-              <span class="font-label-mono text-label-mono text-vue-green bg-vue-green/10 border border-vue-green/20 px-2.5 py-0.5 rounded-md">
+              <span class="font-label-mono text-label-mono text-electric-blue bg-electric-blue/10 border border-electric-blue/20 px-2.5 py-0.5 rounded-md">
                 {t}
               </span>
             ))}

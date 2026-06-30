@@ -31,7 +31,7 @@ const imgSrc = image
 
 <article class="group cursor-pointer">
   <a href={`${prefix}/blog/${slug}`} class="block">
-    <div class="aspect-[16/10] glass-panel rounded-xl mb-md flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-vue-green/50">
+    <div class="aspect-[16/10] glass-panel rounded-xl mb-md flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-electric-blue/50">
       {imgSrc ? (
         <img src={imgSrc} alt="" width="640" height="400" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
       ) : (
@@ -39,10 +39,10 @@ const imgSrc = image
       )}
     </div>
     <div class="flex items-center gap-2 mb-sm">
-      <span class="font-label-mono text-[11px] text-vue-green bg-vue-green/10 px-2 py-0.5 rounded">{category}</span>
+      <span class="font-label-mono text-[11px] text-electric-blue bg-electric-blue/10 px-2 py-0.5 rounded">{category}</span>
       <span class="font-label-mono text-[11px] text-slate-text">{date}</span>
     </div>
-    <h4 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface group-hover:text-vue-green transition-colors mb-xs">{title}</h4>
+    <h4 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface group-hover:text-electric-blue transition-colors mb-xs">{title}</h4>
     <p class="font-body-md text-body-md text-slate-text line-clamp-2">{excerpt}</p>
   </a>
 </article>

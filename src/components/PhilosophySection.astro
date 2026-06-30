@@ -20,9 +20,9 @@ const { anchor, title, subtitle, items } = Astro.props
   <ScrollReveal>
     <div class="flex flex-col gap-base">
       <span
-        class="inline-flex items-center gap-sm bg-vue-green/10 border border-vue-green/20 w-fit px-4 py-1 rounded-full font-label-mono text-label-mono text-vue-green tracking-wider uppercase"
+        class="inline-flex items-center gap-sm bg-electric-blue/10 border border-electric-blue/20 w-fit px-4 py-1 rounded-full font-label-mono text-label-mono text-electric-blue tracking-wider uppercase"
       >
-        <span class="w-1.5 h-1.5 rounded-full bg-vue-green"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-electric-blue"></span>
         {anchor}
       </span>
       <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">
@@ -36,13 +36,13 @@ const { anchor, title, subtitle, items } = Astro.props
 
   <!-- Desktop: Horizontal pipeline (≥1190px) -->
   <div class="relative hidden min-[1190px]:block">
-    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[7px] h-0.5 bg-gradient-to-r from-vue-green/30 via-vue-green/50 to-vue-green/30"></div>
+    <div class="absolute left-[calc(16.66%+1.75rem)] right-[calc(16.66%+1.75rem)] top-[7px] h-0.5 bg-gradient-to-r from-electric-blue/30 via-electric-blue/50 to-electric-blue/30"></div>
 
     <div class="relative grid grid-cols-3 gap-8">
       {items.map((item, i) => (
         <div class="relative flex flex-col items-center">
           <div
-            class="anim-dot w-4 h-4 rounded-full bg-vue-green ring-[4px] ring-surface-container-lowest z-10"
+            class="anim-dot w-4 h-4 rounded-full bg-electric-blue ring-[4px] ring-surface-container-lowest z-10"
             style={`animation-delay: ${i * 3}s`}
           ></div>
 
@@ -64,7 +64,7 @@ const { anchor, title, subtitle, items } = Astro.props
           )}
 
           <article class="philosophy-card w-full mt-3 bg-surface-container border border-outline-variant/10 rounded-xl max-sm:p-md p-lg flex flex-col gap-base">
-            <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">
+            <span class="font-label-mono text-label-mono text-electric-blue/70 tracking-wider">
               {item.step}
             </span>
             <h3 class="font-display-lg text-headline-md text-on-surface">
@@ -85,13 +85,13 @@ const { anchor, title, subtitle, items } = Astro.props
       <ScrollReveal delay={i * 100}>
         <div class="relative flex gap-lg max-sm:pl-md pl-lg max-sm:pb-lg pb-xl last:pb-0">
           <div class="flex flex-col items-center">
-            <div class="w-3.5 h-3.5 rounded-full bg-vue-green ring-[3px] ring-surface-container-lowest flex-shrink-0 z-10"></div>
+            <div class="w-3.5 h-3.5 rounded-full bg-electric-blue ring-[3px] ring-surface-container-lowest flex-shrink-0 z-10"></div>
             {i < items.length - 1 && (
-              <div class="w-0.5 flex-1 bg-vue-green/30 mt-1"></div>
+              <div class="w-0.5 flex-1 bg-electric-blue/30 mt-1"></div>
             )}
           </div>
           <div class="flex flex-col gap-sm min-w-0">
-            <span class="font-label-mono text-label-mono text-vue-green/70 tracking-wider">
+            <span class="font-label-mono text-label-mono text-electric-blue/70 tracking-wider">
               {item.step}
             </span>
             <h3 class="font-display-lg text-headline-md text-on-surface">
@@ -110,7 +110,7 @@ const { anchor, title, subtitle, items } = Astro.props
 <style>
   @keyframes dot-glow {
     0%, 22% {
-      box-shadow: 0 0 0 6px var(--color-vue-green), 0 0 24px color-mix(in srgb, var(--color-vue-green) 40%, transparent);
+      box-shadow: 0 0 0 6px var(--color-electric-blue), 0 0 24px color-mix(in srgb, var(--color-electric-blue) 40%, transparent);
       transform: scale(1.4);
     }
     28%, 100% {
@@ -122,7 +122,7 @@ const { anchor, title, subtitle, items } = Astro.props
   @keyframes chevron-glow {
     0%, 22% {
       opacity: 1;
-      color: var(--color-vue-green);
+      color: var(--color-electric-blue);
     }
     28%, 100% {
       opacity: 0.15;
@@ -138,7 +138,7 @@ const { anchor, title, subtitle, items } = Astro.props
   }
 
   .philosophy-card:hover {
-    border-color: var(--color-vue-green) !important;
-    box-shadow: 0 0 24px color-mix(in srgb, var(--color-vue-green) 12%, transparent);
+    border-color: var(--color-electric-blue) !important;
+    box-shadow: 0 0 24px color-mix(in srgb, var(--color-electric-blue) 12%, transparent);
   }
 </style>

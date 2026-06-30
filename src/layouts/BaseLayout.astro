@@ -91,6 +91,7 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <link rel="icon" type="image/svg+xml" href="/vunotek-isotipo-square.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -102,8 +103,8 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     {gaId && <script is:inline src={gaSrc} async />}
     {gaId && <script is:inline set:html={gaScript} />}
   </head>
-  <body class="bg-background text-on-surface font-body-md selection:bg-vue-green/30 selection:text-vue-green overflow-x-hidden">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-surface-charcoal focus:text-vue-green focus:outline-none">
+  <body class="bg-background text-on-surface font-body-md selection:bg-electric-blue/30 selection:text-electric-blue overflow-x-hidden">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-surface-charcoal focus:text-electric-blue focus:outline-none">
       Skip to main content
     </a>
     <Navbar />
