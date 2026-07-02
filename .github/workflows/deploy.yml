@@ -22,7 +22,7 @@ jobs:
 
       - run: cd frontend && pnpm install && pnpm build
       
-       - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
