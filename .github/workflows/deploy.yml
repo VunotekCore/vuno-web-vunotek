@@ -19,8 +19,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-
-      - uses: SamKirkland/FTP-Deploy-Action@v4.5.0
+      
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -28,4 +27,7 @@ jobs:
           local-dir: dist/
           server-dir: /
           security: loose
-          dangerous-clean-slate: true
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
