@@ -13,20 +13,20 @@ jobs:
       - uses: pnpm/action-setup@v6
         with:
           cache: true
-          cache-dependency-path: frontend/pnpm-lock.yaml
+          cache_dependency_path: pnpm-lock.yaml
 
       - uses: actions/setup-node@v6
         with:
           node-version: 22
 
-      - run: cd frontend && pnpm install && pnpm build
+      - run: pnpm install && pnpm build
       
       - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: frontend/dist/
+          local-dir: dist/
           server-dir: /
           exclude: |
             **/.git*
