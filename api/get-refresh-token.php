@@ -4,12 +4,12 @@
  * Ejecuta este script y sigue las instrucciones
  */
 
-require_once __DIR__ . '/../vendor/LightweightGoogleCalendar.php';
+require_once __DIR__ . '/vendor/LightweightGoogleCalendar.php';
 
-$configFile = __DIR__ . '/api/config.php';
+$configFile = __DIR__ . '/config.php';
 if (!file_exists($configFile)) {
     echo "<p style='color:red;font-weight:bold;'>❌ Error: No se encuentra el archivo de configuración.</p>";
-    echo "<p>Copia <code>public/api/config.example.php</code> como <code>public/api/config.php</code> y completa las credenciales.</p>";
+    echo "<p>Copia <code>api/config.example.php</code> como <code>api/config.php</code> y completa las credenciales.</p>";
     exit;
 }
 
@@ -53,7 +53,7 @@ if (!isset($_GET['code'])) {
     echo "<div class='box'>\n";
     echo "<h3>⚠️ Requisitos</h3>\n";
     echo "<ul>\n";
-    echo "<li>El archivo <code>public/api/config.php</code> debe tener el <strong>Client ID</strong> y <strong>Client Secret</strong> correctos</li>\n";
+    echo "<li>El archivo <code>api/config.php</code> debe tener el <strong>Client ID</strong> y <strong>Client Secret</strong> correctos</li>\n";
     echo "<li>En <strong>Google Cloud Console</strong>, agrega esta URL como <code>Authorized redirect URI</code>:</li>\n";
     echo "</ul>\n";
     echo "<pre>$redirectUri</pre>\n";
@@ -108,13 +108,13 @@ if (!isset($_GET['code'])) {
             if (isset($token['refresh_token'])) {
                 echo "<div class='box' style='border-color:#42b883;'>\n";
                 echo "<h3>🎉 Refresh Token</h3>\n";
-                echo "<p>Copia este token y pégalo en <code>public/api/config.php</code>:</p>\n";
+                echo "<p>Copia este token y pégalo en <code>api/config.php</code>:</p>\n";
                 echo "<pre style='background:#064e3b;border-color:#42b883;font-size:14px;'>" . htmlspecialchars($token['refresh_token']) . "</pre>\n";
 
                 echo "<h3>📝 Instrucciones:</h3>\n";
                 echo "<ol>\n";
                 echo "<li><strong>Copia</strong> el refresh token de arriba</li>\n";
-                echo "<li><strong>Abre</strong> <code>public/api/config.php</code></li>\n";
+                echo "<li><strong>Abre</strong> <code>api/config.php</code></li>\n";
                 echo "<li><strong>Pega</strong> el token en el campo <code>'refresh_token'</code></li>\n";
                 echo "</ol>\n";
 

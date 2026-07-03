@@ -1,31 +1,47 @@
 ---
-import GlassCard from './GlassCard.astro';
-import Icon from './Icon.astro';
+import GlassCard from './GlassCard.astro'
+import Icon from './Icon.astro'
 
 export interface Props {
-  fields: Record<string, string>;
+  fields: Record<string, string>
   tabs: {
-    cotizar: string;
-    agendar: string;
-  };
+    cotizar: string
+    agendar: string
+  }
   options: {
-    types: string[];
-    budgets: string[];
-    meeting_types: string[];
-    meeting_times: string[];
-  };
-  locale?: string;
+    types: string[]
+    budgets: string[]
+    meeting_types: string[]
+    meeting_times: string[]
+  }
+  locale?: string
 }
-const { fields, tabs, options } = Astro.props;
+const { fields, tabs, options } = Astro.props
 ---
 
 <GlassCard class="p-lg max-sm:p-md">
   <div class="flex gap-base mb-lg" role="tablist">
-    <button type="button" id="tab-cotizar" class="contact-tab active flex-1 rounded-lg border-2 border-[#00A8FF] bg-[#00A8FF] px-lg max-sm:px-md py-md font-bold text-white transition-all inline-flex items-center justify-center gap-sm" role="tab" aria-selected="true" aria-label={tabs.cotizar} title={tabs.cotizar}>
+    <button
+      type="button"
+      id="tab-cotizar"
+      class="contact-tab active flex-1 rounded-lg border-2 border-[#00A8FF] bg-[#00A8FF] px-lg max-sm:px-md py-md font-bold text-white transition-all inline-flex items-center justify-center gap-sm"
+      role="tab"
+      aria-selected="true"
+      aria-label={tabs.cotizar}
+      title={tabs.cotizar}
+    >
       <Icon name="request_quote" class="text-[18px]" />
       <span class="hidden sm:inline">{tabs.cotizar}</span>
     </button>
-    <button type="button" id="tab-agendar" class="contact-tab flex-1 rounded-lg border-2 border-outline-variant/30 bg-surface-dim px-lg max-sm:px-md py-md font-bold text-on-surface transition-all inline-flex items-center justify-center gap-sm" role="tab" aria-selected="false" aria-label={tabs.agendar} title={tabs.agendar}>
+    <button
+      type="button"
+      id="tab-agendar"
+      class="contact-tab flex-1 rounded-lg border-2 border-outline-variant/30 bg-surface-dim px-lg max-sm:px-md py-md font-bold text-on-surface transition-all inline-flex items-center justify-center gap-sm"
+      role="tab"
+      aria-selected="false"
+      aria-label={tabs.agendar}
+      title={tabs.agendar}
+    >
       <Icon name="calendar_month" class="text-[18px]" />
       <span class="hidden sm:inline">{tabs.agendar}</span>
     </button>
@@ -36,44 +52,94 @@ const { fields, tabs, options } = Astro.props;
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant" for="name">{fields.name} <span class="text-[#00A8FF]">*</span></label>
-        <input type="text" id="name" name="name" required class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200" placeholder="John Doe" />
+        <label class="font-label-mono text-label-mono text-on-surface-variant" for="name"
+          >{fields.name} <span class="text-[#00A8FF]">*</span></label
+        >
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200"
+          placeholder="John Doe"
+        />
       </div>
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant" for="email">{fields.email} <span class="text-[#00A8FF]">*</span></label>
-        <input type="email" id="email" name="email" required class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200" placeholder="john@enterprise.com" />
+        <label class="font-label-mono text-label-mono text-on-surface-variant" for="email"
+          >{fields.email} <span class="text-[#00A8FF]">*</span></label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200"
+          placeholder="john@enterprise.com"
+        />
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant" for="phone">{fields.phone}</label>
-        <input type="tel" id="phone" name="phone" required pattern="\+[1-9]\d{6,14}" inputmode="tel" class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200" placeholder="+505 8888 8888" title="Debe incluir código de país, ej: +505 8888 8888" />
+        <label class="font-label-mono text-label-mono text-on-surface-variant" for="phone"
+          >{fields.phone}</label
+        >
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          pattern="\+[1-9]\d{6,14}"
+          inputmode="tel"
+          class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200"
+          placeholder="+505 8888 8888"
+          title="Debe incluir código de país, ej: +505 8888 8888"
+        />
         <p class="font-label-mono text-[11px] text-slate-text/60 mt-1">Ej: +505 8888 8888</p>
       </div>
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant" for="company">{fields.company}</label>
-        <input type="text" id="company" name="company" class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200" placeholder="Enterprise Inc." />
+        <label class="font-label-mono text-label-mono text-on-surface-variant" for="company"
+          >{fields.company}</label
+        >
+        <input
+          type="text"
+          id="company"
+          name="company"
+          class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200"
+          placeholder="Enterprise Inc."
+        />
       </div>
     </div>
 
     <div id="cotizar-fields" class="space-y-md">
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.project_type} <span class="text-[#00A8FF]">*</span></label>
+        <label class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.project_type} <span class="text-[#00A8FF]">*</span></label
+        >
         <div class="flex flex-wrap gap-sm" data-pill-group="projectType">
           <input type="hidden" name="projectType" />
-          {options.types.map((type: string) => (
-            <button type="button" class="pill-option" data-value={type}>{type}</button>
-          ))}
+          {
+            options.types.map((type: string) => (
+              <button type="button" class="pill-option" data-value={type}>
+                {type}
+              </button>
+            ))
+          }
         </div>
       </div>
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.budget}</label>
+        <label class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.budget}</label
+        >
         <div class="flex flex-wrap gap-sm" data-pill-group="budget">
           <input type="hidden" name="budget" />
-          {options.budgets.map((b: string) => (
-            <button type="button" class="pill-option" data-value={b}>{b}</button>
-          ))}
+          {
+            options.budgets.map((b: string) => (
+              <button type="button" class="pill-option" data-value={b}>
+                {b}
+              </button>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -81,52 +147,105 @@ const { fields, tabs, options } = Astro.props;
     <div id="agendar-fields" class="hidden space-y-md">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
         <div class="space-y-xs">
-          <label class="font-label-mono text-label-mono text-on-surface-variant" for="preferredDate">{fields.preferred_date} <span class="text-[#00A8FF]">*</span></label>
+          <label class="font-label-mono text-label-mono text-on-surface-variant" for="preferredDate"
+            >{fields.preferred_date} <span class="text-[#00A8FF]">*</span></label
+          >
           <div class="relative">
-            <input type="date" id="preferredDate" name="preferredDate" class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200 pr-xl date-input" />
-            <span id="date-picker-icon" class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer text-[20px] z-10"><Icon name="calendar_month" /></span>
+            <input
+              type="date"
+              id="preferredDate"
+              name="preferredDate"
+              class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200 pr-xl date-input"
+            />
+            <span
+              id="date-picker-icon"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer text-[20px] z-10"
+              ><Icon name="calendar_month" /></span
+            >
           </div>
         </div>
         <div class="space-y-xs">
-          <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.preferred_time} <span class="text-[#00A8FF]">*</span></label>
+          <label class="font-label-mono text-label-mono text-on-surface-variant"
+            >{fields.preferred_time} <span class="text-[#00A8FF]">*</span></label
+          >
           <div class="flex flex-wrap gap-sm" data-pill-group="preferredTime">
             <input type="hidden" name="preferredTime" />
-            {options.meeting_times.map((t: string) => (
-              <button type="button" class="pill-option" data-value={t}>{t}</button>
-            ))}
+            {
+              options.meeting_times.map((t: string) => (
+                <button type="button" class="pill-option" data-value={t}>
+                  {t}
+                </button>
+              ))
+            }
           </div>
         </div>
       </div>
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant">{fields.meeting_type} <span class="text-[#00A8FF]">*</span></label>
+        <label class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.meeting_type} <span class="text-[#00A8FF]">*</span></label
+        >
         <div class="flex flex-wrap gap-sm" data-pill-group="meetingType">
           <input type="hidden" name="meetingType" />
-          {options.meeting_types.map((t: string) => (
-            <button type="button" class="pill-option" data-value={t}>{t}</button>
-          ))}
+          {
+            options.meeting_types.map((t: string) => (
+              <button type="button" class="pill-option" data-value={t}>
+                {t}
+              </button>
+            ))
+          }
         </div>
       </div>
     </div>
 
     <div class="space-y-xs">
-      <label class="font-label-mono text-label-mono text-on-surface-variant" for="message">{fields.description} <span class="text-[#00A8FF]">*</span></label>
-      <textarea id="message" name="message" required class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200 resize-none" rows={5}></textarea>
+      <label class="font-label-mono text-label-mono text-on-surface-variant" for="message"
+        >{fields.description} <span class="text-[#00A8FF]">*</span></label
+      >
+      <textarea
+        id="message"
+        name="message"
+        required
+        class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200 resize-none"
+        rows={5}></textarea>
     </div>
 
-    <div id="error-message" class="hidden flex items-start gap-sm bg-red-50 border border-red-200 text-red-700 px-md py-sm rounded-lg mb-sm font-body-md" role="alert">
+    <div
+      id="error-message"
+      class="hidden flex items-start gap-sm bg-red-50 border border-red-200 text-red-700 px-md py-sm rounded-lg mb-sm font-body-md"
+      role="alert"
+    >
       <Icon name="error" class="text-red-500 text-[20px] mt-[2px] shrink-0" />
       <span id="error-text" class="flex-1">Error al enviar el mensaje.</span>
-      <button type="button" id="dismiss-error" class="shrink-0 bg-transparent border-none text-red-400 hover:text-red-600 cursor-pointer text-headline-xs leading-none p-0" aria-label="Cerrar">&times;</button>
+      <button
+        type="button"
+        id="dismiss-error"
+        class="shrink-0 bg-transparent border-none text-red-400 hover:text-red-600 cursor-pointer text-headline-xs leading-none p-0"
+        aria-label="Cerrar">&times;</button
+      >
     </div>
 
     <div class="pt-sm">
-<button type="submit" id="submit-btn" class="w-full md:w-auto inline-flex items-center justify-center gap-sm bg-[#00A8FF] text-white font-bold px-xl max-sm:px-lg py-md rounded-lg text-body-lg transition-all duration-200 hover:bg-[#0088CC] hover:shadow-lg hover:shadow-[#00A8FF]/30 cursor-pointer border-none" title={fields.submit_btn}>
-  <span id="submit-text" class="hidden sm:inline" data-cotizar={fields.submit_btn} data-agendar={fields.submit_meeting}>{fields.submit_btn}</span>
-  <span id="submit-icon"><Icon name="send" /></span>
-</button>
+      <button
+        type="submit"
+        id="submit-btn"
+        class="w-full md:w-auto inline-flex items-center justify-center gap-sm bg-[#00A8FF] text-white font-bold px-xl max-sm:px-lg py-md rounded-lg text-body-lg transition-all duration-200 hover:bg-[#0088CC] hover:shadow-lg hover:shadow-[#00A8FF]/30 cursor-pointer border-none"
+        title={fields.submit_btn}
+      >
+        <span
+          id="submit-text"
+          class="hidden sm:inline"
+          data-cotizar={fields.submit_btn}
+          data-agendar={fields.submit_meeting}>{fields.submit_btn}</span
+        >
+        <span id="submit-icon"><Icon name="send" /></span>
+      </button>
       <p class="font-label-mono text-[11px] text-slate-text/60 mt-3 text-center">
         {fields.privacy_consent}
-        <button type="button" data-open-privacy class="text-[#00A8FF] hover:underline transition-colors cursor-pointer bg-transparent border-none font-label-mono text-[11px]">
+        <button
+          type="button"
+          data-open-privacy
+          class="text-[#00A8FF] hover:underline transition-colors cursor-pointer bg-transparent border-none font-label-mono text-[11px]"
+        >
           {fields.privacy_link}
         </button>
       </p>
@@ -141,10 +260,10 @@ const { fields, tabs, options } = Astro.props;
 </GlassCard>
 
 <style>
-.pill-option {
+  .pill-option {
     padding: 0.5rem 1.125rem;
     border-radius: 9999px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     background: var(--color-surface-dim);
     color: var(--color-on-surface);
     font-size: 0.875rem;
@@ -155,19 +274,21 @@ const { fields, tabs, options } = Astro.props;
     user-select: none;
   }
   .pill-option:hover {
-    border-color: #00A8FF;
-    color: #00A8FF;
+    border-color: #00a8ff;
+    color: #00a8ff;
   }
   .pill-option.active {
-    background: #00A8FF;
+    background: #00a8ff;
     color: #ffffff;
-    border-color: #00A8FF;
+    border-color: #00a8ff;
     font-weight: 600;
   }
-  .contact-tab { cursor: pointer; }
+  .contact-tab {
+    cursor: pointer;
+  }
   .contact-tab:not(.active):hover {
-    border-color: rgba(0,168,255,0.5);
-    color: #00A8FF;
+    border-color: rgba(0, 168, 255, 0.5);
+    color: #00a8ff;
   }
   .date-input::-webkit-calendar-picker-indicator {
     opacity: 0;
@@ -180,179 +301,220 @@ const { fields, tabs, options } = Astro.props;
 </style>
 
 <script>
-(function() {
-  function setIcon(el: HTMLElement | null, name: string) {
-    const use = el?.querySelector('use');
-    if (use) use.setAttribute('href', `/sprite.svg#${name}`);
-  }
-
-  const btnCotizar = document.getElementById('tab-cotizar') as HTMLButtonElement | null;
-  const btnAgendar = document.getElementById('tab-agendar') as HTMLButtonElement | null;
-  const cotizarFields = document.getElementById('cotizar-fields') as HTMLElement | null;
-  const agendarFields = document.getElementById('agendar-fields') as HTMLElement | null;
-  const formTypeInput = document.getElementById('form-type') as HTMLInputElement | null;
-  const submitText = document.getElementById('submit-text') as HTMLElement | null;
-  const submitIcon = document.getElementById('submit-icon') as HTMLElement | null;
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const successMsg = document.getElementById('success-message') as HTMLElement | null;
-
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
-
-  const submitLabels = {
-    cotizar: { text: submitText?.dataset?.cotizar || submitText?.textContent || '', icon: 'send' },
-    agendar: { text: submitText?.dataset?.agendar || '', icon: 'calendar_month' },
-  };
-
-  const successTitles: Record<string, { title: string; desc: string }> = {
-    es: { title: '¡Gracias por contactarnos!', desc: 'Nos pondremos en contacto contigo pronto.' },
-    en: { title: 'Thank you for reaching out!', desc: 'We will get back to you shortly.' },
-  };
-
-  function switchTab(tab: string) {
-    const isCotizar = tab === 'cotizar';
-    if (!btnCotizar || !btnAgendar || !cotizarFields || !agendarFields || !formTypeInput || !submitText || !submitIcon) return;
-
-    btnCotizar.classList.toggle('active', isCotizar);
-    btnCotizar.classList.toggle('bg-[#00A8FF]', isCotizar);
-    btnCotizar.classList.toggle('hover:bg-[#0088CC]', isCotizar);
-    btnCotizar.classList.toggle('text-white', isCotizar);
-    btnCotizar.classList.toggle('border-[#00A8FF]', isCotizar);
-    btnCotizar.classList.toggle('bg-surface-dim', !isCotizar);
-    btnCotizar.classList.toggle('text-on-surface', !isCotizar);
-    btnCotizar.classList.toggle('hover:border-[#00A8FF]/50', !isCotizar);
-    btnCotizar.classList.toggle('hover:text-[#00A8FF]', !isCotizar);
-    btnCotizar.setAttribute('aria-selected', String(isCotizar));
-
-    btnAgendar.classList.toggle('active', !isCotizar);
-    btnAgendar.classList.toggle('bg-[#00A8FF]', !isCotizar);
-    btnAgendar.classList.toggle('hover:bg-[#0088CC]', !isCotizar);
-    btnAgendar.classList.toggle('text-white', !isCotizar);
-    btnAgendar.classList.toggle('border-[#00A8FF]', !isCotizar);
-    btnAgendar.classList.toggle('bg-surface-dim', isCotizar);
-    btnAgendar.classList.toggle('text-on-surface', isCotizar);
-    btnAgendar.classList.toggle('hover:border-[#00A8FF]/50', isCotizar);
-    btnAgendar.classList.toggle('hover:text-[#00A8FF]', isCotizar);
-    btnAgendar.setAttribute('aria-selected', String(!isCotizar));
-
-    cotizarFields.classList.toggle('hidden', !isCotizar);
-    agendarFields.classList.toggle('hidden', isCotizar);
-    formTypeInput.value = tab;
-
-    const label = isCotizar ? submitLabels.cotizar : submitLabels.agendar;
-    submitText.textContent = label.text;
-    setIcon(submitIcon, label.icon);
-    if (submitBtn) submitBtn.setAttribute('title', label.text);
-
-    const fieldMap: [string, boolean][] = [['projectType', isCotizar], ['preferredDate', !isCotizar], ['preferredTime', !isCotizar], ['meetingType', !isCotizar]];
-    fieldMap.forEach(([id, required]) => {
-      const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
-      if (el) {
-        if (required) el.setAttribute('required', 'required');
-        else el.removeAttribute('required');
-      }
-    });
-  }
-
-  btnCotizar?.addEventListener('click', (e: Event) => { e.preventDefault(); switchTab('cotizar'); });
-  btnAgendar?.addEventListener('click', (e: Event) => { e.preventDefault(); switchTab('agendar'); });
-
-  if (window.location.hash === '#agendar') switchTab('agendar');
-
-  document.querySelectorAll('[data-pill-group]').forEach((group) => {
-    const hidden = group.querySelector('input[type="hidden"]') as HTMLInputElement | null;
-    group.querySelectorAll('.pill-option').forEach((pill) => {
-      pill.addEventListener('click', () => {
-        group.querySelectorAll('.pill-option').forEach((p) => p.classList.remove('active'));
-        pill.classList.add('active');
-        if (hidden) hidden.value = pill.getAttribute('data-value') ?? '';
-      });
-    });
-  });
-
-  document.getElementById('dismiss-error')?.addEventListener('click', () => {
-    const errorMsg = document.getElementById('error-message');
-    if (errorMsg) errorMsg.classList.add('hidden');
-  });
-
-  document.getElementById('date-picker-icon')?.addEventListener('click', () => {
-    const input = document.getElementById('preferredDate') as HTMLInputElement | null;
-    if (input) input.showPicker();
-  });
-
-  document.querySelectorAll('input:not([type="hidden"]), textarea').forEach((el) => {
-    el.addEventListener('focus', () => {
-      const label = el.closest('.space-y-xs')?.querySelector('label');
-      if (label) label.style.color = '#00A8FF';
-    });
-    el.addEventListener('blur', () => {
-      const label = el.closest('.space-y-xs')?.querySelector('label');
-      if (label) label.style.color = '';
-    });
-  });
-
-  form?.addEventListener('submit', async (e: Event) => {
-    e.preventDefault();
-    const originalText = submitText?.textContent || '';
-    if (submitText) submitText.textContent = 'Enviando...';
-    if (submitIcon) setIcon(submitIcon, 'hourglass_top');
-    if (submitBtn) submitBtn.disabled = true;
-
-    try {
-      const data = Object.fromEntries(new FormData(form!).entries());
-      const host = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://vunotek.com';
-
-      const emailRes = await fetch(`${host}/api/send-email.php`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
-      });
-      const emailResult = await emailRes.json();
-      if (!emailResult.success) throw new Error(emailResult.message || 'Error al enviar');
-
-      if (data.formType === 'agendar') {
-        try {
-          const calRes = await fetch(`${host}/api/calendar-handler.php`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
-          });
-          const calResult = await calRes.json();
-          if (!calResult.success) console.warn('Calendar event not created:', calResult.message);
-        } catch (calErr) { console.warn('Calendar error:', calErr); }
-      }
-
-      if (form) form.classList.add('hidden');
-      if (successMsg) {
-        successMsg.classList.remove('hidden');
-        const locale = document.documentElement.lang === 'en' ? 'en' : 'es';
-        const st = successTitles[locale];
-        const titleEl = successMsg.querySelector('[data-success-title]');
-        const descEl = successMsg.querySelector('[data-success-desc]');
-        if (titleEl) titleEl.textContent = st.title;
-        if (descEl) descEl.textContent = st.desc;
-      }
-
-      setTimeout(() => {
-        if (form) { form.reset(); form.classList.remove('hidden'); }
-        if (successMsg) successMsg.classList.add('hidden');
-        switchTab('cotizar');
-        if (submitBtn) submitBtn.disabled = false;
-        if (submitText) submitText.textContent = originalText;
-        if (submitIcon) setIcon(submitIcon, 'send');
-        document.querySelectorAll('.pill-option.active').forEach((p) => p.classList.remove('active'));
-      }, 5000);
-    } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : 'Error desconocido';
-      console.error('Submit error:', error);
-      const errorMsg = document.getElementById('error-message');
-      const errorText = document.getElementById('error-text');
-      if (errorMsg && errorText) {
-        errorText.textContent = message;
-        errorMsg.classList.remove('hidden');
-        setTimeout(() => errorMsg.classList.add('hidden'), 8000);
-      }
-      if (successMsg) successMsg.classList.add('hidden');
-    } finally {
-      if (submitBtn) submitBtn.disabled = false;
-      if (submitText) submitText.textContent = originalText;
-      if (submitIcon) setIcon(submitIcon, formTypeInput?.value === 'agendar' ? 'calendar_month' : 'send');
+  ;(function () {
+    function setIcon(el: HTMLElement | null, name: string) {
+      const use = el?.querySelector('use')
+      if (use) use.setAttribute('href', `/sprite.svg#${name}`)
     }
-  });
-})();
+
+    const btnCotizar = document.getElementById('tab-cotizar') as HTMLButtonElement | null
+    const btnAgendar = document.getElementById('tab-agendar') as HTMLButtonElement | null
+    const cotizarFields = document.getElementById('cotizar-fields') as HTMLElement | null
+    const agendarFields = document.getElementById('agendar-fields') as HTMLElement | null
+    const formTypeInput = document.getElementById('form-type') as HTMLInputElement | null
+    const submitText = document.getElementById('submit-text') as HTMLElement | null
+    const submitIcon = document.getElementById('submit-icon') as HTMLElement | null
+    const form = document.getElementById('contact-form') as HTMLFormElement | null
+    const successMsg = document.getElementById('success-message') as HTMLElement | null
+
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null
+
+    const submitLabels = {
+      cotizar: {
+        text: submitText?.dataset?.cotizar || submitText?.textContent || '',
+        icon: 'send'
+      },
+      agendar: { text: submitText?.dataset?.agendar || '', icon: 'calendar_month' }
+    }
+
+    const successTitles: Record<string, { title: string; desc: string }> = {
+      es: {
+        title: '¡Gracias por contactarnos!',
+        desc: 'Nos pondremos en contacto contigo pronto.'
+      },
+      en: { title: 'Thank you for reaching out!', desc: 'We will get back to you shortly.' }
+    }
+
+    function switchTab(tab: string) {
+      const isCotizar = tab === 'cotizar'
+      if (
+        !btnCotizar ||
+        !btnAgendar ||
+        !cotizarFields ||
+        !agendarFields ||
+        !formTypeInput ||
+        !submitText ||
+        !submitIcon
+      )
+        return
+
+      btnCotizar.classList.toggle('active', isCotizar)
+      btnCotizar.classList.toggle('bg-[#00A8FF]', isCotizar)
+      btnCotizar.classList.toggle('hover:bg-[#0088CC]', isCotizar)
+      btnCotizar.classList.toggle('text-white', isCotizar)
+      btnCotizar.classList.toggle('border-[#00A8FF]', isCotizar)
+      btnCotizar.classList.toggle('bg-surface-dim', !isCotizar)
+      btnCotizar.classList.toggle('text-on-surface', !isCotizar)
+      btnCotizar.classList.toggle('hover:border-[#00A8FF]/50', !isCotizar)
+      btnCotizar.classList.toggle('hover:text-[#00A8FF]', !isCotizar)
+      btnCotizar.setAttribute('aria-selected', String(isCotizar))
+
+      btnAgendar.classList.toggle('active', !isCotizar)
+      btnAgendar.classList.toggle('bg-[#00A8FF]', !isCotizar)
+      btnAgendar.classList.toggle('hover:bg-[#0088CC]', !isCotizar)
+      btnAgendar.classList.toggle('text-white', !isCotizar)
+      btnAgendar.classList.toggle('border-[#00A8FF]', !isCotizar)
+      btnAgendar.classList.toggle('bg-surface-dim', isCotizar)
+      btnAgendar.classList.toggle('text-on-surface', isCotizar)
+      btnAgendar.classList.toggle('hover:border-[#00A8FF]/50', isCotizar)
+      btnAgendar.classList.toggle('hover:text-[#00A8FF]', isCotizar)
+      btnAgendar.setAttribute('aria-selected', String(!isCotizar))
+
+      cotizarFields.classList.toggle('hidden', !isCotizar)
+      agendarFields.classList.toggle('hidden', isCotizar)
+      formTypeInput.value = tab
+
+      const label = isCotizar ? submitLabels.cotizar : submitLabels.agendar
+      submitText.textContent = label.text
+      setIcon(submitIcon, label.icon)
+      if (submitBtn) submitBtn.setAttribute('title', label.text)
+
+      const fieldMap: [string, boolean][] = [
+        ['projectType', isCotizar],
+        ['preferredDate', !isCotizar],
+        ['preferredTime', !isCotizar],
+        ['meetingType', !isCotizar]
+      ]
+      fieldMap.forEach(([id, required]) => {
+        const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`)
+        if (el) {
+          if (required) el.setAttribute('required', 'required')
+          else el.removeAttribute('required')
+        }
+      })
+    }
+
+    btnCotizar?.addEventListener('click', (e: Event) => {
+      e.preventDefault()
+      switchTab('cotizar')
+    })
+    btnAgendar?.addEventListener('click', (e: Event) => {
+      e.preventDefault()
+      switchTab('agendar')
+    })
+
+    if (window.location.hash === '#agendar') switchTab('agendar')
+
+    document.querySelectorAll('[data-pill-group]').forEach((group) => {
+      const hidden = group.querySelector('input[type="hidden"]') as HTMLInputElement | null
+      group.querySelectorAll('.pill-option').forEach((pill) => {
+        pill.addEventListener('click', () => {
+          group.querySelectorAll('.pill-option').forEach((p) => p.classList.remove('active'))
+          pill.classList.add('active')
+          if (hidden) hidden.value = pill.getAttribute('data-value') ?? ''
+        })
+      })
+    })
+
+    document.getElementById('dismiss-error')?.addEventListener('click', () => {
+      const errorMsg = document.getElementById('error-message')
+      if (errorMsg) errorMsg.classList.add('hidden')
+    })
+
+    document.getElementById('date-picker-icon')?.addEventListener('click', () => {
+      const input = document.getElementById('preferredDate') as HTMLInputElement | null
+      if (input) input.showPicker()
+    })
+
+    document.querySelectorAll('input:not([type="hidden"]), textarea').forEach((el) => {
+      el.addEventListener('focus', () => {
+        const label = el.closest('.space-y-xs')?.querySelector('label')
+        if (label) label.style.color = '#00A8FF'
+      })
+      el.addEventListener('blur', () => {
+        const label = el.closest('.space-y-xs')?.querySelector('label')
+        if (label) label.style.color = ''
+      })
+    })
+
+    form?.addEventListener('submit', async (e: Event) => {
+      e.preventDefault()
+      const originalText = submitText?.textContent || ''
+      if (submitText) submitText.textContent = 'Enviando...'
+      if (submitIcon) setIcon(submitIcon, 'hourglass_top')
+      if (submitBtn) submitBtn.disabled = true
+
+      try {
+        const data = Object.fromEntries(new FormData(form!).entries())
+        const host =
+          window.location.hostname === 'localhost'
+            ? 'http://localhost:8000'
+            : import.meta.env.PUBLIC_API_URL || 'https://vunotek.com'
+
+        const emailRes = await fetch(`${host}/send-email.php`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        const emailResult = await emailRes.json()
+        if (!emailResult.success) throw new Error(emailResult.message || 'Error al enviar')
+
+        if (data.formType === 'agendar') {
+          try {
+            const calRes = await fetch(`${host}/calendar-handler.php`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            })
+            const calResult = await calRes.json()
+            if (!calResult.success) console.warn('Calendar event not created:', calResult.message)
+          } catch (calErr) {
+            console.warn('Calendar error:', calErr)
+          }
+        }
+
+        if (form) form.classList.add('hidden')
+        if (successMsg) {
+          successMsg.classList.remove('hidden')
+          const locale = document.documentElement.lang === 'en' ? 'en' : 'es'
+          const st = successTitles[locale]
+          const titleEl = successMsg.querySelector('[data-success-title]')
+          const descEl = successMsg.querySelector('[data-success-desc]')
+          if (titleEl) titleEl.textContent = st.title
+          if (descEl) descEl.textContent = st.desc
+        }
+
+        setTimeout(() => {
+          if (form) {
+            form.reset()
+            form.classList.remove('hidden')
+          }
+          if (successMsg) successMsg.classList.add('hidden')
+          switchTab('cotizar')
+          if (submitBtn) submitBtn.disabled = false
+          if (submitText) submitText.textContent = originalText
+          if (submitIcon) setIcon(submitIcon, 'send')
+          document
+            .querySelectorAll('.pill-option.active')
+            .forEach((p) => p.classList.remove('active'))
+        }, 5000)
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : 'Error desconocido'
+        console.error('Submit error:', error)
+        const errorMsg = document.getElementById('error-message')
+        const errorText = document.getElementById('error-text')
+        if (errorMsg && errorText) {
+          errorText.textContent = message
+          errorMsg.classList.remove('hidden')
+          setTimeout(() => errorMsg.classList.add('hidden'), 8000)
+        }
+        if (successMsg) successMsg.classList.add('hidden')
+      } finally {
+        if (submitBtn) submitBtn.disabled = false
+        if (submitText) submitText.textContent = originalText
+        if (submitIcon)
+          setIcon(submitIcon, formTypeInput?.value === 'agendar' ? 'calendar_month' : 'send')
+      }
+    })
+  })()
 </script>
