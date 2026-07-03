@@ -7,6 +7,7 @@ import { getCollection } from 'astro:content'
 import type { GetStaticPathsItem } from 'astro'
 import { getTranslations } from '../../../i18n/utils'
 import Icon from '../../../components/Icon.astro';
+import { getAlternateSlug } from '../../../i18n/blog-slugs';
 
 export async function getStaticPaths(): Promise<GetStaticPathsItem[]> {
   const posts = await getCollection('blog')
@@ -39,6 +40,11 @@ const imgSrc = post.data.image
     : blogImages[post.data.image]
   : undefined
 
+const esSlug = getAlternateSlug(post.id, 'es')
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://vunotek.com'
+const blogEsUrl = esSlug ? `${siteUrl}/blog/${esSlug}/` : `${siteUrl}/blog/${post.id}/`
+const blogEnUrl = `${siteUrl}/en/blog/${post.id}/`
+
 const allBlogPosts = await getCollection('blog')
 const related = allBlogPosts
   .filter((p) =>
@@ -50,7 +56,7 @@ const related = allBlogPosts
   .slice(0, 3)
 ---
 
-<BaseLayout title={`${post.data.title} | Vunotek`} description={post.data.excerpt}>
+<BaseLayout title={post.data.title} description={post.data.excerpt} esUrl={blogEsUrl} enUrl={blogEnUrl}>
   <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
     <a href="/en/blog" class="inline-flex items-center gap-xs text-electric-blue font-label-mono hover:underline mb-lg">
       <Icon name="arrow_back" class="text-sm" />
