@@ -1,4 +1,5 @@
 ---
+import { getAlternateSlug } from '../i18n/blog-slugs';
 const currentLocale = Astro.currentLocale || 'es';
 const targetLocale = currentLocale === 'es' ? 'en' : 'es';
 const targetLabel = currentLocale === 'es' ? 'EN' : 'ES';
@@ -6,12 +7,12 @@ const currentUrl = Astro.url.pathname;
 const blogPostMatch = currentUrl.match(/^\/(en\/)?blog\/(.+)$/);
 let targetUrl: string;
 if (blogPostMatch) {
-  const hasEnPrefix = !!blogPostMatch[1]
   const blogSlug = blogPostMatch[2].replace(/\/$/, '')
-  if (hasEnPrefix) {
-    targetUrl = `/blog/${blogSlug.replace(/-en$/, '')}/`
+  const alternate = getAlternateSlug(blogSlug, targetLocale)
+  if (alternate) {
+    targetUrl = targetLocale === 'en' ? `/en/blog/${alternate}/` : `/blog/${alternate}/`
   } else {
-    targetUrl = `/en/blog/${blogSlug}-en/`
+    targetUrl = targetLocale === 'en' ? `/en/blog/${blogSlug}/` : `/blog/${blogSlug}/`
   }
 } else {
   targetUrl = targetLocale === 'en' ? `/en${currentUrl === '/' ? '' : currentUrl}` : currentUrl.replace(/^\/en/, '') || '/';

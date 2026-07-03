@@ -7,9 +7,11 @@ import PrivacyModal from '../components/PrivacyModal.astro';
 export interface Props {
   title: string;
   description: string;
+  esUrl?: string;
+  enUrl?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, esUrl: explicitEsUrl, enUrl: explicitEnUrl } = Astro.props;
 
 const currentLang = Astro.currentLocale || 'es';
 const currentPath = Astro.url.pathname;
@@ -25,8 +27,8 @@ const currentSlug = currentPath
 const ogLocale = isEn ? 'en_US' : 'es_ES';
 const ogImage = `${siteUrl}/logo.webp`;
 
-const esUrl = currentSlug ? `${siteUrl}/${currentSlug}` : `${siteUrl}/`;
-const enUrl = currentSlug ? `${siteUrl}/en/${currentSlug}` : `${siteUrl}/en/`;
+const esUrl = explicitEsUrl ?? (currentSlug ? `${siteUrl}/${currentSlug}` : `${siteUrl}/`);
+const enUrl = explicitEnUrl ?? (currentSlug ? `${siteUrl}/en/${currentSlug}` : `${siteUrl}/en/`);
 
 const orgSchema = {
   '@context': 'https://schema.org',
