@@ -299,7 +299,7 @@ const { fields, tabs, options } = Astro.props;
 
     try {
       const data = Object.fromEntries(new FormData(form!).entries());
-      const host = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://vunotek.com';
+      const host = window.location.hostname === 'localhost' ? 'http://localhost:8000' : (import.meta.env.PUBLIC_API_URL || 'https://vunotek.com');
 
       const emailRes = await fetch(`${host}/api/send-email.php`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),

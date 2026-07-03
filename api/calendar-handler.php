@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-require_once __DIR__ . '/../../vendor/LightweightGoogleCalendar.php';
+require_once __DIR__ . '/vendor/LightweightGoogleCalendar.php';
 
 try {
     $data = json_decode(file_get_contents('php://input'), true);

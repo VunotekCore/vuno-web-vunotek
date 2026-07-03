@@ -18,7 +18,7 @@ pnpm-debug.log*
 .env.production
 
 # PHP sensitive config
-public/api/config.php
+api/config.php
 
 # PHP dependencies
 composer.lock
