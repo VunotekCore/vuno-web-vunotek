@@ -1,18 +1,18 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { getPageMeta } from '../seo'
+
+const pageMeta = getPageMeta('es', 'notFound')
 ---
 
-<html class="dark" lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Página no encontrada | Vunotek</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-  </head>
-  <body class="bg-background text-on-surface font-body-md overflow-x-hidden min-h-screen flex items-center justify-center">
+<BaseLayout
+  title={pageMeta?.title ?? ''}
+  description={pageMeta?.description ?? ''}
+  robots={pageMeta?.robots ?? 'noindex, follow'}
+  esUrl="https://vunotek.com/"
+  enUrl="https://vunotek.com/en/"
+>
+  <div class="min-h-screen flex items-center justify-center">
     <div class="flex flex-col items-center gap-md text-center px-margin">
       <a href="/" class="flex items-center gap-3 mb-sm">
         <span class="font-display-lg text-headline-md font-bold tracking-tight"><span class="text-on-surface">VUNO</span><span class="text-electric-blue">TEK</span></span>
@@ -23,6 +23,5 @@ import '../styles/global.css';
       </p>
       <a href="/" class="font-label-mono text-electric-blue hover:underline">Volver al inicio</a>
     </div>
-
-  </body>
-</html>
+  </div>
+</BaseLayout>

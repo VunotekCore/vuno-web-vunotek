@@ -6,6 +6,8 @@ category: Backend
 author: Daniel Flores
 locale: en
 image: https://placehold.co/1200x520/1e293b/42b883?text=Node.js+REST+APIs
+metaTitle: "Building REST APIs with Node.js: Architecture and Best Practices | Vunotek"
+ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=Node.js+REST+APIs
 ---
 
 Node.js has become the standard for building fast, scalable REST APIs. A well-defined architecture is the difference between a maintainable project and an impossible-to-extend legacy.

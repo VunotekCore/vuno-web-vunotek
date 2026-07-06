@@ -5,6 +5,7 @@ import ScrollReveal from '../components/ScrollReveal.astro'
 import Button from '../components/Button.astro'
 import { IMAGES, IMAGE_DIMS, getResponsiveAttrs } from '../utils/images'
 import Icon from '../components/Icon.astro';
+import { getImageAlt } from '../seo';
 
 export interface Props {
   card: {
@@ -90,7 +91,7 @@ const techIcons: Record<string, string> = {
       <div class="aspect-[4/3] bg-surface-charcoal overflow-hidden">
         <img
           src={image}
-          alt=""
+          alt={getImageAlt(locale, imageKey)}
           width={imgDims?.width || 800}
           height={imgDims?.height || 600}
           loading="eager"
@@ -140,7 +141,7 @@ const techIcons: Record<string, string> = {
           <div class="h-44 overflow-hidden bg-surface-charcoal rounded-t-xl relative">
             <img
               src={resolveImage(feature.image)}
-              alt=""
+              alt={getImageAlt(locale, imageKey, feature.image)}
               width="800"
               height="600"
               class="w-full h-full object-cover transition-all duration-500 group-hover:scale-[1.04]"

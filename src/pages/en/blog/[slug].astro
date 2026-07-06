@@ -8,6 +8,7 @@ import type { GetStaticPathsItem } from 'astro'
 import { getTranslations } from '../../../i18n/utils'
 import Icon from '../../../components/Icon.astro';
 import { getAlternateSlug } from '../../../i18n/blog-slugs';
+import { getArticleSchema } from '../../../seo';
 
 export async function getStaticPaths(): Promise<GetStaticPathsItem[]> {
   const posts = await getCollection('blog')
@@ -54,9 +55,13 @@ const related = allBlogPosts
   )
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3)
+
+const pageTitle = post.data.metaTitle || (post.data.title + ' | Vunotek')
+const articleSchema = getArticleSchema(post.data)
 ---
 
-<BaseLayout title={post.data.title} description={post.data.excerpt} esUrl={blogEsUrl} enUrl={blogEnUrl}>
+<BaseLayout title={pageTitle} description={post.data.excerpt} esUrl={blogEsUrl} enUrl={blogEnUrl} ogType="article" ogImage={post.data.ogImage}>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
   <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
     <a href="/en/blog" class="inline-flex items-center gap-xs text-electric-blue font-label-mono hover:underline mb-lg">
       <Icon name="arrow_back" class="text-sm" />

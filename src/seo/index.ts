@@ -1,0 +1,84 @@
+import { SEO } from './metadata'
+export { SEO }
+
+export function getPageMeta(locale: string, pageKey: string) {
+  const l = locale === 'en' ? 'en' : 'es'
+  const page = (SEO.pages as any)[pageKey]
+  if (!page) return null
+  return page(l)
+}
+
+export function getBreadcrumbSchema(locale: string, currentPath: string, pageName?: string) {
+  const l = locale === 'en' ? 'en' : 'es'
+  const items = SEO.breadcrumbs[l]
+  if (!items) return null
+
+  const active = items.find((i) => i.path === currentPath)
+  if (!active && !pageName) return null
+
+  const list = pageName
+    ? [
+        items[0],
+        { position: 2, name: pageName, path: currentPath },
+      ]
+    : items.filter((i) => currentPath.startsWith(i.path) || i.path === currentPath)
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: list.map((item, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: item.name,
+      item: `https://vunotek.com${item.path}`,
+    })),
+  }
+}
+
+export function getArticleSchema(post: {
+  title: string
+  excerpt: string
+  date: Date
+  category: string
+  author: string
+  image?: string
+}) {
+  return {
+    ...SEO.articleSchema,
+    headline: post.title,
+    description: post.excerpt,
+    image: post.image || SEO.global.ogDefaultImage.src,
+    datePublished: post.date.toISOString(),
+    dateModified: post.date.toISOString(),
+    author: {
+      '@type': 'Person',
+      name: post.author,
+      url: 'https://vunotek.com/about',
+    },
+  }
+}
+
+export function getImageAlt(
+  locale: string,
+  projectKey: string,
+  featureKey?: string
+): string {
+  const l = locale === 'en' ? 'en' : 'es'
+  try {
+    const project = (SEO.images.portfolio as any)[projectKey]
+    if (!project) return ''
+    if (featureKey) {
+      return project.features?.[featureKey]?.alt?.[l] || project.alt?.[l] || ''
+    }
+    return project.alt?.[l] || ''
+  } catch {
+    return ''
+  }
+}
+
+export function getOGImage(post: { metaTitle?: string; ogImage?: string; title: string }) {
+  if (post.ogImage) {
+    return { src: post.ogImage, width: 1200, height: 630, format: 'webp' as const }
+  }
+  return SEO.global.ogDefaultImage
+}

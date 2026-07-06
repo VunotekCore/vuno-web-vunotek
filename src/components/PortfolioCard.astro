@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { getImageAlt } from '../seo';
 export interface Props {
   tag: string
   title: string
@@ -9,15 +10,17 @@ export interface Props {
   locale?: string
   srcset?: string
   sizes?: string
+  imageKey?: string
 }
 
-const { tag, title, description, image, slug, locale = 'es', srcset, sizes } = Astro.props
+const { tag, title, description, image, slug, locale = 'es', srcset, sizes, imageKey } = Astro.props
 const href = slug
   ? locale === 'en'
     ? `/en/proyectos/${slug}`
     : `/proyectos/${slug}`
   : undefined
 const isPlaceholder = !image
+const imageAlt = imageKey ? getImageAlt(locale, imageKey) : title
 ---
 
 {
@@ -34,7 +37,7 @@ const isPlaceholder = !image
         ) : (
           <img
             src={image!}
-            alt=""
+            alt={imageAlt}
             loading="lazy"
             decoding="async"
             width="640"
@@ -64,7 +67,7 @@ const isPlaceholder = !image
         ) : (
           <img
             src={image!}
-            alt=""
+            alt={imageAlt}
             loading="lazy"
             decoding="async"
             width="640"

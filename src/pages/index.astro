@@ -2,11 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Home from '../templates/Home.astro'
 import { getTranslations } from '../i18n/utils'
+import { getPageMeta } from '../seo'
 
 const dict = getTranslations(Astro.currentLocale ?? 'es') as any
-const gh = dict.home
+const locale = Astro.currentLocale ?? 'es'
+const pageMeta = getPageMeta(locale, 'home')
 ---
 
-<BaseLayout title="Engineering Precision for Modern Business" description={gh.hero.description}>
-  <Home dict={dict} locale={Astro.currentLocale ?? 'es'} />
+<BaseLayout title={pageMeta?.title ?? ''} description={pageMeta?.description ?? ''}>
+  <Home dict={dict} locale={locale} />
 </BaseLayout>

@@ -6,6 +6,8 @@ category: Frontend
 author: Daniel Flores
 locale: en
 image: https://placehold.co/1200x520/1e293b/42b883?text=Astro+Framework
+metaTitle: "Astro: The Ultimate Framework for Static and Dynamic Sites | Vunotek"
+ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=Astro+Framework
 ---
 
 Astro has redefined modern web development by delivering zero JavaScript by default while allowing interactive components only where needed.
