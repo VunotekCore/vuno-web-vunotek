@@ -75,9 +75,5 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false
     }
-  },
-  redirects: {
-    '/wcanal': 'https://whatsapp.com/channel/0029VbDHQvZ60eBXo4gbgA3c',
-    '/whatsapp': 'https://wa.me/50587577460'
   }
 })
