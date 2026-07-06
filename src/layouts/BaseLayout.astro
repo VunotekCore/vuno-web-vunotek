@@ -3,15 +3,29 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import PrivacyModal from '../components/PrivacyModal.astro';
+import { SEO, getBreadcrumbSchema } from '../seo';
 
 export interface Props {
   title: string;
   description: string;
   esUrl?: string;
   enUrl?: string;
+  robots?: string;
+  ogType?: string;
+  ogImage?: string;
+  breadcrumbName?: string;
 }
 
-const { title, description, esUrl: explicitEsUrl, enUrl: explicitEnUrl } = Astro.props;
+const {
+  title,
+  description,
+  esUrl: explicitEsUrl,
+  enUrl: explicitEnUrl,
+  robots = 'index, follow',
+  ogType = 'website',
+  ogImage: ogImageProp,
+  breadcrumbName,
+} = Astro.props;
 
 const currentLang = Astro.currentLocale || 'es';
 const currentPath = Astro.url.pathname;
@@ -25,10 +39,12 @@ const currentSlug = currentPath
   .replace(/\/$/, '');
 
 const ogLocale = isEn ? 'en_US' : 'es_ES';
-const ogImage = `${siteUrl}/logo.webp`;
+const locale = isEn ? 'en' : 'es';
 
 const esUrl = explicitEsUrl ?? (currentSlug ? `${siteUrl}/${currentSlug}` : `${siteUrl}/`);
 const enUrl = explicitEnUrl ?? (currentSlug ? `${siteUrl}/en/${currentSlug}` : `${siteUrl}/en/`);
+
+const orgDesc = SEO.organizationSchema.description[locale];
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -36,7 +52,7 @@ const orgSchema = {
   name: 'Vunotek',
   url: siteUrl,
   logo: `${siteUrl}/logo.webp`,
-  description: 'Engineering Precision for Modern Business',
+  description: orgDesc,
   foundingDate: '2024',
   contactPoint: {
     '@type': 'ContactPoint',
@@ -58,6 +74,12 @@ const webSchema = {
   description: description,
 };
 
+const breadcrumbSchema = getBreadcrumbSchema(locale, currentPath, breadcrumbName);
+
+const ogImageUrl = ogImageProp || `${siteUrl}/logo.webp`;
+const ogImageWidth = '1200';
+const ogImageHeight = '630';
+
 const gaSrc = gaId ? `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}` : '';
 const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');` : '';
 ---
@@ -67,9 +89,9 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | Vunotek</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
 
     <link rel="preconnect" href="https://ik.imagekit.io" />
     {gaId && <link rel="preconnect" href="https://www.googletagmanager.com" />}
@@ -81,17 +103,19 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     <link rel="alternate" hreflang="x-default" href={enUrl} />
 
     <meta property="og:locale" content={ogLocale} />
-    <meta property="og:title" content={`${title} | Vunotek`} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={`${siteUrl}${currentPath}`} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content={ogImageWidth} />
+    <meta property="og:image:height" content={ogImageHeight} />
     <meta property="og:site_name" content="Vunotek" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={`${title} | Vunotek`} />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <link rel="icon" type="image/svg+xml" href="/vunotek-isotipo-square.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -101,6 +125,9 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(orgSchema)} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(webSchema)} />
+    {breadcrumbSchema && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
 
     {gaId && <script is:inline src={gaSrc} async />}
     {gaId && <script is:inline set:html={gaScript} />}

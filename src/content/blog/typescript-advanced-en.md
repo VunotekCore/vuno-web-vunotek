@@ -6,6 +6,8 @@ category: TypeScript
 author: Daniel Flores
 locale: en
 image: https://placehold.co/1200x520/1e293b/42b883?text=Advanced+TypeScript
+metaTitle: "Advanced TypeScript: Conditional, Mapped and Template Literal Types | Vunotek"
+ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=Advanced+TypeScript
 ---
 
 TypeScript's type system is Turing complete. This means you can encode complex logic directly into your types.

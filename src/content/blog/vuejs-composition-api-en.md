@@ -6,6 +6,8 @@ category: Frontend
 author: Daniel Flores
 locale: en
 image: https://placehold.co/1200x520/1e293b/42b883?text=Vue+3+Composition+API
+metaTitle: "Vue 3 Composition API: Modern Patterns for Scalable Applications | Vunotek"
+ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=Vue+3+Composition+API
 ---
 
 Vue 3 introduced the Composition API, a more flexible reactivity model that lets you organize logic by feature rather than by lifecycle options.

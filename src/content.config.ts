@@ -12,6 +12,8 @@ const blog = defineCollection({
     author: z.string().default('Daniel Flores'),
     locale: z.enum(['es', 'en']),
     image: z.string().optional(),
+    metaTitle: z.string().optional(),
+    ogImage: z.string().optional(),
   }),
 })
 

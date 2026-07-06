@@ -444,8 +444,10 @@ export interface Props {
 
     document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
       unlock()
-      const target = document.querySelector('[data-featured-section]')
-      if (target) target.scrollIntoView({ behavior: 'smooth' })
+      requestAnimationFrame(() => {
+        const target = document.querySelector('[data-featured-section]')
+        if (target) target.scrollIntoView({ behavior: 'smooth' })
+      })
     })
 
     document.addEventListener('wheel', unlock, { passive: true })

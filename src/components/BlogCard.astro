@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { SEO } from '../seo';
 export interface Props {
   title: string;
   excerpt: string;
@@ -11,6 +12,8 @@ export interface Props {
 const { title, excerpt, date, category, slug, image } = Astro.props;
 const isEn = (Astro.currentLocale || 'es') === 'en';
 const prefix = isEn ? '/en' : '';
+const locale = isEn ? 'en' : 'es';
+const blogAlt = SEO.images.blogCard.alt[locale];
 
 const imageStore = {
   'blog/salesforce-automation': 'https://placehold.co/800x500/1e293b/42b883?text=Salesforce',
@@ -33,7 +36,7 @@ const imgSrc = image
   <a href={`${prefix}/blog/${slug}`} class="block">
     <div class="aspect-[16/10] glass-panel rounded-xl mb-md flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-electric-blue/50">
       {imgSrc ? (
-        <img src={imgSrc} alt="" width="640" height="400" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+        <img src={imgSrc} alt={blogAlt} width="640" height="400" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
       ) : (
         <Icon name="description" class="text-6xl text-outline/30" />
       )}

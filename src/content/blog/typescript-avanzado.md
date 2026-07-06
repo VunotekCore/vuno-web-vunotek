@@ -6,6 +6,8 @@ category: TypeScript
 author: Daniel Flores
 locale: es
 image: https://placehold.co/1200x520/1e293b/42b883?text=TypeScript+Avanzado
+metaTitle: "TypeScript Avanzado: Conditional Types, Mapped Types y Template Literals | Vunotek"
+ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=TypeScript+Avanzado
 ---
 
 El sistema de tipos de TypeScript es Turing completo. Esto significa que puedes codificar lógica compleja directamente en tus tipos.
