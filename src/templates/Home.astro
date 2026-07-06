@@ -34,9 +34,10 @@ const trustItems = [
   cta={{ label: gh.hero.cta, href: p('/contacto') }}
   ctaSecondary={{ label: gh.hero.ctaSecondary, href: p('/proyectos') }}
   statLabels={gh.hero.statLabels}
+  scrollLock
 />
 
-<Section class="bg-surface-container-lowest border-y border-outline-variant/10">
+<Section class="bg-surface-container-lowest border-y border-outline-variant/10" data-featured-section>
   <ServicesGrid
     anchor={gh.services.anchor}
     title={gh.services.title}

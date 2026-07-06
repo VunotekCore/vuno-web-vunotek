@@ -12,10 +12,11 @@ export interface Props {
   cta?: { label: string; href?: string }
   ctaSecondary?: { label: string; href?: string }
   statLabels?: string[]
+  scrollLock?: boolean
 }
 ---
 
-<section class="relative overflow-hidden min-h-dvh flex flex-col" style="scroll-margin-top: 80px;">
+<section class="relative overflow-hidden min-h-dvh flex flex-col" style="scroll-margin-top: 80px;" data-scroll-lock={Astro.props.scrollLock ? '' : undefined}>
   <div class="max-w-[min(90vw,1600px)] mx-auto px-margin flex-1 flex flex-col">
     {
       Astro.props.variant === 'code' && (
@@ -428,6 +429,28 @@ export interface Props {
   renderSnippet(0, -1)
   revealLines()
   animateMobileCode()
+
+  if (document.querySelector('[data-scroll-lock]')) {
+    let unlocked = false
+    const unlock = () => {
+      if (unlocked) return
+      unlocked = true
+      document.body.style.overflow = ''
+      document.removeEventListener('wheel', unlock)
+      document.removeEventListener('touchmove', unlock)
+    }
+
+    document.body.style.overflow = 'hidden'
+
+    document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+      unlock()
+      const target = document.querySelector('[data-featured-section]')
+      if (target) target.scrollIntoView({ behavior: 'smooth' })
+    })
+
+    document.addEventListener('wheel', unlock, { passive: true })
+    document.addEventListener('touchmove', unlock, { passive: true })
+  }
 </script>
 
 <style>
