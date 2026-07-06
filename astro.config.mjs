@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { blogSlugToEn, blogSlugToEs } from './src/i18n/blog-slugs-map.js';
+import { readFile, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
 const siteUrl = 'https://vunotek.com';
 
@@ -38,14 +40,27 @@ export default defineConfig({
           const esUrl = `${siteUrl}/blog/${esSlug}/`;
           const enUrl = `${siteUrl}/en/blog/${enSlug}/`;
           item.links = [
-            { url: esUrl, lang: 'es' },
-            { url: enUrl, lang: 'en' },
+            { url: esUrl, lang: 'es-ES' },
+            { url: enUrl, lang: 'en-US' },
             { url: enUrl, lang: 'x-default' },
           ];
         }
         return item;
       },
     }),
+    {
+      name: 'format-sitemap',
+      hooks: {
+        'astro:build:done': async ({ dir }) => {
+          for (const file of ['sitemap-index.xml', 'sitemap-0.xml']) {
+            const path = join(dir.pathname, file);
+            const content = await readFile(path, 'utf-8');
+            const formatted = content.replace(/>\s*</g, '>\n<');
+            await writeFile(path, formatted, 'utf-8');
+          }
+        },
+      },
+    },
   ],
   vite: {
     plugins: [tailwindcss()],
