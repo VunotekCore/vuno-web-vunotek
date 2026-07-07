@@ -2,11 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { getPageMeta } from '../seo'
 
-const pageMeta = getPageMeta('es', 'notFound')
+const isEn = Astro.url.pathname.startsWith('/en/')
+const locale = isEn ? 'en' : 'es'
+const pageMeta = getPageMeta(locale, 'notFound')
+const homeUrl = isEn ? '/en/' : '/'
+const title = isEn ? 'Page Not Found' : 'Página no encontrada'
+const message = isEn
+  ? 'The page you are looking for does not exist or has been moved.'
+  : 'La página que buscas no existe o fue movida.'
+const backLink = isEn ? 'Back to home' : 'Volver al inicio'
 ---
 
 <BaseLayout
-  title={pageMeta?.title ?? ''}
+  title={pageMeta?.title ?? title}
   description={pageMeta?.description ?? ''}
   robots={pageMeta?.robots ?? 'noindex, follow'}
   esUrl="https://vunotek.com/"
@@ -14,14 +22,14 @@ const pageMeta = getPageMeta('es', 'notFound')
 >
   <div class="min-h-screen flex items-center justify-center">
     <div class="flex flex-col items-center gap-md text-center px-margin">
-      <a href="/" class="flex items-center gap-3 mb-sm">
+      <a href={homeUrl} class="flex items-center gap-3 mb-sm">
         <span class="font-display-lg text-headline-md font-bold tracking-tight"><span class="text-on-surface">VUNO</span><span class="text-electric-blue">TEK</span></span>
       </a>
       <h1 class="font-display-lg text-headline-lg text-on-surface">404</h1>
       <p class="font-body-lg text-body-lg text-slate-text max-w-md">
-        La página que buscas no existe o fue movida.
+        {message}
       </p>
-      <a href="/" class="font-label-mono text-electric-blue hover:underline">Volver al inicio</a>
+      <a href={homeUrl} class="font-label-mono text-electric-blue hover:underline">{backLink}</a>
     </div>
   </div>
 </BaseLayout>

@@ -442,14 +442,6 @@ export interface Props {
 
     document.body.style.overflow = 'hidden'
 
-    document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
-      unlock()
-      requestAnimationFrame(() => {
-        const target = document.querySelector('[data-featured-section]')
-        if (target) target.scrollIntoView({ behavior: 'smooth' })
-      })
-    })
-
     document.addEventListener('wheel', unlock, { passive: true })
     document.addEventListener('touchmove', unlock, { passive: true })
   }
