@@ -93,6 +93,7 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
+    <meta name="google-site-verification" content="OLAPWz6sRxKAUk91oJG0dQmfTtv-mFFGoHo-c_wG3DA" />
 
     <link rel="preconnect" href="https://ik.imagekit.io" />
     {gaId && <link rel="preconnect" href="https://www.googletagmanager.com" />}
@@ -130,10 +131,10 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
       <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
     )}
 
-    {gaId && <script is:inline src={gaSrc} async />}
-    {gaId && <script is:inline set:html={gaScript} />}
   </head>
   <body class="bg-background text-on-surface font-body-md selection:bg-electric-blue/30 selection:text-electric-blue overflow-x-hidden">
+    {gaId && <script is:inline set:html={gaScript} />}
+    {gaId && <script is:inline src={gaSrc} async />}
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-surface-charcoal focus:text-electric-blue focus:outline-none">
       Skip to main content
     </a>
