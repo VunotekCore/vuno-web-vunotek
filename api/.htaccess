@@ -5,3 +5,16 @@
 <Files "config.example.php">
   Require all denied
 </Files>
+
+<Files "bootstrap.php">
+  Require all denied
+</Files>
+
+# Protect SOA directories from directory listing
+Options -Indexes
+
+# Deny direct access to Models, Controllers, Services, Traits
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(Config|Controllers|Models|Services|Traits)/ - [F,L]
+</IfModule>

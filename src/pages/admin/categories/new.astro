@@ -1,0 +1,14 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro'
+import CategoryForm from '../../../components/admin/CategoryForm.vue'
+---
+
+<AdminLayout title="Nueva categoría">
+  <div class="mb-6">
+    <a href="/admin/categories" class="inline-flex items-center gap-1 text-sm text-on-surface-variant hover:text-on-surface transition-colors">
+      <span class="material-symbols-rounded text-lg">arrow_back</span>
+      Volver a categorías
+    </a>
+  </div>
+  <CategoryForm client:only="vue" />
+</AdminLayout>

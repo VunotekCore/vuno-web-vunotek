@@ -1,0 +1,17 @@
+---
+import '../../styles/global.css'
+import LoginForm from '../../components/admin/LoginForm.vue'
+---
+
+<html class="dark" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Iniciar Sesión — Vunotek Admin</title>
+    <link rel="icon" type="image/svg+xml" href="/vunotek-isotipo-square.svg" />
+  </head>
+  <body class="bg-background text-on-surface font-body-md antialiased flex items-center justify-center min-h-screen">
+    <LoginForm client:only="vue" />
+  </body>
+</html>

@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import sitemap from '@astrojs/sitemap'
+import vue from '@astrojs/vue'
 import { blogSlugToEn, blogSlugToEs } from './src/i18n/blog-slugs-map.js'
 import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
@@ -22,6 +23,9 @@ export default defineConfig({
     defaultStrategy: 'hover'
   },
   integrations: [
+    vue({
+      appEntrypoint: '/src/plugins/vue-entrypoint.ts',
+    }),
     sitemap({
       i18n: {
         defaultLocale: 'es',

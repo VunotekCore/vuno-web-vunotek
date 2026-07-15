@@ -1,0 +1,22 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro'
+import DashboardStats from '../../components/admin/DashboardStats.vue'
+---
+
+<AdminLayout title="Dashboard">
+  <DashboardStats client:only="vue" />
+
+  <div class="mt-8 rounded-xl border border-outline-variant/20 bg-surface-container p-6">
+    <h2 class="text-headline-md font-display-lg text-on-surface mb-4">Acciones rápidas</h2>
+    <div class="flex flex-wrap gap-3">
+      <a href="/admin/blog/new" class="inline-flex items-center gap-2 rounded-lg bg-vue-green px-4 py-2.5 font-medium text-on-secondary transition-colors hover:bg-vue-green/90">
+        <span class="material-symbols-rounded text-xl">add</span>
+        Nuevo post
+      </a>
+      <a href="/admin/categories/new" class="inline-flex items-center gap-2 rounded-lg border border-outline-variant/40 px-4 py-2.5 font-medium text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface">
+        <span class="material-symbols-rounded text-xl">add</span>
+        Nueva categoría
+      </a>
+    </div>
+  </div>
+</AdminLayout>

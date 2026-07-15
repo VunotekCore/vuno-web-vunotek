@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro'
+import CategoryTable from '../../../components/admin/CategoryTable.vue'
+---
+
+<AdminLayout title="Categorías">
+  <div class="flex items-center justify-between mb-6">
+    <p class="text-on-surface-variant">Gestiona las categorías del blog</p>
+    <a href="/admin/categories/new" class="inline-flex items-center gap-2 rounded-lg bg-vue-green px-4 py-2.5 font-medium text-on-secondary transition-colors hover:bg-vue-green/90">
+      <span class="material-symbols-rounded text-xl">add</span>
+      Nueva categoría
+    </a>
+  </div>
+  <CategoryTable client:only="vue" />
+</AdminLayout>

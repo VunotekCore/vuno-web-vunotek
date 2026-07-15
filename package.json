@@ -14,15 +14,24 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vue": "^6.0.1",
     "@fontsource/hanken-grotesk": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
+    "@lucide/vue": "^1.24.0",
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^6.4.7",
-    "tailwindcss": "^4.3.1"
+    "pinia": "^4.0.2",
+    "tailwindcss": "^4.3.1",
+    "vue": "^3.5.39"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "typescript": "^6.0.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "7.3.6"
+    }
   }
 }
