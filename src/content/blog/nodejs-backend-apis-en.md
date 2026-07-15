@@ -1,13 +1,13 @@
 ---
 title: "Building REST APIs with Node.js: Architecture and Best Practices"
 excerpt: "A practical guide to designing robust REST APIs with Node.js, Express, middleware patterns, validation, and JWT authentication."
-date: 2025-05-20
+date: 2026-05-20
 category: Backend
 author: Daniel Flores
 locale: en
-image: https://placehold.co/1200x520/1e293b/42b883?text=Node.js+REST+APIs
+image: https://ik.imagekit.io/vijys5g3r/blog/nodejs-backend-apis.webp
 metaTitle: "Building REST APIs with Node.js: Architecture and Best Practices | Vunotek"
-ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=Node.js+REST+APIs
+ogImage: https://ik.imagekit.io/vijys5g3r/blog/nodejs-backend-apis.webp
 ---
 
 Node.js has become the standard for building fast, scalable REST APIs. A well-defined architecture is the difference between a maintainable project and an impossible-to-extend legacy.

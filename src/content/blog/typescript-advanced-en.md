@@ -1,13 +1,13 @@
 ---
 title: "Advanced TypeScript: Conditional Types, Mapped Types, and Template Literals"
 excerpt: "Master TypeScript's type system with advanced patterns that turn your code into self-documenting, immutable contracts."
-date: 2025-03-28
+date: 2026-03-28
 category: TypeScript
 author: Daniel Flores
 locale: en
-image: https://placehold.co/1200x520/1e293b/42b883?text=Advanced+TypeScript
+image: https://ik.imagekit.io/vijys5g3r/blog/typescript-avanzado.webp
 metaTitle: "Advanced TypeScript: Conditional, Mapped and Template Literal Types | Vunotek"
-ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=Advanced+TypeScript
+ogImage: https://ik.imagekit.io/vijys5g3r/blog/typescript-avanzado.webp
 ---
 
 TypeScript's type system is Turing complete. This means you can encode complex logic directly into your types.

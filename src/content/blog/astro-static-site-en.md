@@ -1,13 +1,13 @@
 ---
 title: "Astro: The Ultimate Framework for Static and Dynamic Sites"
 excerpt: "Discover how Astro combines the best of SSG and SSR with its islands architecture, zero JavaScript by default, and hybrid rendering."
-date: 2025-07-10
+date: 2026-07-10
 category: Frontend
 author: Daniel Flores
 locale: en
-image: https://placehold.co/1200x520/1e293b/42b883?text=Astro+Framework
+image: https://ik.imagekit.io/vijys5g3r/blog/astro-static-site.webp
 metaTitle: "Astro: The Ultimate Framework for Static and Dynamic Sites | Vunotek"
-ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=Astro+Framework
+ogImage: https://ik.imagekit.io/vijys5g3r/blog/astro-static-site.webp
 ---
 
 Astro has redefined modern web development by delivering zero JavaScript by default while allowing interactive components only where needed.
