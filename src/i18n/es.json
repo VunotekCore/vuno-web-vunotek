@@ -42,7 +42,7 @@
       "title": "Maximizando la Eficiencia con",
       "titleAccent": "Software Robusto",
       "titleRest": "y Automatización Avanzada",
-      "description": "Desarrollamos soluciones de alto rendimiento combinando la robustez de .NET, la flexibilidad de Salesforce y la agilidad de Vue.js junto a Node.js. Automatizamos tus procesos para acelerar tu crecimiento.",
+      "description": "Ingeniería de software de alto rendimiento con .NET, Salesforce, Vue.js y Node.js. Automatizamos procesos empresariales para escalar tu negocio.",
       "cta": "Iniciar un Proyecto",
       "ctaSecondary": "CONOCE NUESTRO STACK",
       "statLabels": [
@@ -53,7 +53,7 @@
       ]
     },
     "trust": {
-      "title": "Expertos en Vue.js y Ecosistemas Modernos"
+      "title": "Portfolio Interactivo"
     },
     "services": {
       "anchor": "Servicios",
@@ -213,7 +213,7 @@
       "title": "Arquitectura y Desarrollo de Sistemas de",
       "titleAccent": "Alto Rendimiento",
       "titleRest": "",
-      "description": "Diseñamos soluciones tecnológicas robustas que eliminan la fricción operativa, optimizan bases de datos y automatizan procesos de negocio complejos bajo estándares senior."
+      "description": "Soluciones de ingeniería que eliminan fricción operativa, optimizan bases de datos y automatizan procesos complejos bajo estándares senior."
     },
     "core_services": [
       {
@@ -312,7 +312,7 @@
     "hero": {
       "badge": "// Engineering Excellence",
       "title": "Nuestra Tecnología",
-      "description": "Construimos el futuro digital utilizando un stack moderno, robusto y altamente escalable. Cada herramienta ha sido seleccionada con un único objetivo: garantizar el máximo rendimiento bajo entornos de alta concurrencia."
+      "description": "Stack moderno, robusto y altamente escalable para garantizar máximo rendimiento en entornos de alta concurrencia."
     },
     "stack_grid": {
       "vue": {
@@ -383,43 +383,35 @@
           "features": [
             {
               "text": "Interfaz POS con búsqueda de productos, navegación por categorías y carrito de compras",
-              "image": "pos-interface"
+              "image": "pos_interface"
             },
             {
               "text": "Múltiples métodos de pago (efectivo, tarjeta, cheque) y descuentos por línea",
-              "image": "pos-payments"
+              "image": "pos_payments"
             },
             {
               "text": "Administración de caja: apertura/cierre, efectivo esperado, sobrantes y faltantes",
-              "image": "pos-cashdrawer"
+              "image": "pos_cashdrawer"
             },
             {
               "text": "Ventas offline con cola de sincronización automática vía IndexedDB (Dexie.js)",
-              "image": "pos-offline"
+              "image": "pos_offline"
             },
             {
               "text": "Inventario en tiempo real con variantes, kits, lotes, series y alertas de stock mínimo",
-              "image": "pos-inventory"
+              "image": "pos_inventory"
             },
             {
               "text": "Transferencias de inventario entre ubicaciones y control multi-localización",
-              "image": "pos-transfers"
+              "image": "pos_transfers"
             },
             {
               "text": "Proveedores, órdenes de compra y recepción de mercancía",
-              "image": "pos-suppliers"
-            },
-            {
-              "text": "App de escritorio nativa (Electron) + PWA instalable",
-              "image": "pos-desktop"
-            },
-            {
-              "text": "Arquitectura multi-tenant con control de acceso basado en roles",
-              "image": "pos-multitenant"
+              "image": "pos_suppliers"
             },
             {
               "text": "Dashboards de administración, cajero y reportes en tiempo real",
-              "image": "pos-dashboards"
+              "image": "pos_dashboards"
             }
           ],
           "tech_stack": [
@@ -445,50 +437,58 @@
             },
             {
               "text": "Catálogo de productos con filtros avanzados por categoría, color y talla",
-              "image": "shop-catalog"
+              "image": "shop_filtros"
             },
             {
               "text": "Galería interactiva de imágenes con lupa y modal de vista rápida",
-              "image": "shop-gallery"
+              "image": "shop_detalles"
             },
             {
               "text": "Carrito de compras con persistencia localStorage y sincronización con servidor",
-              "image": "shop-cart"
+              "image": "shop_cart"
             },
             {
               "text": "Pagos con tarjeta vía Stripe y transferencia bancaria con carga de comprobante",
-              "image": "shop-payments"
+              "image": "shop_payment"
             },
             {
               "text": "Soporte multi-moneda con tasas de cambio configurables",
-              "image": "shop-currency"
+              "image": "shop_currency"
             },
             {
               "text": "Cuentas de cliente con historial de pedidos, lista de deseos y direcciones",
-              "image": "shop-accounts"
+              "image": "shop_customer"
             },
             {
               "text": "Panel administrativo completo: productos, pedidos, cupones, reseñas y blog",
-              "image": "shop-admin"
+              "image": "shop_admin"
             },
             {
               "text": "Gestión de inventario con matriz de variantes y control de stock",
-              "image": "shop-inventory"
+              "image": "shop_inventory"
             },
             {
               "text": "Autenticación 2FA (TOTP) para seguridad del panel administrativo",
-              "image": "shop-security"
+              "image": "shop_security"
             },
             {
               "text": "Notificaciones email automatizadas con plantillas HTML personalizables",
-              "image": "shop-notifications"
+              "image": "shop_notifications"
             },
             {
               "text": "Sistema de internacionalización (ES/EN) con cobertura completa de traducciones",
-              "image": "shop-i18n"
+              "image": "shop_i18n"
             }
           ],
-          "tech_stack": ["Astro", "Vue.js", "PHP", "Stripe", "TypeScript", "Tailwind CSS"]
+          "tech_stack": [
+            "Astro",
+            "Vue.js",
+            "PHP",
+            "Stripe",
+            "TypeScript",
+            "Tailwind CSS",
+            "MySQL 8.0+"
+          ]
         },
         {
           "tag": "HOTEL",
@@ -499,51 +499,51 @@
           "features": [
             {
               "text": "Sitio web de reservas bilingüe (ES/EN) con catálogo de habitaciones y disponibilidad",
-              "image": "hotel-website"
+              "image": "hotel_portada"
             },
             {
               "text": "Páginas detalle con amenidades, capacidad, precios y galería de imágenes",
-              "image": "hotel-rooms"
+              "image": "hotel_detalles"
             },
             {
               "text": "Reservas online con pagos Stripe y opción de transferencia bancaria",
-              "image": "hotel-bookings"
+              "image": "hotel_bookings"
             },
             {
               "text": "Panel de recepción con cuadrícula de habitaciones codificada por colores y búsqueda rápida",
-              "image": "hotel-reception"
+              "image": "hotel_receptions"
             },
             {
               "text": "Flujos de check-in/check-out con generación automática de facturas",
-              "image": "hotel-checkin"
+              "image": "hotel_checkin"
             },
             {
               "text": "Gestión de housekeeping (disponible, ocupado, limpieza, mantenimiento)",
-              "image": "hotel-housekeeping"
+              "image": "hotel_housekeeping"
             },
             {
               "text": "Calendario de ocupación con vista mensual tipo Gantt",
-              "image": "hotel-calendar"
+              "image": "hotel_calendar"
             },
             {
               "text": "Directorio de huéspedes con historial de estancias y gestión de documentos",
-              "image": "hotel-guests"
+              "image": "hotel_guests"
             },
             {
               "text": "Ciclo de vida de reservas: pendiente, confirmada, check-in, check-out, cancelada",
-              "image": "hotel-lifecycle"
+              "image": "hotel_lifecycle"
             },
             {
               "text": "Panel administrativo completo: habitaciones, tarifas, blog y configuración",
-              "image": "hotel-admin"
+              "image": "hotel_admin"
             },
             {
               "text": "Autenticación 2FA (TOTP) con control de acceso basado en roles",
-              "image": "hotel-security"
+              "image": "hotel_security"
             },
             {
               "text": "Notificaciones email automatizadas (confirmación, pago pendiente, cancelación)",
-              "image": "hotel-notifications"
+              "image": "hotel_notifications"
             }
           ],
           "tech_stack": ["Astro", "Vue.js", "Stripe", "TypeScript", "PWA", "Tailwind CSS"]
@@ -615,51 +615,101 @@
           "features": [
             {
               "text": "Bandeja de entrada social unificada: WhatsApp, Instagram y Facebook",
-              "image": "crm-inbox"
+              "image": "crm_inbox"
             },
             {
               "text": "Perfiles de cliente 360° con historial de interacciones y valor de por vida",
-              "image": "crm-profiles"
+              "image": "crm_profiles"
             },
             {
               "text": "Kanban de oportunidades drag-and-drop con automatización de etapas",
-              "image": "crm-kanban"
+              "image": "crm_kanban"
             },
             {
               "text": "Motor de cotizaciones con análisis de costos, márgenes, descuentos e impuestos",
-              "image": "crm-quotes"
+              "image": "crm_quotes"
             },
             {
               "text": "Gestión de actividades y tareas con recordatorios automáticos",
-              "image": "crm-tasks"
+              "image": "crm_tasks"
             },
             {
               "text": "Notificaciones push en tiempo real vía WebSocket",
-              "image": "crm-notifications"
+              "image": "crm_notifications"
             },
             {
               "text": "Control de acceso basado en roles con permisos granulares por entidad",
-              "image": "crm-rbac"
+              "image": "crm_rbac"
             },
             {
               "text": "Control de asistencia con GPS y foto de entrada/salida",
-              "image": "crm-attendance"
+              "image": "crm_attendance"
             },
             {
               "text": "Gestión de empleados con departamentos, puestos y organigrama",
-              "image": "crm-employees"
-            },
-            {
-              "text": "Dashboards interactivos: embudo, ingresos, rendimiento de agentes",
-              "image": "crm-dashboards"
-            },
-            {
-              "text": "Arquitectura SaaS multitenencia con datos aislados por empresa",
-              "image": "crm-saas"
+              "image": "crm_employees"
             },
             { "text": "Soporte PWA con modo offline y modo oscuro", "image": "crm-pwa" }
           ],
           "tech_stack": ["TypeScript", "Vue.js", "Node.js", "WebSocket", "PWA", "PostgreSQL"]
+        },
+        {
+          "tag": "E-COMMERCE",
+          "slug": "vuno-drive",
+          "title": "VUNO DRIVE — Plataforma para renta o venta de autos",
+          "desc": "Plataforma de alquiler y venta de vehículos en Nicaragua. Catálogo público, reserva online multi-step, panel administrador completo con check-in/check-out, control de flota y POS",
+          "image_key": "drive",
+          "features": [
+            {
+              "text": "Catálogo Público",
+              "image": "drive_catalogo"
+            },
+            {
+              "text": " Panel Administrador (segmentado por roles: admin, manager, agent, cashier, editor, viewer",
+              "image": "drive_dash_rol"
+            },
+            {
+              "text": "Dashboard con stats por rol (admin: generales, agent: métricas personales, cashier: caja)",
+              "image": "drive_dash"
+            },
+            {
+              "text": "Flota — CRUD vehículos (Info, Pricing, Fotos, Features)",
+              "image": "drive_flota"
+            },
+            {
+              "text": "Sucursales — horarios, festivos, disponibilidad",
+              "image": "drive_sucursales"
+            },
+            {
+              "text": "Reservas — lista, detalle, cambio de estado, check-in/out, penalizaciones, no-show",
+              "image": "drive_reservas"
+            },
+            {
+              "text": "Extras y Seguros — CRUD add-ons y coberturas",
+              "image": "drive_seguros"
+            },
+            {
+              "text": "Ventas — POS para venta directa de vehículos",
+              "image": "drive_ventas"
+            },
+            {
+              "text": "Clientes — libreta direcciones, historial reservas",
+              "image": "drive_clientes"
+            },
+
+            {
+              "text": "Pricing tiers: tarifa diaria / semanal (7d) / mensual (30d) — el sistema aplica la mejor tarifa automáticamente",
+              "image": "drive_precios"
+            }
+          ],
+          "tech_stack": [
+            "Astro 6 ",
+            "Tailwind CSS",
+            "TypeScript",
+            "Admin UI Vue3 + Pinina(Composition API)",
+            "Backend PHP 8.1+ strick mode, SOA(Controllers + Models)",
+            "DB Mysql 8, Tablas Normalizadas"
+          ]
         }
       ]
     },
@@ -678,7 +728,7 @@
     "hero": {
       "badge": "Contact Engineering",
       "title": "Construyamos algo significativo",
-      "description": "Ya sea que estés escalando una infraestructura existente, integrando módulos avanzados de Salesforce o requiriendo una arquitectura backend robusta, estamos listos para analizar tus requerimientos técnicos."
+      "description": "Escalar infraestructura, integrar Salesforce o construir arquitectura backend robusta. Analizamos tus requerimientos técnicos."
     },
     "quick_channels": {
       "title": "Canales Directos",
@@ -732,7 +782,7 @@
       },
       "sidebar": {
         "schedule_title": "Disponibilidad Operativa",
-        "schedule_hours": "Lunes a Viernes — 08:00 a 17:00 (CST)",
+        "schedule_hours": "Lunes a Viernes — 08:00 a 17:00 (GMT-6)",
         "response_time": "Tiempo medio de respuesta técnica: < 24 horas.",
         "social_title": "Redes Profesionales"
       }
@@ -753,7 +803,7 @@
       "title": "Respaldando tu Infraestructura",
       "titleAccent": "con Experiencia Senior",
       "titleRest": "Real",
-      "description": "Vunotek nace como la consolidación de más de 15 años de evolución en la ingeniería de software. Diseñamos e implementamos sistemas de alta disponibilidad combinando la robustez del desarrollo empresarial con la agilidad de los ecosistemas web modernos."
+      "description": "Más de 15 años de ingeniería de software. Sistemas de alta disponibilidad con robustez empresarial y agilidad web moderna."
     },
     "pillars": {
       "mission": {
