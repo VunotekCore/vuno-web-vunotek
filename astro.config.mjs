@@ -32,6 +32,7 @@ export default defineConfig({
       },
       serialize(item) {
         const url = item.url.replace(/\/$/, '')
+        const isEnUrl = url.includes('/en/')
         const blogMatch = url.match(/\/blog\/(.+)$/)
         if (blogMatch) {
           const slug = blogMatch[1]
@@ -42,8 +43,13 @@ export default defineConfig({
           item.links = [
             { url: esUrl, lang: 'es-ES' },
             { url: enUrl, lang: 'en-US' },
-            { url: enUrl, lang: 'x-default' }
+            { url: esUrl, lang: 'x-default' }
           ]
+        } else if (!isEnUrl && item.links) {
+          const esLink = item.links.find(l => l.lang === 'es-ES')
+          if (esLink && !item.links.some(l => l.lang === 'x-default')) {
+            item.links.push({ url: esLink.url, lang: 'x-default' })
+          }
         }
         return item
       }
