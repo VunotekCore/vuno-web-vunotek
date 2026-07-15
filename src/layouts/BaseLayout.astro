@@ -42,8 +42,8 @@ const currentSlug = currentPath
 const ogLocale = isEn ? 'en_US' : 'es_ES';
 const locale = isEn ? 'en' : 'es';
 
-const esUrl = explicitEsUrl ?? (currentSlug ? `${siteUrl}/${currentSlug}` : `${siteUrl}/`);
-const enUrl = explicitEnUrl ?? (currentSlug ? `${siteUrl}/en/${currentSlug}` : `${siteUrl}/en/`);
+const esUrl = explicitEsUrl ?? (currentSlug ? `${siteUrl}/${currentSlug}/` : `${siteUrl}/`);
+const enUrl = explicitEnUrl ?? (currentSlug ? `${siteUrl}/en/${currentSlug}/` : `${siteUrl}/en/`);
 
 const orgDesc = SEO.organizationSchema.description[locale];
 
@@ -55,6 +55,31 @@ const orgSchema = {
   logo: `${siteUrl}/logo.webp`,
   description: orgDesc,
   foundingDate: '2024',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'NI',
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Nicaragua' },
+    { '@type': 'Country', name: 'Costa Rica' },
+    { '@type': 'Country', name: 'Honduras' },
+    { '@type': 'Country', name: 'Guatemala' },
+    { '@type': 'Country', name: 'El Salvador' },
+    { '@type': 'Country', name: 'Panama' },
+    { '@type': 'Country', name: 'United States' },
+  ],
+  knowsAbout: [
+    'Software Engineering',
+    'Vue.js Development',
+    'Node.js Development',
+    '.NET Development',
+    'Salesforce Integration',
+    'Cloud Architecture',
+    'AWS Infrastructure',
+    'Enterprise Automation',
+    'PostgreSQL',
+    'TypeScript',
+  ],
   contactPoint: {
     '@type': 'ContactPoint',
     email: 'projects@vunotek.com',
@@ -89,6 +114,7 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0f1a" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -102,9 +128,10 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
 
     <link rel="alternate" hreflang="es" href={esUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
-    <link rel="alternate" hreflang="x-default" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={esUrl} />
 
     <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={isEn ? 'es_ES' : 'en_US'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
@@ -115,6 +142,8 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     <meta property="og:site_name" content="Vunotek" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@vunotek" />
+    <meta name="twitter:creator" content="@vunotek" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />

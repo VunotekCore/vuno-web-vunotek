@@ -61,6 +61,8 @@ export const SEO = {
       { position: 2, name: 'Blog', path: '/blog/' },
       { position: 2, name: 'Nosotros', path: '/about/' },
       { position: 2, name: 'Contacto', path: '/contacto/' },
+      { position: 2, name: 'Privacidad', path: '/privacidad/' },
+      { position: 2, name: 'Términos', path: '/terminos/' },
     ],
     en: [
       { position: 1, name: 'Home', path: '/en/' },
@@ -69,6 +71,8 @@ export const SEO = {
       { position: 2, name: 'Blog', path: '/en/blog/' },
       { position: 2, name: 'About', path: '/en/about/' },
       { position: 2, name: 'Contact', path: '/en/contacto/' },
+      { position: 2, name: 'Privacy', path: '/en/privacy/' },
+      { position: 2, name: 'Terms', path: '/en/terms/' },
     ],
   },
 
@@ -115,6 +119,22 @@ export const SEO = {
     blog: (locale: 'es' | 'en') => ({
       title: (i18n[locale] as any).blog.hero.title + ' | Vunotek',
       description: (i18n[locale] as any).blog.hero.desc,
+    }),
+
+    privacy: (locale: 'es' | 'en') => ({
+      title: (i18n[locale] as any).privacy_page.meta.title,
+      description:
+        locale === 'es'
+          ? 'Política de privacidad de Vunotek. Conoce cómo recopilamos, protegemos y utilizamos tus datos personales.'
+          : 'Vunotek privacy policy. Learn how we collect, protect, and use your personal data.',
+    }),
+
+    terms: (locale: 'es' | 'en') => ({
+      title: (i18n[locale] as any).terms_page.meta.title,
+      description:
+        locale === 'es'
+          ? 'Términos de servicio de Vunotek. Condiciones de uso del sitio web y servicios de ingeniería de software.'
+          : 'Vunotek terms of service. Website usage conditions and software engineering services.',
     }),
   },
 

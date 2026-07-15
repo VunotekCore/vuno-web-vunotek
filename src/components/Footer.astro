@@ -45,9 +45,8 @@ const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind C
           {f('columns.navigation_title')}
         </span>
         <div class="grid grid-cols-2 gap-x-md gap-y-sm">
-          <a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.solutions')}
+          <a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.solutions')}</a>
           <a href={p('/servicios')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.services')}</a>
-          <a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.stack')}</a>
           <a href={isEn ? '/en/blog' : '/blog'} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.blog')}</a>
           <a href={p('/about')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.about')}</a>
           <a href={p('/contacto')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.contact')}</a>
@@ -60,8 +59,8 @@ const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind C
           {f('columns.legal_title')}
         </span>
         <div class="flex flex-col gap-sm">
-          <button type="button" data-open-privacy class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors text-left">{f('columns.links.privacy')}</button>
-          <button type="button" data-open-terms class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors text-left">{f('columns.links.terms')}</button>
+          <a href={p('/privacidad/')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.privacy')}</a>
+          <a href={p('/terminos/')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.terms')}</a>
         </div>
       </div>
     </div>

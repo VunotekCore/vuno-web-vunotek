@@ -23,7 +23,7 @@ if (blogPostMatch) {
   href={targetUrl}
   class="inline-flex items-center gap-1.5 font-label-mono text-label-mono text-on-surface-variant hover:text-electric-blue transition-colors px-2 py-1 ml-4"
   aria-label={`Switch to ${targetLabel}`}
-  onclick="localStorage.setItem('locale', '{targetLocale}')"
+  onclick={`localStorage.setItem('locale', '${targetLocale}')`}
 >
   {
     targetLocale === 'en'
