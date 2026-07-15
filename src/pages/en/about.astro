@@ -3,11 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import About from '../../templates/About.astro'
 import { getTranslations } from '../../i18n/utils'
 
-const dict = getTranslations(Astro.currentLocale ?? 'es') as any
+const dict = getTranslations(Astro.currentLocale ?? 'en') as any
 const ab = dict.about
 const desc = ab.hero.description
 ---
 
 <BaseLayout title={ab.meta.title} description={desc}>
-  <About dict={dict} locale={Astro.currentLocale ?? 'es'} />
+  <About dict={dict} locale={Astro.currentLocale ?? 'en'} />
 </BaseLayout>

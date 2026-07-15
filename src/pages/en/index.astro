@@ -4,8 +4,8 @@ import Home from '../../templates/Home.astro'
 import { getTranslations } from '../../i18n/utils'
 import { getPageMeta } from '../../seo'
 
-const dict = getTranslations(Astro.currentLocale ?? 'es') as any
-const locale = Astro.currentLocale ?? 'es'
+const dict = getTranslations(Astro.currentLocale ?? 'en') as any
+const locale = Astro.currentLocale ?? 'en'
 const pageMeta = getPageMeta(locale, 'home')
 ---
 
