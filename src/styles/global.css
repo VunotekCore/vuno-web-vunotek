@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@source "../components/**/*.vue";
+@source "../components/**/*.astro";
+@source "../pages/**/*.astro";
 
 /* Breakpoint reference (Tailwind v4 native):
    ═══════════════════════════════════════
@@ -123,89 +126,93 @@
   --spacing-margin: 32px;
 }
 
-body {
-  background-color: var(--color-background);
-  color: var(--color-on-surface);
-  font-family: var(--font-body-md);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
+    font-family: var(--font-body-md);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-::selection {
-  background-color: color-mix(in srgb, var(--color-electric-blue) 30%, transparent);
-  color: var(--color-electric-blue);
-}
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-electric-blue) 30%, transparent);
+    color: var(--color-electric-blue);
+  }
 
-.glass-panel {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(64, 73, 68, 0.3);
-}
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-.glass-panel:hover {
-  border-color: rgba(0, 168, 255, 0.5);
-}
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface-dim);
+  }
 
-.text-gradient {
-  background: linear-gradient(135deg, var(--color-electric-blue) 0%, #60CFFF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-charcoal);
+    border-radius: 4px;
+  }
 
-.metric-glow {
-  text-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-surface-container-highest);
+  }
 
-.code-glow {
-  text-shadow: 0 0 10px rgba(66, 184, 131, 0.3);
-}
+  @media (width < 640px) {
+    :root {
+      --spacing-margin: 16px;
+      --spacing-xl: 48px;
+      --spacing-lg: 32px;
+    }
+  }
 
-.form-input-focus:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--color-electric-blue);
-  border-color: var(--color-electric-blue);
-}
+  /* mobile-land (640-767) + tablet (768-1023) */
+  @media (width >= 640px) and (width < 1024px) {
+    :root {
+      --spacing-margin: 24px;
+    }
+  }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-surface-dim);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-surface-charcoal);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-surface-container-highest);
-}
-
-@media (width < 640px) {
-  :root {
-    --spacing-margin: 16px;
-    --spacing-xl: 48px;
-    --spacing-lg: 32px;
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-/* mobile-land (640-767) + tablet (768-1023) */
-@media (width >= 640px) and (width < 1024px) {
-  :root {
-    --spacing-margin: 24px;
+@layer components {
+  .glass-panel {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(64, 73, 68, 0.3);
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .glass-panel:hover {
+    border-color: rgba(0, 168, 255, 0.5);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-electric-blue) 0%, #60CFFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .metric-glow {
+    text-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
+  }
+
+  .code-glow {
+    text-shadow: 0 0 10px rgba(66, 184, 131, 0.3);
+  }
+
+  .form-input-focus:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-electric-blue);
+    border-color: var(--color-electric-blue);
   }
 }

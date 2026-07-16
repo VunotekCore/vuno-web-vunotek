@@ -1,5 +1,6 @@
 ---
 import '../../styles/global.css'
+import '../../styles/admin.css'
 import LoginForm from '../../components/admin/LoginForm.vue'
 ---
 
@@ -8,10 +9,11 @@ import LoginForm from '../../components/admin/LoginForm.vue'
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0b1326" />
     <title>Iniciar Sesión — Vunotek Admin</title>
     <link rel="icon" type="image/svg+xml" href="/vunotek-isotipo-square.svg" />
   </head>
-  <body class="bg-background text-on-surface font-body-md antialiased flex items-center justify-center min-h-screen">
+  <body class="bg-[#0a1022] text-[#dae2fd] font-body-md antialiased">
     <LoginForm client:only="vue" />
   </body>
 </html>
