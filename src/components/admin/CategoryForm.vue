@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useAuthStore } from '../../stores/auth'
-import { categoryService } from '../../services/categoryService'
-import { useToast } from '../../composables/useToast'
 
+const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
 const auth = useAuthStore()
-const toast = useToast()
 const isViewer = computed(() => auth.isViewer)
 
 interface CategoryData {
@@ -52,7 +50,8 @@ async function fetchCategory() {
   }
 
   try {
-    const { data } = await categoryService.get(Number(props.categoryId))
+    const res = await fetch(`${API_URL}/categories/get.php?id=${props.categoryId}`, { headers: auth.authHeaders() })
+    const data = await res.json()
     if (data.success && data.data) {
       const c = data.data as CategoryData
       form.value = {
@@ -81,12 +80,22 @@ async function handleSubmit() {
 
   saving.value = true
   try {
-    const { data } = isEdit.value
-      ? await categoryService.update(Number(props.categoryId), form.value)
-      : await categoryService.create(form.value)
+    const url = isEdit.value
+      ? `${API_URL}/categories/update.php?id=${props.categoryId}`
+      : `${API_URL}/categories/create.php`
+
+    const method = isEdit.value ? 'PUT' : 'POST'
+
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json', ...auth.authHeaders() },
+      body: JSON.stringify(form.value),
+    })
+
+    const data = await res.json()
 
     if (data.success) {
-      toast.success(isEdit.value ? 'Categoría actualizada' : 'Categoría creada')
+      success.value = isEdit.value ? 'Categoría actualizada exitosamente' : 'Categoría creada exitosamente'
       if (!isEdit.value) {
         window.location.href = '/admin/categories'
       }
