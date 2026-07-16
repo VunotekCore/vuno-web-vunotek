@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useAuthStore } from '../../stores/auth'
 
 const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
+const auth = useAuthStore()
+
+const canEdit = computed(() => auth.hasPermission('blog', 'edit'))
+const canCreate = computed(() => auth.hasPermission('blog', 'create'))
+const canDelete = computed(() => auth.hasPermission('blog', 'delete'))
 
 interface Post {
   id: number
@@ -26,11 +32,6 @@ const activeLocale = ref<string>('')
 const activeStatus = ref<string>('')
 const deletingId = ref<number | null>(null)
 
-function authHeaders(): Record<string, string> {
-  const token = localStorage.getItem('admin_token')
-  return token ? { Authorization: `Bearer ${token}` } : {}
-}
-
 async function fetchPosts() {
   loading.value = true
   try {
@@ -38,7 +39,7 @@ async function fetchPosts() {
     if (activeLocale.value) params.set('locale', activeLocale.value)
     if (activeStatus.value) params.set('status', activeStatus.value)
 
-    const res = await fetch(`${API_URL}/blog/list.php?${params}`, { headers: authHeaders() })
+    const res = await fetch(`${API_URL}/blog/list.php?${params}`, { headers: auth.authHeaders() })
     const data = await res.json()
 
     if (data.success) {
@@ -59,7 +60,7 @@ async function deletePost(id: number) {
   try {
     const res = await fetch(`${API_URL}/blog/delete.php?id=${id}`, {
       method: 'DELETE',
-      headers: authHeaders(),
+      headers: auth.authHeaders(),
     })
     const data = await res.json()
     if (data.success) {
@@ -112,6 +113,14 @@ onMounted(fetchPosts)
       </select>
 
       <span class="ml-auto text-sm text-on-surface-variant">{{ total }} posts</span>
+
+      <a
+        v-if="canCreate"
+        href="/admin/blog/new"
+        class="rounded-lg bg-vue-green px-4 py-2 text-sm font-semibold text-on-secondary transition-colors hover:bg-vue-green/90"
+      >
+        + Nuevo post
+      </a>
     </div>
 
     <div v-if="loading" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
@@ -144,7 +153,7 @@ onMounted(fetchPosts)
               class="border-b border-outline-variant/10 hover:bg-surface-container-high/50 transition-colors"
             >
               <td class="px-4 py-3">
-                <a :href="`/admin/blog/${post.id}`" class="text-on-surface hover:text-vue-green transition-colors font-medium">
+                <a :href="canEdit ? `/admin/blog/${post.id}` : '#'" :class="canEdit ? 'text-on-surface hover:text-vue-green transition-colors font-medium' : 'text-on-surface font-medium'">
                   {{ post.title }}
                 </a>
               </td>
@@ -173,6 +182,7 @@ onMounted(fetchPosts)
               <td class="px-4 py-3 text-right">
                 <div class="flex items-center justify-end gap-1">
                   <a
+                    v-if="canEdit"
                     :href="`/admin/blog/${post.id}`"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors"
                     title="Editar"
@@ -180,6 +190,7 @@ onMounted(fetchPosts)
                     <span class="material-symbols-rounded text-lg">edit</span>
                   </a>
                   <button
+                    v-if="canDelete"
                     @click="deletePost(post.id)"
                     :disabled="deletingId === post.id"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-error-container/20 hover:text-error transition-colors disabled:opacity-50"

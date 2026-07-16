@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
+import { useAuthStore } from '../../stores/auth'
 
 const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
+const auth = useAuthStore()
+const isViewer = computed(() => auth.isViewer)
 
 interface Category {
   id: number
@@ -49,11 +52,6 @@ const form = ref({
   status: 'draft',
 })
 
-function authHeaders(): Record<string, string> {
-  const token = localStorage.getItem('admin_token')
-  return token ? { Authorization: `Bearer ${token}` } : {}
-}
-
 function autoSlug() {
   form.value.slug = form.value.title
     .toLowerCase()
@@ -67,7 +65,7 @@ function autoSlug() {
 
 async function fetchCategories() {
   try {
-    const res = await fetch(`${API_URL}/categories/list.php`, { headers: authHeaders() })
+    const res = await fetch(`${API_URL}/categories/list.php`, { headers: auth.authHeaders() })
     const data = await res.json()
     if (data.success && Array.isArray(data.data)) {
       categories.value = data.data
@@ -84,7 +82,7 @@ async function fetchPost() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/blog/get.php?id=${props.postId}`, { headers: authHeaders() })
+    const res = await fetch(`${API_URL}/blog/get.php?id=${props.postId}`, { headers: auth.authHeaders() })
     const data = await res.json()
     if (data.success && data.data) {
       const p = data.data as PostData
@@ -128,7 +126,7 @@ async function handleSubmit() {
 
     const res = await fetch(url, {
       method,
-      headers: { 'Content-Type': 'application/json', ...authHeaders() },
+      headers: { 'Content-Type': 'application/json', ...auth.authHeaders() },
       body: JSON.stringify(form.value),
     })
 
@@ -156,7 +154,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="loading" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
+  <div v-if="isViewer" class="rounded-xl border border-vue-green/30 bg-vue-green/10 p-8 text-center">
+    <span class="material-symbols-rounded text-4xl mb-2 block text-vue-green">lock</span>
+    <p class="text-on-surface font-medium">Modo solo lectura</p>
+    <p class="text-sm text-on-surface-variant mt-1">No tienes permisos para crear o editar posts.</p>
+  </div>
+
+  <div v-else-if="loading" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
     <span class="material-symbols-rounded text-4xl mb-2 block animate-pulse text-outline">hourglass_empty</span>
     Cargando...
   </div>

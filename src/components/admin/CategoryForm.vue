@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
+import { useAuthStore } from '../../stores/auth'
 
 const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
+const auth = useAuthStore()
+const isViewer = computed(() => auth.isViewer)
 
 interface CategoryData {
   id: number
@@ -29,11 +32,6 @@ const form = ref({
   sort_order: 0,
 })
 
-function authHeaders(): Record<string, string> {
-  const token = localStorage.getItem('admin_token')
-  return token ? { Authorization: `Bearer ${token}` } : {}
-}
-
 function autoSlug() {
   form.value.slug = form.value.name
     .toLowerCase()
@@ -52,7 +50,7 @@ async function fetchCategory() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/categories/get.php?id=${props.categoryId}`, { headers: authHeaders() })
+    const res = await fetch(`${API_URL}/categories/get.php?id=${props.categoryId}`, { headers: auth.authHeaders() })
     const data = await res.json()
     if (data.success && data.data) {
       const c = data.data as CategoryData
@@ -90,7 +88,7 @@ async function handleSubmit() {
 
     const res = await fetch(url, {
       method,
-      headers: { 'Content-Type': 'application/json', ...authHeaders() },
+      headers: { 'Content-Type': 'application/json', ...auth.authHeaders() },
       body: JSON.stringify(form.value),
     })
 
@@ -115,12 +113,18 @@ onMounted(fetchCategory)
 </script>
 
 <template>
-  <div v-if="loading" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
+  <div v-if="isViewer" class="rounded-xl border border-vue-green/30 bg-vue-green/10 p-8 text-center">
+    <span class="material-symbols-rounded text-4xl mb-2 block text-vue-green">lock</span>
+    <p class="text-on-surface font-medium">Modo solo lectura</p>
+    <p class="text-sm text-on-surface-variant mt-1">No tienes permisos para crear o editar categorías.</p>
+  </div>
+
+  <div v-else-if="loading" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
     <span class="material-symbols-rounded text-4xl mb-2 block animate-pulse text-outline">hourglass_empty</span>
     Cargando...
   </div>
 
-  <form v-else @submit.prevent="handleSubmit" class="flex flex-col gap-5 max-w-xl">
+  <form v-else @submit.prevent="handleSubmit" class="flex flex-col gap-5 max-w-[36rem]">
     <div>
       <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Nombre *</label>
       <input
