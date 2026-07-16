@@ -39,18 +39,23 @@ class AuthController
         }
 
         $token = $this->createToken([
-            'sub'   => $user['id'],
-            'email' => $user['email'],
-            'role'  => $user['role'],
+            'sub'         => $user['id'],
+            'email'       => $user['email'],
+            'role_id'     => $user['role_id'],
+            'role_slug'   => $user['role_slug'],
+            'permissions' => $user['permissions'],
         ]);
 
         jsonSuccess([
             'token' => $token,
             'user'  => [
-                'id'    => $user['id'],
-                'email' => $user['email'],
-                'name'  => $user['name'],
-                'role'  => $user['role'],
+                'id'          => $user['id'],
+                'email'       => $user['email'],
+                'name'        => $user['name'],
+                'role_id'     => $user['role_id'],
+                'role_name'   => $user['role_name'],
+                'role_slug'   => $user['role_slug'],
+                'permissions' => $user['permissions'],
             ],
         ]);
     }

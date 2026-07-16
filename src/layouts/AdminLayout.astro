@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css'
+import '../styles/admin.css'
+import VunotekLogoMarca from '../components/atoms/VunotekLogoMarca.astro'
 
 export interface Props {
   title: string
@@ -9,9 +11,9 @@ const { title } = Astro.props
 const currentPath = Astro.url.pathname
 
 const navItems = [
-  { href: '/admin', label: 'Dashboard', icon: 'grid_view' },
-  { href: '/admin/blog', label: 'Blog', icon: 'article' },
-  { href: '/admin/categories', label: 'Categorías', icon: 'label' },
+  { href: '/admin', label: 'Dashboard', icon: 'grid_view', permission: null },
+  { href: '/admin/blog', label: 'Blog', icon: 'article', permission: 'blog' },
+  { href: '/admin/categories', label: 'Categorías', icon: 'label', permission: 'categories' },
 ]
 ---
 
@@ -23,21 +25,20 @@ const navItems = [
     <title>{title} — Vunotek Admin</title>
     <link rel="icon" type="image/svg+xml" href="/vunotek-isotipo-square.svg" />
   </head>
-  <body class="bg-background text-on-surface font-body-md antialiased">
-    <div class="flex min-h-screen">
+  <body class="bg-[#0a1022] text-[#dae2fd] font-body-md antialiased min-h-screen flex">
+    <div class="flex min-h-screen w-full">
       <aside
         id="admin-sidebar"
-        class="fixed inset-y-0 left-0 z-40 flex w-[260px] flex-col border-r border-outline-variant/20 bg-surface-container-lowest transition-transform duration-300 max-lg:-translate-x-full max-lg:shadow-xl"
+        class="fixed inset-y-0 left-0 z-40 flex w-[260px] flex-col border-r border-[#1e293b] bg-[#0b1326] transition-transform duration-300 max-lg:-translate-x-full max-lg:shadow-xl"
       >
-        <div class="flex h-16 items-center gap-sm border-b border-outline-variant/20 px-5">
-          <a href="/admin" class="flex items-center gap-sm">
-            <span class="font-display-lg text-headline-md text-on-surface">VUNO</span>
-            <span class="font-display-lg text-headline-md text-vue-green">TEK</span>
+        <div class="flex h-16 items-center gap-sm border-b border-[#1e293b] px-5">
+          <a href="/admin" class="flex items-center">
+            <VunotekLogoMarca height={28} text="VUNO-TEK" accentColor="#69dca4" />
           </a>
-          <span class="ml-auto rounded bg-vue-green/15 px-2 py-0.5 text-xs font-medium text-vue-green">Admin</span>
+          <span class="ml-auto rounded bg-[#69dca4]/15 px-2 py-0.5 text-xs font-medium text-[#69dca4]">Admin</span>
         </div>
 
-        <nav class="flex-1 overflow-y-auto py-4">
+        <nav class="flex-1 overflow-y-auto py-4 sidebar-scroll">
           <ul class="flex flex-col gap-1 px-3">
             {navItems.map((item) => {
               const isActive = item.href === '/admin'
@@ -47,11 +48,12 @@ const navItems = [
                 <li>
                   <a
                     href={item.href}
+                    data-nav-permission={item.permission || ''}
                     class:list={[
                       'flex items-center gap-3 rounded-lg px-3 py-2.5 text-body-md font-medium transition-colors',
                       isActive
-                        ? 'bg-vue-green/10 text-vue-green'
-                        : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface',
+                        ? 'sidebar-link-active'
+                        : 'text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#dae2fd]',
                     ]}
                   >
                     <span class="material-symbols-rounded text-xl">{item.icon}</span>
@@ -63,18 +65,18 @@ const navItems = [
           </ul>
         </nav>
 
-        <div class="border-t border-outline-variant/20 p-3">
+        <div class="border-t border-[#1e293b] p-3">
           <a
             href="/"
             target="_blank"
-            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-body-md text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface"
+            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-body-md text-[#94a3b8] transition-colors hover:bg-white/[0.06] hover:text-[#dae2fd]"
           >
             <span class="material-symbols-rounded text-xl">open_in_new</span>
             Ver sitio web
           </a>
           <button
             id="admin-logout"
-            class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-body-md text-on-surface-variant transition-colors hover:bg-error-container/20 hover:text-error"
+            class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-body-md text-[#94a3b8] transition-colors hover:bg-white/[0.06] hover:text-[#DC2626]"
           >
             <span class="material-symbols-rounded text-xl">logout</span>
             Cerrar sesión
@@ -82,18 +84,19 @@ const navItems = [
         </div>
       </aside>
 
-      <div class="flex flex-1 flex-col lg:pl-[260px]">
-        <header class="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-outline-variant/20 bg-surface/80 backdrop-blur-md px-6">
+      <div class="flex flex-1 flex-col min-w-0 min-h-screen lg:ml-[260px]">
+        <header class="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-[#1e293b] bg-[#111d2e]/80 backdrop-blur-md px-6">
           <button
             id="admin-menu-toggle"
-            class="lg:hidden text-on-surface-variant hover:text-on-surface"
+            class="lg:hidden text-[#94a3b8] hover:text-[#dae2fd]"
             aria-label="Abrir menú"
           >
             <span class="material-symbols-rounded text-2xl">menu</span>
           </button>
-          <h1 class="text-headline-md font-display-lg text-on-surface max-sm:text-lg">{title}</h1>
+          <h1 class="font-headline text-headline-md text-[#dae2fd] max-sm:text-lg">{title}</h1>
           <div class="ml-auto flex items-center gap-sm">
-            <span id="admin-user-name" class="text-sm text-on-surface-variant max-sm:hidden"></span>
+            <span id="admin-role-badge" class="hidden rounded-full bg-[#69dca4]/15 px-2.5 py-0.5 text-xs font-medium text-[#69dca4]"></span>
+            <span id="admin-user-name" class="text-sm text-[#94a3b8] max-sm:hidden"></span>
           </div>
         </header>
 
@@ -103,10 +106,13 @@ const navItems = [
       </div>
     </div>
 
-    <div id="admin-sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/50 lg:hidden"></div>
+    <div id="admin-sidebar-overlay" class="fixed inset-0 z-30 hidden bg-[#0b1326]/70 backdrop-blur-md lg:hidden"></div>
 
     <script>
-      const API_URL = (import.meta as any).env?.PUBLIC_API_URL || 'https://api.vunotek.com'
+      const API_URL = window.location.hostname === 'localhost'
+        ? 'http://localhost:8000'
+        : ((import.meta as any).env?.PUBLIC_API_URL || 'https://api.vunotek.com')
+
       const token = localStorage.getItem('admin_token')
 
       if (!token) {
@@ -120,9 +126,26 @@ const navItems = [
             if (!data.success) {
               localStorage.removeItem('admin_token')
               window.location.href = '/admin/login'
-            } else if (data.user?.name) {
-              const el = document.getElementById('admin-user-name')
-              if (el) el.textContent = data.user.name
+              return
+            }
+
+            const user = data.user
+            const nameEl = document.getElementById('admin-user-name')
+            if (nameEl && user?.name) nameEl.textContent = user.name
+
+            const roleEl = document.getElementById('admin-role-badge')
+            if (roleEl && user?.role_name) {
+              roleEl.textContent = user.role_name
+              roleEl.classList.remove('hidden')
+            }
+
+            if (user?.permissions && !user.permissions.all) {
+              document.querySelectorAll('[data-nav-permission]').forEach((el) => {
+                const module = el.getAttribute('data-nav-permission')
+                if (module && !user.permissions[module]) {
+                  ;(el as HTMLElement).style.display = 'none'
+                }
+              })
             }
           })
           .catch(() => {

@@ -11,30 +11,46 @@ class UserModel
 
     public function findByEmail(string $email): ?array
     {
-        $stmt = $this->db->prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
+        $stmt = $this->db->prepare("
+            SELECT u.*, r.name AS role_name, r.slug AS role_slug, r.permissions
+            FROM users u
+            JOIN roles r ON r.id = u.role_id
+            WHERE u.email = :email LIMIT 1
+        ");
         $stmt->execute(['email' => $email]);
         $user = $stmt->fetch();
+        if ($user && isset($user['permissions'])) {
+            $user['permissions'] = json_decode($user['permissions'], true);
+        }
         return $user ?: null;
     }
 
     public function findById(int $id): ?array
     {
-        $stmt = $this->db->prepare('SELECT id, email, name, role, created_at FROM users WHERE id = :id LIMIT 1');
+        $stmt = $this->db->prepare("
+            SELECT u.id, u.email, u.name, u.role_id, r.name AS role_name, r.slug AS role_slug, r.permissions, u.created_at
+            FROM users u
+            JOIN roles r ON r.id = u.role_id
+            WHERE u.id = :id LIMIT 1
+        ");
         $stmt->execute(['id' => $id]);
         $user = $stmt->fetch();
+        if ($user && isset($user['permissions'])) {
+            $user['permissions'] = json_decode($user['permissions'], true);
+        }
         return $user ?: null;
     }
 
-    public function create(string $email, string $password, string $name, string $role = 'editor'): int
+    public function create(string $email, string $password, string $name, int $roleId): int
     {
         $stmt = $this->db->prepare(
-            'INSERT INTO users (email, password, name, role) VALUES (:email, :password, :name, :role)'
+            'INSERT INTO users (email, password, name, role_id) VALUES (:email, :password, :name, :role_id)'
         );
         $stmt->execute([
             'email'    => $email,
             'password' => $password,
             'name'     => $name,
-            'role'     => $role,
+            'role_id'  => $roleId,
         ]);
         return (int) $this->db->lastInsertId();
     }
@@ -44,8 +60,8 @@ class UserModel
         $fields = [];
         $params = ['id' => $id];
 
-        foreach (['email', 'name', 'role'] as $field) {
-            if (isset($data[$field])) {
+        foreach (['email', 'name', 'role_id'] as $field) {
+            if (array_key_exists($field, $data)) {
                 $fields[] = "$field = :$field";
                 $params[$field] = $data[$field];
             }

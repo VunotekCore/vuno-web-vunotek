@@ -43,6 +43,8 @@ class CategoryController
 
     public function create(): never
     {
+        $this->requirePermission('categories', 'create');
+
         $data = getJsonInput();
 
         if (empty($data['name']) || empty($data['slug'])) {
@@ -62,6 +64,8 @@ class CategoryController
 
     public function update(): never
     {
+        $this->requirePermission('categories', 'edit');
+
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if (!$id) {
             jsonError('ID requerido');
@@ -89,6 +93,8 @@ class CategoryController
 
     public function delete(): never
     {
+        $this->requirePermission('categories', 'delete');
+
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if (!$id) {
             jsonError('ID requerido');
@@ -105,5 +111,22 @@ class CategoryController
         }
 
         jsonSuccess(null, 'Categoría eliminada exitosamente');
+    }
+
+    private function requirePermission(string $module, string $action): array
+    {
+        $payload = requireAuth();
+        $permissions = $payload['permissions'] ?? [];
+
+        if (!empty($permissions['all'])) {
+            return $payload;
+        }
+
+        $modulePerms = $permissions[$module] ?? [];
+        if (!in_array($action, $modulePerms)) {
+            jsonError('No tienes permisos para esta acción', 403);
+        }
+
+        return $payload;
     }
 }

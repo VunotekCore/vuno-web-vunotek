@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "dev:api": "php -S localhost:8000 -t api/",
+    "dev:all": "concurrently \"pnpm dev:api\" \"pnpm dev\"",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "concurrently": "^10.0.3",
     "typescript": "^6.0.3"
   },
   "pnpm": {

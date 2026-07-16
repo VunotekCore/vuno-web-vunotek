@@ -47,6 +47,8 @@ class BlogController
 
     public function create(): never
     {
+        $this->requirePermission('blog', 'create');
+
         $data = getJsonInput();
 
         $required = ['title', 'slug', 'excerpt', 'content', 'category_id'];
@@ -73,6 +75,8 @@ class BlogController
 
     public function update(): never
     {
+        $this->requirePermission('blog', 'edit');
+
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if (!$id) {
             jsonError('ID requerido');
@@ -100,6 +104,8 @@ class BlogController
 
     public function delete(): never
     {
+        $this->requirePermission('blog', 'delete');
+
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if (!$id) {
             jsonError('ID requerido');
@@ -112,5 +118,22 @@ class BlogController
 
         $this->blogModel->delete($id);
         jsonSuccess(null, 'Post eliminado exitosamente');
+    }
+
+    private function requirePermission(string $module, string $action): array
+    {
+        $payload = requireAuth();
+        $permissions = $payload['permissions'] ?? [];
+
+        if (!empty($permissions['all'])) {
+            return $payload;
+        }
+
+        $modulePerms = $permissions[$module] ?? [];
+        if (!in_array($action, $modulePerms)) {
+            jsonError('No tienes permisos para esta acción', 403);
+        }
+
+        return $payload;
     }
 }

@@ -1,14 +1,28 @@
 -- Vunotek Backoffice Database Schema
 -- Ejecutar: mysql -u user -p database < schema.sql
+CREATE DATABASE IF NOT EXISTS vuno_web
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE vuno_web;
+
+CREATE TABLE IF NOT EXISTS roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    slug VARCHAR(50) NOT NULL UNIQUE,
+    permissions JSON NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     name VARCHAR(100) NOT NULL,
-    role ENUM('admin', 'editor') DEFAULT 'editor',
+    role_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS categories (
@@ -40,10 +54,18 @@ CREATE TABLE IF NOT EXISTS blog_posts (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Roles iniciales
+INSERT INTO roles (name, slug, permissions) VALUES
+('Admin', 'admin', '{"all": true}'),
+('Editor', 'editor', '{"blog": ["read","create","edit"], "categories": ["read","create","edit"]}'),
+('Viewer', 'viewer', '{"blog": ["read"], "categories": ["read"]}')
+ON DUPLICATE KEY UPDATE name = name;
+
 -- Admin user default (password: admin123 — cambiar en producción)
 -- Generar hash: php -r "echo password_hash('admin123', PASSWORD_BCRYPT);"
-INSERT INTO users (email, password, name, role) VALUES
-('admin@vunotek.com', '$2y$10$YourHashHere', 'Daniel Flores', 'admin')
+-- role_id = 1 (admin)
+INSERT INTO users (email, password, name, role_id) VALUES
+('admin@vunotek.com', '$2y$10$YourHashHere', 'Daniel Flores', 1)
 ON DUPLICATE KEY UPDATE email = email;
 
 -- Categorías iniciales
