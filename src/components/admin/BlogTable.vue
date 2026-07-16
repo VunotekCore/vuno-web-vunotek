@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useAuthStore } from '../../stores/auth'
+import { blogService } from '../../services/blogService'
+import { useToast } from '../../composables/useToast'
 
-const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
 const auth = useAuthStore()
+const toast = useToast()
 
 const canEdit = computed(() => auth.hasPermission('blog', 'edit'))
 const canCreate = computed(() => auth.hasPermission('blog', 'create'))
@@ -35,12 +37,11 @@ const deletingId = ref<number | null>(null)
 async function fetchPosts() {
   loading.value = true
   try {
-    const params = new URLSearchParams({ page: String(currentPage.value) })
-    if (activeLocale.value) params.set('locale', activeLocale.value)
-    if (activeStatus.value) params.set('status', activeStatus.value)
+    const params: Record<string, string> = { page: String(currentPage.value) }
+    if (activeLocale.value) params.locale = activeLocale.value
+    if (activeStatus.value) params.status = activeStatus.value
 
-    const res = await fetch(`${API_URL}/blog/list.php?${params}`, { headers: auth.authHeaders() })
-    const data = await res.json()
+    const { data } = await blogService.list(params)
 
     if (data.success) {
       posts.value = data.data.posts
@@ -58,18 +59,15 @@ async function deletePost(id: number) {
   if (!confirm('¿Eliminar este post?')) return
   deletingId.value = id
   try {
-    const res = await fetch(`${API_URL}/blog/delete.php?id=${id}`, {
-      method: 'DELETE',
-      headers: auth.authHeaders(),
-    })
-    const data = await res.json()
+    const { data } = await blogService.delete(id)
     if (data.success) {
+      toast.success('Post eliminado')
       await fetchPosts()
     } else {
-      alert(data.message || 'Error al eliminar')
+      toast.error(data.message || 'Error al eliminar')
     }
   } catch {
-    alert('Error de conexión')
+    toast.error('Error de conexión')
   } finally {
     deletingId.value = null
   }

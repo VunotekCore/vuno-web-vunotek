@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useAuthStore } from '../../stores/auth'
+import { blogService } from '../../services/blogService'
+import { categoryService } from '../../services/categoryService'
+import { useToast } from '../../composables/useToast'
 
-const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
 const auth = useAuthStore()
 const isViewer = computed(() => auth.isViewer)
+const toast = useToast()
 
 interface Category {
   id: number
@@ -65,8 +68,7 @@ function autoSlug() {
 
 async function fetchCategories() {
   try {
-    const res = await fetch(`${API_URL}/categories/list.php`, { headers: auth.authHeaders() })
-    const data = await res.json()
+    const { data } = await categoryService.list()
     if (data.success && Array.isArray(data.data)) {
       categories.value = data.data
     }
@@ -82,8 +84,7 @@ async function fetchPost() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/blog/get.php?id=${props.postId}`, { headers: auth.authHeaders() })
-    const data = await res.json()
+    const { data } = await blogService.get(Number(props.postId))
     if (data.success && data.data) {
       const p = data.data as PostData
       form.value = {
@@ -118,19 +119,9 @@ async function handleSubmit() {
 
   saving.value = true
   try {
-    const url = isEdit.value
-      ? `${API_URL}/blog/update.php?id=${props.postId}`
-      : `${API_URL}/blog/create.php`
-
-    const method = isEdit.value ? 'PUT' : 'POST'
-
-    const res = await fetch(url, {
-      method,
-      headers: { 'Content-Type': 'application/json', ...auth.authHeaders() },
-      body: JSON.stringify(form.value),
-    })
-
-    const data = await res.json()
+    const { data } = isEdit.value
+      ? await blogService.update(Number(props.postId), form.value)
+      : await blogService.create(form.value)
 
     if (data.success) {
       success.value = isEdit.value ? 'Post actualizado exitosamente' : 'Post creado exitosamente'

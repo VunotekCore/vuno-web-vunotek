@@ -1,12 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-
-function getApiUrl(): string {
-  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-    return 'http://localhost:8000'
-  }
-  return (import.meta.env.PUBLIC_API_URL as string) || 'https://api.vunotek.com'
-}
+import { authService } from '../services/authService'
 
 interface Permissions {
   all?: boolean
@@ -50,14 +44,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function login(email: string, password: string): Promise<boolean> {
-    const API_URL = getApiUrl()
-    const res = await fetch(`${API_URL}/admin/login.php`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    })
-
-    const data = await res.json()
+    const { data } = await authService.login(email, password)
 
     if (data.success && data.token) {
       token.value = data.token
@@ -80,12 +67,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (!token.value) return false
 
     try {
-      const API_URL = getApiUrl()
-      const res = await fetch(`${API_URL}/admin/verify.php`, {
-        headers: { Authorization: `Bearer ${token.value}` },
-      })
-
-      const data = await res.json()
+      const { data } = await authService.verify()
 
       if (!data.success) {
         logout()
@@ -100,9 +82,5 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  function authHeaders(): Record<string, string> {
-    return token.value ? { Authorization: `Bearer ${token.value}` } : {}
-  }
-
-  return { token, user, isAuthenticated, isViewer, hasPermission, init, login, logout, verify, authHeaders }
+  return { token, user, isAuthenticated, isViewer, hasPermission, init, login, logout, verify }
 })

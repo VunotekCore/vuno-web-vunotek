@@ -109,20 +109,15 @@ const navItems = [
     <div id="admin-sidebar-overlay" class="fixed inset-0 z-30 hidden bg-[#0b1326]/70 backdrop-blur-md lg:hidden"></div>
 
     <script>
-      const API_URL = window.location.hostname === 'localhost'
-        ? 'http://localhost:8000'
-        : ((import.meta as any).env?.PUBLIC_API_URL || 'https://api.vunotek.com')
+      import { authService } from '../services/authService'
 
       const token = localStorage.getItem('admin_token')
 
       if (!token) {
         window.location.href = '/admin/login'
       } else {
-        fetch(`${API_URL}/admin/verify.php`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-          .then((r) => r.json())
-          .then((data) => {
+        authService.verify()
+          .then(({ data }) => {
             if (!data.success) {
               localStorage.removeItem('admin_token')
               window.location.href = '/admin/login'
