@@ -20,20 +20,11 @@ async function handleLogin() {
   loading.value = true
 
   try {
-    const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
-    const res = await fetch(`${API_URL}/admin/login.php`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email.value, password: password.value }),
-    })
-
-    const data = await res.json()
-
-    if (data.success && data.token) {
-      localStorage.setItem('admin_token', data.token)
+    const success = await auth.login(email.value, password.value)
+    if (success) {
       window.location.href = '/admin'
     } else {
-      error.value = data.message || 'Credenciales incorrectas'
+      error.value = 'Credenciales incorrectas'
     }
   } catch {
     error.value = 'Error de conexión. Intenta nuevamente.'

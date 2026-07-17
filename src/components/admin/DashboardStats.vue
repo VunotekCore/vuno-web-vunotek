@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-
-const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
+import { blogService } from '../../services/blogService'
+import { categoryService } from '../../services/categoryService'
 
 const published = ref<number | null>(null)
 const drafts = ref<number | null>(null)
@@ -9,32 +9,23 @@ const categories = ref<number | null>(null)
 const loading = ref(true)
 
 onMounted(async () => {
-  const token = localStorage.getItem('admin_token')
-  if (!token) return
-
-  const headers = { Authorization: `Bearer ${token}` }
-
   try {
-    const [blogRes, catRes] = await Promise.all([
-      fetch(`${API_URL}/blog/list.php?status=published`, { headers }),
-      fetch(`${API_URL}/categories/list.php`, { headers }),
+    const [blogRes, catRes, draftsRes] = await Promise.all([
+      blogService.list({ status: 'published' }),
+      categoryService.list(),
+      blogService.list({ status: 'draft' }),
     ])
 
-    const blogData = await blogRes.json()
-    const catData = await catRes.json()
-
-    if (blogData.success) {
-      published.value = blogData.data?.total ?? 0
+    if (blogRes.data.success) {
+      published.value = blogRes.data.data?.total ?? 0
     }
 
-    const draftsRes = await fetch(`${API_URL}/blog/list.php?status=draft`, { headers })
-    const draftsData = await draftsRes.json()
-    if (draftsData.success) {
-      drafts.value = draftsData.data?.total ?? 0
+    if (draftsRes.data.success) {
+      drafts.value = draftsRes.data.data?.total ?? 0
     }
 
-    if (catData.success) {
-      categories.value = Array.isArray(catData.data) ? catData.data.length : 0
+    if (catRes.data.success) {
+      categories.value = Array.isArray(catRes.data.data) ? catRes.data.data.length : 0
     }
   } catch {
     // Silently fail — stats are non-critical

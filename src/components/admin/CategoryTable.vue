@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { categoryService } from '../../services/categoryService'
+import { useToast } from '../../composables/useToast'
 
-const API_URL = import.meta.env.PUBLIC_API_URL || 'https://api.vunotek.com'
+const toast = useToast()
 
 interface Category {
   id: number
@@ -18,16 +20,10 @@ const categories = ref<Category[]>([])
 const loading = ref(true)
 const deletingId = ref<number | null>(null)
 
-function authHeaders(): Record<string, string> {
-  const token = localStorage.getItem('admin_token')
-  return token ? { Authorization: `Bearer ${token}` } : {}
-}
-
 async function fetchCategories() {
   loading.value = true
   try {
-    const res = await fetch(`${API_URL}/categories/list.php`, { headers: authHeaders() })
-    const data = await res.json()
+    const { data } = await categoryService.list()
     if (data.success && Array.isArray(data.data)) {
       categories.value = data.data
     }
@@ -42,18 +38,15 @@ async function deleteCategory(id: number) {
   if (!confirm('¿Eliminar esta categoría?')) return
   deletingId.value = id
   try {
-    const res = await fetch(`${API_URL}/categories/delete.php?id=${id}`, {
-      method: 'DELETE',
-      headers: authHeaders(),
-    })
-    const data = await res.json()
+    const { data } = await categoryService.delete(id)
     if (data.success) {
+      toast.success('Categoría eliminada')
       await fetchCategories()
     } else {
-      alert(data.message || 'Error al eliminar')
+      toast.error(data.message || 'Error al eliminar')
     }
   } catch {
-    alert('Error de conexión')
+    toast.error('Error de conexión')
   } finally {
     deletingId.value = null
   }
