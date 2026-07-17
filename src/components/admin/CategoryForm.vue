@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useAuthStore } from '../../stores/auth'
 import { categoryService } from '../../services/categoryService'
 import { useToast } from '../../composables/useToast'
+import VunotekIcon from './ui/VunotekIcon.vue'
+
+const props = defineProps<{
+  categoryId: number | null
+}>()
+
+const emit = defineEmits<{
+  saved: []
+  close: []
+}>()
 
 const auth = useAuthStore()
 const toast = useToast()
@@ -17,32 +27,24 @@ interface CategoryData {
   sort_order: number
 }
 
-const props = defineProps<{ categoryId?: string }>()
-
 const isEdit = computed(() => !!props.categoryId)
-
-const loading = ref(!!props.categoryId)
+const loading = ref(false)
 const saving = ref(false)
 const error = ref('')
-const success = ref('')
 
-const form = ref({
+const defaultForm = {
   name: '',
   slug: '',
   description: '',
   color: '#69dca4',
   sort_order: 0,
-})
+}
 
-function autoSlug() {
-  form.value.slug = form.value.name
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim()
+const form = ref({ ...defaultForm })
+
+function resetForm() {
+  form.value = { ...defaultForm }
+  error.value = ''
 }
 
 async function fetchCategory() {
@@ -51,8 +53,9 @@ async function fetchCategory() {
     return
   }
 
+  loading.value = true
   try {
-    const { data } = await categoryService.get(Number(props.categoryId))
+    const { data } = await categoryService.get(props.categoryId)
     if (data.success && data.data) {
       const c = data.data as CategoryData
       form.value = {
@@ -70,9 +73,19 @@ async function fetchCategory() {
   }
 }
 
+function autoSlug() {
+  form.value.slug = form.value.name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim()
+}
+
 async function handleSubmit() {
   error.value = ''
-  success.value = ''
 
   if (!form.value.name || !form.value.slug) {
     error.value = 'Nombre y slug son requeridos'
@@ -82,14 +95,12 @@ async function handleSubmit() {
   saving.value = true
   try {
     const { data } = isEdit.value
-      ? await categoryService.update(Number(props.categoryId), form.value)
+      ? await categoryService.update(props.categoryId!, form.value)
       : await categoryService.create(form.value)
 
     if (data.success) {
       toast.success(isEdit.value ? 'Categoría actualizada' : 'Categoría creada')
-      if (!isEdit.value) {
-        window.location.href = '/admin/categories'
-      }
+      emit('saved')
     } else {
       error.value = data.message || 'Error al guardar'
     }
@@ -100,22 +111,25 @@ async function handleSubmit() {
   }
 }
 
-onMounted(fetchCategory)
+watch(() => props.categoryId, () => {
+  resetForm()
+  if (props.categoryId) fetchCategory()
+}, { immediate: true })
 </script>
 
 <template>
   <div v-if="isViewer" class="rounded-xl border border-vue-green/30 bg-vue-green/10 p-8 text-center">
-    <span class="material-symbols-rounded text-4xl mb-2 block text-vue-green">lock</span>
+    <VunotekIcon icon="lock" :size="36" class="mb-2 block text-vue-green" />
     <p class="text-on-surface font-medium">Modo solo lectura</p>
     <p class="text-sm text-on-surface-variant mt-1">No tienes permisos para crear o editar categorías.</p>
   </div>
 
   <div v-else-if="loading" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
-    <span class="material-symbols-rounded text-4xl mb-2 block animate-pulse text-outline">hourglass_empty</span>
+    <VunotekIcon icon="hourglass_empty" :size="36" class="mb-2 block animate-pulse text-outline" />
     Cargando...
   </div>
 
-  <form v-else @submit.prevent="handleSubmit" class="flex flex-col gap-5 max-w-[36rem]">
+  <form v-else @submit.prevent="handleSubmit" class="flex flex-col gap-5">
     <div>
       <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Nombre *</label>
       <input
@@ -178,19 +192,22 @@ onMounted(fetchCategory)
     </div>
 
     <div v-if="error" class="rounded-lg bg-error-container/20 px-4 py-3 text-sm text-error">{{ error }}</div>
-    <div v-if="success" class="rounded-lg bg-secondary/15 px-4 py-3 text-sm text-secondary">{{ success }}</div>
 
-    <div class="flex items-center gap-3 pt-2">
+    <div class="flex flex-col-reverse sm:flex-row items-stretch sm:items-center gap-3 pt-2">
       <button
         type="submit"
         :disabled="saving"
-        class="rounded-lg bg-vue-green px-6 py-2.5 font-semibold text-on-secondary transition-colors hover:bg-vue-green/90 disabled:opacity-50"
+        class="rounded-lg bg-vue-green px-6 py-2.5 font-semibold text-on-secondary transition-colors hover:bg-vue-green/90 disabled:opacity-50 w-full sm:w-auto"
       >
         {{ saving ? 'Guardando...' : isEdit ? 'Actualizar categoría' : 'Crear categoría' }}
       </button>
-      <a href="/admin/categories" class="rounded-lg border border-outline-variant/40 px-6 py-2.5 font-medium text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface">
+      <button
+        type="button"
+        @click="emit('close')"
+        class="rounded-lg border border-outline-variant/40 px-6 py-2.5 font-medium text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface w-full sm:w-auto"
+      >
         Cancelar
-      </a>
+      </button>
     </div>
   </form>
 </template>
