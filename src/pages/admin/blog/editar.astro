@@ -1,20 +1,15 @@
 ---
 import AdminLayout from '../../../layouts/AdminLayout.astro'
 import BlogForm from '../../../components/admin/BlogForm.vue'
-
-export function getStaticPaths() {
-  return [{ params: { id: '1' } }]
-}
-
-const { id } = Astro.params
+import Icon from '../../../components/atoms/Icon.astro'
 ---
 
 <AdminLayout title="Editar post">
   <div class="mb-6">
     <a href="/admin/blog" class="inline-flex items-center gap-1 text-sm text-on-surface-variant hover:text-on-surface transition-colors">
-      <span class="material-symbols-rounded text-lg">arrow_back</span>
+      <Icon name="arrow_back" size={18} />
       Volver al blog
     </a>
   </div>
-  <BlogForm postId={id} client:only="vue" />
+  <BlogForm client:only="vue" />
 </AdminLayout>

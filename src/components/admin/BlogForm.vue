@@ -4,6 +4,7 @@ import { useAuthStore } from '../../stores/auth'
 import { blogService } from '../../services/blogService'
 import { categoryService } from '../../services/categoryService'
 import { useToast } from '../../composables/useToast'
+import VunotekIcon from './ui/VunotekIcon.vue'
 
 const auth = useAuthStore()
 const toast = useToast()
@@ -31,9 +32,10 @@ interface PostData {
   status: string
 }
 
-const props = defineProps<{ postId?: string }>()
+const params = new URLSearchParams(window.location.search)
+const postId = params.get('id')
 
-const isEdit = computed(() => !!props.postId)
+const isEdit = computed(() => !!postId)
 
 const categories = ref<Category[]>([])
 const loading = ref(true)
@@ -78,13 +80,13 @@ async function fetchCategories() {
 }
 
 async function fetchPost() {
-  if (!props.postId) {
+  if (!postId) {
     loading.value = false
     return
   }
 
   try {
-    const { data } = await blogService.get(Number(props.postId))
+    const { data } = await blogService.get(Number(postId))
     if (data.success && data.data) {
       const p = data.data as PostData
       form.value = {
@@ -120,7 +122,7 @@ async function handleSubmit() {
   saving.value = true
   try {
     const { data } = isEdit.value
-      ? await blogService.update(Number(props.postId), form.value)
+      ? await blogService.update(Number(postId), form.value)
       : await blogService.create(form.value)
 
     if (data.success) {
@@ -146,13 +148,13 @@ onMounted(async () => {
 
 <template>
   <div v-if="isViewer" class="rounded-xl border border-vue-green/30 bg-vue-green/10 p-8 text-center">
-    <span class="material-symbols-rounded text-4xl mb-2 block text-vue-green">lock</span>
+    <VunotekIcon icon="lock" :size="36" class="mb-2 block text-vue-green" />
     <p class="text-on-surface font-medium">Modo solo lectura</p>
     <p class="text-sm text-on-surface-variant mt-1">No tienes permisos para crear o editar posts.</p>
   </div>
 
   <div v-else-if="loading" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
-    <span class="material-symbols-rounded text-4xl mb-2 block animate-pulse text-outline">hourglass_empty</span>
+    <VunotekIcon icon="hourglass_empty" :size="36" class="mb-2 block animate-pulse text-outline" />
     Cargando...
   </div>
 

@@ -3,9 +3,12 @@ import { ref, onMounted, computed } from 'vue'
 import { useAuthStore } from '../../stores/auth'
 import { blogService } from '../../services/blogService'
 import { useToast } from '../../composables/useToast'
+import ConfirmDialog from './ui/ConfirmDialog.vue'
+import VunotekIcon from './ui/VunotekIcon.vue'
 
 const auth = useAuthStore()
 const toast = useToast()
+const confirmRef = ref<{ show: (msg: string) => Promise<boolean> } | null>(null)
 
 const canEdit = computed(() => auth.hasPermission('blog', 'edit'))
 const canCreate = computed(() => auth.hasPermission('blog', 'create'))
@@ -56,7 +59,8 @@ async function fetchPosts() {
 }
 
 async function deletePost(id: number) {
-  if (!confirm('¿Eliminar este post?')) return
+  const confirmed = await confirmRef.value?.show('¿Eliminar este post?')
+  if (!confirmed) return
   deletingId.value = id
   try {
     const { data } = await blogService.delete(id)
@@ -89,6 +93,7 @@ onMounted(fetchPosts)
 
 <template>
   <div>
+    <ConfirmDialog ref="confirmRef" />
     <div class="flex flex-wrap items-center gap-3 mb-4">
       <select
         :value="activeLocale"
@@ -122,12 +127,12 @@ onMounted(fetchPosts)
     </div>
 
     <div v-if="loading" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
-      <span class="material-symbols-rounded text-4xl mb-2 block animate-pulse text-outline">hourglass_empty</span>
+      <VunotekIcon icon="hourglass_empty" :size="36" class="mb-2 block animate-pulse text-outline" />
       Cargando...
     </div>
 
     <div v-else-if="posts.length === 0" class="rounded-xl border border-outline-variant/20 bg-surface-container p-8 text-center text-on-surface-variant">
-      <span class="material-symbols-rounded text-4xl mb-2 block text-outline">article</span>
+      <VunotekIcon icon="article" :size="36" class="mb-2 block text-outline" />
       No hay posts para mostrar
     </div>
 
@@ -151,7 +156,7 @@ onMounted(fetchPosts)
               class="border-b border-outline-variant/10 hover:bg-surface-container-high/50 transition-colors"
             >
               <td class="px-4 py-3">
-                <a :href="canEdit ? `/admin/blog/${post.id}` : '#'" :class="canEdit ? 'text-on-surface hover:text-vue-green transition-colors font-medium' : 'text-on-surface font-medium'">
+                <a :href="canEdit ? `/admin/blog/editar?id=${post.id}` : '#'" :class="canEdit ? 'text-on-surface hover:text-vue-green transition-colors font-medium' : 'text-on-surface font-medium'">
                   {{ post.title }}
                 </a>
               </td>
@@ -181,11 +186,11 @@ onMounted(fetchPosts)
                 <div class="flex items-center justify-end gap-1">
                   <a
                     v-if="canEdit"
-                    :href="`/admin/blog/${post.id}`"
+                    :href="`/admin/blog/editar?id=${post.id}`"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors"
                     title="Editar"
                   >
-                    <span class="material-symbols-rounded text-lg">edit</span>
+                    <VunotekIcon icon="edit" :size="18" />
                   </a>
                   <button
                     v-if="canDelete"
@@ -194,7 +199,7 @@ onMounted(fetchPosts)
                     class="rounded p-1.5 text-on-surface-variant hover:bg-error-container/20 hover:text-error transition-colors disabled:opacity-50"
                     title="Eliminar"
                   >
-                    <span class="material-symbols-rounded text-lg">{{ deletingId === post.id ? 'hourglass_empty' : 'delete' }}</span>
+                    <VunotekIcon :icon="deletingId === post.id ? 'hourglass_empty' : 'delete'" :size="18" />
                   </button>
                 </div>
               </td>
