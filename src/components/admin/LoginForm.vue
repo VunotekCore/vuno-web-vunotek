@@ -138,7 +138,7 @@ async function handleLogin() {
         </div>
 
         <!-- Glass card -->
-        <div class="glass-card overflow-hidden rounded-xl">
+        <div class="admin-glass-card overflow-hidden rounded-xl">
           <!-- Header -->
           <div class="px-7 pt-7 pb-2 text-center">
             <svg width="32" height="20" viewBox="100 105 280 180" fill="none" aria-hidden="true" class="mx-auto mb-5">
