@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Cada entry point require_once este archivo.
  */
 
-config(['jwt' => require __DIR__ . '/config.php']);
+config(require __DIR__ . '/config.php');
 $config = config();
 
 // --- Autoloader PSR-4 ---
