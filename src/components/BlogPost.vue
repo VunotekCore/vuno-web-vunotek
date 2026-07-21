@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue'
+import { ArrowLeft } from '@lucide/vue'
 import { blogService } from '../services/blogService'
 
 const props = defineProps<{
@@ -156,7 +157,7 @@ onMounted(async () => {
     <h2 class="font-display-lg text-headline-lg text-on-surface mb-2">Articulo no encontrado</h2>
     <p class="text-on-surface-variant mb-6">El articulo que buscas no existe o ha sido eliminado.</p>
     <a :href="backUrl" class="inline-flex items-center gap-2 text-electric-blue hover:underline">
-      <span class="material-symbols-outlined text-sm">arrow_back</span>
+      <ArrowLeft :size="16" />
       {{ backLabel }}
     </a>
   </div>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import Section from '../../../components/Section.astro'
+import Icon from '../../../components/atoms/Icon.astro'
 import BlogPost from '../../../components/BlogPost.vue'
 import { getTranslations } from '../../../i18n/utils'
 
@@ -27,7 +28,7 @@ export async function getStaticPaths() {
 <BaseLayout title="Blog | Vunotek" description="Articles about software engineering and business automation.">
   <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
     <a href="/en/blog" class="inline-flex items-center gap-xs text-electric-blue font-label-mono hover:underline mb-lg">
-      <span class="material-symbols-outlined text-sm">arrow_back</span>
+      <Icon name="arrow_back" class="text-sm" />
       {bg.back_link}
     </a>
   </Section>
