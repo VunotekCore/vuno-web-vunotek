@@ -18,6 +18,7 @@ import {
   Tag,
   FileText,
   Loader2,
+  Languages,
 } from '@lucide/vue'
 
 const props = defineProps<{
@@ -44,6 +45,7 @@ const iconMap: Record<string, any> = {
   label: Tag,
   article: FileText,
   hourglass_empty: Loader2,
+  translate: Languages,
 }
 
 const isLoading = computed(() => props.icon === 'hourglass_empty')

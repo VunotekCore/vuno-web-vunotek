@@ -17,4 +17,5 @@ export const ICON_MAP: Record<string, string> = {
   article: 'FileText',
   hourglass_empty: 'Loader2',
   folder_kanban: 'FolderKanban',
+  translate: 'Languages',
 }

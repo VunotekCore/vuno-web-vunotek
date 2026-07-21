@@ -204,6 +204,14 @@ onMounted(async () => {
                   >
                     <VunotekIcon icon="edit" :size="18" />
                   </a>
+                  <a
+                    v-if="canCreate"
+                    :href="`/admin/blog/new?clone=${post.id}`"
+                    class="rounded p-1.5 text-on-surface-variant hover:bg-electric-blue/15 hover:text-electric-blue transition-colors"
+                    title="Crear traducción"
+                  >
+                    <VunotekIcon icon="translate" :size="18" />
+                  </a>
                   <button
                     v-if="canDelete"
                     @click="deletePost(post.id)"

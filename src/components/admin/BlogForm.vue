@@ -36,8 +36,10 @@ interface PostData {
 
 const params = new URLSearchParams(window.location.search)
 const postId = params.get('id')
+const cloneId = params.get('clone')
 
 const isEdit = computed(() => !!postId)
+const isClone = computed(() => !!cloneId)
 
 const categories = ref<Category[]>([])
 const loading = ref(true)
@@ -112,6 +114,37 @@ async function fetchPost() {
   }
 }
 
+async function fetchClonePost() {
+  if (!cloneId) {
+    loading.value = false
+    return
+  }
+
+  try {
+    const { data } = await blogService.get(Number(cloneId))
+    if (data.success && data.data) {
+      const p = data.data as PostData
+      form.value = {
+        title: '',
+        slug: '',
+        excerpt: '',
+        content: p.content,
+        category_id: p.category_id,
+        author: p.author,
+        locale: p.locale === 'es' ? 'en' : 'es',
+        image: p.image ?? '',
+        meta_title: '',
+        og_image: p.og_image ?? '',
+        status: 'draft',
+      }
+    }
+  } catch {
+    error.value = 'Error al cargar el post original'
+  } finally {
+    loading.value = false
+  }
+}
+
 async function handleSubmit() {
   error.value = ''
   success.value = ''
@@ -145,7 +178,8 @@ async function handleSubmit() {
 onMounted(async () => {
   auth.initFromGlobal()
   await fetchCategories()
-  await fetchPost()
+  if (isClone.value) await fetchClonePost()
+  else await fetchPost()
 })
 </script>
 
@@ -162,6 +196,11 @@ onMounted(async () => {
   </div>
 
   <form v-else @submit.prevent="handleSubmit" class="flex flex-col gap-5">
+    <div v-if="isClone" class="rounded-lg bg-electric-blue/10 border border-electric-blue/20 px-4 py-3 text-sm text-electric-blue flex items-center gap-2">
+      <VunotekIcon icon="translate" :size="18" />
+      <span>Traduciendo post — imagen, categoría y contenido pre-copiados. Solo necesitas traducir título, excerpt y meta title.</span>
+    </div>
+
     <div class="grid gap-5 sm:grid-cols-2">
       <div class="sm:col-span-2">
         <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Título *</label>
@@ -282,7 +321,7 @@ onMounted(async () => {
         :disabled="saving"
         class="rounded-lg bg-vue-green px-6 py-2.5 font-semibold text-on-secondary transition-colors hover:bg-vue-green/90 disabled:opacity-50"
       >
-        {{ saving ? 'Guardando...' : isEdit ? 'Actualizar post' : 'Crear post' }}
+        {{ saving ? 'Guardando...' : isEdit ? 'Actualizar post' : isClone ? 'Crear traducción' : 'Crear post' }}
       </button>
       <a href="/admin/blog" class="rounded-lg border border-outline-variant/40 px-6 py-2.5 font-medium text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface">
         Cancelar
