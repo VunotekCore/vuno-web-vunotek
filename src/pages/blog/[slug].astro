@@ -1,126 +1,43 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Section from '../../components/Section.astro'
-import ScrollReveal from '../../components/ScrollReveal.astro'
-import BlogCard from '../../components/BlogCard.astro'
-import { getCollection } from 'astro:content'
-import type { GetStaticPathsItem } from 'astro'
+import BlogPost from '../../components/BlogPost.vue'
 import { getTranslations } from '../../i18n/utils'
-import Icon from '../../components/Icon.astro';
-import { getAlternateSlug } from '../../i18n/blog-slugs';
-import { getArticleSchema } from '../../seo';
 
-export async function getStaticPaths(): Promise<GetStaticPathsItem[]> {
-  const posts = await getCollection('blog')
-  return posts
-    .filter((p) => p.data.locale === 'es')
-    .map((post) => ({
-      params: { slug: post.id },
-      props: { post },
-    }))
-}
-
-const dict = getTranslations(Astro.currentLocale ?? 'es') as any
+const dict = getTranslations('es') as any
 const bg = dict.blog
 
-const { post } = Astro.props as any
-
-const blogImages: Record<string, string> = {
-  'blog/salesforce-automation': 'https://ik.imagekit.io/vijys5g3r/blog/salesforce-automation.webp',
-  'blog/e-invoicing-central-america': 'https://ik.imagekit.io/vijys5g3r/blog/e-invoicing-central-america.webp',
-  'blog/vue3-astro': 'https://ik.imagekit.io/vijys5g3r/blog/vue3-astro.webp',
-  'blog/sql-server-optimization': 'https://ik.imagekit.io/vijys5g3r/blog/sql-server-optimization.webp',
-  'blog/offline-first': 'https://ik.imagekit.io/vijys5g3r/blog/offline-first.webp',
-  'blog/nodejs-aws-docker': 'https://ik.imagekit.io/vijys5g3r/blog/nodejs-aws-docker.webp',
-  'blog/typescript-avanzado': 'https://ik.imagekit.io/vijys5g3r/blog/typescript-avanzado.webp',
+export async function getStaticPaths() {
+  const apiBase = 'http://localhost:8000'
+  try {
+    const res = await fetch(`${apiBase}/blog/list.php?locale=es&status=published`)
+    const data = await res.json()
+    if (data.success && Array.isArray(data.data?.posts)) {
+      return data.data.posts.map((post: { slug: string }) => ({
+        params: { slug: post.slug },
+      }))
+    }
+  } catch {
+    // API not available at build time — return empty to avoid build failure
+  }
+  return []
 }
-const isDirectUrl = post.data.image?.startsWith('http')
-const imgSrc = post.data.image
-  ? isDirectUrl
-    ? post.data.image
-    : blogImages[post.data.image]
-  : undefined
-
-const enSlug = getAlternateSlug(post.id, 'en')
-const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://vunotek.com'
-const blogEsUrl = `${siteUrl}/blog/${post.id}/`
-const blogEnUrl = enSlug ? `${siteUrl}/en/blog/${enSlug}/` : `${siteUrl}/en/blog/${post.id}/`
-
-const allBlogPosts = await getCollection('blog')
-const related = allBlogPosts
-  .filter((p) =>
-    p.data.locale === 'es' &&
-    p.data.category === post.data.category &&
-    p.id !== post.id
-  )
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3)
-
-const pageTitle = post.data.metaTitle || (post.data.title + ' | Vunotek')
-const articleSchema = getArticleSchema(post.data)
 ---
 
-<BaseLayout title={pageTitle} description={post.data.excerpt} esUrl={blogEsUrl} enUrl={blogEnUrl} ogType="article" ogImage={post.data.ogImage}>
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<BaseLayout title="Blog | Vunotek" description="Articulos sobre ingenieria de software y automatizacion empresarial.">
   <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
     <a href="/blog" class="inline-flex items-center gap-xs text-electric-blue font-label-mono hover:underline mb-lg">
-      <Icon name="arrow_back" class="text-sm" />
+      <span class="material-symbols-outlined text-sm">arrow_back</span>
       {bg.back_link}
     </a>
-
-    <div class="flex flex-wrap items-center gap-3 mb-md">
-      <span class="font-label-mono text-[11px] text-electric-blue bg-electric-blue/10 px-3 py-1 rounded">{post.data.category}</span>
-      <span class="font-label-mono text-[11px] text-slate-text">{post.data.date.toISOString().split('T')[0]}</span>
-      <span class="font-label-mono text-[11px] text-slate-text/60">— {post.data.author}</span>
-    </div>
-
-    <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
-      {post.data.title}
-    </h1>
-
-    {
-      imgSrc && (
-        <div class="aspect-[16/9] md:aspect-[21/9] glass-panel rounded-xl mt-xl overflow-hidden">
-          <img src={imgSrc} alt={post.data.title} width="1200" height="675" class="w-full h-full object-cover" loading="eager" />
-        </div>
-      )
-    }
   </Section>
 
   <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
-    <div class="max-w-3xl mx-auto">
-      <div class="blog-content">
-        <Fragment set:html={post.rendered?.html || ''} />
-      </div>
-    </div>
+    <BlogPost client:only="vue" locale="es" backUrl="/blog" backLabel={bg.back_link} relatedTitle={bg.related_title} />
   </Section>
-
-  {
-    related.length > 0 && (
-      <Section>
-        <h2 class="font-display-lg text-headline-lg text-on-surface mb-lg">
-          {bg.related_title}
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-          {related.map((rp, i) => (
-            <ScrollReveal delay={i * 100} stagger>
-              <BlogCard
-                title={rp.data.title}
-                excerpt={rp.data.excerpt}
-                date={rp.data.date.toISOString().split('T')[0]}
-                category={rp.data.category}
-                slug={rp.id}
-                image={rp.data.image}
-              />
-            </ScrollReveal>
-          ))}
-        </div>
-      </Section>
-    )
-  }
 </BaseLayout>
 
-<style>
+<style is:global>
 .blog-content {
     font-size: 1.0625rem;
     line-height: 1.85;

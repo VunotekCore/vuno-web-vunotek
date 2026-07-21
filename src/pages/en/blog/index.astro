@@ -1,23 +1,44 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro'
-import Blog from '../../../templates/Blog.astro'
-import { getCollection } from 'astro:content'
+import Section from '../../../components/Section.astro'
+import BlogList from '../../../components/BlogList.vue'
 import { getTranslations } from '../../../i18n/utils'
 
 const dict = getTranslations('en') as any
 const bg = dict.blog
-const allPosts = await getCollection('blog')
-const posts = allPosts
-  .filter((p) => p.data.locale === 'en')
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 ---
 
 <BaseLayout title={bg.hero.title + ' | Vunotek'} description={bg.hero.desc}>
-  <Blog
-    posts={posts}
-    heroTitle={bg.hero.title}
-    heroDesc={bg.hero.desc}
-    sectionTag={bg.meta?.section_tag}
-    locale="en"
-  />
+  <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
+    <div class="flex flex-col gap-base stagger-header">
+      <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse"></span>
+        <span class="font-label-mono text-label-mono text-electric-blue tracking-wider uppercase">{bg.meta?.section_tag || '// blog'}</span>
+      </div>
+      <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
+        {bg.hero.title}
+      </h1>
+      <p class="font-body-lg text-body-lg text-slate-text max-w-3xl">
+        {bg.hero.desc}
+      </p>
+    </div>
+  </Section>
+
+  <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
+    <BlogList client:only="vue" locale="en" />
+  </Section>
 </BaseLayout>
+
+<style>
+  .stagger-header > * {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .stagger-header > :nth-child(1) { animation-delay: 0.1s; }
+  .stagger-header > :nth-child(2) { animation-delay: 0.25s; }
+  .stagger-header > :nth-child(3) { animation-delay: 0.4s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

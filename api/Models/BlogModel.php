@@ -9,7 +9,7 @@ class BlogModel
 {
     public function __construct(private PDO $db) {}
 
-    public function list(?string $locale = null, ?string $status = null, int $page = 1, int $perPage = 20): array
+    public function list(?string $locale = null, ?string $status = null, int $page = 1, int $perPage = 20, ?string $categorySlug = null): array
     {
         $where = [];
         $params = [];
@@ -22,11 +22,19 @@ class BlogModel
             $where[] = 'b.status = :status';
             $params['status'] = $status;
         }
+        if ($categorySlug !== null) {
+            $where[] = 'c.slug = :category_slug';
+            $params['category_slug'] = $categorySlug;
+        }
 
         $whereClause = $where ? 'WHERE ' . implode(' AND ', $where) : '';
         $offset = ($page - 1) * $perPage;
 
-        $countStmt = $this->db->prepare("SELECT COUNT(*) FROM blog_posts b $whereClause");
+        $needsJoin = $categorySlug !== null;
+        $countFrom = $needsJoin
+            ? "FROM blog_posts b LEFT JOIN categories c ON c.id = b.category_id $whereClause"
+            : "FROM blog_posts b $whereClause";
+        $countStmt = $this->db->prepare("SELECT COUNT(*) $countFrom");
         $countStmt->execute($params);
         $total = (int) $countStmt->fetchColumn();
 
