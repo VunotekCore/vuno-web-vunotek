@@ -25,6 +25,7 @@
 14. [Performance](#14-performance)
 15. [Comandos y Verificación](#15-comandos-y-verificación)
 16. [Workflow del Agente](#16-workflow-del-agente)
+17. [Blog: PHP SSR Fallback](#17-blog-php-ssr-fallback)
 
 ---
 
@@ -693,3 +694,65 @@ PUBLIC_IMAGEKIT_ENDPOINT=https://ik.imagekit.io/your_id
 - [Tailwind CSS](https://tailwindcss.com)
 - [ImageKit](https://imagekit.io)
 - [Vue.js](https://vuejs.org)
+
+---
+
+## 17. Blog: PHP SSR Fallback
+
+El blog usa un enfoque híbrido: Astro SSG para páginas conocidas + PHP server-side rendering como fallback para posts nuevos.
+
+### Arquitectura
+
+```
+/blog/{slug}
+├── dist/blog/{slug}/index.html  ← Astro SSG (pre-rendered)
+└── blog/index.php               ← PHP fallback (si no existe HTML estático)
+```
+
+- **Posts conocidos** → servidos desde `dist/blog/{slug}/index.html` (más rápido)
+- **Posts nuevos** → servidos desde `blog/index.php` (200 OK, SEO completo)
+- **Posts inexistentes** → PHP retorna 404
+
+### Archivos PHP
+
+```
+blog/
+├── index.php          # Renderer principal — query DB directa, 200 OK
+├── layout.php         # Shell HTML (head, navbar, footer, helpers)
+└── assets/
+    ├── style.css      # Tailwind CSS extraído del build (77KB)
+    ├── logo-svg.txt   # Logo navbar
+    └── logo-svg-small.txt  # Logo footer
+```
+
+### .htaccess Rewrite Rules
+
+```apache
+RewriteEngine On
+# Blog SSR fallback
+RewriteCond %{DOCUMENT_ROOT}/blog/$1/index.html !-f
+RewriteRule ^blog/(.+?)/?$ /blog/index.php?slug=$1 [L,QSA]
+# EN blog
+RewriteCond %{DOCUMENT_ROOT}/en/blog/$1/index.html !-f
+RewriteRule ^en/blog/(.+?)/?$ /blog/index.php?slug=$1&locale=en [L,QSA]
+```
+
+### PHP Renderer (`blog/index.php`)
+
+- Query DB directa via `BlogModel` (no HTTP a API)
+- Genera HTML completo: `<head>`, JSON-LD BlogPosting, meta tags, OG, navbar, footer
+- HTTP status200 OK (SEO-friendly)
+- Soporte `?locale=en` para inglés
+
+### Deployment
+
+1. `pnpm build` → genera `dist/`
+2. Copiar `dist/*` + `blog/` + `.htaccess` + `api/` a Hostinger
+3. Posts nuevos aparecen inmediatamente sin rebuild
+
+### Adding New Posts
+
+1. Crear post en backoffice → se guarda en MySQL con `status=published`
+2. El `getStaticPaths` en `[slug].astro` no lo conoce → 404 desde Astro
+3. `.htaccess` rewrite → `blog/index.php?slug={slug}`
+4. PHP query DB → retorna HTML completo (200 OK)
