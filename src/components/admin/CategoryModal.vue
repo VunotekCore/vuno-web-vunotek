@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import CategoryForm from './CategoryForm.vue'
 import VunotekIcon from './ui/VunotekIcon.vue'
 
 const visible = ref(false)
 const editId = ref<number | null>(null)
+const dialogRef = ref<HTMLElement | null>(null)
 
 function open(id?: number) {
   editId.value = id ?? null
   visible.value = true
+  nextTick(() => dialogRef.value?.focus())
 }
 
 function close() {
@@ -19,6 +21,10 @@ function close() {
 function onSaved() {
   close()
   emit('saved')
+}
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') close()
 }
 
 const emit = defineEmits<{
@@ -42,6 +48,7 @@ defineExpose({ open })
         v-if="visible"
         class="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
         @click.self="close"
+        @keydown="onKeydown"
       >
         <Transition
           enter-active-class="transition-all duration-200 ease-out"
@@ -53,6 +60,11 @@ defineExpose({ open })
         >
           <div
             v-if="visible"
+            ref="dialogRef"
+            role="dialog"
+            aria-modal="true"
+            :aria-label="editId ? 'Editar categoría' : 'Nueva categoría'"
+            tabindex="-1"
             class="flex w-full max-w-2xl max-h-[90vh] flex-col rounded-2xl border border-outline-variant/20 bg-[#111d2e] shadow-2xl"
           >
             <div class="flex items-center justify-between border-b border-[#1e293b] px-4 sm:px-6 py-3 sm:py-4 shrink-0">
@@ -62,6 +74,7 @@ defineExpose({ open })
               <button
                 @click="close"
                 class="rounded-lg p-1.5 text-[#94a3b8] transition-colors hover:bg-white/[0.06] hover:text-[#dae2fd]"
+                aria-label="Cerrar"
               >
                 <VunotekIcon icon="close" :size="20" />
               </button>

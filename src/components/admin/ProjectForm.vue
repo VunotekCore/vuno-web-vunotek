@@ -136,7 +136,7 @@ async function handleSubmit() {
 }
 
 onMounted(async () => {
-  auth.initFromGlobal()
+  auth.verify()
   await fetchProject()
 })
 </script>
@@ -156,8 +156,9 @@ onMounted(async () => {
   <form v-else @submit.prevent="handleSubmit" class="flex flex-col gap-5">
     <div class="grid gap-5 sm:grid-cols-2">
       <div class="sm:col-span-2">
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Nombre *</label>
+        <label for="proj-name" class="block text-sm font-medium text-on-surface-variant mb-1.5">Nombre *</label>
         <input
+          id="proj-name"
           v-model="form.name"
           @blur="!isEdit && autoSlug()"
           type="text"
@@ -168,8 +169,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Tag *</label>
+        <label for="proj-tag" class="block text-sm font-medium text-on-surface-variant mb-1.5">Tag *</label>
         <input
+          id="proj-tag"
           v-model="form.tag"
           type="text"
           required
@@ -179,8 +181,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Slug *</label>
+        <label for="proj-slug" class="block text-sm font-medium text-on-surface-variant mb-1.5">Slug *</label>
         <input
+          id="proj-slug"
           v-model="form.slug"
           type="text"
           required
@@ -190,8 +193,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">URL en vivo</label>
+        <label for="proj-url" class="block text-sm font-medium text-on-surface-variant mb-1.5">URL en vivo</label>
         <input
+          id="proj-url"
           v-model="form.live_url"
           type="url"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface placeholder:text-on-surface-variant/50 transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
@@ -200,8 +204,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Idioma</label>
+        <label for="proj-locale" class="block text-sm font-medium text-on-surface-variant mb-1.5">Idioma</label>
         <select
+          id="proj-locale"
           v-model="form.locale"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
         >
@@ -211,8 +216,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Estado</label>
+        <label for="proj-status" class="block text-sm font-medium text-on-surface-variant mb-1.5">Estado</label>
         <select
+          id="proj-status"
           v-model="form.status"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
         >
@@ -222,8 +228,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Tipo</label>
+        <label for="proj-type" class="block text-sm font-medium text-on-surface-variant mb-1.5">Tipo</label>
         <select
+          id="proj-type"
           v-model="form.is_saas"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
         >
@@ -233,8 +240,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Orden</label>
+        <label for="proj-order" class="block text-sm font-medium text-on-surface-variant mb-1.5">Orden</label>
         <input
+          id="proj-order"
           v-model.number="form.sort_order"
           type="number"
           min="0"
@@ -243,8 +251,9 @@ onMounted(async () => {
       </div>
 
       <div class="sm:col-span-2">
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Descripción</label>
+        <label for="proj-desc" class="block text-sm font-medium text-on-surface-variant mb-1.5">Descripción</label>
         <textarea
+          id="proj-desc"
           v-model="form.description"
           rows="3"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface placeholder:text-on-surface-variant/50 transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30 resize-y"

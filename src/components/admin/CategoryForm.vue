@@ -112,7 +112,7 @@ async function handleSubmit() {
 }
 
 onMounted(() => {
-  auth.initFromGlobal()
+  auth.verify()
 })
 
 watch(() => props.categoryId, () => {
@@ -135,8 +135,9 @@ watch(() => props.categoryId, () => {
 
   <form v-else @submit.prevent="handleSubmit" class="flex flex-col gap-5">
     <div>
-      <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Nombre *</label>
+      <label for="cat-name" class="block text-sm font-medium text-on-surface-variant mb-1.5">Nombre *</label>
       <input
+        id="cat-name"
         v-model="form.name"
         @blur="!isEdit && autoSlug()"
         type="text"
@@ -147,8 +148,9 @@ watch(() => props.categoryId, () => {
     </div>
 
     <div>
-      <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Slug *</label>
+      <label for="cat-slug" class="block text-sm font-medium text-on-surface-variant mb-1.5">Slug *</label>
       <input
+        id="cat-slug"
         v-model="form.slug"
         type="text"
         required

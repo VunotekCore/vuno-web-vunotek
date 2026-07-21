@@ -49,7 +49,7 @@ onMounted(async () => {
 
 <template>
   <!-- Skeleton -->
-  <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+  <div v-if="loading" role="status" aria-live="polite" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
     <div v-for="n in 6" :key="n" class="animate-pulse">
       <div class="aspect-[16/10] bg-surface-container-highest rounded-xl mb-4"></div>
       <div class="flex items-center gap-2 mb-2">
@@ -63,7 +63,7 @@ onMounted(async () => {
   </div>
 
   <!-- Error -->
-  <div v-else-if="error" class="text-center py-12">
+  <div v-else-if="error" role="status" class="text-center py-12">
     <p class="text-on-surface-variant mb-4">{{ error }}</p>
     <button @click="loading = true; error = ''; $mounted()" class="text-electric-blue hover:underline text-sm">
       Reintentar
@@ -71,7 +71,7 @@ onMounted(async () => {
   </div>
 
   <!-- Empty -->
-  <div v-else-if="posts.length === 0" class="text-center py-12">
+  <div v-else-if="posts.length === 0" role="status" class="text-center py-12">
     <p class="text-on-surface-variant">No hay artículos publicados</p>
   </div>
 

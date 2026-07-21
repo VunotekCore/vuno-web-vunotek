@@ -72,7 +72,7 @@ onMounted(async () => {
     </div>
 
     <div v-if="loading" class="text-center py-12 text-on-surface-variant">
-      Cargando proyectos...
+      {{ locale === 'en' ? 'Loading projects...' : 'Cargando proyectos...' }}
     </div>
 
     <div v-else class="showcase-track-wrapper">

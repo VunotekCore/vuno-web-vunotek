@@ -175,9 +175,9 @@ onMounted(async () => {
   </div>
 
   <div v-else-if="notFound" class="text-center py-20">
-    <span class="material-symbols-outlined text-6xl text-outline/30 mb-4 block">article</span>
-    <h2 class="font-display-lg text-headline-lg text-on-surface mb-2">Articulo no encontrado</h2>
-    <p class="text-on-surface-variant mb-6">El articulo que buscas no existe o ha sido eliminado.</p>
+    <span class="material-symbols-outlined text-6xl text-outline/30 mb-4 block" aria-hidden="true">article</span>
+    <h2 class="font-display-lg text-headline-lg text-on-surface mb-2">{{ locale === 'en' ? 'Article not found' : 'Articulo no encontrado' }}</h2>
+    <p class="text-on-surface-variant mb-6">{{ locale === 'en' ? 'The article you are looking for does not exist or has been removed.' : 'El articulo que buscas no existe o ha sido eliminado.' }}</p>
     <a :href="backUrl" class="inline-flex items-center gap-2 text-electric-blue hover:underline">
       <ArrowLeft :size="16" />
       {{ backLabel }}

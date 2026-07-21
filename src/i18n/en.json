@@ -781,11 +781,6 @@
         "response_time": "Average technical response time: < 24 hours.",
         "social_title": "Professional Networks"
       }
-    },
-    "cta_final": {
-      "title": "Do you prefer a direct session?",
-      "subtitle": "If you have an urgent requirement or prefer to map out the scope through conversation, book a 15-minute discovery call directly into our engineering calendar.",
-      "button": "Schedule Technical Call"
     }
   },
   "about": {
@@ -816,16 +811,6 @@
           "Optimize databases and APIs to sustain system response times under 100ms.",
           "Ensure 100% traceable, fully documented source code free from legacy technical debt.",
           "Expand the capabilities of market-leading CRM platforms like Salesforce via advanced native logic."
-        ]
-      },
-      "stats": {
-        "title": "Our Background in Numbers",
-        "subtitle": "Real-world metrics backing the technical judgment engineered into every system we build.",
-        "items": [
-          { "value": "+15", "label": "Years of Technical Evolution" },
-          { "value": "+50k", "label": "Lines of Code Audited" },
-          { "value": "100%", "label": "Debt-Free Software Architecture" },
-          { "value": "+40", "label": "Successful API Integrations" }
         ]
       }
     },

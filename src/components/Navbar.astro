@@ -97,8 +97,24 @@ function isActive(href: string) {
 
   toggle.addEventListener('click', () => {
     menu.classList.toggle('hidden');
+    const isOpen = !menu.classList.contains('hidden');
+    toggle.setAttribute('aria-expanded', String(isOpen));
     const useEl = toggle.querySelector('use');
-    if (useEl) useEl.setAttribute('href', `/sprite.svg#${menu.classList.contains('hidden') ? 'menu' : 'close'}`);
+    if (useEl) useEl.setAttribute('href', `/sprite.svg#${isOpen ? 'close' : 'menu'}`);
+    if (isOpen) {
+      const firstLink = menu.querySelector('a') as HTMLElement | null;
+      firstLink?.focus();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      const useEl = toggle.querySelector('use');
+      if (useEl) useEl.setAttribute('href', '/sprite.svg#menu');
+      toggle.focus();
+    }
   });
 
   let ticking = false;

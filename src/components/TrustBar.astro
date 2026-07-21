@@ -13,13 +13,13 @@ const { title, items } = Astro.props
 <ScrollReveal>
   <div class="text-center">
     <h2 class="font-headline-md text-headline-md text-slate-text max-sm:mb-md mb-lg">{title}</h2>
-    <div class="flex flex-wrap justify-center items-center gap-md max-sm:gap-sm sm:gap-xl opacity-60 hover:opacity-100 transition-opacity">
+    <ul class="flex flex-wrap justify-center items-center gap-md max-sm:gap-sm sm:gap-xl opacity-60 hover:opacity-100 transition-opacity list-none p-0 m-0">
       {items.map((item) => (
-        <div class="flex items-center gap-sm">
+        <li class="flex items-center gap-sm">
           <Icon name={item.icon} class="text-electric-blue max-sm:text-3xl text-4xl" />
           <span class="font-display-lg text-headline-md font-bold">{item.name}</span>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </ScrollReveal>

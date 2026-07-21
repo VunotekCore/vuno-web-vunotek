@@ -64,7 +64,7 @@ async function deleteCategory(id: number) {
 }
 
 onMounted(async () => {
-  auth.initFromGlobal()
+  auth.verify()
   await fetchCategories()
 })
 </script>

@@ -176,7 +176,7 @@ async function handleSubmit() {
 }
 
 onMounted(async () => {
-  auth.initFromGlobal()
+  auth.verify()
   await fetchCategories()
   if (isClone.value) await fetchClonePost()
   else await fetchPost()
@@ -203,8 +203,9 @@ onMounted(async () => {
 
     <div class="grid gap-5 sm:grid-cols-2">
       <div class="sm:col-span-2">
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Título *</label>
+        <label for="post-title" class="block text-sm font-medium text-on-surface-variant mb-1.5">Título *</label>
         <input
+          id="post-title"
           v-model="form.title"
           @blur="!isEdit && autoSlug()"
           type="text"
@@ -215,8 +216,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Slug *</label>
+        <label for="post-slug" class="block text-sm font-medium text-on-surface-variant mb-1.5">Slug *</label>
         <input
+          id="post-slug"
           v-model="form.slug"
           type="text"
           required
@@ -226,8 +228,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Categoría *</label>
+        <label for="post-category" class="block text-sm font-medium text-on-surface-variant mb-1.5">Categoría *</label>
         <select
+          id="post-category"
           v-model="form.category_id"
           required
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
@@ -238,8 +241,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Idioma</label>
+        <label for="post-locale" class="block text-sm font-medium text-on-surface-variant mb-1.5">Idioma</label>
         <select
+          id="post-locale"
           v-model="form.locale"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
         >
@@ -249,8 +253,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Estado</label>
+        <label for="post-status" class="block text-sm font-medium text-on-surface-variant mb-1.5">Estado</label>
         <select
+          id="post-status"
           v-model="form.status"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
         >
@@ -260,8 +265,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Autor</label>
+        <label for="post-author" class="block text-sm font-medium text-on-surface-variant mb-1.5">Autor</label>
         <input
+          id="post-author"
           v-model="form.author"
           type="text"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface placeholder:text-on-surface-variant/50 transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
@@ -269,8 +275,9 @@ onMounted(async () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Meta Title</label>
+        <label for="post-meta-title" class="block text-sm font-medium text-on-surface-variant mb-1.5">Meta Title</label>
         <input
+          id="post-meta-title"
           v-model="form.meta_title"
           type="text"
           class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface placeholder:text-on-surface-variant/50 transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
@@ -279,8 +286,9 @@ onMounted(async () => {
       </div>
 
       <div class="sm:col-span-2">
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Excerpt *</label>
+        <label for="post-excerpt" class="block text-sm font-medium text-on-surface-variant mb-1.5">Excerpt *</label>
         <textarea
+          id="post-excerpt"
           v-model="form.excerpt"
           required
           rows="2"

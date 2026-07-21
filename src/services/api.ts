@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const TOKEN_KEY = 'vunotek_admin_token'
+
 export function getApiUrl(): string {
   if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
     return 'http://localhost:8000'
@@ -14,11 +16,27 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
+api.interceptors.request.use((config) => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem(TOKEN_KEY)
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+  }
+  return config
+})
+
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      window.location.href = '/admin/login'
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem(TOKEN_KEY)
+        const path = window.location.pathname
+        if (path.startsWith('/admin')) {
+          window.location.href = '/admin/login'
+        }
+      }
     }
     return Promise.reject(error)
   }

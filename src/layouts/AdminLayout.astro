@@ -142,7 +142,7 @@ const navItems = [
               })
             }
 
-            ;(window as unknown as Record<string, unknown>).__ADMIN_USER__ = user || null
+            ;(window as unknown as Record<string, unknown>).__ADMIN_USER__ = null
         })
         .catch(() => {
           window.location.href = '/admin/login'

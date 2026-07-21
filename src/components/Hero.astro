@@ -128,7 +128,7 @@ export interface Props {
                   </a>
                 )}
               </div>
-              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-electric-blue/20 blur-3xl rounded-full" />
+              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-electric-blue/20 blur-3xl rounded-full" aria-hidden="true" />
             </div>
             <div
               class="absolute -bottom-8 -right-8 glass-panel p-md rounded-lg border-electric-blue/20 max-md:absolute max-md:top-2 max-md:right-2 max-md:bottom-auto max-md:p-2 max-md:bg-surface-container/60"
@@ -157,7 +157,7 @@ export interface Props {
     {
       Astro.props.variant === 'gradient' && (
         <div class="flex-1 flex flex-col justify-start md:justify-center pt-20 md:pt-24 relative">
-          <div class="absolute -top-20 -right-20 w-96 h-96 bg-electric-blue/5 rounded-full blur-[100px]" />
+          <div class="absolute -top-20 -right-20 w-96 h-96 bg-electric-blue/5 rounded-full blur-[100px]" aria-hidden="true" />
           <div class="max-w-3xl">
             <h1 class="font-display-lg text-display-lg mb-md leading-tight">
               {Astro.props.title} <span class="text-gradient">{Astro.props.titleAccent}</span>{' '}
@@ -442,7 +442,7 @@ export interface Props {
     }
 
     const unlockOnKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter' || e.key === 'Tab' || e.key === 'ArrowDown') {
         e.preventDefault()
         unlock()
       }

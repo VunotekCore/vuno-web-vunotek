@@ -25,6 +25,7 @@ function variantClass(type: string): string {
       class="admin-toast"
       :class="variantClass(t.type)"
       :style="{ top: (16 + i * 76) + 'px' }"
+      role="alert"
     >
       <VunotekIcon :icon="icon(t.type)" :size="22" class="admin-toast-icon" />
       <span class="admin-toast-text">{{ t.message }}</span>

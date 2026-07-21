@@ -25,7 +25,7 @@ export const SEO = {
     foundingDate: '2024',
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'projects@vunotek.com',
+      email: 'comercial@vunotek.com',
       contactType: 'sales',
     },
     sameAs: ['https://github.com/vunotek', 'https://linkedin.com/company/vunotek'],

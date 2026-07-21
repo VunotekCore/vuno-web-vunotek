@@ -19,6 +19,8 @@ interface User {
   permissions: Permissions
 }
 
+const TOKEN_KEY = 'vunotek_admin_token'
+
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)
 
@@ -36,11 +38,28 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isViewer = computed(() => user.value?.role_slug === 'viewer')
 
+  function setToken(token: string | undefined) {
+    if (token) {
+      localStorage.setItem(TOKEN_KEY, token)
+    } else {
+      localStorage.removeItem(TOKEN_KEY)
+    }
+  }
+
+  function getToken(): string | null {
+    return localStorage.getItem(TOKEN_KEY)
+  }
+
+  function clearToken() {
+    localStorage.removeItem(TOKEN_KEY)
+  }
+
   async function login(email: string, password: string): Promise<boolean> {
     const { data } = await authService.login(email, password)
 
     if (data.success && data.data?.user) {
       user.value = data.data.user
+      setToken(data.data.token)
       return true
     }
 
@@ -49,6 +68,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   function logout() {
     user.value = null
+    clearToken()
     authService.logout().catch(() => {})
     window.location.href = '/admin/login'
   }
@@ -59,23 +79,19 @@ export const useAuthStore = defineStore('auth', () => {
 
       if (!data.success) {
         user.value = null
+        clearToken()
         return false
       }
 
       user.value = data.data?.user ?? null
+      if (data.data?.token) setToken(data.data.token)
       return true
     } catch {
       user.value = null
+      clearToken()
       return false
     }
   }
 
-  function initFromGlobal() {
-    const adminUser = (window as unknown as Record<string, unknown>).__ADMIN_USER__ as User | null | undefined
-    if (adminUser && !user.value) {
-      user.value = adminUser
-    }
-  }
-
-  return { user, isAuthenticated, isViewer, hasPermission, login, logout, verify, initFromGlobal }
+  return { user, isAuthenticated, isViewer, hasPermission, login, logout, verify, getToken }
 })

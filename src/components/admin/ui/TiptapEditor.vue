@@ -13,6 +13,15 @@ import { common, createLowlight } from 'lowlight'
 
 const lowlight = createLowlight(common)
 
+function isSafeUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url)
+    return ['http:', 'https:', 'mailto:'].includes(parsed.protocol)
+  } catch {
+    return false
+  }
+}
+
 const props = defineProps<{
   modelValue: string
   placeholder?: string
@@ -74,13 +83,17 @@ function setLink() {
     editor.value.chain().focus().extendMarkRange('link').unsetLink().run()
     return
   }
+  if (!isSafeUrl(url)) {
+    alert('URL no válida. Solo se permiten http, https y mailto.')
+    return
+  }
   editor.value.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
 }
 
 function addImage() {
   if (!editor.value) return
   const url = window.prompt('URL de la imagen:')
-  if (url) {
+  if (url && isSafeUrl(url)) {
     editor.value.chain().focus().setImage({ src: url }).run()
   }
 }

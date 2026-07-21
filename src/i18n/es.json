@@ -59,6 +59,7 @@
       "anchor": "Servicios",
       "title": "Capacidades Centrales de ",
       "titleAccent": "Ingeniería",
+      "titleRest": " Capacidades",
       "subtitle": "Infraestructura de software robusta, diseñada para optimizar operaciones y acelerar el crecimiento empresarial.",
       "items": [
         {
@@ -788,11 +789,6 @@
         "response_time": "Tiempo medio de respuesta técnica: < 24 horas.",
         "social_title": "Redes Profesionales"
       }
-    },
-    "cta_final": {
-      "title": "¿Prefieres una sesión directa?",
-      "subtitle": "Si tienes un requerimiento urgente o prefieres definir el alcance conversando, agenda una sesión técnica de 15 minutos en nuestro calendario operativo.",
-      "button": "Agendar Llamada Técnica"
     }
   },
   "about": {
@@ -823,16 +819,6 @@
           "Optimizar bases de datos y APIs para mantener tiempos de respuesta inferiores a los 100ms.",
           "Asegurar un código 100% trazable, documentado y libre de deuda técnica heredada.",
           "Extender las capacidades de plataformas CRM líderes como Salesforce mediante lógica nativa avanzada."
-        ]
-      },
-      "stats": {
-        "title": "La Trayectoria en Números",
-        "subtitle": "Métricas reales que respaldan el criterio técnico detrás de cada una de nuestras soluciones.",
-        "items": [
-          { "value": "+15", "label": "Años de Evolución Técnica" },
-          { "value": "+50k", "label": "Líneas de Código Auditadas" },
-          { "value": "100%", "label": "Arquitectura Libre de Deuda" },
-          { "value": "+40", "label": "Integraciones de APIs Exitosas" }
         ]
       }
     },

@@ -89,7 +89,7 @@ function setFilter(type: 'locale' | 'status', value: string) {
 }
 
 onMounted(async () => {
-  auth.initFromGlobal()
+  auth.verify()
   await fetchPosts()
 })
 </script>
@@ -101,6 +101,7 @@ onMounted(async () => {
       <select
         :value="activeLocale"
         @change="setFilter('locale', ($event.target as HTMLSelectElement).value)"
+        aria-label="Filtrar por idioma"
         class="rounded-lg border border-outline-variant/40 bg-surface-container px-3 py-2 text-sm text-on-surface focus:border-vue-green focus:outline-none"
       >
         <option value="">Todos los idiomas</option>
@@ -111,6 +112,7 @@ onMounted(async () => {
       <select
         :value="activeStatus"
         @change="setFilter('status', ($event.target as HTMLSelectElement).value)"
+        aria-label="Filtrar por estado"
         class="rounded-lg border border-outline-variant/40 bg-surface-container px-3 py-2 text-sm text-on-surface focus:border-vue-green focus:outline-none"
       >
         <option value="">Todos los estados</option>
