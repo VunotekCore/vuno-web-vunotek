@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro'
+import ProjectForm from '../../../components/admin/ProjectForm.vue'
+import Icon from '../../../components/atoms/Icon.astro'
+---
+
+<AdminLayout title="Editar proyecto">
+  <div class="mb-6">
+    <a href="/admin/projects" class="inline-flex items-center gap-1 text-sm text-on-surface-variant hover:text-on-surface transition-colors">
+      <Icon name="arrow_back" size={18} />
+      Volver a proyectos
+    </a>
+  </div>
+  <ProjectForm client:only="vue" />
+</AdminLayout>

@@ -5,6 +5,10 @@ export const categoryService = {
     return api.get('/categories/list.php')
   },
 
+  listAdmin() {
+    return api.get('/categories/list-admin.php')
+  },
+
   get(id: number) {
     return api.get('/categories/get.php', { params: { id } })
   },

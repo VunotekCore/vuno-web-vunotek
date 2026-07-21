@@ -5,8 +5,16 @@ export const blogService = {
     return api.get('/blog/list.php', { params })
   },
 
+  listAdmin(params?: Record<string, string>) {
+    return api.get('/blog/list-admin.php', { params })
+  },
+
   get(id: number) {
     return api.get('/blog/get.php', { params: { id } })
+  },
+
+  getBySlug(slug: string) {
+    return api.get('/blog/get.php', { params: { slug } })
   },
 
   create(data: Record<string, unknown>) {
@@ -18,6 +26,6 @@ export const blogService = {
   },
 
   delete(id: number) {
-    return api.delete('/blog/delete.php', { params: { id } })
+    return api.delete(`/blog/delete.php`, { params: { id } })
   },
 }
