@@ -16,10 +16,10 @@ export default defineConfig({
   build: {
     format: 'directory',
     assets: '_astro',
-    inlineStylesheets: 'always'
+    inlineStylesheets: 'auto'
   },
   prefetch: {
-    prefetchAll: true,
+    prefetchAll: false,
     defaultStrategy: 'hover'
   },
   integrations: [

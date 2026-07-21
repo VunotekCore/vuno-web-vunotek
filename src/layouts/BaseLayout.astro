@@ -124,6 +124,9 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     <link rel="preconnect" href="https://ik.imagekit.io" />
     {gaId && <link rel="preconnect" href="https://www.googletagmanager.com" />}
 
+    <link rel="preload" href="/fonts/hanken-grotesk-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+
     <link rel="canonical" href={canonicalURL} />
 
     <link rel="alternate" hreflang="es" href={esUrl} />
@@ -159,6 +162,15 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     {breadcrumbSchema && (
       <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
     )}
+
+    <script type="speculationrules" is:inline>
+    {
+      "prerender": [{
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }]
+    }
+    </script>
 
   </head>
   <body class="bg-background text-on-surface font-body-md selection:bg-electric-blue/30 selection:text-electric-blue overflow-x-hidden">

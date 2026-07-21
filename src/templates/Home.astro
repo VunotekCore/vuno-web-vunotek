@@ -69,5 +69,5 @@ const p = (path: string) => (locale === 'en' ? `/en${path}` : path)
 </Section>
 
 <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
-  <ProjectShowcase client:only="vue" title={gh.trust.title} locale={locale} />
+  <ProjectShowcase client:visible title={gh.trust.title} locale={locale} />
 </Section>

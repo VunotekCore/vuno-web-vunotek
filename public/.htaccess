@@ -12,14 +12,22 @@ RewriteCond %{DOCUMENT_ROOT}/en/blog/$1.html !-f
 RewriteRule ^en/blog/([a-z0-9_-]+)/?$ /blog/index.php?slug=$1&locale=en [L,QSA]
 
 <IfModule mod_headers.c>
-  <FilesMatch "^_astro/.*\.(js|css|webp|png|ico|svg)$">
+  <FilesMatch "^_astro/.*\.(js|css|webp|png|ico|svg|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
-  <FilesMatch "\.html$">
+  <FilesMatch "\.(html)$">
     Header set Cache-Control "public, max-age=3600, must-revalidate"
   </FilesMatch>
+  <FilesMatch "\.(css|js|woff2|webp|png|jpg|jpeg|gif|svg|ico)$">
+    Header set Cache-Control "public, max-age=86400, stale-while-revalidate=604800"
+  </FilesMatch>
+  Header set Vary "Accept-Encoding"
 </IfModule>
 
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml font/woff2
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>

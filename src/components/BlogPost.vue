@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, nextTick } from 'vue'
 import { ArrowLeft } from '@lucide/vue'
 import { blogService } from '../services/blogService'
+import { IK_BASE } from '../utils/imagekit'
 import DOMPurify from 'dompurify'
 
 const props = defineProps<{
@@ -58,6 +59,13 @@ const notFound = ref(false)
 const prefix = props.locale === 'en' ? '/en' : ''
 
 const safeContent = computed(() => DOMPurify.sanitize(post.value?.content || ''))
+
+const imageSrcset = computed(() => {
+  const url = post.value?.image
+  if (!url || !url.startsWith(IK_BASE)) return null
+  const path = url.slice(IK_BASE.length + 1)
+  return [400, 800, 1200].map(w => `${IK_BASE}/tr:w-${w}/${path} ${w}w`).join(', ')
+})
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toISOString().split('T')[0]
@@ -204,11 +212,14 @@ onMounted(async () => {
     <div v-if="post.image" class="aspect-[16/9] md:aspect-[21/9] glass-panel rounded-xl mt-xl overflow-hidden">
       <img
         :src="post.image"
+        :srcset="imageSrcset"
+        sizes="(max-width: 768px) 100vw, 1200px"
         :alt="post.title"
         width="1200"
         height="675"
         class="w-full h-full object-cover"
         loading="eager"
+        fetchpriority="high"
       />
     </div>
 
