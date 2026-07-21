@@ -10,22 +10,14 @@ export function getApiUrl(): string {
 const api = axios.create({
   baseURL: getApiUrl(),
   timeout: 15000,
+  withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
-})
-
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('admin_token')
-  if (token && config.headers) {
-    config.headers.Authorization = `Bearer ${token}`
-  }
-  return config
 })
 
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('admin_token')
       window.location.href = '/admin/login'
     }
     return Promise.reject(error)

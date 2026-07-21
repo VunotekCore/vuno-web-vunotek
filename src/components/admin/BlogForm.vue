@@ -5,6 +5,8 @@ import { blogService } from '../../services/blogService'
 import { categoryService } from '../../services/categoryService'
 import { useToast } from '../../composables/useToast'
 import VunotekIcon from './ui/VunotekIcon.vue'
+import TiptapEditor from './ui/TiptapEditor.vue'
+import ImageUpload from './ui/ImageUpload.vue'
 
 const auth = useAuthStore()
 const toast = useToast()
@@ -141,6 +143,7 @@ async function handleSubmit() {
 }
 
 onMounted(async () => {
+  auth.initFromGlobal()
   await fetchCategories()
   await fetchPost()
 })
@@ -248,33 +251,24 @@ onMounted(async () => {
       </div>
 
       <div class="sm:col-span-2">
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Contenido (Markdown) *</label>
-        <textarea
-          v-model="form.content"
-          required
-          rows="14"
-          class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface font-mono text-sm placeholder:text-on-surface-variant/50 transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30 resize-y"
-          placeholder="# Título del artículo&#10;&#10;Contenido aquí..."
-        ></textarea>
+        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Contenido del artículo *</label>
+        <TiptapEditor v-model="form.content" placeholder="Escribe el contenido del artículo..." />
       </div>
 
-      <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Imagen URL</label>
-        <input
+      <div class="sm:col-span-2">
+        <ImageUpload
           v-model="form.image"
-          type="text"
-          class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface placeholder:text-on-surface-variant/50 transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
-          placeholder="https://..."
+          folder="blog"
+          label="Imagen destacada"
+          @uploaded="(d) => { if (!form.og_image) form.og_image = d.url }"
         />
       </div>
 
-      <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">OG Image URL</label>
-        <input
+      <div class="sm:col-span-2">
+        <ImageUpload
           v-model="form.og_image"
-          type="text"
-          class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface placeholder:text-on-surface-variant/50 transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
-          placeholder="https://..."
+          folder="blog/og"
+          label="OG Image (para redes sociales — se genera automáticamente si la dejas vacía)"
         />
       </div>
     </div>

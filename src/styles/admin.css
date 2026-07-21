@@ -782,4 +782,209 @@ select.admin-input {
   gap: 12px;
 }
 
+/* ── Tiptap editor ────────────────────────────────────────────────────── */
+
+.tiptap-editor {
+  border: 1.5px solid #404944;
+  border-radius: 0.5rem;
+  background: #1e293b;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.tiptap-editor:focus-within {
+  border-color: #69dca4;
+  box-shadow: 0 0 0 2px rgba(105, 220, 164, 0.25);
+}
+
+.tiptap-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 8px;
+  background: #162240;
+  border-bottom: 1px solid #1e293b;
+}
+.tiptap-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.tiptap-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: #404944;
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+.tiptap-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.tiptap-toolbar button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #dae2fd;
+}
+.tiptap-toolbar button.is-active {
+  background: rgba(105, 220, 164, 0.15);
+  color: #69dca4;
+}
+.tiptap-toolbar button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.tiptap-content {
+  min-height: 320px;
+}
+.tiptap-content .ProseMirror {
+  min-height: 320px;
+  padding: 1rem 1.25rem;
+  outline: none;
+  color: #dae2fd;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+.tiptap-content .ProseMirror p {
+  margin: 0 0 0.5em 0;
+}
+.tiptap-content .ProseMirror h2 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 1.25em 0 0.5em 0;
+}
+.tiptap-content .ProseMirror h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 1em 0 0.4em 0;
+}
+.tiptap-content .ProseMirror strong {
+  color: #f1f5f9;
+}
+.tiptap-content .ProseMirror a {
+  color: #69dca4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.tiptap-content .ProseMirror a:hover {
+  color: #3aa674;
+}
+.tiptap-content .ProseMirror ul,
+.tiptap-content .ProseMirror ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+.tiptap-content .ProseMirror li {
+  margin: 0.15em 0;
+}
+.tiptap-content .ProseMirror blockquote {
+  border-left: 3px solid #69dca4;
+  padding-left: 1em;
+  margin: 0.75em 0;
+  color: #94a3b8;
+  font-style: italic;
+}
+.tiptap-content .ProseMirror pre {
+  background: #0f1929;
+  border: 1px solid #1e293b;
+  border-radius: 0.375rem;
+  padding: 0.75em 1em;
+  margin: 0.75em 0;
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+.tiptap-content .ProseMirror code {
+  background: rgba(105, 220, 164, 0.1);
+  color: #69dca4;
+  border-radius: 3px;
+  padding: 0.15em 0.35em;
+  font-size: 0.875em;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.tiptap-content .ProseMirror pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+.tiptap-content .ProseMirror hr {
+  border: none;
+  border-top: 1px solid #1e293b;
+  margin: 1.25em 0;
+}
+.tiptap-content .ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.375rem;
+  margin: 0.75em 0;
+}
+.tiptap-content .ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 0;
+}
+.tiptap-content .ProseMirror ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+.tiptap-content .ProseMirror ul[data-type="taskList"] li label {
+  flex-shrink: 0;
+  margin-top: 0.25em;
+}
+.tiptap-content .ProseMirror ul[data-type="taskList"] li label input[type="checkbox"] {
+  accent-color: #69dca4;
+  width: 16px;
+  height: 16px;
+}
+.tiptap-content .ProseMirror .is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #4a5568;
+  pointer-events: none;
+  height: 0;
+}
+
+/* ── ImageUpload dropzone ─────────────────────────────────────────────── */
+
+.image-upload-dropzone {
+  border: 2px dashed #404944;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.image-upload-dropzone:hover {
+  border-color: #69dca4;
+  background: rgba(105, 220, 164, 0.04);
+}
+.image-upload-dropzone.is-dragging {
+  border-color: #69dca4;
+  background: rgba(105, 220, 164, 0.08);
+}
+.image-upload-preview {
+  position: relative;
+  display: inline-block;
+}
+.image-upload-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 0.375rem;
+  object-fit: contain;
+}
+
 } /* @layer components */

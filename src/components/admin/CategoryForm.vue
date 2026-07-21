@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useAuthStore } from '../../stores/auth'
 import { categoryService } from '../../services/categoryService'
 import { useToast } from '../../composables/useToast'
@@ -110,6 +110,10 @@ async function handleSubmit() {
     saving.value = false
   }
 }
+
+onMounted(() => {
+  auth.initFromGlobal()
+})
 
 watch(() => props.categoryId, () => {
   resetForm()

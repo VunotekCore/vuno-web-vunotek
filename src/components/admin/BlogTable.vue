@@ -44,7 +44,7 @@ async function fetchPosts() {
     if (activeLocale.value) params.locale = activeLocale.value
     if (activeStatus.value) params.status = activeStatus.value
 
-    const { data } = await blogService.list(params)
+    const { data } = await blogService.listAdmin(params)
 
     if (data.success) {
       posts.value = data.data.posts
@@ -88,7 +88,10 @@ function setFilter(type: 'locale' | 'status', value: string) {
   fetchPosts()
 }
 
-onMounted(fetchPosts)
+onMounted(async () => {
+  auth.initFromGlobal()
+  await fetchPosts()
+})
 </script>
 
 <template>
@@ -184,6 +187,15 @@ onMounted(fetchPosts)
               <td class="px-4 py-3 text-on-surface-variant text-xs">{{ formatDate(post.created_at) }}</td>
               <td class="px-4 py-3 text-right">
                 <div class="flex items-center justify-end gap-1">
+                  <a
+                    :href="post.locale === 'en' ? `/en/blog/${post.slug}` : `/blog/${post.slug}`"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rounded p-1.5 text-on-surface-variant hover:bg-surface-container-high hover:text-vue-green transition-colors"
+                    title="Ver en el sitio"
+                  >
+                    <VunotekIcon icon="open_in_new" :size="18" />
+                  </a>
                   <a
                     v-if="canEdit"
                     :href="`/admin/blog/editar?id=${post.id}`"

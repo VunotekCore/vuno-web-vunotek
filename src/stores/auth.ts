@@ -6,6 +6,7 @@ interface Permissions {
   all?: boolean
   blog?: string[]
   categories?: string[]
+  projects?: string[]
 }
 
 interface User {
@@ -19,10 +20,9 @@ interface User {
 }
 
 export const useAuthStore = defineStore('auth', () => {
-  const token = ref<string | null>(null)
   const user = ref<User | null>(null)
 
-  const isAuthenticated = computed(() => !!token.value)
+  const isAuthenticated = computed(() => !!user.value)
 
   const hasPermission = computed(() => {
     return (module: string, action: string): boolean => {
@@ -36,20 +36,11 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isViewer = computed(() => user.value?.role_slug === 'viewer')
 
-  function init() {
-    const stored = localStorage.getItem('admin_token')
-    if (stored) {
-      token.value = stored
-    }
-  }
-
   async function login(email: string, password: string): Promise<boolean> {
     const { data } = await authService.login(email, password)
 
-    if (data.success && data.data?.token) {
-      token.value = data.data.token
-      user.value = data.data.user ?? null
-      localStorage.setItem('admin_token', data.data.token)
+    if (data.success && data.data?.user) {
+      user.value = data.data.user
       return true
     }
 
@@ -57,30 +48,34 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function logout() {
-    token.value = null
     user.value = null
-    localStorage.removeItem('admin_token')
+    authService.logout().catch(() => {})
     window.location.href = '/admin/login'
   }
 
   async function verify(): Promise<boolean> {
-    if (!token.value) return false
-
     try {
       const { data } = await authService.verify()
 
       if (!data.success) {
-        logout()
+        user.value = null
         return false
       }
 
       user.value = data.data?.user ?? null
       return true
     } catch {
-      logout()
+      user.value = null
       return false
     }
   }
 
-  return { token, user, isAuthenticated, isViewer, hasPermission, init, login, logout, verify }
+  function initFromGlobal() {
+    const adminUser = (window as unknown as Record<string, unknown>).__ADMIN_USER__ as User | null | undefined
+    if (adminUser && !user.value) {
+      user.value = adminUser
+    }
+  }
+
+  return { user, isAuthenticated, isViewer, hasPermission, login, logout, verify, initFromGlobal }
 })

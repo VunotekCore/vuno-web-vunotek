@@ -3,11 +3,6 @@ import { ref } from 'vue'
 import { useAuthStore } from '../../stores/auth'
 
 const auth = useAuthStore()
-auth.init()
-
-if (auth.isAuthenticated) {
-  window.location.href = '/admin'
-}
 
 const email = ref('')
 const password = ref('')

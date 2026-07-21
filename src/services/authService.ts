@@ -8,4 +8,8 @@ export const authService = {
   verify() {
     return api.get('/admin/verify.php')
   },
+
+  logout() {
+    return api.post('/admin/logout.php')
+  },
 }

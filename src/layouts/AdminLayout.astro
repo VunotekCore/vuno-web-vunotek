@@ -16,6 +16,7 @@ const navItems = [
   { href: '/admin', label: 'Dashboard', icon: 'grid_view', permission: null },
   { href: '/admin/blog', label: 'Blog', icon: 'article', permission: 'blog' },
   { href: '/admin/categories', label: 'Categorías', icon: 'label', permission: 'categories' },
+  { href: '/admin/projects', label: 'Proyectos', icon: 'folder_kanban', permission: 'projects' },
 ]
 ---
 
@@ -115,28 +116,22 @@ const navItems = [
     <script>
       import { authService } from '../services/authService'
 
-      const token = localStorage.getItem('admin_token')
+      authService.verify()
+        .then(({ data }) => {
+          if (!data.success) {
+            window.location.href = '/admin/login'
+            return
+          }
 
-      if (!token) {
-        window.location.href = '/admin/login'
-      } else {
-        authService.verify()
-          .then(({ data }) => {
-            if (!data.success) {
-              localStorage.removeItem('admin_token')
-              window.location.href = '/admin/login'
-              return
-            }
+          const user = data.data?.user
+          const nameEl = document.getElementById('admin-user-name')
+          if (nameEl && user?.name) nameEl.textContent = user.name
 
-            const user = data.data?.user
-            const nameEl = document.getElementById('admin-user-name')
-            if (nameEl && user?.name) nameEl.textContent = user.name
-
-            const roleEl = document.getElementById('admin-role-badge')
-            if (roleEl && user?.role_name) {
-              roleEl.textContent = user.role_name
-              roleEl.classList.remove('hidden')
-            }
+          const roleEl = document.getElementById('admin-role-badge')
+          if (roleEl && user?.role_name) {
+            roleEl.textContent = user.role_name
+            roleEl.classList.remove('hidden')
+          }
 
             if (user?.permissions && !user.permissions.all) {
               document.querySelectorAll('[data-nav-permission]').forEach((el) => {
@@ -146,12 +141,12 @@ const navItems = [
                 }
               })
             }
-          })
-          .catch(() => {
-            localStorage.removeItem('admin_token')
-            window.location.href = '/admin/login'
-          })
-      }
+
+            ;(window as unknown as Record<string, unknown>).__ADMIN_USER__ = user || null
+        })
+        .catch(() => {
+          window.location.href = '/admin/login'
+        })
 
       const sidebar = document.getElementById('admin-sidebar')!
       const overlay = document.getElementById('admin-sidebar-overlay')!
@@ -168,8 +163,9 @@ const navItems = [
       })
 
       document.getElementById('admin-logout')?.addEventListener('click', () => {
-        localStorage.removeItem('admin_token')
-        window.location.href = '/admin/login'
+        authService.logout().finally(() => {
+          window.location.href = '/admin/login'
+        })
       })
     </script>
   </body>

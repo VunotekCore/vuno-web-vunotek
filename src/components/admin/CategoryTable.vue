@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useAuthStore } from '../../stores/auth'
 import { categoryService } from '../../services/categoryService'
 import { useToast } from '../../composables/useToast'
 import ConfirmDialog from './ui/ConfirmDialog.vue'
@@ -7,8 +8,12 @@ import CategoryModal from './CategoryModal.vue'
 import VunotekIcon from './ui/VunotekIcon.vue'
 
 const toast = useToast()
+const auth = useAuthStore()
 const confirmRef = ref<{ show: (msg: string) => Promise<boolean> } | null>(null)
 const modalRef = ref<InstanceType<typeof CategoryModal> | null>(null)
+
+const canEdit = computed(() => auth.hasPermission('categories', 'edit'))
+const canDelete = computed(() => auth.hasPermission('categories', 'delete'))
 
 interface Category {
   id: number
@@ -28,7 +33,7 @@ const deletingId = ref<number | null>(null)
 async function fetchCategories() {
   loading.value = true
   try {
-    const { data } = await categoryService.list()
+    const { data } = await categoryService.listAdmin()
     if (data.success && Array.isArray(data.data)) {
       categories.value = data.data
     }
@@ -58,7 +63,10 @@ async function deleteCategory(id: number) {
   }
 }
 
-onMounted(fetchCategories)
+onMounted(async () => {
+  auth.initFromGlobal()
+  await fetchCategories()
+})
 </script>
 
 <template>
@@ -127,6 +135,7 @@ onMounted(fetchCategories)
               <td class="px-4 py-3 text-right">
                 <div class="flex items-center justify-end gap-1">
                   <button
+                    v-if="canEdit"
                     @click="modalRef?.open(cat.id)"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors"
                     title="Editar"
@@ -134,6 +143,7 @@ onMounted(fetchCategories)
                     <VunotekIcon icon="edit" :size="18" />
                   </button>
                   <button
+                    v-if="canDelete"
                     @click="deleteCategory(cat.id)"
                     :disabled="deletingId === cat.id"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-error-container/20 hover:text-error transition-colors disabled:opacity-50"
@@ -183,12 +193,14 @@ onMounted(fetchCategories)
         </div>
         <div class="px-5 pb-4 pt-3 border-t border-outline-variant/10 flex gap-2">
           <button
+            v-if="canEdit"
             @click="modalRef?.open(cat.id)"
             class="admin-touch-target flex-1 rounded-lg border border-outline-variant/40 py-2.5 text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors"
           >
             Editar
           </button>
           <button
+            v-if="canDelete"
             @click="deleteCategory(cat.id)"
             :disabled="deletingId === cat.id"
             class="admin-touch-target flex-1 rounded-lg border border-error-container/40 py-2.5 text-sm font-medium text-error hover:bg-error-container/20 transition-colors disabled:opacity-50"

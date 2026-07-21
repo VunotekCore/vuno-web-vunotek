@@ -1,16 +1,11 @@
 ---
 import AdminLayout from '../../../layouts/AdminLayout.astro'
 import BlogTable from '../../../components/admin/BlogTable.vue'
-import Icon from '../../../components/atoms/Icon.astro'
 ---
 
 <AdminLayout title="Blog">
-  <div class="flex items-center justify-between mb-6">
+  <div class="mb-6">
     <p class="text-on-surface-variant">Gestiona los artículos del blog</p>
-    <a href="/admin/blog/new" class="inline-flex items-center gap-2 rounded-lg bg-vue-green px-4 py-2.5 font-medium text-on-secondary transition-colors hover:bg-vue-green/90">
-      <Icon name="add" size={20} />
-      Nuevo post
-    </a>
   </div>
   <BlogTable client:only="vue" />
 </AdminLayout>
