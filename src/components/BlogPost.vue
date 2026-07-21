@@ -10,6 +10,7 @@ const props = defineProps<{
   backUrl: string
   backLabel: string
   relatedTitle: string
+  shellRendered?: boolean
   initialPost?: {
     id: number
     title: string
@@ -203,19 +204,19 @@ onMounted(async () => {
   </div>
 
   <template v-else-if="post">
-    <div class="flex flex-wrap items-center gap-3 mb-md">
+    <div v-if="!shellRendered" class="flex flex-wrap items-center gap-3 mb-md">
       <span class="font-label-mono text-[11px] text-electric-blue bg-electric-blue/10 px-3 py-1 rounded">
         {{ post.category_name }}
       </span>
-      <span class="font-label-mono text-[11px] text-slate-text">
+      <time class="font-label-mono text-[11px] text-slate-text" :datetime="formatDate(post.created_at)">
         {{ formatDate(post.created_at) }}
-      </span>
+      </time>
       <span class="font-label-mono text-[11px] text-slate-text/60">
         — {{ post.author || 'Daniel Flores' }}
       </span>
     </div>
 
-    <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
+    <h1 v-if="!shellRendered" class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
       {{ post.title }}
     </h1>
 

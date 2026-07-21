@@ -67,6 +67,7 @@ try {
     $backUrl = $isEn ? '/en/blog' : '/blog';
     $author = htmlspecialchars($post['author'] ?: 'Daniel Flores', ENT_QUOTES, 'UTF-8');
     $dateFormatted = date('M d, Y', strtotime($post['created_at']));
+    $dateISO = date('Y-m-d\TH:i:s.v\Z', strtotime($post['created_at']));
     $postTitle = htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8');
     $postExcerpt = htmlspecialchars($post['excerpt'], ENT_QUOTES, 'UTF-8');
     $postImage = htmlspecialchars($post['image'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -143,7 +144,7 @@ HTML;
     echo <<<HTML
 <div class="flex flex-wrap items-center gap-3 mb-md">
   <span class="font-label-mono text-[11px] text-electric-blue bg-electric-blue/10 px-3 py-1 rounded">{$catName}</span>
-  <span class="font-label-mono text-[11px] text-slate-text">{$dateFormatted}</span>
+  <time class="font-label-mono text-[11px] text-slate-text" datetime="{$dateISO}">{$dateFormatted}</time>
   <span class="font-label-mono text-[11px] text-slate-text/60">— {$author}</span>
 </div>
 HTML;

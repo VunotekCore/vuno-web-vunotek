@@ -16,17 +16,29 @@ export function getBreadcrumbSchema(locale: string, currentPath: string, pageNam
   const active = items.find((i) => i.path === currentPath)
   if (!active && !pageName) return null
 
-  const list = pageName
-    ? [
-        items[0],
-        { position: 2, name: pageName, path: currentPath },
-      ]
-    : items.filter((i) => currentPath.startsWith(i.path) || i.path === currentPath)
+  const isBlogPost = /\/blog\/[^/]+\/?$/.test(currentPath)
+
+  let list
+  if (isBlogPost && pageName) {
+    const blogItem = items.find((i) => i.path.endsWith('/blog/'))
+    list = [
+      items[0],
+      ...(blogItem ? [{ name: blogItem.name, path: blogItem.path }] : []),
+      { name: pageName, path: currentPath },
+    ]
+  } else if (pageName) {
+    list = [
+      items[0],
+      { name: pageName, path: currentPath },
+    ]
+  } else {
+    list = items.filter((i) => currentPath.startsWith(i.path) || i.path === currentPath)
+  }
 
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: list.map((item, idx) => ({
+    itemListElement: list.map((item: any, idx: number) => ({
       '@type': 'ListItem',
       position: idx + 1,
       name: item.name,

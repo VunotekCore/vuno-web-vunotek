@@ -43,9 +43,10 @@ export async function getStaticPaths() {
 const { initialPost } = Astro.props as { initialPost?: PostData }
 const pageTitle = initialPost?.meta_title || (initialPost ? `${initialPost.title} | Vunotek` : 'Blog | Vunotek')
 const pageDescription = initialPost?.excerpt || 'Artículos sobre ingeniería de software y automatización empresarial.'
+const publishDate = initialPost?.created_at ? new Date(initialPost.created_at).toISOString() : undefined
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} ogType="article" ogImage={initialPost?.og_image || undefined} breadcrumbName={initialPost?.title}>
+<BaseLayout title={pageTitle} description={pageDescription} ogType="article" ogImage={initialPost?.og_image || undefined} breadcrumbName={initialPost?.title} articlePublishedTime={publishDate} articleModifiedTime={publishDate} articleAuthor={initialPost?.author || 'Daniel Flores'} articleSection={initialPost?.category_name || 'Blog'}>
   <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
     <a href="/blog" class="inline-flex items-center gap-xs text-electric-blue font-label-mono hover:underline mb-lg">
       <Icon name="arrow_back" class="text-sm" />
@@ -54,7 +55,27 @@ const pageDescription = initialPost?.excerpt || 'Artículos sobre ingeniería de
   </Section>
 
   <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
-    <BlogPost client:load locale="es" backUrl="/blog" backLabel={bg.back_link} relatedTitle={bg.related_title} initialPost={initialPost || null} />
+    {initialPost && (
+      <div class="max-w-4xl mx-auto px-margin">
+        <div class="flex flex-wrap items-center gap-3 mb-md">
+          {initialPost.category_name && (
+            <span class="font-label-mono text-[11px] text-electric-blue bg-electric-blue/10 px-3 py-1 rounded">
+              {initialPost.category_name}
+            </span>
+          )}
+          <time class="font-label-mono text-[11px] text-slate-text" datetime={publishDate}>
+            {new Date(initialPost.created_at).toISOString().split('T')[0]}
+          </time>
+          <span class="font-label-mono text-[11px] text-slate-text/60">
+            — {initialPost.author || 'Daniel Flores'}
+          </span>
+        </div>
+        <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-4xl">
+          {initialPost.title}
+        </h1>
+      </div>
+    )}
+    <BlogPost client:load locale="es" backUrl="/blog" backLabel={bg.back_link} relatedTitle={bg.related_title} initialPost={initialPost || null} shellRendered={!!initialPost} />
   </Section>
 </BaseLayout>
 

@@ -17,7 +17,7 @@ function renderHead(
     ?string $ogImage = null,
     ?array $post = null
 ): string {
-    $lang = $locale === 'en' ? 'en' : 'es';
+    $lang = $locale === 'en' ? 'en-US' : 'es-NI';
     $siteUrl = 'https://vunotek.com';
     $baseUrl = $locale === 'en' ? "$siteUrl/en" : $siteUrl;
     $pageUrl = $slug ? "$baseUrl/blog/$slug/" : "$baseUrl/blog/";
@@ -101,10 +101,10 @@ HTML;
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0f1a">
+<meta name="theme-color" content="#0b1326">
 <title>{$titleEsc}</title>
 <meta name="description" content="{$descEsc}">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large">
 <link rel="canonical" href="{$canonical}">
 {$hreflangEs}
 {$hreflangEn}
@@ -123,6 +123,12 @@ HTML;
 <meta name="twitter:title" content="{$titleEsc}">
 <meta name="twitter:description" content="{$descEsc}">
 <meta name="twitter:image" content="{$ogImg}">
+<meta name="google-site-verification" content="OLAPWz6sRxKAUk91oJG0dQmfTtv-mFFGoHo-c_wG3DA">
+<?php if ($post): ?>
+<meta property="article:published_time" content="<?= e($post['created_at'] ?? '') ?>">
+<meta property="article:author" content="<?= e($post['author'] ?? 'Daniel Flores') ?>">
+<meta property="article:section" content="<?= e($post['category_name'] ?? 'Blog') ?>">
+<?php endif; ?>
 <link rel="icon" type="image/svg+xml" href="/vunotek-isotipo-square.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
