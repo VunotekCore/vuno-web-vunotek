@@ -53,6 +53,9 @@ const p = (path: string) => (locale === 'en' ? `/en${path}` : path)
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .stagger-header > * { opacity: 1; animation: none; }
+  }
 </style>
 
 <!-- ============================================================

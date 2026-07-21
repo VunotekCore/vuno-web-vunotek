@@ -143,4 +143,7 @@ const ab = dict.about as any
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .stagger-header > * { opacity: 1; animation: none; }
+  }
 </style>

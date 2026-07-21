@@ -1,13 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import { ArrowLeft } from '@lucide/vue'
 import { blogService } from '../services/blogService'
+import DOMPurify from 'dompurify'
 
 const props = defineProps<{
   locale: string
   backUrl: string
   backLabel: string
   relatedTitle: string
+  initialPost?: {
+    id: number
+    title: string
+    slug: string
+    excerpt: string
+    content: string
+    category_name: string
+    category_slug: string
+    author: string
+    image: string | null
+    meta_title: string | null
+    og_image: string | null
+    created_at: string
+  } | null
 }>()
 
 interface Post {
@@ -35,18 +50,14 @@ interface RelatedPost {
   created_at: string
 }
 
-const post = ref<Post | null>(null)
+const post = ref<Post | null>(props.initialPost as Post | null)
 const related = ref<RelatedPost[]>([])
-const loading = ref(true)
+const loading = ref(!props.initialPost)
 const notFound = ref(false)
 
 const prefix = props.locale === 'en' ? '/en' : ''
 
-function getSlug(): string {
-  const path = window.location.pathname
-  const segments = path.replace(/\/$/, '').split('/')
-  return segments[segments.length - 1] || ''
-}
+const safeContent = computed(() => DOMPurify.sanitize(post.value?.content || ''))
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toISOString().split('T')[0]
@@ -90,8 +101,31 @@ function updateMeta(postData: Post) {
   document.head.appendChild(script)
 }
 
+async function fetchRelated(categorySlug: string, postId: number) {
+  try {
+    const { data: relData } = await blogService.list({
+      locale: props.locale,
+      status: 'published',
+      category_slug: categorySlug,
+    })
+    if (relData.success && Array.isArray(relData.data?.posts)) {
+      related.value = relData.data.posts
+        .filter((p: RelatedPost) => p.id !== postId)
+        .slice(0, 3)
+    }
+  } catch { /* silent */ }
+}
+
 onMounted(async () => {
-  const slug = getSlug()
+  if (props.initialPost) {
+    updateMeta(props.initialPost)
+    if (props.initialPost.category_slug) {
+      fetchRelated(props.initialPost.category_slug, props.initialPost.id)
+    }
+    return
+  }
+
+  const slug = window.location.pathname.replace(/\/$/, '').split('/').pop() || ''
   if (!slug) {
     notFound.value = true
     loading.value = false
@@ -104,20 +138,8 @@ onMounted(async () => {
       post.value = data.data
       await nextTick()
       updateMeta(data.data)
-
       if (data.data.category_slug) {
-        try {
-          const { data: relData } = await blogService.list({
-            locale: props.locale,
-            status: 'published',
-            category_slug: data.data.category_slug,
-          })
-          if (relData.success && Array.isArray(relData.data?.posts)) {
-            related.value = relData.data.posts
-              .filter((p: RelatedPost) => p.id !== data.data.id)
-              .slice(0, 3)
-          }
-        } catch { /* silent */ }
+        fetchRelated(data.data.category_slug, data.data.id)
       }
     } else {
       notFound.value = true
@@ -191,7 +213,7 @@ onMounted(async () => {
     </div>
 
     <div class="max-w-3xl mx-auto mt-xl">
-      <div class="blog-content" v-html="post.content"></div>
+      <div class="blog-content" v-html="safeContent"></div>
     </div>
 
     <div v-if="related.length > 0" class="mt-xl">

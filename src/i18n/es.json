@@ -706,8 +706,8 @@
             "Astro 6 ",
             "Tailwind CSS",
             "TypeScript",
-            "Admin UI Vue3 + Pinina(Composition API)",
-            "Backend PHP 8.1+ strick mode, SOA(Controllers + Models)",
+            "Admin UI Vue3 + Pinia (Composition API)",
+            "Backend PHP 8.1+ strict mode, SOA (Controllers + Models)",
             "DB Mysql 8, Tablas Normalizadas"
           ]
         }
@@ -766,6 +766,8 @@
         "submit_btn": "Iniciar Requerimiento",
         "submit_meeting": "Agendar Reunión",
         "sending": "Enviando...",
+        "error_send": "Error al enviar el mensaje.",
+        "error_unknown": "Error desconocido",
         "privacy_consent": "Al enviar este formulario, aceptas nuestra",
         "privacy_link": "Política de Privacidad"
       },

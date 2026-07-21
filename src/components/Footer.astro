@@ -41,9 +41,9 @@ const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind C
 
       <!-- Navigation column -->
       <div class="md:col-span-4 flex flex-col gap-base max-sm:items-center max-sm:text-center">
-        <span class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs">
+        <h3 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs">
           {f('columns.navigation_title')}
-        </span>
+        </h3>
         <div class="grid grid-cols-2 gap-x-md gap-y-sm">
           <a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.solutions')}</a>
           <a href={p('/servicios')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.services')}</a>
@@ -55,9 +55,9 @@ const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind C
 
       <!-- Legal column -->
       <div class="md:col-span-3 flex flex-col gap-base max-sm:items-center max-sm:text-center">
-        <span class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs">
+        <h3 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs">
           {f('columns.legal_title')}
-        </span>
+        </h3>
         <div class="flex flex-col gap-sm">
           <a href={p('/privacidad/')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.privacy')}</a>
           <a href={p('/terminos/')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.terms')}</a>

@@ -286,6 +286,9 @@ const stackColors: Record<string, string> = {
       transform: translateY(0);
     }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .stagger-header > * { opacity: 1; animation: none; }
+  }
 </style>
 
 <!-- ===== CLIENT-SIDE SCRIPT: Stack Grid hover border ===== -->

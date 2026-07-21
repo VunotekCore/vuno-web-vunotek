@@ -207,16 +207,21 @@ const techIcons: Record<string, string> = {
 </Section>
 
 <script>
-  function openLightbox(src: string) {
+  function openLightbox(src: string, trigger: HTMLElement) {
     const overlay = document.createElement('div')
+    overlay.setAttribute('role', 'dialog')
+    overlay.setAttribute('aria-modal', 'true')
+    overlay.setAttribute('aria-label', 'Image lightbox')
     overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;cursor:zoom-out;animation:fadeIn 0.2s ease;'
 
     const img = document.createElement('img')
     img.src = src
+    img.alt = trigger.querySelector('img')?.alt || 'Project image'
     img.style.cssText = 'max-width:92vw;max-height:92vh;object-fit:contain;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,0.5);'
 
     const closeBtn = document.createElement('button')
     closeBtn.innerHTML = 'close'
+    closeBtn.setAttribute('aria-label', 'Close lightbox')
     closeBtn.style.cssText = 'position:absolute;top:24px;right:24px;background:rgba(255,255,255,0.1);border:none;color:#dae2fd;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;backdrop-filter:blur(8px);transition:background 0.2s;font-family:Material Symbols Outlined;'
     closeBtn.addEventListener('mouseenter', () => closeBtn.style.background = 'rgba(255,255,255,0.2)')
     closeBtn.addEventListener('mouseleave', () => closeBtn.style.background = 'rgba(255,255,255,0.1)')
@@ -224,12 +229,14 @@ const techIcons: Record<string, string> = {
     overlay.appendChild(img)
     overlay.appendChild(closeBtn)
     document.body.appendChild(overlay)
+    closeBtn.focus()
 
-    const close = () => overlay.remove()
+    const close = () => { overlay.remove(); trigger.focus() }
     overlay.addEventListener('click', (e) => { if (e.target === overlay || e.target === img) close() })
     closeBtn.addEventListener('click', close)
-    document.addEventListener('keydown', function handler(ev) {
-      if (ev.key === 'Escape') { close(); document.removeEventListener('keydown', handler) }
+    overlay.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { close(); return }
+      if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus() }
     })
   }
 
@@ -238,13 +245,13 @@ const techIcons: Record<string, string> = {
     const lightbox = target.closest('[data-lightbox]') as HTMLElement | null
     if (lightbox) {
       const img = lightbox.querySelector('img')
-      if (img?.src) openLightbox(img.src)
+      if (img?.src) openLightbox(img.src, lightbox)
       return
     }
     const feature = target.closest('[data-lightbox-feature]') as HTMLElement | null
     if (feature) {
       const img = feature.querySelector('img')
-      if (img?.src) openLightbox(img.src)
+      if (img?.src) openLightbox(img.src, feature)
     }
   })
 </script>
@@ -264,5 +271,8 @@ const techIcons: Record<string, string> = {
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stagger-header > * { opacity: 1; animation: none; }
   }
 </style>

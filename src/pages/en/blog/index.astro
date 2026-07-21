@@ -25,7 +25,7 @@ const bg = dict.blog
   </Section>
 
   <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
-    <BlogList client:only="vue" locale="en" />
+    <BlogList client:load locale="en" />
   </Section>
 </BaseLayout>
 
@@ -40,5 +40,8 @@ const bg = dict.blog
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stagger-header > * { opacity: 1; animation: none; }
   }
 </style>

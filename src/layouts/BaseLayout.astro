@@ -97,7 +97,7 @@ const webSchema = {
   name: 'Vunotek',
   url: siteUrl,
   inLanguage: isEn ? 'en-US' : 'es-ES',
-  description: description,
+  description: SEO.organizationSchema.description[locale],
 };
 
 const breadcrumbSchema = getBreadcrumbSchema(locale, currentPath, breadcrumbName);

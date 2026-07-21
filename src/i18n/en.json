@@ -759,6 +759,8 @@
         "submit_btn": "Initialize Requirement",
         "submit_meeting": "Schedule Meeting",
         "sending": "Sending...",
+        "error_send": "Error sending message.",
+        "error_unknown": "Unknown error",
         "privacy_consent": "By submitting this form, you accept our",
         "privacy_link": "Privacy Policy"
       },

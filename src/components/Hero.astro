@@ -24,7 +24,7 @@ export interface Props {
           <div class="flex flex-col gap-md left-col max-md:hidden">
             {Astro.props.badge && (
               <div class="inline-flex items-center max-sm:gap-xs gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full max-sm:px-3 max-sm:py-1 max-sm:mb-4 sm:max-md:mb-4">
-                <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse shrink-0" />
+                <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse shrink-0" aria-hidden="true" />
                 <span class="font-label-mono text-label-mono text-electric-blue tracking-wider uppercase max-sm:text-xs max-sm:tracking-normal md:max-lg:text-xs md:max-lg:tracking-normal">
                   {Astro.props.badge}
                 </span>
@@ -438,12 +438,21 @@ export interface Props {
       document.body.style.overflow = ''
       document.removeEventListener('wheel', unlock)
       document.removeEventListener('touchmove', unlock)
+      document.removeEventListener('keydown', unlockOnKey)
+    }
+
+    const unlockOnKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault()
+        unlock()
+      }
     }
 
     document.body.style.overflow = 'hidden'
 
     document.addEventListener('wheel', unlock, { passive: true })
     document.addEventListener('touchmove', unlock, { passive: true })
+    document.addEventListener('keydown', unlockOnKey)
   }
 </script>
 

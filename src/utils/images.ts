@@ -1,4 +1,3 @@
-import type { experimental_AstroContainer } from 'astro/container'
 import { IK_BASE, ikSrcset } from './imagekit'
 
 function ik(path: string): string {
@@ -120,7 +119,7 @@ export const IMAGE_DIMS: Record<string, { width: number; height: number }> = {
   crm_profiles: { width: 800, height: 600 },
   crm_kanban: { width: 800, height: 600 },
   crm_quotes: { width: 800, height: 600 },
-  crm_attendances: { width: 800, height: 600 },
+  crm_attendance: { width: 800, height: 600 },
   crm_rbac: { width: 800, height: 600 },
   crm_employees: { width: 800, height: 600 },
   crm_tasks: { width: 800, height: 600 },
@@ -187,7 +186,7 @@ const IMAGE_PATHS: Record<string, string> = {
   crm_profiles: 'vuno-web/products/crm/profiles.webp',
   crm_kanban: 'vuno-web/products/crm/kanban.webp',
   crm_quotes: 'vuno-web/products/crm/quotes.webp',
-  crm_attendances: 'vuno-web/products/crm/attendances.webp',
+  crm_attendance: 'vuno-web/products/crm/attendance.webp',
   crm_rbac: 'vuno-web/products/crm/rbac.webp',
   crm_employees: 'vuno-web/products/crm/employees.webp',
   crm_tasks: 'vuno-web/products/crm/tasks.webp',
