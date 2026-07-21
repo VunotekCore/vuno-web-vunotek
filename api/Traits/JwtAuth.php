@@ -18,13 +18,19 @@ trait JwtAuth
 
     public function requireAuth(): array
     {
-        $header = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+        $token = $_COOKIE['admin_token'] ?? '';
 
-        if (!str_starts_with($header, 'Bearer ')) {
+        if ($token === '') {
+            $header = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+            if (str_starts_with($header, 'Bearer ')) {
+                $token = substr($header, 7);
+            }
+        }
+
+        if ($token === '') {
             $this->jsonError('Token de autenticación requerido', 401);
         }
 
-        $token = substr($header, 7);
         $payload = $this->verifyToken($token);
 
         if ($payload === null) {

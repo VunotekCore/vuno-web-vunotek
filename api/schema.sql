@@ -54,12 +54,29 @@ CREATE TABLE IF NOT EXISTS blog_posts (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    tag VARCHAR(100) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    image VARCHAR(500),
+    live_url VARCHAR(500),
+    is_saas BOOLEAN DEFAULT TRUE,
+    description TEXT,
+    tech JSON,
+    locale ENUM('es', 'en') NOT NULL DEFAULT 'es',
+    status ENUM('draft', 'published') DEFAULT 'draft',
+    sort_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Roles iniciales
 INSERT INTO roles (name, slug, permissions) VALUES
 ('Admin', 'admin', '{"all": true}'),
-('Editor', 'editor', '{"blog": ["read","create","edit"], "categories": ["read","create","edit"]}'),
-('Viewer', 'viewer', '{"blog": ["read"], "categories": ["read"]}')
-ON DUPLICATE KEY UPDATE name = name;
+('Editor', 'editor', '{"blog": ["list","create","edit","delete"], "categories": ["list","create","edit","delete"], "projects": ["list","create","edit","delete"]}'),
+('Viewer', 'viewer', '{"blog": ["list"], "categories": ["list"], "projects": ["list"]}')
+ON DUPLICATE KEY UPDATE permissions = VALUES(permissions);
 
 -- Admin user default (password: admin123 — cambiar en producción)
 -- Generar hash: php -r "echo password_hash('admin123', PASSWORD_BCRYPT);"

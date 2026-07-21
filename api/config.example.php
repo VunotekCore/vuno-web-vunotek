@@ -21,6 +21,11 @@ return [
         'issuer'     => 'vunotek.com',
     ],
 
+    'imagekit' => [
+        'private_key'  => 'TU_IMAGEKIT_PRIVATE_KEY',
+        'url_endpoint' => 'https://ik.imagekit.io/TU_ACCOUNT_ID',
+    ],
+
     'email' => [
         'smtp_host'       => 'smtp.hostinger.com',
         'smtp_port'       => 465,

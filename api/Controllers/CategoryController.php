@@ -21,6 +21,14 @@ class CategoryController
         jsonSuccess($categories);
     }
 
+    public function listAdmin(): never
+    {
+        $this->requirePermission('categories', 'list');
+
+        $categories = $this->categoryModel->list();
+        jsonSuccess($categories);
+    }
+
     public function get(): never
     {
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);

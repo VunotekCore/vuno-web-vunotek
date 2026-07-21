@@ -20,8 +20,22 @@ class BlogController
         $locale = $_GET['locale'] ?? null;
         $status = $_GET['status'] ?? null;
         $page = max(1, (int) ($_GET['page'] ?? 1));
+        $categorySlug = $_GET['category_slug'] ?? null;
 
-        $result = $this->blogModel->list($locale, $status, $page);
+        $result = $this->blogModel->list($locale, $status, $page, 20, $categorySlug);
+        jsonSuccess($result);
+    }
+
+    public function listAdmin(): never
+    {
+        $this->requirePermission('blog', 'list');
+
+        $locale = $_GET['locale'] ?? null;
+        $status = $_GET['status'] ?? null;
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $categorySlug = $_GET['category_slug'] ?? null;
+
+        $result = $this->blogModel->list($locale, $status, $page, 20, $categorySlug);
         jsonSuccess($result);
     }
 

@@ -46,9 +46,19 @@ class AuthController
             'permissions' => $user['permissions'],
         ]);
 
+        $config = $this->getConfig();
+        $expiresIn = $config['jwt']['expires_in'] ?? 86400;
+
+        setcookie('admin_token', $token, [
+            'expires'  => time() + $expiresIn,
+            'path'     => '/',
+            'secure'   => !empty($_SERVER['HTTPS']),
+            'httponly'  => true,
+            'samesite' => 'Lax',
+        ]);
+
         jsonSuccess([
-            'token' => $token,
-            'user'  => [
+            'user' => [
                 'id'          => $user['id'],
                 'email'       => $user['email'],
                 'name'        => $user['name'],

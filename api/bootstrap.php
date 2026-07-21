@@ -92,13 +92,19 @@ function jsonSuccess(mixed $data = null, string $message = '', int $code = 200):
 
 function requireAuth(): array
 {
-    $header = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    $token = $_COOKIE['admin_token'] ?? '';
 
-    if (!str_starts_with($header, 'Bearer ')) {
+    if ($token === '') {
+        $header = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+        if (str_starts_with($header, 'Bearer ')) {
+            $token = substr($header, 7);
+        }
+    }
+
+    if ($token === '') {
         jsonError('Token de autenticación requerido', 401);
     }
 
-    $token = substr($header, 7);
     $payload = verifyJwt($token);
 
     if ($payload === null) {
