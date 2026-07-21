@@ -58,7 +58,15 @@ const notFound = ref(false)
 
 const prefix = props.locale === 'en' ? '/en' : ''
 
-const safeContent = computed(() => DOMPurify.sanitize(post.value?.content || ''))
+const safeContent = ref('')
+
+function sanitizeContent(html: string) {
+  if (typeof window !== 'undefined') {
+    safeContent.value = DOMPurify.sanitize(html)
+  } else {
+    safeContent.value = html
+  }
+}
 
 const imageSrcset = computed(() => {
   const url = post.value?.image
@@ -126,6 +134,7 @@ async function fetchRelated(categorySlug: string, postId: number) {
 
 onMounted(async () => {
   if (props.initialPost) {
+    sanitizeContent(props.initialPost.content)
     updateMeta(props.initialPost)
     if (props.initialPost.category_slug) {
       fetchRelated(props.initialPost.category_slug, props.initialPost.id)
@@ -145,6 +154,7 @@ onMounted(async () => {
     if (data.success && data.data) {
       post.value = data.data
       await nextTick()
+      sanitizeContent(data.data.content)
       updateMeta(data.data)
       if (data.data.category_slug) {
         fetchRelated(data.data.category_slug, data.data.id)
