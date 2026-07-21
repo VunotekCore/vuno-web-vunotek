@@ -44,7 +44,7 @@ function closeDialog(name: string) {
 
 onMounted(async () => {
   try {
-    const res = await fetch(`${getApiUrl()}/projects/list.php?locale=${props.locale}`)
+    const res = await fetch(`${getApiUrl()}/projects/list.php`)
     const { data } = await res.json()
     projects.value = data ?? []
   } catch {
