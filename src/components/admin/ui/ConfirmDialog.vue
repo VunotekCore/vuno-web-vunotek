@@ -84,7 +84,7 @@ defineExpose({ show })
           class="admin-confirm-card"
           role="dialog"
           aria-modal="true"
-          aria-label="Confirm action"
+          aria-label="Confirmar acción"
           tabindex="-1"
         >
           <div class="admin-confirm-header">

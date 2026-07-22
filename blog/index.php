@@ -118,7 +118,7 @@ HTML;
     $heroImage = '';
     if ($postImage) {
         $heroImage = <<<HTML
-<div class="aspect-[16/9] md:aspect-[21/9] glass-panel rounded-xl mt-xl overflow-hidden">
+<div class="aspect-video max-w-4xl mx-auto glass-panel rounded-xl mt-xl overflow-hidden">
   <img src="{$postImage}" alt="{$postTitle}" width="1200" height="675" class="w-full h-full object-cover" loading="eager">
 </div>
 HTML;

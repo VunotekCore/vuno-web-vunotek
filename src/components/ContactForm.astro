@@ -117,8 +117,8 @@ const { fields, tabs, options } = Astro.props
 
     <div id="cotizar-fields" role="tabpanel" aria-labelledby="tab-cotizar" class="space-y-md">
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant"
-          >{fields.project_type} <span class="text-[#00A8FF]">*</span></label
+        <span class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.project_type} <span class="text-[#00A8FF]">*</span></span
         >
         <div class="flex flex-wrap gap-sm" data-pill-group="projectType" role="radiogroup" aria-label={fields.project_type}>
           <input type="hidden" name="projectType" />
@@ -132,8 +132,8 @@ const { fields, tabs, options } = Astro.props
         </div>
       </div>
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant"
-          >{fields.budget}</label
+        <span class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.budget}</span
         >
         <div class="flex flex-wrap gap-sm" data-pill-group="budget" role="radiogroup" aria-label={fields.budget}>
           <input type="hidden" name="budget" />
@@ -169,8 +169,8 @@ const { fields, tabs, options } = Astro.props
           </div>
         </div>
         <div class="space-y-xs">
-          <label class="font-label-mono text-label-mono text-on-surface-variant"
-            >{fields.preferred_time} <span class="text-[#00A8FF]">*</span></label
+          <span class="font-label-mono text-label-mono text-on-surface-variant"
+            >{fields.preferred_time} <span class="text-[#00A8FF]">*</span></span
           >
           <div class="flex flex-wrap gap-sm" data-pill-group="preferredTime" role="radiogroup" aria-label={fields.preferred_time}>
             <input type="hidden" name="preferredTime" />
@@ -185,8 +185,8 @@ const { fields, tabs, options } = Astro.props
         </div>
       </div>
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant"
-          >{fields.meeting_type} <span class="text-[#00A8FF]">*</span></label
+        <span class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.meeting_type} <span class="text-[#00A8FF]">*</span></span
         >
         <div class="flex flex-wrap gap-sm" data-pill-group="meetingType" role="radiogroup" aria-label={fields.meeting_type}>
           <input type="hidden" name="meetingType" />
@@ -234,6 +234,7 @@ const { fields, tabs, options } = Astro.props
         id="submit-btn"
         class="w-full md:w-auto inline-flex items-center justify-center gap-sm bg-[#00A8FF] text-white font-bold px-xl max-sm:px-lg py-md rounded-lg text-body-lg transition-all duration-200 hover:bg-[#0088CC] hover:shadow-lg hover:shadow-[#00A8FF]/30 cursor-pointer border-none"
         title={fields.submit_btn}
+        aria-label={fields.submit_btn}
       >
         <span
           id="submit-text"

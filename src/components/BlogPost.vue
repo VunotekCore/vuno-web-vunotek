@@ -226,7 +226,7 @@ onMounted(async () => {
       {{ post.title }}
     </h1>
 
-    <div v-if="post.image" class="aspect-[16/9] md:aspect-[21/9] glass-panel rounded-xl mt-xl overflow-hidden">
+    <div v-if="post.image" class="aspect-video max-w-4xl mx-auto glass-panel rounded-xl mt-xl overflow-hidden">
       <img
         :src="post.image"
         :srcset="imageSrcset"
