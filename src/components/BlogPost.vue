@@ -69,6 +69,10 @@ function sanitizeContent(html: string) {
   }
 }
 
+if (props.initialPost) {
+  sanitizeContent(props.initialPost.content)
+}
+
 const imageSrcset = computed(() => {
   const url = post.value?.image
   if (!url || !url.startsWith(IK_BASE)) return null
