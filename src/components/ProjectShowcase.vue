@@ -209,6 +209,13 @@ onMounted(async () => {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+@media (max-width: 768px) {
+  .showcase-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 .showcase-card:hover {
   border-color: rgba(0, 168, 255, 0.5);
   box-shadow: 0 0 24px rgba(0, 168, 255, 0.12);
