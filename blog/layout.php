@@ -27,9 +27,9 @@ function renderHead(
     $titleEsc = e($title);
     $descEsc = e($description);
 
-    $hreflangEs = '<link rel="alternate" hreflang="es" href="' . $siteUrl . '/blog/' . e($slug) . '/">';
-    $hreflangEn = '<link rel="alternate" hreflang="en" href="' . $siteUrl . '/en/blog/' . e($slug) . '/">';
-    $hreflangX  = '<link rel="alternate" hreflang="x-default" href="' . $siteUrl . '/blog/' . e($slug) . '/">';
+    $hreflangEs = $slug ? '<link rel="alternate" hreflang="es" href="' . $siteUrl . '/blog/' . e($slug) . '/">' : '';
+    $hreflangEn = $slug ? '<link rel="alternate" hreflang="en" href="' . $siteUrl . '/en/blog/' . e($slug) . '/">' : '';
+    $hreflangX  = $slug ? '<link rel="alternate" hreflang="x-default" href="' . $siteUrl . '/blog/' . e($slug) . '/">' : '';
 
     $jsonLd = [
         [
@@ -77,6 +77,7 @@ function renderHead(
                 'logo' => ['@type' => 'ImageObject', 'url' => "$siteUrl/logo.webp"],
             ],
             'datePublished' => $datePublished,
+            'dateModified' => $datePublished,
             'image' => e($postImg),
             'url' => $postUrl,
         ];

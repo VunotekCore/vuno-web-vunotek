@@ -27,6 +27,7 @@ export default defineConfig({
       appEntrypoint: '/src/plugins/vue-entrypoint.ts',
     }),
     sitemap({
+      filter: (page) => !page.includes('/admin'),
       i18n: {
         defaultLocale: 'es',
         locales: {

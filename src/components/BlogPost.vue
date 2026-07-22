@@ -107,8 +107,14 @@ function updateMeta(postData: Post) {
     '@type': 'BlogPosting',
     headline: postData.title,
     description: postData.excerpt,
-    author: { '@type': 'Person', name: postData.author || 'Daniel Flores' },
+    author: { '@type': 'Person', name: postData.author || 'Daniel Flores', url: `${siteUrl}/about` },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Vunotek',
+      logo: { '@type': 'ImageObject', url: `${siteUrl}/logo.webp` },
+    },
     datePublished: postData.created_at,
+    dateModified: postData.created_at,
     image: postData.og_image || postData.image || undefined,
     url: `${siteUrl}${prefix}/blog/${postData.slug}/`,
   }

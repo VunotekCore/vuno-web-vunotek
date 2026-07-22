@@ -35,24 +35,6 @@ export const SEO = {
     },
   },
 
-  articleSchema: {
-    '@context': 'https://schema.org',
-    '@type': 'TechArticle' as const,
-    author: {
-      '@type': 'Person' as const,
-      name: 'Daniel Flores',
-      url: 'https://vunotek.com/about',
-    },
-    publisher: {
-      '@type': 'Organization' as const,
-      name: 'Vunotek',
-      logo: {
-        '@type': 'ImageObject' as const,
-        url: 'https://vunotek.com/logo.webp',
-      },
-    },
-  },
-
   breadcrumbs: {
     es: [
       { name: 'Inicio', path: '/' },
