@@ -83,6 +83,12 @@ function renderHead(
         ];
 
         $ogImg = $post['og_image'] ?: ($post['image'] ?: $ogDefault);
+
+        $jsonLd[2]['itemListElement'][] = [
+            '@type' => 'ListItem',
+            'position' => 3,
+            'name' => $postTitle,
+        ];
     }
 
     $jsonLdStr = json_encode($jsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
