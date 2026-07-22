@@ -115,7 +115,8 @@ const { fields, tabs, options } = Astro.props
       </div>
     </div>
 
-    <div id="cotizar-fields" role="tabpanel" aria-labelledby="tab-cotizar" class="space-y-md">
+    <div class="tabs-panels" style="display:grid">
+    <div id="cotizar-fields" role="tabpanel" aria-labelledby="tab-cotizar" class="space-y-md" style="grid-area:1/1">
       <div class="space-y-xs">
         <span class="font-label-mono text-label-mono text-on-surface-variant"
           >{fields.project_type} <span class="text-[#00A8FF]">*</span></span
@@ -148,7 +149,7 @@ const { fields, tabs, options } = Astro.props
       </div>
     </div>
 
-    <div id="agendar-fields" role="tabpanel" aria-labelledby="tab-agendar" class="hidden space-y-md">
+    <div id="agendar-fields" role="tabpanel" aria-labelledby="tab-agendar" class="space-y-md" style="grid-area:1/1;visibility:hidden;position:absolute">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
         <div class="space-y-xs">
           <label class="font-label-mono text-label-mono text-on-surface-variant" for="preferredDate"
@@ -199,6 +200,7 @@ const { fields, tabs, options } = Astro.props
           }
         </div>
       </div>
+    </div>
     </div>
 
     <div class="space-y-xs">
@@ -375,8 +377,10 @@ const { fields, tabs, options } = Astro.props
       btnAgendar.classList.toggle('hover:text-[#00A8FF]', isCotizar)
       btnAgendar.setAttribute('aria-selected', String(!isCotizar))
 
-      cotizarFields.classList.toggle('hidden', !isCotizar)
-      agendarFields.classList.toggle('hidden', isCotizar)
+      cotizarFields.style.visibility = isCotizar ? 'visible' : 'hidden'
+      cotizarFields.style.position = isCotizar ? 'relative' : 'absolute'
+      agendarFields.style.visibility = isCotizar ? 'hidden' : 'visible'
+      agendarFields.style.position = isCotizar ? 'absolute' : 'relative'
       formTypeInput.value = tab
 
       const label = isCotizar ? submitLabels.cotizar : submitLabels.agendar

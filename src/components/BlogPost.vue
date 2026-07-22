@@ -187,7 +187,7 @@ onMounted(async () => {
       </div>
       <div class="h-10 w-3/4 bg-surface-container-highest rounded mb-4"></div>
       <div class="h-10 w-1/2 bg-surface-container-highest rounded mb-6"></div>
-      <div class="aspect-[21/9] bg-surface-container-highest rounded-xl mb-8"></div>
+      <div class="aspect-video bg-surface-container-highest rounded-xl mb-8"></div>
     </div>
     <div class="max-w-3xl mx-auto animate-pulse space-y-4">
       <div class="h-5 w-full bg-surface-container-highest rounded"></div>

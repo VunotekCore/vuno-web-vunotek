@@ -25,22 +25,34 @@ export interface Props {
 </div>
 
 <script>
-  (document.querySelectorAll('[data-glass-card]') as NodeListOf<HTMLElement>).forEach((card) => {
-    card.addEventListener('mousemove', (e: Event) => {
-      const rect = card.getBoundingClientRect();
-      const me = e as MouseEvent;
-      const x = ((me.clientX - rect.left) / rect.width) * 100;
-      const y = ((me.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mouse-x', `${x}%`);
-      card.style.setProperty('--mouse-y', `${y}%`);
-    });
-    card.addEventListener('mouseenter', () => {
-      const glow = card.querySelector('[data-glass-glow]') as HTMLElement;
-      if (glow) glow.style.opacity = '1';
-    });
-    card.addEventListener('mouseleave', () => {
-      const glow = card.querySelector('[data-glass-glow]') as HTMLElement;
-      if (glow) glow.style.opacity = '0';
-    });
+  let rafId = 0;
+  let pendingCard: HTMLElement | null = null;
+  let pendingX = 0;
+  let pendingY = 0;
+
+  function flush() {
+    rafId = 0;
+    if (!pendingCard) return;
+    const rect = pendingCard.getBoundingClientRect();
+    pendingCard.style.setProperty('--mouse-x', `${((pendingX - rect.left) / rect.width) * 100}%`);
+    pendingCard.style.setProperty('--mouse-y', `${((pendingY - rect.top) / rect.height) * 100}%`);
+    const glow = pendingCard.querySelector('[data-glass-glow]') as HTMLElement;
+    if (glow) glow.style.opacity = '1';
+    pendingCard = null;
+  }
+
+  document.addEventListener('pointermove', (e: PointerEvent) => {
+    const card = (e.target as HTMLElement).closest('[data-glass-card]') as HTMLElement | null;
+    if (!card) return;
+    pendingCard = card;
+    pendingX = e.clientX;
+    pendingY = e.clientY;
+    if (!rafId) rafId = requestAnimationFrame(flush);
   });
+  document.addEventListener('pointerleave', (e: PointerEvent) => {
+    const card = (e.target as HTMLElement).closest('[data-glass-card]') as HTMLElement | null;
+    if (!card) return;
+    const glow = card.querySelector('[data-glass-glow]') as HTMLElement;
+    if (glow) glow.style.opacity = '0';
+  }, true);
 </script>

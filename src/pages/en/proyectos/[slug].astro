@@ -29,6 +29,6 @@ const { card } = Astro.props as { card: CardProp }
 const ogImage = (IMAGES as Record<string, string>)[card.image_key]
 ---
 
-<BaseLayout title={`${card.title} | Vunotek`} description={card.desc} ogImage={ogImage} breadcrumbName={card.title}>
+<BaseLayout title={`${card.title} | Vunotek`} description={card.desc} ogImage={ogImage} preloadImage={ogImage} breadcrumbName={card.title}>
   <ProyectoDetalle card={card} locale="en" />
 </BaseLayout>

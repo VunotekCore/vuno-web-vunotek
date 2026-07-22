@@ -338,6 +338,14 @@ export interface Props {
   let lineIdx = 0
   let timer: ReturnType<typeof setTimeout> | undefined
 
+  function delayWhenVisible(fn: () => void, ms: number) {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      if (document.hidden) { delayWhenVisible(fn, ms); return }
+      fn()
+    }, ms)
+  }
+
   function pad(n: number) {
     return String(n + 1).padStart(2, '0')
   }
@@ -395,14 +403,13 @@ export interface Props {
   function revealLines() {
     const sn = snippets[current]
     if (lineIdx >= sn.lines.length) {
-      clearTimeout(timer)
-      timer = setTimeout(nextSnippet, 3000)
+      delayWhenVisible(nextSnippet, 3000)
       return
     }
     renderSnippet(current, lineIdx)
     lineIdx++
     const delay = lineIdx === 1 ? 400 : 120
-    timer = setTimeout(revealLines, delay)
+    delayWhenVisible(revealLines, delay)
   }
 
   function animateMobileCode() {
@@ -413,7 +420,7 @@ export interface Props {
     let idx = 0
     function revealNext() {
       if (idx >= lines.length) {
-        setTimeout(animateMobileCode, 4000)
+        setTimeout(() => { if (!document.hidden) animateMobileCode() }, 4000)
         return
       }
       lines[idx].style.opacity = '1'
