@@ -10,6 +10,7 @@ const { locale = 'es' } = Astro.props
 const dict = getTranslations(locale) as any
 const pp = dict.privacy_page
 const tp = dict.terms_page
+const common = dict.common
 const privacySections = pp.content.sections as Array<{ title: string; text: string }>
 const termsSections = tp.content.sections as Array<{ title: string; text: string }>
 ---
@@ -18,13 +19,17 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
   id="legal-modal"
   class="z-[100] bg-transparent p-0 m-auto"
   style="max-width: none; max-height: none; border: none; background: none;"
+  aria-label={locale === 'en' ? 'Privacy policy and terms' : 'Política de privacidad y términos'}
 >
   <div class="bg-surface-charcoal/95 backdrop-blur-sm border border-outline-variant/50 rounded-xl w-[min(90vw,42rem)] flex flex-col shadow-2xl">
     <!-- Header: IDE editor tabs -->
     <div class="flex items-center justify-between border-b border-outline-variant/20 rounded-t-xl overflow-hidden">
-      <div class="flex">
+      <div class="flex" role="tablist" aria-label={locale === 'en' ? 'Legal documents' : 'Documentos legales'}>
         <button
           id="tab-privacy"
+          role="tab"
+          aria-selected="true"
+          aria-controls="content-privacy"
           class="tab-btn bg-surface-charcoal text-electric-blue border-t-2 border-t-electric-blue px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors"
           data-tab="privacy"
         >
@@ -32,6 +37,9 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
         </button>
         <button
           id="tab-terms"
+          role="tab"
+          aria-selected="false"
+          aria-controls="content-terms"
           class="tab-btn bg-surface-container-low text-slate-text border-t-2 border-t-transparent px-4 py-2.5 text-xs font-label-mono cursor-pointer hover:text-on-surface transition-colors"
           data-tab="terms"
         >
@@ -49,7 +57,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     </div>
 
     <!-- Privacy content -->
-    <div id="content-privacy" class="tab-content max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5">
+    <div id="content-privacy" role="tabpanel" aria-labelledby="tab-privacy" class="tab-content max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5">
       <div class="flex flex-col gap-1">
         <h2 class="font-display-lg text-headline-md text-on-surface">{pp.content.title}</h2>
         <span class="font-label-mono text-[11px] text-slate-text/80">{pp.content.last_updated}</span>
@@ -65,7 +73,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     </div>
 
     <!-- Terms content (hidden by default) -->
-    <div id="content-terms" class="tab-content max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5 hidden">
+    <div id="content-terms" role="tabpanel" aria-labelledby="tab-terms" class="tab-content max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5 hidden">
       <div class="flex flex-col gap-1">
         <h2 class="font-display-lg text-headline-md text-on-surface">{tp.content.title}</h2>
         <span class="font-label-mono text-[11px] text-slate-text/80">{tp.content.last_updated}</span>
@@ -87,7 +95,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
         class="font-label-mono text-label-mono text-electric-blue border border-electric-blue/30 px-4 py-1.5 rounded-lg hover:bg-electric-blue/10 transition-colors"
         type="button"
       >
-        [Cerrar]
+        [{common.close}]
       </button>
     </div>
   </div>
@@ -99,14 +107,17 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
 
   const close = document.getElementById('legal-close') as HTMLElement | null;
   const closeBottom = document.getElementById('legal-close-bottom') as HTMLElement | null;
+  let triggerElement: HTMLElement | null = null;
 
   const openModal = (tab: 'privacy' | 'terms') => {
+    triggerElement = document.activeElement as HTMLElement;
     // Switch tab buttons
     document.querySelectorAll('.tab-btn').forEach((btn) => {
       const isActive = btn.getAttribute('data-tab') === tab;
       btn.className = isActive
         ? 'tab-btn bg-surface-charcoal text-electric-blue border-t-2 border-t-electric-blue px-4 py-2.5 text-xs font-label-mono cursor-pointer transition-colors'
         : 'tab-btn bg-surface-container-low text-slate-text border-t-2 border-t-transparent px-4 py-2.5 text-xs font-label-mono cursor-pointer hover:text-on-surface transition-colors';
+      btn.setAttribute('aria-selected', String(isActive));
     });
     // Switch content
     document.querySelectorAll('.tab-content').forEach((el) => {
@@ -141,7 +152,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     if (e.target === modal) closeModal();
   });
 
-  modal.addEventListener('close', () => { document.body.style.overflow = ''; });
+  modal.addEventListener('close', () => { document.body.style.overflow = ''; if (triggerElement) triggerElement.focus(); });
 </script>
 
 <style>

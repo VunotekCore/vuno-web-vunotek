@@ -17,7 +17,9 @@ function renderHead(
     ?string $ogImage = null,
     ?array $post = null
 ): string {
-    $lang = $locale === 'en' ? 'en-US' : 'es-NI';
+    $lang = $locale === 'en' ? 'en' : 'es';
+    $ogLocale = $locale === 'en' ? 'en_US' : 'es_ES';
+    $ogLocaleAlt = $locale === 'en' ? 'es_ES' : 'en_US';
     $siteUrl = 'https://vunotek.com';
     $baseUrl = $locale === 'en' ? "$siteUrl/en" : $siteUrl;
     $pageUrl = $slug ? "$baseUrl/blog/$slug/" : "$baseUrl/blog/";
@@ -31,6 +33,10 @@ function renderHead(
     $hreflangEn = $slug ? '<link rel="alternate" hreflang="en" href="' . $siteUrl . '/en/blog/' . e($slug) . '/">' : '';
     $hreflangX  = $slug ? '<link rel="alternate" hreflang="x-default" href="' . $siteUrl . '/blog/' . e($slug) . '/">' : '';
 
+    $orgDesc = $locale === 'en'
+        ? 'Software engineering and advanced automation. We design stable systems and high-performance modular enterprise solutions.'
+        : 'Ingeniería de software y automatización avanzada. Diseñamos sistemas estables y soluciones modulares de alto rendimiento empresarial.';
+
     $jsonLd = [
         [
             '@context' => 'https://schema.org',
@@ -38,14 +44,33 @@ function renderHead(
             'name' => 'Vunotek',
             'url' => $siteUrl,
             'logo' => ['@type' => 'ImageObject', 'url' => "$siteUrl/logo.webp"],
-            'description' => 'Software Infrastructure & Advanced Automation',
-            'sameAs' => [],
+            'description' => $orgDesc,
+            'foundingDate' => '2024',
+            'address' => ['@type' => 'PostalAddress', 'addressCountry' => 'NI'],
+            'areaServed' => [
+                ['@type' => 'Country', 'name' => 'Nicaragua'],
+                ['@type' => 'Country', 'name' => 'Costa Rica'],
+                ['@type' => 'Country', 'name' => 'Honduras'],
+                ['@type' => 'Country', 'name' => 'Guatemala'],
+                ['@type' => 'Country', 'name' => 'El Salvador'],
+                ['@type' => 'Country', 'name' => 'Panama'],
+                ['@type' => 'Country', 'name' => 'United States'],
+            ],
+            'knowsAbout' => [
+                'Software Engineering', 'Vue.js Development', 'Node.js Development',
+                '.NET Development', 'Salesforce Integration', 'Cloud Architecture',
+                'AWS Infrastructure', 'Enterprise Automation', 'PostgreSQL', 'TypeScript',
+            ],
+            'contactPoint' => ['@type' => 'ContactPoint', 'email' => 'projects@vunotek.com', 'contactType' => 'sales'],
+            'sameAs' => ['https://github.com/vunotek', 'https://linkedin.com/company/vunotek'],
         ],
         [
             '@context' => 'https://schema.org',
             '@type' => 'WebSite',
             'name' => 'Vunotek',
             'url' => $siteUrl,
+            'inLanguage' => $lang,
+            'description' => $orgDesc,
         ],
         [
             '@context' => 'https://schema.org',
@@ -116,7 +141,8 @@ HTML;
 {$hreflangEs}
 {$hreflangEn}
 {$hreflangX}
-<meta property="og:locale" content="{$lang}">
+<meta property="og:locale" content="{$ogLocale}">
+<meta property="og:locale:alternate" content="{$ogLocaleAlt}">
 <meta property="og:title" content="{$titleEsc}">
 <meta property="og:description" content="{$descEsc}">
 <meta property="og:type" content="article">
@@ -127,12 +153,14 @@ HTML;
 <meta property="og:site_name" content="Vunotek">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@vunotek">
+<meta name="twitter:creator" content="@vunotek">
 <meta name="twitter:title" content="{$titleEsc}">
 <meta name="twitter:description" content="{$descEsc}">
 <meta name="twitter:image" content="{$ogImg}">
 <meta name="google-site-verification" content="OLAPWz6sRxKAUk91oJG0dQmfTtv-mFFGoHo-c_wG3DA">
 <?php if ($post): ?>
 <meta property="article:published_time" content="<?= e($post['created_at'] ?? '') ?>">
+<meta property="article:modified_time" content="<?= e($post['updated_at'] ?? $post['created_at'] ?? '') ?>">
 <meta property="article:author" content="<?= e($post['author'] ?? 'Daniel Flores') ?>">
 <meta property="article:section" content="<?= e($post['category_name'] ?? 'Blog') ?>">
 <?php endif; ?>

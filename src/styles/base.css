@@ -19,6 +19,10 @@
   font-weight: 400;
   src: url('/fonts/hanken-grotesk-latin-400-normal.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  size-adjust: 100%;
+  ascent-override: 100%;
+  descent-override: 20%;
+  line-gap-override: 0%;
 }
 @font-face {
   font-family: 'Hanken Grotesk';
@@ -27,6 +31,10 @@
   font-weight: 600;
   src: url('/fonts/hanken-grotesk-latin-600-normal.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  size-adjust: 100%;
+  ascent-override: 100%;
+  descent-override: 20%;
+  line-gap-override: 0%;
 }
 @font-face {
   font-family: 'Hanken Grotesk';
@@ -35,6 +43,10 @@
   font-weight: 700;
   src: url('/fonts/hanken-grotesk-latin-700-normal.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  size-adjust: 100%;
+  ascent-override: 100%;
+  descent-override: 20%;
+  line-gap-override: 0%;
 }
 @font-face {
   font-family: 'Inter';
@@ -43,6 +55,10 @@
   font-weight: 400;
   src: url('/fonts/inter-latin-400-normal.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 @font-face {
   font-family: 'Inter';
@@ -51,6 +67,10 @@
   font-weight: 500;
   src: url('/fonts/inter-latin-500-normal.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 @font-face {
   font-family: 'Inter';
@@ -59,6 +79,10 @@
   font-weight: 600;
   src: url('/fonts/inter-latin-600-normal.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 @font-face {
   font-family: 'JetBrains Mono';
@@ -128,7 +152,7 @@
   --color-electric-blue: #00A8FF;
   --color-azure-deep: #001a33;
   --color-surface-charcoal: #1e293b;
-  --color-slate-text: #94a3b8;
+  --color-slate-text: #b0bec5;
   --color-vue-green: #69dca4;
 
   --font-display-lg: "Hanken Grotesk", sans-serif;
@@ -238,5 +262,10 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-electric-blue);
+    outline-offset: 2px;
   }
 }

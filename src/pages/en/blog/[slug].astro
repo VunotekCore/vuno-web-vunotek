@@ -44,9 +44,26 @@ const { initialPost } = Astro.props as { initialPost?: PostData }
 const pageTitle = initialPost?.meta_title || (initialPost ? `${initialPost.title} | Vunotek` : 'Blog | Vunotek')
 const pageDescription = initialPost?.excerpt || 'Articles about software engineering and business automation.'
 const publishDate = initialPost?.created_at ? new Date(initialPost.created_at).toISOString() : undefined
+
+const jsonLdBlogPosting = initialPost ? {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: initialPost.title,
+  description: initialPost.excerpt,
+  author: { '@type': 'Person', name: initialPost.author || 'Daniel Flores', url: 'https://vunotek.com/about' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Vunotek',
+    logo: { '@type': 'ImageObject', url: 'https://vunotek.com/logo.webp' },
+  },
+  datePublished: publishDate,
+  dateModified: publishDate,
+  image: initialPost.og_image || initialPost.image || undefined,
+  url: `https://vunotek.com/en/blog/${initialPost.slug}/`,
+} : null
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} ogType="article" ogImage={initialPost?.og_image || undefined} preloadImage={initialPost?.image || undefined} breadcrumbName={initialPost?.title} articlePublishedTime={publishDate} articleModifiedTime={publishDate} articleAuthor={initialPost?.author || 'Daniel Flores'} articleSection={initialPost?.category_name || 'Blog'}>
+<BaseLayout title={pageTitle} description={pageDescription} ogType="article" ogImage={initialPost?.og_image || undefined} preloadImage={initialPost?.image || undefined} breadcrumbName={initialPost?.title} articlePublishedTime={publishDate} articleModifiedTime={publishDate} articleAuthor={initialPost?.author || 'Daniel Flores'} articleSection={initialPost?.category_name || 'Blog'} extraJsonLd={jsonLdBlogPosting ? [jsonLdBlogPosting] : []}>
   <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
     <a href="/en/blog" class="inline-flex items-center gap-xs text-electric-blue font-label-mono hover:underline mb-lg">
       <Icon name="arrow_back" class="text-sm" />

@@ -8,7 +8,7 @@ const dict = getTranslations('en') as any
 const bg = dict.blog
 ---
 
-<BaseLayout title={bg.hero.title + ' | Vunotek'} description={bg.hero.desc}>
+<BaseLayout title={bg.hero.title + ' | Vunotek'} description={bg.hero.desc} breadcrumbName="Blog">
   <Section class="!pt-32 md:!pt-40 !pb-lg md:!pb-xl">
     <div class="flex flex-col gap-base stagger-header">
       <div class="inline-flex items-center gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full">

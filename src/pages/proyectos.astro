@@ -7,6 +7,6 @@ const dict = getTranslations(Astro.currentLocale ?? 'es') as any
 const pj = dict.projects_page
 ---
 
-<BaseLayout title={pj.meta.title} description={pj.hero.description}>
+<BaseLayout title={pj.meta.title} description={pj.hero.description} breadcrumbName="Proyectos">
   <Proyectos dict={dict} locale={Astro.currentLocale ?? 'es'} />
 </BaseLayout>

@@ -82,38 +82,14 @@ const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind C
           {f('columns.navigation_title')}
         </h3>
         <nav aria-label="Footer navigation">
-          <div class="grid grid-cols-2 gap-x-md gap-y-sm">
-            <a
-              href={p('/')}
-              class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors"
-              >{f('columns.links.solutions')}</a
-            >
-            <a
-              href={p('/servicios')}
-              class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors"
-              >{f('columns.links.services')}</a
-            >
-            <a
-              href={p('/proyectos')}
-              class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors"
-              >{f('columns.links.stack')}</a
-            >
-            <a
-              href={isEn ? '/en/blog' : '/blog'}
-              class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors"
-              >{f('columns.links.blog')}</a
-            >
-            <a
-              href={p('/about')}
-              class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors"
-              >{f('columns.links.about')}</a
-            >
-            <a
-              href={p('/contacto')}
-              class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors"
-              >{f('columns.links.contact')}</a
-            >
-          </div>
+          <ul class="grid grid-cols-2 gap-x-md gap-y-sm list-none p-0 m-0">
+            <li><a href={p('/')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.solutions')}</a></li>
+            <li><a href={p('/servicios')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.services')}</a></li>
+            <li><a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.stack')}</a></li>
+            <li><a href={isEn ? '/en/blog' : '/blog'} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.blog')}</a></li>
+            <li><a href={p('/about')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.about')}</a></li>
+            <li><a href={p('/contacto')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.contact')}</a></li>
+          </ul>
         </nav>
       </div>
 
@@ -124,18 +100,10 @@ const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind C
         >
           {f('columns.legal_title')}
         </h3>
-        <div class="flex flex-col gap-sm">
-          <a
-            href={isEn ? '/en/privacy/' : '/privacidad/'}
-            class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors"
-            >{f('columns.links.privacy')}</a
-          >
-          <a
-            href={isEn ? '/en/terms/' : '/terminos/'}
-            class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors"
-            >{f('columns.links.terms')}</a
-          >
-        </div>
+        <ul class="flex flex-col gap-sm list-none p-0 m-0">
+          <li><a href={isEn ? '/en/privacy/' : '/privacidad/'} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.privacy')}</a></li>
+          <li><a href={isEn ? '/en/terms/' : '/terminos/'} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.terms')}</a></li>
+        </ul>
       </div>
     </div>
 

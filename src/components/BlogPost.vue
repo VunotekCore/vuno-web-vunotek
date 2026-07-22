@@ -240,6 +240,7 @@ onMounted(async () => {
         height="675"
         class="w-full h-full object-cover"
         loading="eager"
+        decoding="async"
         fetchpriority="high"
       />
     </div>
@@ -264,6 +265,8 @@ onMounted(async () => {
                 height="400"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
+                decoding="async"
+                fetchpriority="low"
               />
               <span v-else class="material-symbols-outlined text-6xl text-outline/30">description</span>
             </div>

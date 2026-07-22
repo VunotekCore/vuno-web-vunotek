@@ -20,6 +20,7 @@ type CardProp = {
   tag: string
   title: string
   desc: string
+  meta_description?: string
   image_key: string
   features: { text: string; image: string }[]
   tech_stack: string[]
@@ -27,8 +28,9 @@ type CardProp = {
 
 const { card } = Astro.props as { card: CardProp }
 const ogImage = (IMAGES as Record<string, string>)[card.image_key]
+const metaDescription = card.meta_description || card.desc
 ---
 
-<BaseLayout title={`${card.title} | Vunotek`} description={card.desc} ogImage={ogImage} preloadImage={ogImage} breadcrumbName={card.title}>
+<BaseLayout title={`${card.title} | Vunotek`} description={metaDescription} ogImage={ogImage} preloadImage={ogImage} breadcrumbName={card.title}>
   <ProyectoDetalle card={card} locale="es" />
 </BaseLayout>

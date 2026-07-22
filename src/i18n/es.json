@@ -380,6 +380,7 @@
           "slug": "vuno-pos",
           "title": "VUNO POS — Sistema de Punto de Venta Empresarial",
           "desc": "Sistema completo de punto de venta con arquitectura offline-first, multi-tenant, inventario en tiempo real y despliegue nativo vía Electron.",
+          "meta_description": "VUNO POS: sistema de punto de venta empresarial con interfaz moderna, modo offline-first, inventario en tiempo real y gestión multi-sucursal.",
           "image_key": "pos",
           "features": [
             {
@@ -430,6 +431,7 @@
           "slug": "vuno-shop",
           "title": "VUNO SHOP — Plataforma de E-Commerce",
           "desc": "Plataforma completa de comercio electrónico con frontend en Astro, API REST en PHP, pagos Stripe, soporte multi-moneda y panel administrativo integral.",
+          "meta_description": "VUNO SHOP: plataforma de e-commerce con Astro, pagos Stripe, multi-moneda, inventario avanzado y panel administrativo completo.",
           "image_key": "shop",
           "features": [
             {
@@ -496,6 +498,7 @@
           "slug": "vuno-reservations",
           "title": "VUNO RESERVATIONS — Sistema de Gestión Hotelera",
           "desc": "Sistema completo de gestión hotelera (PMS) con sitio web de reservas bilingüe, pagos Stripe, panel de recepción, control de housekeeping y calendario de ocupación.",
+          "meta_description": "VUNO RESERVATIONS: sistema de gestión hotelera con reservas online, pagos Stripe, check-in/check-out y calendario de ocupación.",
           "image_key": "hotel",
           "features": [
             {
@@ -554,6 +557,7 @@
           "slug": "vuno-envios",
           "title": "VUNO ENVÍOS — Logística de Paquetes Miami-Nicaragua",
           "desc": "Plataforma logística digital conectando Miami con Nicaragua con casillero virtual, rastreo de paquetes, envíos aéreos y marítimos, y entrega puerta a puerta.",
+          "meta_description": "VUNO ENVÍOS: plataforma logística Miami-Nicaragua con casillero virtual, rastreo de paquetes, envíos aéreos y marítimos.",
           "image_key": "logistics",
           "features": [
             {
@@ -612,6 +616,7 @@
           "slug": "vuno-crm",
           "title": "VUNO CRM — Plataforma de Social Selling",
           "desc": "CRM SaaS multitenencia especializado en social selling, unificando conversaciones de WhatsApp, Instagram y Facebook con un pipeline de ventas completo desde lead hasta cotización.",
+          "meta_description": "VUNO CRM: plataforma de social selling que unifica WhatsApp, Instagram y Facebook con pipeline de ventas y cotizaciones.",
           "image_key": "crm",
           "features": [
             {
@@ -659,6 +664,7 @@
           "slug": "vuno-drive",
           "title": "VUNO DRIVE — Plataforma para renta o venta de autos",
           "desc": "Plataforma de alquiler y venta de vehículos en Nicaragua. Catálogo público, reserva online multi-step, panel administrador completo con check-in/check-out, control de flota y POS",
+          "meta_description": "VUNO DRIVE: plataforma de alquiler y venta de vehículos con catálogo público, reservas online y control de flota.",
           "image_key": "drive",
           "features": [
             {
@@ -934,5 +940,9 @@
         }
       ]
     }
+  },
+  "common": {
+    "close": "Cerrar",
+    "closeModal": "Cerrar modal"
   }
 }

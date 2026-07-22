@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
-import { getApiUrl } from '../services/api'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { projectService } from '../services/projectService'
 
 const props = withDefaults(defineProps<{
   title: string
@@ -20,7 +20,6 @@ interface Project {
 
 const projects = ref<Project[]>([])
 const loading = ref(true)
-const visible = ref(false)
 
 const detailLabel = props.locale === 'en' ? 'Details' : 'Detalles'
 const liveLabel = props.locale === 'en' ? 'Live Preview' : 'Demo en vivo'
@@ -42,11 +41,14 @@ function closeDialog(name: string) {
   el?.close()
 }
 
+let io: IntersectionObserver | null = null
+
 onMounted(async () => {
   try {
-    const res = await fetch(`${getApiUrl()}/projects/list.php`)
-    const { data } = await res.json()
-    projects.value = data ?? []
+    const { data } = await projectService.listPublic()
+    if (data.success && Array.isArray(data.data)) {
+      projects.value = data.data
+    }
   } catch {
     // silent
   } finally {
@@ -61,7 +63,21 @@ onMounted(async () => {
     })
   })
 
-  setTimeout(() => { visible.value = true }, 100)
+  const trackWrapper = document.querySelector('.showcase-track-wrapper') as HTMLElement | null
+  if (trackWrapper) {
+    const track = trackWrapper.querySelector('.showcase-track') as HTMLElement | null
+    if (track) {
+      track.style.animationPlayState = 'paused'
+      io = new IntersectionObserver(([entry]) => {
+        if (track) track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused'
+      }, { threshold: 0 })
+      io.observe(trackWrapper)
+    }
+  }
+})
+
+onUnmounted(() => {
+  io?.disconnect()
 })
 </script>
 
@@ -89,6 +105,7 @@ onMounted(async () => {
                 width="640"
                 height="360"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                fetchpriority="low"
               />
               <div v-else class="w-full h-full bg-surface-charcoal flex items-center justify-center">
                 <span class="text-4xl text-slate-text opacity-40">📁</span>
@@ -396,6 +413,17 @@ onMounted(async () => {
 
   .showcase-dialog {
     transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .showcase-track {
+    animation: scroll 35s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .showcase-track-wrapper:hover .showcase-track {
+    animation-play-state: paused;
   }
 }
 </style>

@@ -80,12 +80,18 @@ export const SEO = {
 
     services: (locale: 'es' | 'en') => ({
       title: (i18n[locale] as any).services_page.meta.title,
-      description: (i18n[locale] as any).services_page.hero.description,
+      description:
+        locale === 'es'
+          ? 'Ingeniería de software con .NET, Node.js, SQL Server y Salesforce. APIs robustas, automatización y arquitectura de datos empresariales.'
+          : 'Software engineering with .NET, Node.js, SQL Server and Salesforce. Robust APIs, automation, and enterprise data architecture.',
     }),
 
     projects: (locale: 'es' | 'en') => ({
       title: (i18n[locale] as any).projects_page.meta.title,
-      description: (i18n[locale] as any).projects_page.hero.description,
+      description:
+        locale === 'es'
+          ? 'Portafolio de Vunotek: VUNO POS, Shop, Reservations, Envíos, CRM, Drive. Soluciones empresariales de ingeniería de software.'
+          : 'Vunotek portfolio: VUNO POS, Shop, Reservations, Shipping, CRM, Drive. Enterprise software engineering solutions.',
     }),
 
     contact: (locale: 'es' | 'en') => ({

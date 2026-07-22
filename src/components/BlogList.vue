@@ -30,7 +30,9 @@ function formatDate(dateStr: string): string {
   })
 }
 
-onMounted(async () => {
+async function fetchPosts() {
+  loading.value = true
+  error.value = ''
   try {
     const { data } = await blogService.list({
       locale: props.locale,
@@ -44,7 +46,9 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
-})
+}
+
+onMounted(fetchPosts)
 </script>
 
 <template>
@@ -65,7 +69,7 @@ onMounted(async () => {
   <!-- Error -->
   <div v-else-if="error" role="status" class="text-center py-12">
     <p class="text-on-surface-variant mb-4">{{ error }}</p>
-    <button @click="loading = true; error = ''; $mounted()" class="text-electric-blue hover:underline text-sm">
+    <button @click="fetchPosts" class="text-electric-blue hover:underline text-sm">
       Reintentar
     </button>
   </div>
@@ -88,6 +92,8 @@ onMounted(async () => {
             height="400"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
+            decoding="async"
+            fetchpriority="low"
           />
           <span v-else class="material-symbols-outlined text-6xl text-outline/30">description</span>
         </div>
