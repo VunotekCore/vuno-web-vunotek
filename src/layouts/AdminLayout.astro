@@ -29,6 +29,7 @@ const navItems = [
     <link rel="icon" type="image/svg+xml" href="/vunotek-isotipo-square.svg" />
   </head>
   <body class="bg-[#0a1022] text-[#dae2fd] font-body-md antialiased min-h-screen flex">
+    <a href="#admin-main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#1e293b] focus:text-[#00A8FF] focus:outline-none">Saltar al contenido principal</a>
     <div class="flex min-h-screen w-full">
       <aside
         id="admin-sidebar"
@@ -41,7 +42,7 @@ const navItems = [
           <span class="ml-auto rounded bg-[#69dca4]/15 px-2 py-0.5 text-xs font-medium text-[#69dca4]">Admin</span>
         </div>
 
-        <nav class="flex-1 overflow-y-auto py-4 sidebar-scroll">
+        <nav class="flex-1 overflow-y-auto py-4 sidebar-scroll" aria-label="Navegación administrativa">
           <ul class="flex flex-col gap-1 px-3">
             {navItems.map((item) => {
               const isActive = item.href === '/admin'
@@ -93,6 +94,8 @@ const navItems = [
             id="admin-menu-toggle"
             class="lg:hidden text-[#94a3b8] hover:text-[#dae2fd]"
             aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="admin-sidebar"
           >
             <Icon name="menu" size={24} />
           </button>
@@ -103,7 +106,7 @@ const navItems = [
           </div>
         </header>
 
-        <main class="flex-1 p-6 lg:p-8">
+        <main id="admin-main-content" class="flex-1 p-6 lg:p-8">
           <slot />
         </main>
       </div>
@@ -155,11 +158,15 @@ const navItems = [
       toggle.addEventListener('click', () => {
         sidebar.classList.remove('-translate-x-full')
         overlay.classList.remove('hidden')
+        toggle.setAttribute('aria-expanded', 'true')
+        toggle.setAttribute('aria-label', 'Cerrar menú')
       })
 
       overlay.addEventListener('click', () => {
         sidebar.classList.add('-translate-x-full')
         overlay.classList.add('hidden')
+        toggle.setAttribute('aria-expanded', 'false')
+        toggle.setAttribute('aria-label', 'Abrir menú')
       })
 
       document.getElementById('admin-logout')?.addEventListener('click', () => {

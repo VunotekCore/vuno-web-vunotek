@@ -298,8 +298,8 @@ onMounted(async () => {
       </div>
 
       <div class="sm:col-span-2">
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Contenido del artículo *</label>
-        <TiptapEditor v-model="form.content" placeholder="Escribe el contenido del artículo..." />
+        <label for="post-content" class="block text-sm font-medium text-on-surface-variant mb-1.5">Contenido del artículo *</label>
+        <TiptapEditor id="post-content" v-model="form.content" placeholder="Escribe el contenido del artículo..." />
       </div>
 
       <div class="sm:col-span-2">

@@ -75,9 +75,9 @@ async function handleLogin() {
         <!-- Contenido: titulo + features -->
         <div class="flex flex-col items-center text-center w-full max-w-[380px] mt-6">
           <div class="space-y-3 w-full">
-            <h2 class="font-headline text-2xl tracking-tight text-[#dae2fd]">
+            <div class="font-headline text-2xl tracking-tight text-[#dae2fd]">
               VUNO<span style="color:#00A8FF">TEK</span>
-            </h2>
+            </div>
             <p class="text-sm text-[#94a3b8] leading-relaxed">Software Infrastructure & Advanced Automation</p>
           </div>
 
@@ -86,19 +86,19 @@ async function handleLogin() {
           <ul class="space-y-3 w-full">
             <li class="flex items-start gap-3">
               <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-sm bg-[#69dca4]/10 mt-0.5">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#69dca4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#69dca4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
               </span>
               <span class="text-xs text-[#94a3b8] leading-relaxed">Gestión de contenido completa</span>
             </li>
             <li class="flex items-start gap-3">
               <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-sm bg-[#69dca4]/10 mt-0.5">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#69dca4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#69dca4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
               </span>
               <span class="text-xs text-[#94a3b8] leading-relaxed">Control de usuarios y permisos</span>
             </li>
             <li class="flex items-start gap-3">
               <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-sm bg-[#69dca4]/10 mt-0.5">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#69dca4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#69dca4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
               </span>
               <span class="text-xs text-[#94a3b8] leading-relaxed">Dashboard con métricas en tiempo real</span>
             </li>
@@ -110,9 +110,9 @@ async function handleLogin() {
       <div class="relative z-10 w-full flex items-center justify-between">
         <div class="flex items-center gap-2">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#69dca4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span class="text-[11px] text-[#4a5568]">Conexión segura · SSL</span>
+          <span class="text-[11px] text-[#64748b]">Conexión segura · SSL</span>
         </div>
-        <p class="text-[11px] text-[#4a5568]">&copy; {{ new Date().getFullYear() }} Vunotek</p>
+        <p class="text-[11px] text-[#64748b]">&copy; {{ new Date().getFullYear() }} Vunotek</p>
       </div>
     </div>
 
@@ -154,7 +154,7 @@ async function handleLogin() {
               class="p-3 rounded-sm bg-[#DC2626]/10 border border-[#DC2626]/20 flex items-center gap-3 text-[#DC2626] text-sm"
               role="alert"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
               <span>{{ error }}</span>
             </div>
           </div>
@@ -165,7 +165,7 @@ async function handleLogin() {
               <label for="email" class="block font-label-mono text-[#94a3b8]">Email</label>
               <div class="relative group">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#4a5568] group-focus-within:text-[#69dca4] transition-colors"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#64748b] group-focus-within:text-[#69dca4] transition-colors"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 </div>
                 <input
                   id="email"
@@ -174,7 +174,7 @@ async function handleLogin() {
                   required
                   autocomplete="email"
                   placeholder="admin@vunotek.com"
-                  class="w-full bg-[#1e293b]/60 border border-[#dae2fd]/10 pl-10 pr-4 py-3 text-sm text-[#dae2fd] placeholder-[#4a5568] focus:border-[#69dca4] focus:outline-none focus:ring-1 focus:ring-[#69dca4]/30 transition-all rounded-sm"
+                  class="w-full bg-[#1e293b]/60 border border-[#dae2fd]/10 pl-10 pr-4 py-3 text-sm text-[#dae2fd] placeholder-[#64748b] focus:border-[#69dca4] focus:outline-none focus:ring-1 focus:ring-[#69dca4]/30 transition-all rounded-sm"
                 />
               </div>
             </div>
@@ -183,7 +183,7 @@ async function handleLogin() {
               <label for="password" class="block font-label-mono text-[#94a3b8]">Contraseña</label>
               <div class="relative group">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#4a5568] group-focus-within:text-[#69dca4] transition-colors"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#64748b] group-focus-within:text-[#69dca4] transition-colors"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 </div>
                 <input
                   id="password"
@@ -192,12 +192,14 @@ async function handleLogin() {
                   required
                   autocomplete="current-password"
                   placeholder="••••••••"
-                  class="w-full bg-[#1e293b]/60 border border-[#dae2fd]/10 pl-10 pr-10 py-3 text-sm text-[#dae2fd] placeholder-[#4a5568] focus:border-[#69dca4] focus:outline-none focus:ring-1 focus:ring-[#69dca4]/30 transition-all rounded-sm"
+                  class="w-full bg-[#1e293b]/60 border border-[#dae2fd]/10 pl-10 pr-10 py-3 text-sm text-[#dae2fd] placeholder-[#64748b] focus:border-[#69dca4] focus:outline-none focus:ring-1 focus:ring-[#69dca4]/30 transition-all rounded-sm"
                 />
                 <button
                   type="button"
                   @click="showPassword = !showPassword"
-                  class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#4a5568] hover:text-[#94a3b8] transition-colors"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#64748b] hover:text-[#94a3b8] transition-colors"
+                  :aria-label="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+                  :aria-pressed="showPassword"
                 >
                   <svg v-if="!showPassword" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                   <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
@@ -223,9 +225,9 @@ async function handleLogin() {
         <div class="lg:hidden flex items-center justify-between mt-8">
           <div class="flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#69dca4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span class="text-[11px] text-[#4a5568]">Conexión segura · SSL</span>
+            <span class="text-[11px] text-[#64748b]">Conexión segura · SSL</span>
           </div>
-          <p class="text-[11px] text-[#4a5568]">&copy; {{ new Date().getFullYear() }} Vunotek</p>
+          <p class="text-[11px] text-[#64748b]">&copy; {{ new Date().getFullYear() }} Vunotek</p>
         </div>
       </div>
     </div>

@@ -160,8 +160,9 @@ watch(() => props.categoryId, () => {
     </div>
 
     <div>
-      <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Descripción</label>
+      <label for="cat-description" class="block text-sm font-medium text-on-surface-variant mb-1.5">Descripción</label>
       <textarea
+        id="cat-description"
         v-model="form.description"
         rows="3"
         class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface placeholder:text-on-surface-variant/50 transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30 resize-y"
@@ -171,9 +172,10 @@ watch(() => props.categoryId, () => {
 
     <div class="grid gap-5 sm:grid-cols-2">
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Color</label>
+        <label for="cat-color" class="block text-sm font-medium text-on-surface-variant mb-1.5">Color</label>
         <div class="flex items-center gap-3">
           <input
+            id="cat-color"
             v-model="form.color"
             type="color"
             class="h-10 w-14 cursor-pointer rounded-lg border border-outline-variant/40 bg-transparent"
@@ -181,14 +183,16 @@ watch(() => props.categoryId, () => {
           <input
             v-model="form.color"
             type="text"
+            aria-label="Valor del color"
             class="w-full rounded-lg border border-outline-variant/40 bg-surface-container px-4 py-2.5 text-on-surface font-mono text-sm transition-colors focus:border-vue-green focus:outline-none focus:ring-2 focus:ring-vue-green/30"
           />
         </div>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Orden</label>
+        <label for="cat-sort-order" class="block text-sm font-medium text-on-surface-variant mb-1.5">Orden</label>
         <input
+          id="cat-sort-order"
           v-model.number="form.sort_order"
           type="number"
           min="0"

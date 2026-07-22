@@ -72,13 +72,13 @@ export interface Props {
                 </div>
                 <span
                   id="code-lang"
-                  class="font-label-mono text-label-mono text-on-secondary-container/50 tracking-wider max-md:hidden"
+                  class="font-label-mono text-label-mono text-on-surface-variant/50 tracking-wider max-md:hidden"
                 >
                   JavaScript
                 </span>
                 <span
                   id="code-lang-mobile"
-                  class="font-label-mono text-label-mono text-on-secondary-container/50 tracking-wider md:hidden"
+                  class="font-label-mono text-label-mono text-on-surface-variant/50 tracking-wider md:hidden"
                 >
                   hero.config.ts
                 </span>
@@ -348,7 +348,7 @@ export interface Props {
       .map(
         (l: CodeLine, i: number) =>
           `<p class="${l.c} ${indentMap[l.i] || ''}" style="opacity:${i <= revealUpTo ? 1 : 0}; transition: opacity 0.4s ease">` +
-          `<span class="text-on-secondary-container/50">${pad(i)}</span> ${l.t}` +
+          `<span class="text-on-surface-variant/50">${pad(i)}</span> ${l.t}` +
           `${i === revealUpTo ? '<span class="animate-pulse text-cyan-400">▊</span>' : ''}` +
           `</p>`
       )
@@ -380,7 +380,7 @@ export interface Props {
       .map(
         (l: CodeLine, i: number) =>
           `<p class="${l.c} ${indentMap[l.i] || ''}" style="opacity:0; transition: opacity 0.4s ease">` +
-          `<span class="text-on-secondary-container/50">${pad(i)}</span> ${l.t}</p>`
+          `<span class="text-on-surface-variant/50">${pad(i)}</span> ${l.t}</p>`
       )
       .join('')
     if (langEl) langEl.textContent = sn.lang
@@ -443,7 +443,9 @@ export interface Props {
 
     const unlockOnKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter' || e.key === 'Tab' || e.key === 'ArrowDown') {
-        e.preventDefault()
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault()
+        }
         unlock()
       }
     }

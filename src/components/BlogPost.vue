@@ -271,9 +271,9 @@ onMounted(async () => {
                 {{ formatDate(rp.created_at) }}
               </span>
             </div>
-            <h4 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface group-hover:text-electric-blue transition-colors mb-xs">
+            <h3 class="font-headline-md text-headline-md max-sm:text-headline-sm text-on-surface group-hover:text-electric-blue transition-colors mb-xs">
               {{ rp.title }}
-            </h4>
+            </h3>
             <p class="font-body-md text-body-md text-slate-text line-clamp-2">{{ rp.excerpt }}</p>
           </a>
         </article>

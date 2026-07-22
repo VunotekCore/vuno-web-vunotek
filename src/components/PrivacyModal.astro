@@ -52,7 +52,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     <div id="content-privacy" class="tab-content max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5">
       <div class="flex flex-col gap-1">
         <h2 class="font-display-lg text-headline-md text-on-surface">{pp.content.title}</h2>
-        <span class="font-label-mono text-[11px] text-slate-text/50">{pp.content.last_updated}</span>
+        <span class="font-label-mono text-[11px] text-slate-text/80">{pp.content.last_updated}</span>
       </div>
       {
         privacySections.map((section) => (
@@ -68,7 +68,7 @@ const termsSections = tp.content.sections as Array<{ title: string; text: string
     <div id="content-terms" class="tab-content max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5 hidden">
       <div class="flex flex-col gap-1">
         <h2 class="font-display-lg text-headline-md text-on-surface">{tp.content.title}</h2>
-        <span class="font-label-mono text-[11px] text-slate-text/50">{tp.content.last_updated}</span>
+        <span class="font-label-mono text-[11px] text-slate-text/80">{tp.content.last_updated}</span>
       </div>
       {
         termsSections.map((section) => (

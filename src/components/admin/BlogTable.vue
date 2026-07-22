@@ -194,7 +194,7 @@ onMounted(async () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-surface-container-high hover:text-vue-green transition-colors"
-                    title="Ver en el sitio"
+                    aria-label="Ver en el sitio"
                   >
                     <VunotekIcon icon="open_in_new" :size="18" />
                   </a>
@@ -202,7 +202,7 @@ onMounted(async () => {
                     v-if="canEdit"
                     :href="`/admin/blog/editar?id=${post.id}`"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors"
-                    title="Editar"
+                    aria-label="Editar"
                   >
                     <VunotekIcon icon="edit" :size="18" />
                   </a>
@@ -210,7 +210,7 @@ onMounted(async () => {
                     v-if="canCreate"
                     :href="`/admin/blog/new?clone=${post.id}`"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-electric-blue/15 hover:text-electric-blue transition-colors"
-                    title="Crear traducción"
+                    aria-label="Crear traducción"
                   >
                     <VunotekIcon icon="translate" :size="18" />
                   </a>
@@ -219,7 +219,7 @@ onMounted(async () => {
                     @click="deletePost(post.id)"
                     :disabled="deletingId === post.id"
                     class="rounded p-1.5 text-on-surface-variant hover:bg-error-container/20 hover:text-error transition-colors disabled:opacity-50"
-                    title="Eliminar"
+                    aria-label="Eliminar"
                   >
                     <VunotekIcon :icon="deletingId === post.id ? 'hourglass_empty' : 'delete'" :size="18" />
                   </button>

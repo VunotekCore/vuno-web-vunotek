@@ -262,7 +262,7 @@ onMounted(async () => {
       </div>
 
       <div class="sm:col-span-2">
-        <label class="block text-sm font-medium text-on-surface-variant mb-1.5">Tecnologías</label>
+        <label for="new-tech" class="block text-sm font-medium text-on-surface-variant mb-1.5">Tecnologías</label>
         <div class="flex flex-wrap gap-2 mb-2">
           <span
             v-for="(tech, index) in form.tech"
@@ -270,11 +270,12 @@ onMounted(async () => {
             class="inline-flex items-center gap-1 rounded-md border border-electric-blue/20 bg-electric-blue/10 px-2.5 py-0.5 text-xs font-medium text-electric-blue"
           >
             {{ tech }}
-            <button type="button" @click="removeTech(index)" class="ml-0.5 hover:text-on-surface">&times;</button>
+            <button type="button" @click="removeTech(index)" class="ml-0.5 hover:text-on-surface" :aria-label="`Eliminar ${tech}`">&times;</button>
           </span>
         </div>
         <div class="flex gap-2">
           <input
+            id="new-tech"
             v-model="newTech"
             @keydown.enter.prevent="addTech"
             type="text"

@@ -29,7 +29,7 @@ function variantClass(type: string): string {
     >
       <VunotekIcon :icon="icon(t.type)" :size="22" class="admin-toast-icon" />
       <span class="admin-toast-text">{{ t.message }}</span>
-      <button class="admin-toast-close" @click="toast.removeToast(t.id)">
+      <button class="admin-toast-close" @click="toast.removeToast(t.id)" aria-label="Cerrar notificación">
         <VunotekIcon icon="close" :size="18" class="admin-toast-close-icon" />
       </button>
     </div>
