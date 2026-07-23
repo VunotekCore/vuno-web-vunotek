@@ -21,6 +21,7 @@ pnpm-debug.log*
 api/config.php
 
 # PHP dependencies
+api/vendor/
 composer.lock
 
 # macOS-specific files
@@ -35,3 +36,5 @@ AGENTS.md
 
 # Design mockups
 html-design/
+dist-backend/
+api/database/

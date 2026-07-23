@@ -187,3 +187,115 @@ function slugify(string $text): string
     $text = preg_replace('/-+/', '-', $text);
     return trim($text, '-');
 }
+
+// --- Rate Limiting (file-based) ---
+
+function getClientIp(): string
+{
+    $headers = ['HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CF_CONNECTING_IP', 'REMOTE_ADDR'];
+    foreach ($headers as $header) {
+        if (!empty($_SERVER[$header])) {
+            $ip = explode(',', $_SERVER[$header])[0];
+            $ip = trim($ip);
+            if (filter_var($ip, FILTER_VALIDATE_IP)) {
+                return $ip;
+            }
+        }
+    }
+    return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+}
+
+function rateLimit(string $key, int $maxAttempts, int $windowSeconds): void
+{
+    $ip = getClientIp();
+    $dir = sys_get_temp_dir() . '/vunotek-ratelimit';
+    if (!is_dir($dir)) {
+        mkdir($dir, 0700, true);
+    }
+
+    $file = $dir . '/' . preg_replace('/[^a-zA-Z0-9_\-]/', '_', "{$key}_{$ip}") . '.json';
+
+    $now = time();
+    $attempts = [];
+
+    if (file_exists($file)) {
+        $raw = file_get_contents($file);
+        $attempts = json_decode($raw, true) ?: [];
+    }
+
+    // Clean old attempts outside the window
+    $attempts = array_filter($attempts, fn(int $ts) => $ts > $now - $windowSeconds);
+    $attempts = array_values($attempts);
+
+    if (count($attempts) >= $maxAttempts) {
+        $retryAfter = $attempts[0] + $windowSeconds - $now;
+        header('Retry-After: ' . $retryAfter);
+        apiLog('WARNING', "Rate limit exceeded", [
+            'key' => $key,
+            'ip' => $ip,
+            'attempts' => count($attempts),
+            'max' => $maxAttempts,
+        ]);
+        jsonError('Demasiadas solicitudes. Intentá de nuevo en ' . ceil($retryAfter / 60) . ' minutos.', 429);
+    }
+
+    $attempts[] = $now;
+    file_put_contents($file, json_encode($attempts), LOCK_EX);
+}
+
+function rateLimitCheck(string $key, int $maxAttempts, int $windowSeconds): bool
+{
+    $ip = getClientIp();
+    $dir = sys_get_temp_dir() . '/vunotek-ratelimit';
+    $file = $dir . '/' . preg_replace('/[^a-zA-Z0-9_\-]/', '_', "{$key}_{$ip}") . '.json';
+
+    if (!file_exists($file)) return true;
+
+    $now = time();
+    $attempts = json_decode(file_get_contents($file), true) ?: [];
+    $attempts = array_filter($attempts, fn(int $ts) => $ts > $now - $windowSeconds);
+
+    return count($attempts) < $maxAttempts;
+}
+
+function rateLimitIncrement(string $key): void
+{
+    $ip = getClientIp();
+    $dir = sys_get_temp_dir() . '/vunotek-ratelimit';
+    if (!is_dir($dir)) {
+        mkdir($dir, 0700, true);
+    }
+    $file = $dir . '/' . preg_replace('/[^a-zA-Z0-9_\-]/', '_', "{$key}_{$ip}") . '.json';
+
+    $attempts = [];
+    if (file_exists($file)) {
+        $attempts = json_decode(file_get_contents($file), true) ?: [];
+    }
+    $attempts[] = time();
+    file_put_contents($file, json_encode($attempts), LOCK_EX);
+}
+
+// --- Logging ---
+
+function apiLog(string $level, string $message, array $context = []): void
+{
+    $dir = sys_get_temp_dir() . '/vunotek-api-log';
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+
+    $date = date('Y-m-d');
+    $file = $dir . "/api-{$date}.log";
+    $time = date('Y-m-d H:i:s');
+    $ip = getClientIp();
+    $method = $_SERVER['REQUEST_METHOD'] ?? 'CLI';
+    $uri = $_SERVER['REQUEST_URI'] ?? '-';
+
+    $line = "[{$time}] [{$level}] [{$ip}] {$method} {$uri} — {$message}";
+    if (!empty($context)) {
+        $line .= ' ' . json_encode($context);
+    }
+    $line .= "\n";
+
+    file_put_contents($file, $line, FILE_APPEND | LOCK_EX);
+}

@@ -49,10 +49,13 @@ class AuthController
         $config = $this->getConfig();
         $expiresIn = $config['jwt']['expires_in'] ?? 86400;
 
+        $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                    || (!empty($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443);
+
         setcookie('admin_token', $token, [
             'expires'  => time() + $expiresIn,
             'path'     => '/',
-            'secure'   => !empty($_SERVER['HTTPS']),
+            'secure'   => $isSecure,
             'httponly'  => true,
             'samesite' => 'Lax',
         ]);

@@ -36,6 +36,34 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// --- Rate Limiting (3 envíos / hora por IP) ---
+function sendEmailGetClientIp(): string {
+    foreach (['HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CF_CONNECTING_IP', 'REMOTE_ADDR'] as $h) {
+        if (!empty($_SERVER[$h])) {
+            $ip = trim(explode(',', $_SERVER[$h])[0]);
+            if (filter_var($ip, FILTER_VALIDATE_IP)) return $ip;
+        }
+    }
+    return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+}
+
+$rateKey = 'send-email_' . preg_replace('/[^a-zA-Z0-9_\-]/', '_', sendEmailGetClientIp());
+$rateDir = sys_get_temp_dir() . '/vunotek-ratelimit';
+if (!is_dir($rateDir)) mkdir($rateDir, 0700, true);
+$rateFile = $rateDir . '/' . $rateKey . '.json';
+$rateNow = time();
+$rateAttempts = file_exists($rateFile) ? (json_decode(file_get_contents($rateFile), true) ?: []) : [];
+$rateAttempts = array_values(array_filter($rateAttempts, fn(int $ts) => $ts > $rateNow - 3600));
+if (count($rateAttempts) >= 3) {
+    $retryAfter = $rateAttempts[0] + 3600 - $rateNow;
+    header('Retry-After: ' . $retryAfter);
+    http_response_code(429);
+    echo json_encode(['success' => false, 'message' => 'Demasiadas solicitudes. Intentá de nuevo en ' . ceil($retryAfter / 60) . ' minutos.']);
+    exit;
+}
+$rateAttempts[] = $rateNow;
+file_put_contents($rateFile, json_encode($rateAttempts), LOCK_EX);
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;

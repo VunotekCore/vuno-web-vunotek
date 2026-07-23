@@ -2,6 +2,10 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../bootstrap.php';
 
+if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
+    jsonError('Método no permitido', 405);
+}
+
 requireAuth();
 
 use App\Controllers\BlogController;

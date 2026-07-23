@@ -3,10 +3,14 @@ import axios from 'axios'
 const TOKEN_KEY = 'vunotek_admin_token'
 
 export function getApiUrl(): string {
-  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+  if (import.meta.env.DEV) {
     return 'http://localhost:8000'
   }
-  return (import.meta.env.PUBLIC_API_URL as string) || 'https://api.vunotek.com'
+  const envUrl = import.meta.env.PUBLIC_API_URL as string | undefined
+  if (envUrl) {
+    return envUrl
+  }
+  return 'https://api.vunotek.com'
 }
 
 const api = axios.create({

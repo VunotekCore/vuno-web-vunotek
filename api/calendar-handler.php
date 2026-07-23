@@ -33,6 +33,31 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// --- Rate Limiting (3 llamadas / hora por IP) ---
+$calRateIp = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+foreach (['HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CF_CONNECTING_IP'] as $h) {
+    if (!empty($_SERVER[$h])) {
+        $calRateIp = trim(explode(',', $_SERVER[$h])[0]);
+        if (filter_var($calRateIp, FILTER_VALIDATE_IP)) break;
+    }
+}
+$calRateKey = 'calendar_' . preg_replace('/[^a-zA-Z0-9_\-]/', '_', $calRateIp);
+$calRateDir = sys_get_temp_dir() . '/vunotek-ratelimit';
+if (!is_dir($calRateDir)) mkdir($calRateDir, 0700, true);
+$calRateFile = $calRateDir . '/' . $calRateKey . '.json';
+$calRateNow = time();
+$calRateAttempts = file_exists($calRateFile) ? (json_decode(file_get_contents($calRateFile), true) ?: []) : [];
+$calRateAttempts = array_values(array_filter($calRateAttempts, fn(int $ts) => $ts > $calRateNow - 3600));
+if (count($calRateAttempts) >= 3) {
+    $retryAfter = $calRateAttempts[0] + 3600 - $calRateNow;
+    header('Retry-After: ' . $retryAfter);
+    http_response_code(429);
+    echo json_encode(['success' => false, 'message' => 'Demasiadas solicitudes. Intentá de nuevo en ' . ceil($retryAfter / 60) . ' minutos.']);
+    exit;
+}
+$calRateAttempts[] = $calRateNow;
+file_put_contents($calRateFile, json_encode($calRateAttempts), LOCK_EX);
+
 require_once __DIR__ . '/vendor/LightweightGoogleCalendar.php';
 
 try {
