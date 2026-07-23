@@ -17,8 +17,12 @@ pnpm-debug.log*
 .env
 .env.production
 
-# PHP backend (deployed separately to Hostinger)
-api/
+# PHP sensitive config
+api/config.php
+
+# PHP dependencies
+api/vendor/
+composer.lock
 
 # macOS-specific files
 .DS_Store
