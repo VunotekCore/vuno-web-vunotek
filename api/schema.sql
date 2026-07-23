@@ -1,10 +1,6 @@
 -- Vunotek Backoffice Database Schema
--- Ejecutar: mysql -u user -p database < schema.sql
-CREATE DATABASE IF NOT EXISTS vuno_web
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE vuno_web;
+-- La base de datos debe crearse previamente en Hostinger hPanel
+-- install.php la selecciona automáticamente
 
 CREATE TABLE IF NOT EXISTS roles (
     id INT AUTO_INCREMENT PRIMARY KEY,

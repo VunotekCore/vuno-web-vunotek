@@ -172,39 +172,70 @@ if ($step === 2) {
         $stmts = splitSql($sql);
         $count = 0;
         $errors = [];
+        $criticalErrors = [];
+        $criticalPatterns = ['/access denied/i', '/unknown database/i', '/no database selected/i', '/table .* doesn.t exist/i', '/unknown table/i', '/SQLSTATE\[42/i', '/SQLSTATE\[HY000/i', '/erorre/i'];
+        $nonCriticalPatterns = ['/duplicate entry/i', '/already exists/i', '/table .* already exists/i'];
+
         foreach ($stmts as $stmt) {
             try {
                 $pdo->exec($stmt);
                 $count++;
             } catch (\PDOException $e) {
-                $errors[] = htmlspecialchars($e->getMessage());
+                $msg = $e->getMessage();
+                $isCritical = true;
+                foreach ($nonCriticalPatterns as $p) {
+                    if (preg_match($p, $msg)) { $isCritical = false; break; }
+                }
+                if ($isCritical) {
+                    foreach ($criticalPatterns as $p) {
+                        if (preg_match($p, $msg)) { $isCritical = true; break; }
+                    }
+                }
+                if ($isCritical) {
+                    $criticalErrors[] = htmlspecialchars($msg);
+                } else {
+                    $errors[] = htmlspecialchars($msg);
+                }
             }
         }
 
         renderStep('Base de Datos Instalada', 'Instalación', 2, 3);
-        if (empty($errors)) {
-            echo '<div class="success">✓ Schema instalado correctamente. <strong>' . $count . '</strong> sentencias ejecutadas.</div>';
-        } else {
-            echo '<div class="success">✓ Instalación completada con ' . count($errors) . ' advertencias. ' . $count . ' sentencias ejecutadas.</div>';
+
+        if (!empty($criticalErrors)) {
+            echo '<div class="error">✗ <strong>Error crítico:</strong> El schema no se pudo instalar. Verificá que el usuario tenga permisos en la base de datos.</div>';
             echo '<ul>';
-            foreach (array_slice($errors, 0, 5) as $e) {
+            foreach (array_slice($criticalErrors, 0, 5) as $e) {
                 echo '<li>' . $e . '</li>';
             }
-            if (count($errors) > 5) echo '<li>... y ' . (count($errors) - 5) . ' más</li>';
+            if (count($criticalErrors) > 5) echo '<li>... y ' . (count($criticalErrors) - 5) . ' más</li>';
             echo '</ul>';
+            echo '<p class="desc">Soluciones posibles:</p><ul><li>Verificá que la base de datos exista en Hostinger hPanel</li><li>Verificá que el usuario tenga <strong>todos los privilegios</strong> en la base de datos</li><li>El nombre de la base debe incluir el prefijo del usuario (ej: <code>u268877063_vuno_web</code>)</li></ul>';
+            echo '<form method="post"><input type="hidden" name="_step" value="1"><button class="btn">Volver al Paso 1</button></form>';
+        } else {
+            if (empty($errors)) {
+                echo '<div class="success">✓ Schema instalado correctamente. <strong>' . $count . '</strong> sentencias ejecutadas.</div>';
+            } else {
+                echo '<div class="success">✓ Instalación completada con ' . count($errors) . ' advertencias menores. ' . $count . ' sentencias ejecutadas.</div>';
+                echo '<ul>';
+                foreach (array_slice($errors, 0, 5) as $e) {
+                    echo '<li>' . $e . '</li>';
+                }
+                if (count($errors) > 5) echo '<li>... y ' . (count($errors) - 5) . ' más</li>';
+                echo '</ul>';
+            }
+            ?>
+            <p class="desc">Ahora configurá el administrador y la clave JWT.</p>
+            <form method="post">
+                <input type="hidden" name="_step" value="3">
+                <input type="hidden" name="db_host" value="<?= htmlspecialchars($dbHost) ?>">
+                <input type="hidden" name="db_port" value="<?= htmlspecialchars($dbPort) ?>">
+                <input type="hidden" name="db_name" value="<?= htmlspecialchars($dbName) ?>">
+                <input type="hidden" name="db_user" value="<?= htmlspecialchars($dbUser) ?>">
+                <input type="hidden" name="db_pass" value="<?= htmlspecialchars($dbPass) ?>">
+                <button type="submit" class="btn">Configurar Admin →</button>
+            </form>
+            <?php
         }
-        ?>
-        <p class="desc">Ahora configurá el administrador y la clave JWT.</p>
-        <form method="post">
-            <input type="hidden" name="_step" value="3">
-            <input type="hidden" name="db_host" value="<?= htmlspecialchars($dbHost) ?>">
-            <input type="hidden" name="db_port" value="<?= htmlspecialchars($dbPort) ?>">
-            <input type="hidden" name="db_name" value="<?= htmlspecialchars($dbName) ?>">
-            <input type="hidden" name="db_user" value="<?= htmlspecialchars($dbUser) ?>">
-            <input type="hidden" name="db_pass" value="<?= htmlspecialchars($dbPass) ?>">
-            <button type="submit" class="btn">Configurar Admin →</button>
-        </form>
-        <?php
         renderFooter();
         exit;
 
