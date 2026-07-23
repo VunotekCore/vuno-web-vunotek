@@ -20,9 +20,10 @@ class BlogController
         $locale = $_GET['locale'] ?? null;
         $status = $_GET['status'] ?? null;
         $page = max(1, (int) ($_GET['page'] ?? 1));
+        $perPage = min(50, max(1, (int) ($_GET['per_page'] ?? 20)));
         $categorySlug = $_GET['category_slug'] ?? null;
 
-        $result = $this->blogModel->list($locale, $status, $page, 20, $categorySlug);
+        $result = $this->blogModel->list($locale, $status, $page, $perPage, $categorySlug);
         jsonSuccess($result);
     }
 
@@ -33,9 +34,10 @@ class BlogController
         $locale = $_GET['locale'] ?? null;
         $status = $_GET['status'] ?? null;
         $page = max(1, (int) ($_GET['page'] ?? 1));
+        $perPage = min(50, max(1, (int) ($_GET['per_page'] ?? 20)));
         $categorySlug = $_GET['category_slug'] ?? null;
 
-        $result = $this->blogModel->list($locale, $status, $page, 20, $categorySlug);
+        $result = $this->blogModel->list($locale, $status, $page, $perPage, $categorySlug);
         jsonSuccess($result);
     }
 

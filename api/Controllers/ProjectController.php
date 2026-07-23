@@ -21,8 +21,9 @@ class ProjectController
         $locale = $_GET['locale'] ?? null;
         $status = $_GET['status'] ?? null;
         $page = max(1, (int) ($_GET['page'] ?? 1));
+        $perPage = min(50, max(1, (int) ($_GET['per_page'] ?? 20)));
 
-        $result = $this->projectModel->list($locale, $status, $page);
+        $result = $this->projectModel->list($locale, $status, $page, $perPage);
         jsonSuccess($result);
     }
 
