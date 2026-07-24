@@ -65,6 +65,7 @@ if [ "$BUILD_BACKEND" = true ]; then
   cp -r api/Models            dist-backend/Models
   cp -r api/Services          dist-backend/Services
   cp -r api/Traits            dist-backend/Traits
+  cp -r api/Libraries         dist-backend/Libraries
 
   # ── Core PHP files ──
   cp    api/bootstrap.php     dist-backend/bootstrap.php

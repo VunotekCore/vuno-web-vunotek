@@ -20,5 +20,5 @@ Options -Indexes
 # Deny direct access to Models, Controllers, Services, Traits
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteRule ^(Config|Controllers|Models|Services|Traits)/ - [F,L]
+  RewriteRule ^(Config|Controllers|Models|Services|Traits|Libraries)/ - [F,L]
 </IfModule>

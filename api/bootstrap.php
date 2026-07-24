@@ -9,6 +9,9 @@ declare(strict_types=1);
 config(require __DIR__ . '/config.php');
 $config = config();
 
+// --- Composer Autoloader (PHPMailer, etc.) ---
+require_once __DIR__ . '/vendor/autoload.php';
+
 // --- Autoloader PSR-4 ---
 spl_autoload_register(function (string $class): void {
     $prefix = 'App\\';
