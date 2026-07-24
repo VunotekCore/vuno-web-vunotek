@@ -1,71 +1,16 @@
 <?php
-/**
- * Manejador de Google Calendar
- * Crea eventos en Google Calendar cuando se agenda una reunión
- */
+declare(strict_types=1);
+require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/Libraries/LightweightGoogleCalendar.php';
 
-header('Content-Type: application/json; charset=utf-8');
-
-$configFile = __DIR__ . '/config.php';
-if (!file_exists($configFile)) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Error de configuración del servidor.']);
-    exit;
-}
-
-$config = require $configFile;
-
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, $config['app']['allowed_origins'])) {
-    header("Access-Control-Allow-Origin: $origin");
-    header('Access-Control-Allow-Methods: POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
+rateLimit('calendar', 3, 3600);
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-    exit;
+    jsonError('Método no permitido', 405);
 }
-
-// --- Rate Limiting (3 llamadas / hora por IP) ---
-$calRateIp = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
-foreach (['HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CF_CONNECTING_IP'] as $h) {
-    if (!empty($_SERVER[$h])) {
-        $calRateIp = trim(explode(',', $_SERVER[$h])[0]);
-        if (filter_var($calRateIp, FILTER_VALIDATE_IP)) break;
-    }
-}
-$calRateKey = 'calendar_' . preg_replace('/[^a-zA-Z0-9_\-]/', '_', $calRateIp);
-$calRateDir = sys_get_temp_dir() . '/vunotek-ratelimit';
-if (!is_dir($calRateDir)) mkdir($calRateDir, 0700, true);
-$calRateFile = $calRateDir . '/' . $calRateKey . '.json';
-$calRateNow = time();
-$calRateAttempts = file_exists($calRateFile) ? (json_decode(file_get_contents($calRateFile), true) ?: []) : [];
-$calRateAttempts = array_values(array_filter($calRateAttempts, fn(int $ts) => $ts > $calRateNow - 3600));
-if (count($calRateAttempts) >= 3) {
-    $retryAfter = $calRateAttempts[0] + 3600 - $calRateNow;
-    header('Retry-After: ' . $retryAfter);
-    http_response_code(429);
-    echo json_encode(['success' => false, 'message' => 'Demasiadas solicitudes. Intentá de nuevo en ' . ceil($retryAfter / 60) . ' minutos.']);
-    exit;
-}
-$calRateAttempts[] = $calRateNow;
-file_put_contents($calRateFile, json_encode($calRateAttempts), LOCK_EX);
-
-require_once __DIR__ . '/vendor/LightweightGoogleCalendar.php';
 
 try {
-    $data = json_decode(file_get_contents('php://input'), true);
-
-    if (!$data) {
-        throw new Exception('Datos inválidos');
-    }
+    $data = getJsonInput();
 
     $requiredFields = ['name', 'email', 'preferredDate', 'preferredTime', 'meetingType'];
     foreach ($requiredFields as $field) {
@@ -106,37 +51,31 @@ try {
                 'link' => $createdEvent['htmlLink']
             ];
         } catch (Exception $e) {
-            error_log("Error al crear evento en calendario $additionalCalendarId: " . $e->getMessage());
+            apiLog('WARNING', "Error creating calendar event", [
+                'calendar_id' => $additionalCalendarId,
+                'error' => $e->getMessage(),
+            ]);
         }
     }
 
-    http_response_code(200);
     $response = [
-        'success' => true,
-        'message' => 'Reunión agendada exitosamente',
-        'event' => [
-            'id' => $createdEvent['id'],
-            'link' => $createdEvent['htmlLink'],
-            'start' => $createdEvent['start']['dateTime'],
-        ]
+        'id' => $createdEvent['id'],
+        'link' => $createdEvent['htmlLink'],
+        'start' => $createdEvent['start']['dateTime'],
     ];
 
     if (!empty($additionalEvents)) {
         $response['additional_calendars'] = $additionalEvents;
     }
 
-    echo json_encode($response);
+    jsonSuccess($response, 'Reunión agendada exitosamente');
 
 } catch (Exception $e) {
-    http_response_code(500);
     $errorMessage = 'Error al agendar la reunión. Por favor intenta nuevamente.';
     if ($config['app']['debug'] ?? false) {
         $errorMessage .= ' Debug: ' . $e->getMessage();
     }
-    echo json_encode([
-        'success' => false,
-        'message' => $errorMessage
-    ]);
+    jsonError($errorMessage, 500);
 }
 
 function prepareEventData($data, $config) {

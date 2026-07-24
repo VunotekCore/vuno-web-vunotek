@@ -65,14 +65,11 @@ onMounted(async () => {
 
   const trackWrapper = document.querySelector('.showcase-track-wrapper') as HTMLElement | null
   if (trackWrapper) {
-    const track = trackWrapper.querySelector('.showcase-track') as HTMLElement | null
-    if (track) {
-      track.style.animationPlayState = 'paused'
-      io = new IntersectionObserver(([entry]) => {
-        if (track) track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused'
-      }, { threshold: 0 })
-      io.observe(trackWrapper)
-    }
+    trackWrapper.classList.add('is-offscreen')
+    io = new IntersectionObserver(([entry]) => {
+      trackWrapper.classList.toggle('is-offscreen', !entry.isIntersecting)
+    }, { threshold: 0 })
+    io.observe(trackWrapper)
   }
 })
 
@@ -416,14 +413,7 @@ onUnmounted(() => {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .showcase-track {
-    animation: scroll 35s linear infinite;
-    animation-play-state: paused;
-  }
-
-  .showcase-track-wrapper:hover .showcase-track {
-    animation-play-state: paused;
-  }
+.showcase-track-wrapper.is-offscreen .showcase-track {
+  animation-play-state: paused;
 }
 </style>

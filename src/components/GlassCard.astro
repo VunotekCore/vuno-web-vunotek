@@ -42,7 +42,8 @@ export interface Props {
   }
 
   document.addEventListener('pointermove', (e: PointerEvent) => {
-    const card = (e.target as HTMLElement).closest('[data-glass-card]') as HTMLElement | null;
+    if (!(e.target instanceof Element)) return
+    const card = e.target.closest('[data-glass-card]') as HTMLElement | null;
     if (!card) return;
     pendingCard = card;
     pendingX = e.clientX;
@@ -50,7 +51,8 @@ export interface Props {
     if (!rafId) rafId = requestAnimationFrame(flush);
   });
   document.addEventListener('pointerleave', (e: PointerEvent) => {
-    const card = (e.target as HTMLElement).closest('[data-glass-card]') as HTMLElement | null;
+    if (!(e.target instanceof Element)) return
+    const card = e.target.closest('[data-glass-card]') as HTMLElement | null;
     if (!card) return;
     const glow = card.querySelector('[data-glass-glow]') as HTMLElement;
     if (glow) glow.style.opacity = '0';

@@ -1,80 +1,18 @@
 <?php
-/**
- * Endpoint para envío de emails desde el formulario de contacto
- * Maneja tanto cotizaciones como agendamiento de reuniones
- */
+declare(strict_types=1);
+require_once __DIR__ . '/bootstrap.php';
 
-header('Content-Type: application/json; charset=utf-8');
-
-$configFile = __DIR__ . '/config.php';
-if (!file_exists($configFile)) {
-    http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'message' => 'Error de configuración del servidor. Por favor contacta al administrador.'
-    ]);
-    exit;
-}
-
-$config = require $configFile;
-
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, $config['app']['allowed_origins'])) {
-    header("Access-Control-Allow-Origin: $origin");
-    header('Access-Control-Allow-Methods: POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
+rateLimit('send-email', 3, 3600);
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-    exit;
+    jsonError('Método no permitido', 405);
 }
-
-// --- Rate Limiting (3 envíos / hora por IP) ---
-function sendEmailGetClientIp(): string {
-    foreach (['HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CF_CONNECTING_IP', 'REMOTE_ADDR'] as $h) {
-        if (!empty($_SERVER[$h])) {
-            $ip = trim(explode(',', $_SERVER[$h])[0]);
-            if (filter_var($ip, FILTER_VALIDATE_IP)) return $ip;
-        }
-    }
-    return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
-}
-
-$rateKey = 'send-email_' . preg_replace('/[^a-zA-Z0-9_\-]/', '_', sendEmailGetClientIp());
-$rateDir = sys_get_temp_dir() . '/vunotek-ratelimit';
-if (!is_dir($rateDir)) mkdir($rateDir, 0700, true);
-$rateFile = $rateDir . '/' . $rateKey . '.json';
-$rateNow = time();
-$rateAttempts = file_exists($rateFile) ? (json_decode(file_get_contents($rateFile), true) ?: []) : [];
-$rateAttempts = array_values(array_filter($rateAttempts, fn(int $ts) => $ts > $rateNow - 3600));
-if (count($rateAttempts) >= 3) {
-    $retryAfter = $rateAttempts[0] + 3600 - $rateNow;
-    header('Retry-After: ' . $retryAfter);
-    http_response_code(429);
-    echo json_encode(['success' => false, 'message' => 'Demasiadas solicitudes. Intentá de nuevo en ' . ceil($retryAfter / 60) . ' minutos.']);
-    exit;
-}
-$rateAttempts[] = $rateNow;
-file_put_contents($rateFile, json_encode($rateAttempts), LOCK_EX);
-
-require_once __DIR__ . '/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 try {
-    $data = json_decode(file_get_contents('php://input'), true);
-
-    if (!$data) {
-        throw new Exception('Datos del formulario inválidos');
-    }
+    $data = getJsonInput();
 
     $requiredFields = ['name', 'email', 'message', 'formType'];
     foreach ($requiredFields as $field) {
@@ -130,22 +68,14 @@ try {
 
     $mail->send();
 
-    http_response_code(200);
-    echo json_encode([
-        'success' => true,
-        'message' => 'Mensaje enviado exitosamente. Nos pondremos en contacto contigo pronto.'
-    ]);
+    jsonSuccess(null, 'Mensaje enviado exitosamente. Nos pondremos en contacto contigo pronto.');
 
 } catch (Exception $e) {
-    http_response_code(500);
     $errorMessage = 'Error al enviar el mensaje. Por favor intenta nuevamente.';
     if ($config['app']['debug'] ?? false) {
         $errorMessage .= ' Debug: ' . $e->getMessage();
     }
-    echo json_encode([
-        'success' => false,
-        'message' => $errorMessage
-    ]);
+    jsonError($errorMessage, 500);
 }
 
 function generateQuoteEmailHTML($data, $config) {

@@ -4,7 +4,7 @@
  * Ejecuta este script y sigue las instrucciones
  */
 
-require_once __DIR__ . '/vendor/LightweightGoogleCalendar.php';
+require_once __DIR__ . '/Libraries/LightweightGoogleCalendar.php';
 
 $configFile = __DIR__ . '/config.php';
 if (!file_exists($configFile)) {
