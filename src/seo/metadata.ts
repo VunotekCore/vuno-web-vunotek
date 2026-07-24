@@ -25,7 +25,7 @@ export const SEO = {
     foundingDate: '2024',
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'projects@vunotek.com',
+      email: 'comercial@vunotek.com',
       contactType: 'sales',
     },
     sameAs: ['https://github.com/vunotek', 'https://linkedin.com/company/vunotek'],
@@ -35,40 +35,26 @@ export const SEO = {
     },
   },
 
-  articleSchema: {
-    '@context': 'https://schema.org',
-    '@type': 'TechArticle' as const,
-    author: {
-      '@type': 'Person' as const,
-      name: 'Daniel Flores',
-      url: 'https://vunotek.com/about',
-    },
-    publisher: {
-      '@type': 'Organization' as const,
-      name: 'Vunotek',
-      logo: {
-        '@type': 'ImageObject' as const,
-        url: 'https://vunotek.com/logo.webp',
-      },
-    },
-  },
-
   breadcrumbs: {
     es: [
-      { position: 1, name: 'Inicio', path: '/' },
-      { position: 2, name: 'Servicios', path: '/servicios/' },
-      { position: 2, name: 'Proyectos', path: '/proyectos/' },
-      { position: 2, name: 'Blog', path: '/blog/' },
-      { position: 2, name: 'Nosotros', path: '/about/' },
-      { position: 2, name: 'Contacto', path: '/contacto/' },
+      { name: 'Inicio', path: '/' },
+      { name: 'Servicios', path: '/servicios/' },
+      { name: 'Proyectos', path: '/proyectos/' },
+      { name: 'Blog', path: '/blog/' },
+      { name: 'Nosotros', path: '/about/' },
+      { name: 'Contacto', path: '/contacto/' },
+      { name: 'Privacidad', path: '/privacidad/' },
+      { name: 'Términos', path: '/terminos/' },
     ],
     en: [
-      { position: 1, name: 'Home', path: '/en/' },
-      { position: 2, name: 'Services', path: '/en/servicios/' },
-      { position: 2, name: 'Projects', path: '/en/proyectos/' },
-      { position: 2, name: 'Blog', path: '/en/blog/' },
-      { position: 2, name: 'About', path: '/en/about/' },
-      { position: 2, name: 'Contact', path: '/en/contacto/' },
+      { name: 'Home', path: '/en/' },
+      { name: 'Services', path: '/en/servicios/' },
+      { name: 'Projects', path: '/en/proyectos/' },
+      { name: 'Blog', path: '/en/blog/' },
+      { name: 'About', path: '/en/about/' },
+      { name: 'Contact', path: '/en/contacto/' },
+      { name: 'Privacy', path: '/en/privacy/' },
+      { name: 'Terms', path: '/en/terms/' },
     ],
   },
 
@@ -94,12 +80,18 @@ export const SEO = {
 
     services: (locale: 'es' | 'en') => ({
       title: (i18n[locale] as any).services_page.meta.title,
-      description: (i18n[locale] as any).services_page.hero.description,
+      description:
+        locale === 'es'
+          ? 'Ingeniería de software con .NET, Node.js, SQL Server y Salesforce. APIs robustas, automatización y arquitectura de datos empresariales.'
+          : 'Software engineering with .NET, Node.js, SQL Server and Salesforce. Robust APIs, automation, and enterprise data architecture.',
     }),
 
     projects: (locale: 'es' | 'en') => ({
       title: (i18n[locale] as any).projects_page.meta.title,
-      description: (i18n[locale] as any).projects_page.hero.description,
+      description:
+        locale === 'es'
+          ? 'Portafolio de Vunotek: VUNO POS, Shop, Reservations, Envíos, CRM, Drive. Soluciones empresariales de ingeniería de software.'
+          : 'Vunotek portfolio: VUNO POS, Shop, Reservations, Shipping, CRM, Drive. Enterprise software engineering solutions.',
     }),
 
     contact: (locale: 'es' | 'en') => ({
@@ -115,6 +107,22 @@ export const SEO = {
     blog: (locale: 'es' | 'en') => ({
       title: (i18n[locale] as any).blog.hero.title + ' | Vunotek',
       description: (i18n[locale] as any).blog.hero.desc,
+    }),
+
+    privacy: (locale: 'es' | 'en') => ({
+      title: (i18n[locale] as any).privacy_page.meta.title,
+      description:
+        locale === 'es'
+          ? 'Política de privacidad de Vunotek. Conoce cómo recopilamos, protegemos y utilizamos tus datos personales.'
+          : 'Vunotek privacy policy. Learn how we collect, protect, and use your personal data.',
+    }),
+
+    terms: (locale: 'es' | 'en') => ({
+      title: (i18n[locale] as any).terms_page.meta.title,
+      description:
+        locale === 'es'
+          ? 'Términos de servicio de Vunotek. Condiciones de uso del sitio web y servicios de ingeniería de software.'
+          : 'Vunotek terms of service. Website usage conditions and software engineering services.',
     }),
   },
 

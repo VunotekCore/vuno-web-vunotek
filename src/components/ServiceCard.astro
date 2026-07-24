@@ -16,12 +16,14 @@ const { icon, title, description, image, span = false } = Astro.props;
   <div class="relative z-10">
     <Icon name={icon} class="text-electric-blue text-5xl mb-md" />
     <h3 class="font-display-lg text-headline-md mb-base">{title}</h3>
-    <p class="font-body-md text-slate-text max-w-md">{description}</p>
+    <p class="font-body-md text-slate-text max-w-[28rem]">{description}</p>
   </div>
   {image && (
     <img
       src={image}
       alt=""
+      width="600"
+      height="450"
       loading="lazy"
       decoding="async"
       class="absolute right-[-10%] bottom-[-10%] w-2/3 opacity-20 group-hover:opacity-40 transition-opacity duration-500 grayscale group-hover:grayscale-0 pointer-events-none"

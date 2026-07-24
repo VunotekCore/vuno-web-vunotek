@@ -27,6 +27,7 @@ const { fields, tabs, options } = Astro.props
       class="contact-tab active flex-1 rounded-lg border-2 border-[#00A8FF] bg-[#00A8FF] px-lg max-sm:px-md py-md font-bold text-white transition-all inline-flex items-center justify-center gap-sm"
       role="tab"
       aria-selected="true"
+      aria-controls="cotizar-fields"
       aria-label={tabs.cotizar}
       title={tabs.cotizar}
     >
@@ -39,6 +40,7 @@ const { fields, tabs, options } = Astro.props
       class="contact-tab flex-1 rounded-lg border-2 border-outline-variant/30 bg-surface-dim px-lg max-sm:px-md py-md font-bold text-on-surface transition-all inline-flex items-center justify-center gap-sm"
       role="tab"
       aria-selected="false"
+      aria-controls="agendar-fields"
       aria-label={tabs.agendar}
       title={tabs.agendar}
     >
@@ -47,8 +49,12 @@ const { fields, tabs, options } = Astro.props
     </button>
   </div>
 
-  <form id="contact-form" class="space-y-md" novalidate>
+  <form id="contact-form" class="space-y-md" novalidate data-sending={fields.sending || 'Enviando...'} data-error-send={fields.error_send || 'Error al enviar'} data-error-unknown={fields.error_unknown || 'Error desconocido'}>
     <input type="hidden" id="form-type" name="formType" value="cotizar" />
+    <div class="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
+      <label for="website">Leave this empty</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
       <div class="space-y-xs">
@@ -60,6 +66,7 @@ const { fields, tabs, options } = Astro.props
           id="name"
           name="name"
           required
+          autocomplete="name"
           class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200"
           placeholder="John Doe"
         />
@@ -73,6 +80,7 @@ const { fields, tabs, options } = Astro.props
           id="email"
           name="email"
           required
+          autocomplete="email"
           class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200"
           placeholder="john@enterprise.com"
         />
@@ -88,14 +96,13 @@ const { fields, tabs, options } = Astro.props
           type="tel"
           id="phone"
           name="phone"
-          required
-          pattern="\+[1-9]\d{6,14}"
           inputmode="tel"
+          autocomplete="tel"
           class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200"
           placeholder="+505 8888 8888"
           title="Debe incluir código de país, ej: +505 8888 8888"
         />
-        <p class="font-label-mono text-[11px] text-slate-text/60 mt-1">Ej: +505 8888 8888</p>
+        <p class="font-label-mono text-[11px] text-slate-text mt-1">Ej: +505 8888 8888</p>
       </div>
       <div class="space-y-xs">
         <label class="font-label-mono text-label-mono text-on-surface-variant" for="company"
@@ -105,22 +112,24 @@ const { fields, tabs, options } = Astro.props
           type="text"
           id="company"
           name="company"
+          autocomplete="organization"
           class="w-full bg-surface-dim border border-outline-variant/30 rounded-lg p-sm text-on-surface font-body-md form-input-focus transition-all duration-200"
           placeholder="Enterprise Inc."
         />
       </div>
     </div>
 
-    <div id="cotizar-fields" class="space-y-md">
+    <div class="tabs-panels" style="display:grid">
+    <div id="cotizar-fields" role="tabpanel" aria-labelledby="tab-cotizar" class="space-y-md" style="grid-area:1/1">
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant"
-          >{fields.project_type} <span class="text-[#00A8FF]">*</span></label
+        <span class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.project_type} <span class="text-[#00A8FF]">*</span></span
         >
-        <div class="flex flex-wrap gap-sm" data-pill-group="projectType">
+        <div class="flex flex-wrap gap-sm" data-pill-group="projectType" role="radiogroup" aria-label={fields.project_type}>
           <input type="hidden" name="projectType" />
           {
             options.types.map((type: string) => (
-              <button type="button" class="pill-option" data-value={type}>
+              <button type="button" class="pill-option" data-value={type} role="radio" aria-checked="false" tabindex="0">
                 {type}
               </button>
             ))
@@ -128,14 +137,14 @@ const { fields, tabs, options } = Astro.props
         </div>
       </div>
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant"
-          >{fields.budget}</label
+        <span class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.budget}</span
         >
-        <div class="flex flex-wrap gap-sm" data-pill-group="budget">
+        <div class="flex flex-wrap gap-sm" data-pill-group="budget" role="radiogroup" aria-label={fields.budget}>
           <input type="hidden" name="budget" />
           {
             options.budgets.map((b: string) => (
-              <button type="button" class="pill-option" data-value={b}>
+              <button type="button" class="pill-option" data-value={b} role="radio" aria-checked="false" tabindex="0">
                 {b}
               </button>
             ))
@@ -144,7 +153,7 @@ const { fields, tabs, options } = Astro.props
       </div>
     </div>
 
-    <div id="agendar-fields" class="hidden space-y-md">
+    <div id="agendar-fields" role="tabpanel" aria-labelledby="tab-agendar" class="space-y-md" style="grid-area:1/1;visibility:hidden;position:absolute">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
         <div class="space-y-xs">
           <label class="font-label-mono text-label-mono text-on-surface-variant" for="preferredDate"
@@ -165,14 +174,14 @@ const { fields, tabs, options } = Astro.props
           </div>
         </div>
         <div class="space-y-xs">
-          <label class="font-label-mono text-label-mono text-on-surface-variant"
-            >{fields.preferred_time} <span class="text-[#00A8FF]">*</span></label
+          <span class="font-label-mono text-label-mono text-on-surface-variant"
+            >{fields.preferred_time} <span class="text-[#00A8FF]">*</span></span
           >
-          <div class="flex flex-wrap gap-sm" data-pill-group="preferredTime">
+          <div class="flex flex-wrap gap-sm" data-pill-group="preferredTime" role="radiogroup" aria-label={fields.preferred_time}>
             <input type="hidden" name="preferredTime" />
             {
               options.meeting_times.map((t: string) => (
-                <button type="button" class="pill-option" data-value={t}>
+                <button type="button" class="pill-option" data-value={t} role="radio" aria-checked="false" tabindex="0">
                   {t}
                 </button>
               ))
@@ -181,20 +190,21 @@ const { fields, tabs, options } = Astro.props
         </div>
       </div>
       <div class="space-y-xs">
-        <label class="font-label-mono text-label-mono text-on-surface-variant"
-          >{fields.meeting_type} <span class="text-[#00A8FF]">*</span></label
+        <span class="font-label-mono text-label-mono text-on-surface-variant"
+          >{fields.meeting_type} <span class="text-[#00A8FF]">*</span></span
         >
-        <div class="flex flex-wrap gap-sm" data-pill-group="meetingType">
+        <div class="flex flex-wrap gap-sm" data-pill-group="meetingType" role="radiogroup" aria-label={fields.meeting_type}>
           <input type="hidden" name="meetingType" />
           {
             options.meeting_types.map((t: string) => (
-              <button type="button" class="pill-option" data-value={t}>
+              <button type="button" class="pill-option" data-value={t} role="radio" aria-checked="false" tabindex="0">
                 {t}
               </button>
             ))
           }
         </div>
       </div>
+    </div>
     </div>
 
     <div class="space-y-xs">
@@ -230,6 +240,7 @@ const { fields, tabs, options } = Astro.props
         id="submit-btn"
         class="w-full md:w-auto inline-flex items-center justify-center gap-sm bg-[#00A8FF] text-white font-bold px-xl max-sm:px-lg py-md rounded-lg text-body-lg transition-all duration-200 hover:bg-[#0088CC] hover:shadow-lg hover:shadow-[#00A8FF]/30 cursor-pointer border-none"
         title={fields.submit_btn}
+        aria-label={fields.submit_btn}
       >
         <span
           id="submit-text"
@@ -239,7 +250,7 @@ const { fields, tabs, options } = Astro.props
         >
         <span id="submit-icon"><Icon name="send" /></span>
       </button>
-      <p class="font-label-mono text-[11px] text-slate-text/60 mt-3 text-center">
+      <p class="font-label-mono text-[11px] text-slate-text mt-3 text-center">
         {fields.privacy_consent}
         <button
           type="button"
@@ -302,6 +313,13 @@ const { fields, tabs, options } = Astro.props
 
 <script>
   ;(function () {
+    function getApiUrl(): string {
+      if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+        return 'http://localhost:8000'
+      }
+      return (import.meta.env.PUBLIC_API_URL as string) || 'https://api.vunotek.com'
+    }
+
     function setIcon(el: HTMLElement | null, name: string) {
       const use = el?.querySelector('use')
       if (use) use.setAttribute('href', `/sprite.svg#${name}`)
@@ -370,8 +388,10 @@ const { fields, tabs, options } = Astro.props
       btnAgendar.classList.toggle('hover:text-[#00A8FF]', isCotizar)
       btnAgendar.setAttribute('aria-selected', String(!isCotizar))
 
-      cotizarFields.classList.toggle('hidden', !isCotizar)
-      agendarFields.classList.toggle('hidden', isCotizar)
+      cotizarFields.style.visibility = isCotizar ? 'visible' : 'hidden'
+      cotizarFields.style.position = isCotizar ? 'relative' : 'absolute'
+      agendarFields.style.visibility = isCotizar ? 'hidden' : 'visible'
+      agendarFields.style.position = isCotizar ? 'absolute' : 'relative'
       formTypeInput.value = tab
 
       const label = isCotizar ? submitLabels.cotizar : submitLabels.agendar
@@ -407,11 +427,34 @@ const { fields, tabs, options } = Astro.props
 
     document.querySelectorAll('[data-pill-group]').forEach((group) => {
       const hidden = group.querySelector('input[type="hidden"]') as HTMLInputElement | null
-      group.querySelectorAll('.pill-option').forEach((pill) => {
+      const pills = group.querySelectorAll('.pill-option')
+
+      pills.forEach((pill) => {
         pill.addEventListener('click', () => {
-          group.querySelectorAll('.pill-option').forEach((p) => p.classList.remove('active'))
+          pills.forEach((p) => {
+            p.classList.remove('active')
+            p.setAttribute('aria-checked', 'false')
+          })
           pill.classList.add('active')
+          pill.setAttribute('aria-checked', 'true')
           if (hidden) hidden.value = pill.getAttribute('data-value') ?? ''
+        })
+
+        pill.addEventListener('keydown', (e: Event) => {
+          const ke = e as KeyboardEvent
+          const pillArray = Array.from(pills)
+          const idx = pillArray.indexOf(pill)
+          if (ke.key === 'ArrowRight' || ke.key === 'ArrowDown') {
+            ke.preventDefault()
+            const next = pillArray[(idx + 1) % pillArray.length] as HTMLElement
+            next.focus()
+            next.click()
+          } else if (ke.key === 'ArrowLeft' || ke.key === 'ArrowUp') {
+            ke.preventDefault()
+            const prev = pillArray[(idx - 1 + pillArray.length) % pillArray.length] as HTMLElement
+            prev.focus()
+            prev.click()
+          }
         })
       })
     })
@@ -440,16 +483,13 @@ const { fields, tabs, options } = Astro.props
     form?.addEventListener('submit', async (e: Event) => {
       e.preventDefault()
       const originalText = submitText?.textContent || ''
-      if (submitText) submitText.textContent = 'Enviando...'
+      if (submitText) submitText.textContent = form?.dataset?.sending || 'Enviando...'
       if (submitIcon) setIcon(submitIcon, 'hourglass_top')
       if (submitBtn) submitBtn.disabled = true
 
       try {
         const data = Object.fromEntries(new FormData(form!).entries())
-        const host =
-          window.location.hostname === 'localhost'
-            ? 'http://localhost:8000'
-            : import.meta.env.PUBLIC_API_URL || 'https://vunotek.com'
+        const host = getApiUrl()
 
         const emailRes = await fetch(`${host}/send-email.php`, {
           method: 'POST',
@@ -457,7 +497,7 @@ const { fields, tabs, options } = Astro.props
           body: JSON.stringify(data)
         })
         const emailResult = await emailRes.json()
-        if (!emailResult.success) throw new Error(emailResult.message || 'Error al enviar')
+        if (!emailResult.success) throw new Error(emailResult.message || form?.dataset?.errorSend || 'Error al enviar')
 
         if (data.formType === 'agendar') {
           try {
@@ -499,7 +539,7 @@ const { fields, tabs, options } = Astro.props
             .forEach((p) => p.classList.remove('active'))
         }, 5000)
       } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : 'Error desconocido'
+        const message = error instanceof Error ? error.message : (form?.dataset?.errorUnknown || 'Error desconocido')
         console.error('Submit error:', error)
         const errorMsg = document.getElementById('error-message')
         const errorText = document.getElementById('error-text')

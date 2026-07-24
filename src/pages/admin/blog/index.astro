@@ -1,0 +1,11 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro'
+import BlogTable from '../../../components/admin/BlogTable.vue'
+---
+
+<AdminLayout title="Blog">
+  <div class="mb-6">
+    <p class="text-on-surface-variant">Gestiona los artículos del blog</p>
+  </div>
+  <BlogTable client:only="vue" />
+</AdminLayout>

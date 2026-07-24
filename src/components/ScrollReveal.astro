@@ -18,25 +18,3 @@ const { delay = 0, stagger = false } = Astro.props;
 >
   <slot />
 </div>
-
-<script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          el.classList.remove('opacity-0', 'translate-y-16');
-          el.classList.add('opacity-100', 'translate-y-0');
-          observer.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  requestAnimationFrame(() => {
-    document.querySelectorAll('[data-scroll-reveal]').forEach((el) => {
-      observer.observe(el);
-    });
-  });
-</script>

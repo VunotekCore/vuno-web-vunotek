@@ -24,7 +24,7 @@ export interface Props {
           <div class="flex flex-col gap-md left-col max-md:hidden">
             {Astro.props.badge && (
               <div class="inline-flex items-center max-sm:gap-xs gap-sm bg-surface-charcoal/50 border border-electric-blue/30 w-fit px-4 py-1.5 rounded-full max-sm:px-3 max-sm:py-1 max-sm:mb-4 sm:max-md:mb-4">
-                <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse shrink-0" />
+                <span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse shrink-0" aria-hidden="true" />
                 <span class="font-label-mono text-label-mono text-electric-blue tracking-wider uppercase max-sm:text-xs max-sm:tracking-normal md:max-lg:text-xs md:max-lg:tracking-normal">
                   {Astro.props.badge}
                 </span>
@@ -72,13 +72,13 @@ export interface Props {
                 </div>
                 <span
                   id="code-lang"
-                  class="font-label-mono text-label-mono text-on-secondary-container/50 tracking-wider max-md:hidden"
+                  class="font-label-mono text-label-mono text-on-surface-variant/50 tracking-wider max-md:hidden"
                 >
                   JavaScript
                 </span>
                 <span
                   id="code-lang-mobile"
-                  class="font-label-mono text-label-mono text-on-secondary-container/50 tracking-wider md:hidden"
+                  class="font-label-mono text-label-mono text-on-surface-variant/50 tracking-wider md:hidden"
                 >
                   hero.config.ts
                 </span>
@@ -128,7 +128,7 @@ export interface Props {
                   </a>
                 )}
               </div>
-              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-electric-blue/20 blur-3xl rounded-full" />
+              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-electric-blue/20 blur-3xl rounded-full" aria-hidden="true" />
             </div>
             <div
               class="absolute -bottom-8 -right-8 glass-panel p-md rounded-lg border-electric-blue/20 max-md:absolute max-md:top-2 max-md:right-2 max-md:bottom-auto max-md:p-2 max-md:bg-surface-container/60"
@@ -157,7 +157,7 @@ export interface Props {
     {
       Astro.props.variant === 'gradient' && (
         <div class="flex-1 flex flex-col justify-start md:justify-center pt-20 md:pt-24 relative">
-          <div class="absolute -top-20 -right-20 w-96 h-96 bg-electric-blue/5 rounded-full blur-[100px]" />
+          <div class="absolute -top-20 -right-20 w-96 h-96 bg-electric-blue/5 rounded-full blur-[100px]" aria-hidden="true" />
           <div class="max-w-3xl">
             <h1 class="font-display-lg text-display-lg mb-md leading-tight">
               {Astro.props.title} <span class="text-gradient">{Astro.props.titleAccent}</span>{' '}
@@ -338,6 +338,14 @@ export interface Props {
   let lineIdx = 0
   let timer: ReturnType<typeof setTimeout> | undefined
 
+  function delayWhenVisible(fn: () => void, ms: number) {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      if (document.hidden) { delayWhenVisible(fn, ms); return }
+      fn()
+    }, ms)
+  }
+
   function pad(n: number) {
     return String(n + 1).padStart(2, '0')
   }
@@ -348,7 +356,7 @@ export interface Props {
       .map(
         (l: CodeLine, i: number) =>
           `<p class="${l.c} ${indentMap[l.i] || ''}" style="opacity:${i <= revealUpTo ? 1 : 0}; transition: opacity 0.4s ease">` +
-          `<span class="text-on-secondary-container/50">${pad(i)}</span> ${l.t}` +
+          `<span class="text-on-surface-variant/50">${pad(i)}</span> ${l.t}` +
           `${i === revealUpTo ? '<span class="animate-pulse text-cyan-400">▊</span>' : ''}` +
           `</p>`
       )
@@ -380,7 +388,7 @@ export interface Props {
       .map(
         (l: CodeLine, i: number) =>
           `<p class="${l.c} ${indentMap[l.i] || ''}" style="opacity:0; transition: opacity 0.4s ease">` +
-          `<span class="text-on-secondary-container/50">${pad(i)}</span> ${l.t}</p>`
+          `<span class="text-on-surface-variant/50">${pad(i)}</span> ${l.t}</p>`
       )
       .join('')
     if (langEl) langEl.textContent = sn.lang
@@ -395,14 +403,13 @@ export interface Props {
   function revealLines() {
     const sn = snippets[current]
     if (lineIdx >= sn.lines.length) {
-      clearTimeout(timer)
-      timer = setTimeout(nextSnippet, 3000)
+      delayWhenVisible(nextSnippet, 3000)
       return
     }
     renderSnippet(current, lineIdx)
     lineIdx++
     const delay = lineIdx === 1 ? 400 : 120
-    timer = setTimeout(revealLines, delay)
+    delayWhenVisible(revealLines, delay)
   }
 
   function animateMobileCode() {
@@ -413,7 +420,7 @@ export interface Props {
     let idx = 0
     function revealNext() {
       if (idx >= lines.length) {
-        setTimeout(animateMobileCode, 4000)
+        setTimeout(() => { if (!document.hidden) animateMobileCode() }, 4000)
         return
       }
       lines[idx].style.opacity = '1'
@@ -438,12 +445,23 @@ export interface Props {
       document.body.style.overflow = ''
       document.removeEventListener('wheel', unlock)
       document.removeEventListener('touchmove', unlock)
+      document.removeEventListener('keydown', unlockOnKey)
+    }
+
+    const unlockOnKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter' || e.key === 'Tab' || e.key === 'ArrowDown') {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault()
+        }
+        unlock()
+      }
     }
 
     document.body.style.overflow = 'hidden'
 
     document.addEventListener('wheel', unlock, { passive: true })
     document.addEventListener('touchmove', unlock, { passive: true })
+    document.addEventListener('keydown', unlockOnKey)
   }
 </script>
 

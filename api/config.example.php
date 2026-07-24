@@ -1,49 +1,57 @@
 <?php
 /**
- * Archivo de Configuración - Ejemplo
- * 
- * INSTRUCCIONES:
- * 1. Copia este archivo como 'config.php' en el mismo directorio
- * 2. Completa todas las credenciales con tus datos reales
- * 3. NO subas config.php a Git (ya está en .gitignore)
+ * Archivo de Configuración - EJEMPLO
+ *
+ * Copia este archivo como config.php y rellena las credenciales reales.
+ * config.php está en .gitignore y NO se sube a Git.
  */
 
 return [
-    // ============================================
-    // CONFIGURACIÓN DE EMAIL (HOSTINGER SMTP)
-    // ============================================
-    'email' => [
-        'smtp_host' => 'smtp.hostinger.com',
-        'smtp_port' => 465,
-        'smtp_encryption' => 'ssl',
-        'smtp_username' => 'tu-email@tudominio.com',
-        'smtp_password' => 'tu-contraseña-aqui',
-        'from_email' => 'contacto@tudominio.com',
-        'from_name' => 'Vunotek',
-        'to_email' => [
-            'projects@vunotek.com' => 'Equipo Vunotek',
-        ],
-        'reply_to_email' => 'contacto@tudominio.com',
+    'database' => [
+        'host'     => 'localhost',
+        'name'     => 'vunotek_db',
+        'username' => 'vunotek_user',
+        'password' => 'TU_PASSWORD_AQUI',
+        'charset'  => 'utf8mb4',
     ],
 
-    // ============================================
-    // CONFIGURACIÓN DE GOOGLE CALENDAR API
-    // ============================================
-    'google_calendar' => [
-        'client_id' => 'tu-client-id.apps.googleusercontent.com',
-        'client_secret' => 'tu-client-secret',
-        'refresh_token' => 'tu-refresh-token',
-        'calendar_id' => 'primary',
-        'additional_calendars' => [],
-        'additional_attendees' => [
+    'jwt' => [
+        'secret'     => 'GENERAR_CON_openssl_rand_hex_32',
+        'expires_in' => 86400,
+        'issuer'     => 'vunotek.com',
+    ],
+
+    'imagekit' => [
+        'private_key'  => 'TU_IMAGEKIT_PRIVATE_KEY',
+        'url_endpoint' => 'https://ik.imagekit.io/TU_ACCOUNT_ID',
+    ],
+
+    'email' => [
+        'smtp_host'       => 'smtp.hostinger.com',
+        'smtp_port'       => 465,
+        'smtp_encryption' => 'ssl',
+        'smtp_username'   => 'projects@vunotek.com',
+        'smtp_password'   => 'TU_PASSWORD_SMTP',
+        'from_email'      => 'projects@vunotek.com',
+        'from_name'       => 'Vunotek - Contact Web Form',
+        'to_email'        => [
             'projects@vunotek.com' => 'Equipo Vunotek',
+        ],
+        'reply_to_email'  => 'comercial@vunotek.com',
+    ],
+
+    'google_calendar' => [
+        'client_id'              => 'TU_CLIENT_ID',
+        'client_secret'          => 'TU_CLIENT_SECRET',
+        'refresh_token'          => 'TU_REFRESH_TOKEN',
+        'calendar_id'            => 'TU_CALENDAR_ID',
+        'additional_calendars'   => [],
+        'additional_attendees'   => [
+            'projects@vunotek.com' => 'Solicitud de Reunión',
         ],
         'timezone' => 'America/Managua',
     ],
 
-    // ============================================
-    // CONFIGURACIÓN GENERAL
-    // ============================================
     'app' => [
         'site_url' => 'https://vunotek.com',
         'allowed_origins' => [

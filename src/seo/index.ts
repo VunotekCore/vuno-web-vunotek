@@ -16,45 +16,40 @@ export function getBreadcrumbSchema(locale: string, currentPath: string, pageNam
   const active = items.find((i) => i.path === currentPath)
   if (!active && !pageName) return null
 
-  const list = pageName
-    ? [
-        items[0],
-        { position: 2, name: pageName, path: currentPath },
-      ]
-    : items.filter((i) => currentPath.startsWith(i.path) || i.path === currentPath)
+  const isBlogPost = /\/blog\/[^/]+\/?$/.test(currentPath)
+
+  let list
+  if (isBlogPost && pageName) {
+    const blogItem = items.find((i) => i.path.endsWith('/blog/'))
+    list = [
+      items[0],
+      ...(blogItem ? [{ name: blogItem.name, path: blogItem.path }] : []),
+      { name: pageName, path: currentPath },
+    ]
+  } else if (pageName) {
+    list = [
+      items[0],
+      { name: pageName, path: currentPath },
+    ]
+  } else {
+    list = items.filter((i) => currentPath.startsWith(i.path) || i.path === currentPath)
+  }
 
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: list.map((item, idx) => ({
-      '@type': 'ListItem',
-      position: idx + 1,
-      name: item.name,
-      item: `https://vunotek.com${item.path}`,
-    })),
-  }
-}
-
-export function getArticleSchema(post: {
-  title: string
-  excerpt: string
-  date: Date
-  category: string
-  author: string
-  image?: string
-}) {
-  return {
-    ...SEO.articleSchema,
-    headline: post.title,
-    description: post.excerpt,
-    image: post.image || SEO.global.ogDefaultImage.src,
-    datePublished: post.date.toISOString(),
-    dateModified: post.date.toISOString(),
-    author: {
-      '@type': 'Person',
-      name: post.author,
-      url: 'https://vunotek.com/about',
-    },
+    itemListElement: list.map((item: any, idx: number) => {
+      const isLast = idx === list.length - 1
+      const entry: Record<string, any> = {
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: item.name,
+      }
+      if (!isLast) {
+        entry.item = `https://vunotek.com${item.path}`
+      }
+      return entry
+    }),
   }
 }
 

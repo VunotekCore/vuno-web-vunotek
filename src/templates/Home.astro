@@ -5,7 +5,7 @@ import ServicesGrid from '../components/ServicesGrid.astro'
 import ProductsGrid from '../components/ProductsGrid.astro'
 import CtaSection from '../components/CtaSection.astro'
 import PhilosophySection from '../components/PhilosophySection.astro'
-import TrustBar from '../components/TrustBar.astro'
+import ProjectShowcase from '../components/ProjectShowcase.vue'
 
 export interface Props {
   dict: Record<string, unknown>
@@ -16,12 +16,6 @@ const { dict, locale } = Astro.props
 const gh = dict.home as any
 const p = (path: string) => (locale === 'en' ? `/en${path}` : path)
 
-const trustItems = [
-  { icon: 'cloud_done', name: 'AWS' },
-  { icon: 'terminal', name: 'Node.js' },
-  { icon: 'view_quilt', name: 'Vue.js' },
-  { icon: 'layers', name: 'AstroJs' },
-]
 ---
 
 <Hero
@@ -75,5 +69,5 @@ const trustItems = [
 </Section>
 
 <Section class="bg-surface-container-lowest border-y border-outline-variant/10">
-  <TrustBar title={gh.trust.title} items={trustItems} />
+  <ProjectShowcase client:idle title={gh.trust.title} locale={locale} />
 </Section>

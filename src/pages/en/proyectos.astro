@@ -3,10 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Proyectos from '../../templates/Proyectos.astro'
 import { getTranslations } from '../../i18n/utils'
 
-const dict = getTranslations(Astro.currentLocale ?? 'es') as any
+const dict = getTranslations(Astro.currentLocale ?? 'en') as any
 const pj = dict.projects_page
 ---
 
-<BaseLayout title={pj.meta.title} description={pj.hero.description}>
-  <Proyectos dict={dict} locale={Astro.currentLocale ?? 'es'} />
+<BaseLayout title={pj.meta.title} description={pj.hero.description} breadcrumbName="Projects">
+  <Proyectos dict={dict} locale={Astro.currentLocale ?? 'en'} />
 </BaseLayout>

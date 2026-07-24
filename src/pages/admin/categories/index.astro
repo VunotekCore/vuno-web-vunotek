@@ -1,0 +1,8 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro'
+import CategoryTable from '../../../components/admin/CategoryTable.vue'
+---
+
+<AdminLayout title="Categorías">
+  <CategoryTable client:only="vue" />
+</AdminLayout>

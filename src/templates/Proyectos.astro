@@ -262,29 +262,7 @@ const stackColors: Record<string, string> = {
 <style>
 .tech-hover-card {
     transition: border-color 0.3s ease;
-  }
-  .stagger-header > * {
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards;
-  }
-  .stagger-header > :nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .stagger-header > :nth-child(2) {
-    animation-delay: 0.25s;
-  }
-  .stagger-header > :nth-child(3) {
-    animation-delay: 0.4s;
-  }
-  @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    box-shadow: 0 0 14px color-mix(in srgb, var(--color-electric-blue) 10%, transparent);
   }
 </style>
 
@@ -293,27 +271,38 @@ const stackColors: Record<string, string> = {
      data-color matches the stackColors record (e.g. 'var(--color-electric-blue)').
      Only runs on the stack grid section. -->
 <script>
+  let rafId = 0
+  let pendingCard: HTMLElement | null = null
+  let pendingX = 0
+  let pendingY = 0
+
+  function flushGrid() {
+    rafId = 0
+    if (!pendingCard) return
+    const rect = pendingCard.getBoundingClientRect()
+    pendingCard.style.setProperty('--mouse-x', `${((pendingX - rect.left) / rect.width) * 100}%`)
+    pendingCard.style.setProperty('--mouse-y', `${((pendingY - rect.top) / rect.height) * 100}%`)
+    pendingCard = null
+  }
+
   ;(document.querySelectorAll('.tech-hover-card') as NodeListOf<HTMLElement>).forEach((card) => {
     const color = card.getAttribute('data-color')
     const glow = card.querySelector('[data-grid-glow]') as HTMLElement
     if (!color) return
-    card.style.boxShadow = `0 0 14px color-mix(in srgb, ${color} 10%, transparent)`
-    const onMove = (e: MouseEvent) => {
-      const rect = card.getBoundingClientRect()
-      const x = ((e.clientX - rect.left) / rect.width) * 100
-      const y = ((e.clientY - rect.top) / rect.height) * 100
-      card.style.setProperty('--mouse-x', `${x}%`)
-      card.style.setProperty('--mouse-y', `${y}%`)
-    }
     card.addEventListener('mouseenter', () => {
       card.style.borderColor = color
       card.style.boxShadow = `0 0 28px color-mix(in srgb, ${color} 30%, transparent)`
       if (glow) glow.style.opacity = '1'
     })
-    card.addEventListener('mousemove', onMove)
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      pendingCard = card
+      pendingX = e.clientX
+      pendingY = e.clientY
+      if (!rafId) rafId = requestAnimationFrame(flushGrid)
+    })
     card.addEventListener('mouseleave', () => {
       card.style.borderColor = ''
-      card.style.boxShadow = `0 0 14px color-mix(in srgb, ${color} 10%, transparent)`
+      card.style.boxShadow = ''
       if (glow) glow.style.opacity = '0'
     })
   })

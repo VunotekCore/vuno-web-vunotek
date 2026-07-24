@@ -24,7 +24,7 @@ function isActive(href: string) {
 }
 ---
 
-<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-all duration-300 ease-in-out h-20" id="navbar">
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md max-md:backdrop-blur-none border-b border-outline-variant/30 shadow-sm transition-all duration-300 ease-in-out h-20" id="navbar" aria-label="Main navigation">
   <div class="flex justify-between items-center px-margin max-w-[min(90vw,1600px)] mx-auto h-full">
     <a href={p('/')} class="flex items-center">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342.3425 73.218201" class="h-9 md:h-11 w-auto" role="img" aria-label="Vunotek">
@@ -61,17 +61,18 @@ function isActive(href: string) {
         ))}
       </div>
       <LocaleSwitch />
-      <button class="min-[1190px]:hidden text-on-surface p-2" aria-label="Toggle menu" id="menu-toggle">
+      <button class="min-[1190px]:hidden text-on-surface p-2" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle">
         <Icon name="menu" class="text-2xl" />
       </button>
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden min-[1190px]:hidden bg-surface/95 backdrop-blur-md border-t border-outline-variant/20">
+  <div id="mobile-menu" role="menu" class="hidden min-[1190px]:hidden bg-surface/95 backdrop-blur-md border-t border-outline-variant/20">
     <div class="px-margin py-md flex flex-col items-center text-center gap-base">
       {links.map((link) => (
         <a
           href={link.href}
+          role="menuitem"
           class:list={[
             'font-body-md text-body-md py-2 transition-colors',
             isActive(link.href) ? 'text-electric-blue font-bold' : 'text-on-surface-variant hover:text-electric-blue',
@@ -82,6 +83,7 @@ function isActive(href: string) {
       ))}
       <a
         href={p('/contacto')}
+        role="menuitem"
         class="bg-electric-blue text-azure-deep px-6 py-3 rounded-lg font-semibold text-center mt-sm"
       >
         {t('nav.getStarted')}
@@ -97,13 +99,48 @@ function isActive(href: string) {
 
   toggle.addEventListener('click', () => {
     menu.classList.toggle('hidden');
+    const isOpen = !menu.classList.contains('hidden');
+    toggle.setAttribute('aria-expanded', String(isOpen));
     const useEl = toggle.querySelector('use');
-    if (useEl) useEl.setAttribute('href', `/sprite.svg#${menu.classList.contains('hidden') ? 'menu' : 'close'}`);
+    if (useEl) useEl.setAttribute('href', `/sprite.svg#${isOpen ? 'close' : 'menu'}`);
+    if (isOpen) {
+      const firstLink = menu.querySelector('a') as HTMLElement | null;
+      firstLink?.focus();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      const useEl = toggle.querySelector('use');
+      if (useEl) useEl.setAttribute('href', '/sprite.svg#menu');
+      toggle.focus();
+    }
+    if (!menu.classList.contains('hidden') && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+      e.preventDefault();
+      const items = Array.from(menu.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
+      const current = document.activeElement as HTMLElement;
+      const idx = items.indexOf(current);
+      if (e.key === 'ArrowDown') {
+        const next = idx < items.length - 1 ? idx + 1 : 0;
+        items[next]?.focus();
+      } else {
+        const prev = idx > 0 ? idx - 1 : items.length - 1;
+        items[prev]?.focus();
+      }
+    }
   });
 
   let ticking = false;
+  let lastScrollTime = 0;
+  const SCROLL_THROTTLE_MS = 16;
+
   window.addEventListener('scroll', () => {
-    if (!ticking) {
+    const now = performance.now();
+    if (!ticking && now - lastScrollTime >= SCROLL_THROTTLE_MS) {
+      lastScrollTime = now;
+      ticking = true;
       window.requestAnimationFrame(() => {
         if (window.scrollY > 50) {
           nav.classList.add('h-16', 'bg-surface/95');
@@ -114,7 +151,6 @@ function isActive(href: string) {
         }
         ticking = false;
       });
-      ticking = true;
     }
-  });
+  }, { passive: true });
 </script>

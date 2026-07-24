@@ -95,7 +95,7 @@ const cp = dict.contact_page as any
           </GlassCard>
         </ScrollReveal>
         <ScrollReveal delay={200}>
-          <SocialLinks title={cp.form_section.sidebar.social_title} />
+          <SocialLinks title={cp.form_section.sidebar.social_title} locale={locale} />
         </ScrollReveal>
       </aside>
     </div>
@@ -144,31 +144,7 @@ const cp = dict.contact_page as any
   </div>
 </Section>
 
-<style>
-  .stagger-header > * {
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards;
-  }
-  .stagger-header > :nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .stagger-header > :nth-child(2) {
-    animation-delay: 0.25s;
-  }
-  .stagger-header > :nth-child(3) {
-    animation-delay: 0.4s;
-  }
-  @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>
+
 
 <script>
   const user = 'comercial'

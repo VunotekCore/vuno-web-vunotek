@@ -42,12 +42,12 @@
       "title": "Maximizing Efficiency through",
       "titleAccent": "Robust Software",
       "titleRest": "and Advanced Automation",
-      "description": "We build high-performance solutions by combining the robustness of .NET, the flexibility of Salesforce, and the agility of Vue.js alongside Node.js. We automate your processes to accelerate growth.",
+      "description": "High-performance software engineering with .NET, Salesforce, Vue.js and Node.js. We automate business processes to scale your growth.",
       "cta": "Start Your Project",
       "ctaSecondary": "EXPLORE OUR STACK",
       "statLabels": ["CORE WEB VITALS", "API LATENCY", "QUERY TIME", "QUERY ACCURACY"]
     },
-    "trust": { "title": "Experts in Modern Technologies" },
+    "trust": { "title": "Interactive Portfolio" },
     "services": {
       "anchor": "Services",
       "title": "Core ",
@@ -207,7 +207,7 @@
       "title": "Architecture &",
       "titleAccent": "High-Performance",
       "titleRest": "Systems Development",
-      "description": "We engineer robust technological solutions that eliminate operational friction, optimize databases, and automate complex business processes under senior-level standards."
+      "description": "Robust engineering solutions that eliminate operational friction, optimize databases, and automate complex business processes."
     },
     "core_services": [
       {
@@ -306,7 +306,7 @@
     "hero": {
       "badge": "// Engineering Excellence",
       "title": "Our Technology Stack",
-      "description": "We engineer the digital future utilizing a modern, robust, and highly scalable stack. Every single tool has been carefully selected to ensure maximum performance under heavy concurrent environments."
+      "description": "Modern, robust, and highly scalable stack engineered for maximum performance under heavy concurrent environments."
     },
     "stack_grid": {
       "vue": {
@@ -373,44 +373,40 @@
           "slug": "vuno-pos",
           "title": "VUNO POS — Enterprise Point of Sale System",
           "desc": "Full-featured Point-of-Sale system with offline-first architecture, multi-tenant support, real-time inventory management, and native desktop deployment via Electron.",
+          "meta_description": "VUNO POS: enterprise point-of-sale with modern interface, offline-first mode, real-time inventory and multi-branch management.",
           "image_key": "pos",
           "features": [
             {
               "text": "POS interface with product search, category browsing, and cart management",
-              "image": "pos-interface"
+              "image": "pos_interface"
             },
             {
               "text": "Multiple payment methods (cash, credit, debit, check) and per-line discounts",
-              "image": "pos-payments"
+              "image": "pos_payments"
             },
             {
               "text": "Cash drawer management: open/close, expected cash, overage/shortage detection",
-              "image": "pos-cashdrawer"
+              "image": "pos_cashdrawer"
             },
             {
               "text": "Offline sales with automatic sync queue via IndexedDB (Dexie.js)",
-              "image": "pos-offline"
+              "image": "pos_offline"
             },
             {
               "text": "Real-time inventory with variants, kits, lots, serial numbers, and low-stock alerts",
-              "image": "pos-inventory"
+              "image": "pos_inventory"
             },
             {
               "text": "Stock transfers between locations and multi-location control",
-              "image": "pos-transfers"
+              "image": "pos_transfers"
             },
             {
               "text": "Supplier management, purchase orders, and goods receiving",
-              "image": "pos-suppliers"
-            },
-            { "text": "Native desktop app (Electron) + installable PWA", "image": "pos-desktop" },
-            {
-              "text": "Multi-tenant architecture with role-based access control",
-              "image": "pos-multitenant"
+              "image": "pos_suppliers"
             },
             {
               "text": "Admin, cashier dashboards and real-time sales reports",
-              "image": "pos-dashboards"
+              "image": "pos_dashboards"
             }
           ],
           "tech_stack": [
@@ -428,6 +424,7 @@
           "slug": "vuno-shop",
           "title": "VUNO SHOP — E-Commerce Platform",
           "desc": "Full-featured e-commerce platform with an Astro-powered storefront, PHP REST API, Stripe payments, multi-currency support, and a comprehensive admin dashboard.",
+          "meta_description": "VUNO SHOP: e-commerce platform with Astro, Stripe payments, multi-currency, advanced inventory and complete admin panel.",
           "image_key": "shop",
           "features": [
             {
@@ -436,105 +433,114 @@
             },
             {
               "text": "Product catalog with advanced filtering by category, color, and size",
-              "image": "shop-catalog"
+              "image": "shop_filtros"
             },
             {
               "text": "Interactive image gallery with magnifier and quick-view modal",
-              "image": "shop-gallery"
+              "image": "shop_detalles"
             },
             {
               "text": "Shopping cart with localStorage persistence and server-side sync",
-              "image": "shop-cart"
+              "image": "shop_cart"
             },
             {
               "text": "Stripe credit card payments and bank transfer with receipt upload",
-              "image": "shop-payments"
+              "image": "shop_payment"
             },
             {
               "text": "Multi-currency support with configurable exchange rates",
-              "image": "shop-currency"
+              "image": "shop_currency"
             },
             {
               "text": "Customer accounts with order history, wishlist, and address management",
-              "image": "shop-accounts"
+              "image": "shop_customer"
             },
             {
               "text": "Comprehensive admin panel with product, order, coupon, and blog CRUD",
-              "image": "shop-admin"
+              "image": "shop_admin"
             },
             {
               "text": "Inventory management with variant matrix and stock tracking",
-              "image": "shop-inventory"
+              "image": "shop_inventory"
             },
             {
               "text": "TOTP 2FA authentication for admin panel security",
-              "image": "shop-security"
+              "image": "shop_security"
             },
             {
               "text": "Automated email notifications with customizable HTML templates",
-              "image": "shop-notifications"
+              "image": "shop_notifications"
             },
             {
               "text": "Built-in i18n (Spanish/English) with full translation coverage",
-              "image": "shop-i18n"
+              "image": "shop_i18n"
             }
           ],
-          "tech_stack": ["Astro", "Vue.js", "PHP", "Stripe", "TypeScript", "Tailwind CSS"]
+          "tech_stack": [
+            "Astro",
+            "Vue.js",
+            "PHP",
+            "Stripe",
+            "TypeScript",
+            "Tailwind CSS",
+            "MySQL 8.0+"
+          ]
         },
         {
           "tag": "HOTEL",
           "slug": "vuno-reservations",
           "title": "VUNO RESERVATIONS — Hotel Property Management System",
           "desc": "Full-featured Property Management System (PMS) for hotels with bilingual booking website, Stripe payments, front desk reception panel, housekeeping management, and occupancy calendar.",
+          "meta_description": "VUNO RESERVATIONS: hotel PMS with online booking, Stripe payments, check-in/check-out and occupancy calendar.",
           "image_key": "hotel",
           "features": [
             {
               "text": "Bilingual (ES/EN) hotel booking website with room catalog and availability",
-              "image": "hotel-website"
+              "image": "hotel_portada"
             },
             {
               "text": "Room detail pages with amenities, capacity, pricing, and image gallery",
-              "image": "hotel-rooms"
+              "image": "hotel_detalles"
             },
             {
               "text": "Online booking with Stripe payments and bank transfer options",
-              "image": "hotel-bookings"
+              "image": "hotel_bookings"
             },
             {
               "text": "Front desk panel with color-coded room status grid and quick search",
-              "image": "hotel-reception"
+              "image": "hotel_receptions"
             },
             {
               "text": "Check-in/check-out workflows with automatic invoice generation",
-              "image": "hotel-checkin"
+              "image": "hotel_checkin"
             },
             {
               "text": "Housekeeping status management (available, occupied, cleaning, maintenance)",
-              "image": "hotel-housekeeping"
+              "image": "hotel_housekeeping"
             },
             {
               "text": "Occupancy calendar with Gantt-style monthly grid view",
-              "image": "hotel-calendar"
+              "image": "hotel_calendar"
             },
             {
               "text": "Guest directory with stay history and document management",
-              "image": "hotel-guests"
+              "image": "hotel_guests"
             },
             {
               "text": "Reservation lifecycle: pending, confirmed, checked-in, checked-out, cancelled",
-              "image": "hotel-lifecycle"
+              "image": "hotel_lifecycle"
             },
             {
               "text": "Comprehensive admin panel: rooms, rates, blog, and configuration",
-              "image": "hotel-admin"
+              "image": "hotel_admin"
             },
             {
               "text": "TOTP 2FA authentication with role-based access control",
-              "image": "hotel-security"
+              "image": "hotel_security"
             },
             {
               "text": "Automated email notifications (confirmation, pending, cancellation)",
-              "image": "hotel-notifications"
+              "image": "hotel_notifications"
             }
           ],
           "tech_stack": ["Astro", "Vue.js", "Stripe", "TypeScript", "PWA", "Tailwind CSS"]
@@ -544,6 +550,7 @@
           "slug": "vuno-envios",
           "title": "VUNO ENVÍOS — Miami-Nicaragua Package Logistics",
           "desc": "Digital logistics platform connecting Miami to Nicaragua with virtual locker addresses, package tracking, air and sea freight shipping, and door-to-door delivery services.",
+          "meta_description": "VUNO ENVÍOS: Miami-Nicaragua logistics platform with virtual locker, package tracking, air and sea freight.",
           "image_key": "logistics",
           "features": [
             {
@@ -602,55 +609,106 @@
           "slug": "vuno-crm",
           "title": "VUNO CRM — Social Selling Platform",
           "desc": "Multi-tenant SaaS CRM specialized in social selling, unifying WhatsApp, Instagram, and Facebook conversations with a full sales pipeline from lead to opportunity to quote to close.",
+          "meta_description": "VUNO CRM: social selling platform unifying WhatsApp, Instagram, Facebook with sales pipeline and quotes.",
           "image_key": "crm",
           "features": [
             {
               "text": "Unified social inbox aggregating WhatsApp, Instagram, and Facebook conversations",
-              "image": "crm-inbox"
+              "image": "crm_inbox"
             },
             {
               "text": "360° customer profiles with interaction history and lifetime value tracking",
-              "image": "crm-profiles"
+              "image": "crm_profiles"
             },
             {
               "text": "Drag-and-drop opportunity kanban with sales stage automation",
-              "image": "crm-kanban"
+              "image": "crm_kanban"
             },
             {
               "text": "Quoting engine with line items, cost & margin analysis, discount and tax",
-              "image": "crm-quotes"
+              "image": "crm_quotes"
             },
             {
               "text": "Activity and task management with automatic follow-up reminders",
-              "image": "crm-tasks"
+              "image": "crm_tasks"
             },
             {
               "text": "Real-time push notifications via WebSocket for new messages and updates",
-              "image": "crm-notifications"
+              "image": "crm_notifications"
             },
             {
               "text": "Role-based access control with granular per-entity permissions",
-              "image": "crm-rbac"
+              "image": "crm_rbac"
             },
             {
               "text": "Attendance tracking with GPS coordinates and photo check-in/out",
-              "image": "crm-attendance"
+              "image": "crm_attendance"
             },
             {
               "text": "Employee management with departments, positions, and organizational chart",
-              "image": "crm-employees"
-            },
-            {
-              "text": "Interactive dashboards and reports: funnel, revenue, agent performance",
-              "image": "crm-dashboards"
-            },
-            {
-              "text": "Multi-tenant SaaS architecture with isolated per-company data",
-              "image": "crm-saas"
+              "image": "crm_employees"
             },
             { "text": "PWA support with offline caching and dark mode", "image": "crm-pwa" }
           ],
           "tech_stack": ["TypeScript", "Vue.js", "Node.js", "WebSocket", "PWA", "PostgreSQL"]
+        },
+        {
+          "tag": "E-COMMERCE",
+          "slug": "vuno-drive",
+          "title": "VUNO DRIVE — Car Rental & Sales Platform",
+          "desc": "Vehicle rental and sales platform in Nicaragua. Public catalog, multi-step online booking, comprehensive admin panel with check-in/check-out, fleet management, and POS.",
+          "meta_description": "VUNO DRIVE: vehicle rental and sales platform with public catalog, online booking and fleet management.",
+          "image_key": "drive",
+          "features": [
+            {
+              "text": "Public catalog",
+              "image": "drive_catalogo"
+            },
+            {
+              "text": "Admin panel (role-segmented: admin, manager, agent, cashier, editor, viewer)",
+              "image": "drive_dash_rol"
+            },
+            {
+              "text": "Role-based dashboard stats (admin: general, agent: personal metrics, cashier: POS)",
+              "image": "drive_dash"
+            },
+            {
+              "text": "Fleet — vehicle CRUD (Info, Pricing, Photos, Features)",
+              "image": "drive_flota"
+            },
+            {
+              "text": "Branches — schedules, holidays, availability",
+              "image": "drive_sucursales"
+            },
+            {
+              "text": "Bookings — list, detail, status changes, check-in/out, penalties, no-show",
+              "image": "drive_reservas"
+            },
+            {
+              "text": "Extras & Insurance — add-on and coverage CRUD",
+              "image": "drive_seguros"
+            },
+            {
+              "text": "Sales — POS for direct vehicle sales",
+              "image": "drive_ventas"
+            },
+            {
+              "text": "Customers — address book, booking history",
+              "image": "drive_clientes"
+            },
+            {
+              "text": "Pricing tiers: daily / weekly (7d) / monthly (30d) — system auto-applies the best rate",
+              "image": "drive_precios"
+            }
+          ],
+          "tech_stack": [
+            "Astro 6",
+            "Tailwind CSS",
+            "TypeScript",
+            "Admin UI Vue3 + Pinia (Composition API)",
+            "Backend PHP 8.1+ strict mode, SOA (Controllers + Models)",
+            "DB MySQL 8, Normalized Tables"
+          ]
         }
       ]
     },
@@ -669,7 +727,7 @@
     "hero": {
       "badge": "Contact Engineering",
       "title": "Let's build something meaningful",
-      "description": "Whether you are scaling an existing infrastructure, integrating advanced Salesforce modules, or requiring a robust backend architecture, we are ready to analyze your technical requirements."
+      "description": "Scaling infrastructure, integrating Salesforce, or building robust backend architecture. We analyze your technical requirements."
     },
     "quick_channels": {
       "title": "Direct Channels",
@@ -707,6 +765,8 @@
         "submit_btn": "Initialize Requirement",
         "submit_meeting": "Schedule Meeting",
         "sending": "Sending...",
+        "error_send": "Error sending message.",
+        "error_unknown": "Unknown error",
         "privacy_consent": "By submitting this form, you accept our",
         "privacy_link": "Privacy Policy"
       },
@@ -723,15 +783,10 @@
       },
       "sidebar": {
         "schedule_title": "Operational Availability",
-        "schedule_hours": "Monday to Friday — 08:00 to 17:00 (CST)",
+        "schedule_hours": "Monday to Friday — 08:00 to 17:00 (GMT-6)",
         "response_time": "Average technical response time: < 24 hours.",
         "social_title": "Professional Networks"
       }
-    },
-    "cta_final": {
-      "title": "Do you prefer a direct session?",
-      "subtitle": "If you have an urgent requirement or prefer to map out the scope through conversation, book a 15-minute discovery call directly into our engineering calendar.",
-      "button": "Schedule Technical Call"
     }
   },
   "about": {
@@ -744,7 +799,7 @@
       "title": "Backing Your Infrastructure",
       "titleAccent": "with Real Senior",
       "titleRest": "Engineering",
-      "description": "Vunotek is founded as the culmination of more than 15 years of evolution in software engineering. We design and deliver high-availability systems, blending enterprise-grade backend robustness with the agility of modern web ecosystems."
+      "description": "Over 15 years of software engineering. High-availability systems blending enterprise-grade robustness with modern web agility."
     },
     "pillars": {
       "mission": {
@@ -762,16 +817,6 @@
           "Optimize databases and APIs to sustain system response times under 100ms.",
           "Ensure 100% traceable, fully documented source code free from legacy technical debt.",
           "Expand the capabilities of market-leading CRM platforms like Salesforce via advanced native logic."
-        ]
-      },
-      "stats": {
-        "title": "Our Background in Numbers",
-        "subtitle": "Real-world metrics backing the technical judgment engineered into every system we build.",
-        "items": [
-          { "value": "+15", "label": "Years of Technical Evolution" },
-          { "value": "+50k", "label": "Lines of Code Audited" },
-          { "value": "100%", "label": "Debt-Free Software Architecture" },
-          { "value": "+40", "label": "Successful API Integrations" }
         ]
       }
     },
@@ -887,5 +932,9 @@
         }
       ]
     }
+  },
+  "common": {
+    "close": "Close",
+    "closeModal": "Close modal"
   }
 }

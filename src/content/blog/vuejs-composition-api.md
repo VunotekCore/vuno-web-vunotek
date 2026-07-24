@@ -1,13 +1,13 @@
 ---
 title: "Vue 3 Composition API: Patrones Modernos para Aplicaciones Escalables"
 excerpt: "Domina la Composition API de Vue 3 con patrones reales de composición, reactividad avanzada y tips de rendimiento para proyectos empresariales."
-date: 2025-06-15
+date: 2026-06-15
 category: Frontend
 author: Daniel Flores
 locale: es
-image: https://placehold.co/1200x520/1e293b/42b883?text=Vue+3+Composition+API
+image: https://ik.imagekit.io/vijys5g3r/blog/vuejs-composition-api.webp
 metaTitle: "Vue 3 Composition API: Patrones Modernos para Aplicaciones Escalables | Vunotek"
-ogImage: https://placehold.co/1200x630/1e293b/00a8ff?text=Vue+3+Composition+API
+ogImage: https://ik.imagekit.io/vijys5g3r/blog/vuejs-composition-api.webp
 ---
 
 Vue 3 trajo consigo la Composition API, un modelo de reactividad más flexible que permite organizar la lógica por funcionalidad en lugar de por opciones del ciclo de vida.

@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Section from '../../components/Section.astro'
+import { getPageMeta } from '../../seo'
+import { getTranslations } from '../../i18n/utils'
+
+const pageMeta = getPageMeta('en', 'terms')
+const dict = getTranslations('en') as any
+const tp = dict.terms_page
+const sections = tp.content.sections as Array<{ title: string; text: string }>
+---
+
+<BaseLayout
+  title={pageMeta?.title}
+  description={pageMeta?.description}
+  esUrl="https://vunotek.com/terminos/"
+  enUrl="https://vunotek.com/en/terms/"
+  breadcrumbName="Terms"
+>
+  <Section class="!pt-32 md:!pt-40 !pb-xl md:!pb-2xl">
+    <div class="max-w-[48rem] mx-auto px-margin">
+      <div class="flex flex-col gap-xs mb-xl">
+        <span class="font-label-mono text-label-mono text-electric-blue" aria-hidden="true">// terms_of_service.md</span>
+        <h1 class="font-display-lg text-headline-lg text-on-surface">{tp.content.title}</h1>
+        <span class="font-label-mono text-[11px] text-slate-text/80">{tp.content.last_updated}</span>
+      </div>
+      <div class="space-y-xl">
+        {sections.map((section) => (
+          <div class="space-y-sm">
+            <h2 class="font-headline-sm text-headline-sm text-electric-blue">{section.title}</h2>
+            <p class="font-body-md text-body-md text-slate-text leading-relaxed">{section.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

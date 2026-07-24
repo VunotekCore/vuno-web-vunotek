@@ -146,6 +146,7 @@ const techIcons: Record<string, string> = {
               height="600"
               class="w-full h-full object-cover transition-all duration-500 group-hover:scale-[1.04]"
               loading="lazy"
+              decoding="async"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-surface-charcoal/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="absolute inset-0 ring-1 ring-inset ring-electric-blue/20 rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -207,16 +208,21 @@ const techIcons: Record<string, string> = {
 </Section>
 
 <script>
-  function openLightbox(src: string) {
+  function openLightbox(src: string, trigger: HTMLElement) {
     const overlay = document.createElement('div')
+    overlay.setAttribute('role', 'dialog')
+    overlay.setAttribute('aria-modal', 'true')
+    overlay.setAttribute('aria-label', 'Image lightbox')
     overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;cursor:zoom-out;animation:fadeIn 0.2s ease;'
 
     const img = document.createElement('img')
     img.src = src
+    img.alt = trigger.querySelector('img')?.alt || 'Project image'
     img.style.cssText = 'max-width:92vw;max-height:92vh;object-fit:contain;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,0.5);'
 
     const closeBtn = document.createElement('button')
     closeBtn.innerHTML = 'close'
+    closeBtn.setAttribute('aria-label', 'Close lightbox')
     closeBtn.style.cssText = 'position:absolute;top:24px;right:24px;background:rgba(255,255,255,0.1);border:none;color:#dae2fd;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;backdrop-filter:blur(8px);transition:background 0.2s;font-family:Material Symbols Outlined;'
     closeBtn.addEventListener('mouseenter', () => closeBtn.style.background = 'rgba(255,255,255,0.2)')
     closeBtn.addEventListener('mouseleave', () => closeBtn.style.background = 'rgba(255,255,255,0.1)')
@@ -224,12 +230,14 @@ const techIcons: Record<string, string> = {
     overlay.appendChild(img)
     overlay.appendChild(closeBtn)
     document.body.appendChild(overlay)
+    closeBtn.focus()
 
-    const close = () => overlay.remove()
+    const close = () => { overlay.remove(); trigger.focus() }
     overlay.addEventListener('click', (e) => { if (e.target === overlay || e.target === img) close() })
     closeBtn.addEventListener('click', close)
-    document.addEventListener('keydown', function handler(ev) {
-      if (ev.key === 'Escape') { close(); document.removeEventListener('keydown', handler) }
+    overlay.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { close(); return }
+      if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus() }
     })
   }
 
@@ -238,29 +246,18 @@ const techIcons: Record<string, string> = {
     const lightbox = target.closest('[data-lightbox]') as HTMLElement | null
     if (lightbox) {
       const img = lightbox.querySelector('img')
-      if (img?.src) openLightbox(img.src)
+      if (img?.src) openLightbox(img.src, lightbox)
       return
     }
     const feature = target.closest('[data-lightbox-feature]') as HTMLElement | null
     if (feature) {
       const img = feature.querySelector('img')
-      if (img?.src) openLightbox(img.src)
+      if (img?.src) openLightbox(img.src, feature)
     }
   })
 </script>
 
 <style>
-.stagger-header > * {
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards;
-  }
-  .stagger-header > :nth-child(1) { animation-delay: 0.1s; }
-  .stagger-header > :nth-child(2) { animation-delay: 0.25s; }
-  .stagger-header > :nth-child(3) { animation-delay: 0.4s; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

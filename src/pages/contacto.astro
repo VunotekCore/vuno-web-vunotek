@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Contacto from '../templates/Contacto.astro'
+import { getPageMeta } from '../seo'
 import { getTranslations } from '../i18n/utils'
 
-const dict = getTranslations(Astro.currentLocale ?? 'es') as any
-const ct = dict.contact_page
+const locale = Astro.currentLocale ?? 'es'
+const pageMeta = getPageMeta(locale, 'contact')
+const dict = getTranslations(locale) as any
 ---
 
-<BaseLayout title={ct.meta.title} description={ct.hero.description}>
-  <Contacto dict={dict} locale={Astro.currentLocale ?? 'es'} />
+<BaseLayout title={pageMeta?.title || 'Vunotek'} description={pageMeta?.description || ''} breadcrumbName="Contacto">
+  <Contacto dict={dict} locale={locale} />
 </BaseLayout>

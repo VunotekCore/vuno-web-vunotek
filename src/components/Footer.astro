@@ -1,36 +1,71 @@
 ---
-import { useTranslations } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils'
 
-const locale = Astro.currentLocale || 'es';
-const isEn = locale === 'en';
-const t = useTranslations(locale);
-const p = (path: string) => isEn ? `/en${path}` : path;
+const locale = Astro.currentLocale || 'es'
+const isEn = locale === 'en'
+const t = useTranslations(locale)
+const p = (path: string) => (isEn ? `/en${path}` : path)
 
-const f = (path: string) => t(`footer.${path}`);
-const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind CSS'];
+const f = (path: string) => t(`footer.${path}`)
+const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind CSS']
 ---
 
 <footer class="border-t border-outline-variant/20">
   <div class="max-w-[min(90vw,1600px)] mx-auto px-margin">
-
     <!-- Block 1: Brand + Navigation -->
     <div class="grid grid-cols-1 md:grid-cols-12 gap-lg py-lg md:py-xl">
       <!-- Brand column -->
       <div class="md:col-span-5 flex flex-col gap-md max-sm:items-center max-sm:text-center">
         <a href={p('/')} class="flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342.3425 73.218201" class="h-7 w-auto" role="img" aria-label="Vunotek">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 342.3425 73.218201"
+            class="h-7 w-auto"
+            role="img"
+            aria-label="Vunotek"
+          >
             <title>Vunotek</title>
             <g transform="translate(-503.30441,-525.85931)">
-              <path d="m 0,0 v -12.124 c -3.446,0 -6.789,-0.067 -10.124,0.072 -0.506,0.022 -1.097,0.94 -1.437,1.56 -6.221,11.342 -12.409,22.702 -18.605,34.058 -3.397,6.228 -6.797,12.455 -10.407,19.07 2.682,0 5.105,0.052 7.521,-0.054 0.381,-0.017 0.832,-0.688 1.082,-1.149 4.603,-8.466 9.169,-16.953 13.764,-25.422 3.78,-6.967 7.586,-13.92 11.383,-20.876 0.137,-0.251 0.312,-0.483 0.791,-1.216 v 7.55 C -4.614,0.362 -2.386,-0.115 0,0" fill="#439fd9" transform="matrix(1.3333333,0,0,-1.3333333,557.40173,582.89067)"/>
-              <path d="m 0,0 v -5.406 c -1.604,1.346 -4.203,1.877 -5.865,1.744 V 6.634 c 2.453,0 4.896,-0.104 7.325,0.034 1.816,0.103 2.888,-0.406 3.954,-2.053 8.824,-13.629 17.792,-27.165 26.723,-40.725 0.331,-0.502 0.725,-0.963 1.396,-1.847 V 6.519 h 7.463 v -54.722 c -3.079,0 -6.043,-0.063 -9,0.059 -0.508,0.022 -1.107,0.75 -1.456,1.288 C 20.552,-31.487 10.591,-16.1 0.624,-0.717 0.555,-0.611 0.458,-0.524 0,0" fill="#ffffff" transform="matrix(1.3333333,0,0,-1.3333333,563.64387,534.76693)"/>
-              <path d="m 0,0 c -0.028,-6.416 -5.312,-11.658 -11.676,-11.585 -6.352,0.073 -11.4,5.253 -11.36,11.656 0.041,6.477 5.208,11.698 11.568,11.69 C -5.086,11.753 0.029,6.506 0,0" fill="#60c3db" transform="matrix(1.3333333,0,0,-1.3333333,570.9564,561.58853)"/>
-              <path d="m 0,0 -6.786,25.541 h 4.524 L 3.503,2.811 h 0.511 l 5.801,22.73 H 14.34 L 7.517,0 Z" fill="#ffffff" transform="matrix(1.3333333,0,0,-1.3333333,642.84507,596.51827)"/>
-              <path d="M 0,0 C -2.043,0 -3.801,0.371 -5.272,1.111 -6.744,1.854 -7.875,2.93 -8.665,4.342 -9.456,5.752 -9.852,7.43 -9.852,9.377 v 16.674 h 4.379 V 9.268 c 0,-1.704 0.475,-3.018 1.423,-3.942 0.949,-0.924 2.299,-1.387 4.05,-1.387 1.775,0 3.132,0.463 4.068,1.387 0.937,0.924 1.406,2.238 1.406,3.942 V 26.051 H 9.853 V 9.377 C 9.853,7.43 9.463,5.752 8.685,4.342 7.905,2.93 6.774,1.854 5.291,1.111 3.807,0.371 2.044,0 0,0" fill="#ffffff" transform="matrix(1.3333333,0,0,-1.3333333,679.18613,597.19787)"/>
-              <path d="m 0,0 v 25.541 h 8.392 l 6.02,-22.586 h 0.584 v 22.586 h 4.342 V 0 H 10.982 L 4.962,22.586 H 4.342 V 0 Z" fill="#ffffff" transform="matrix(1.3333333,0,0,-1.3333333,698.88933,596.51827)"/>
-              <path d="m 0,0 c 1.897,0 3.375,0.553 4.434,1.66 1.057,1.108 1.587,2.61 1.587,4.508 v 6.348 c 0,1.898 -0.53,3.398 -1.587,4.505 -1.059,1.108 -2.537,1.661 -4.434,1.661 -1.873,0 -3.339,-0.553 -4.396,-1.661 -1.059,-1.107 -1.587,-2.607 -1.587,-4.505 V 6.168 c 0,-1.898 0.528,-3.4 1.587,-4.508 C -3.339,0.553 -1.873,0 0,0 m 0,-3.939 c -3.162,0 -5.687,0.88 -7.571,2.644 -1.885,1.764 -2.827,4.299 -2.827,7.607 v 6.057 c 0,3.309 0.942,5.844 2.827,7.61 1.884,1.761 4.409,2.644 7.571,2.644 3.187,0 5.716,-0.883 7.59,-2.644 1.873,-1.766 2.809,-4.301 2.809,-7.61 V 6.312 C 10.399,3.004 9.463,0.469 7.59,-1.295 5.716,-3.059 3.187,-3.939 0,-3.939" fill="#ffffff" transform="matrix(1.3333333,0,0,-1.3333333,744.42573,591.94533)"/>
-              <path d="m 0,0 v 21.164 h -7.443 v 4.377 H 12.26 V 21.164 H 4.816 V 0 Z" fill="#439fd9" transform="matrix(1.3333333,0,0,-1.3333333,770.92187,596.51827)"/>
-              <path d="M 0,0 V 25.541 H 16.419 V 21.164 H 4.816 V 15.07 H 15.397 V 10.691 H 4.816 V 4.379 H 16.638 V 0 Z" fill="#439fd9" transform="matrix(1.3333333,0,0,-1.3333333,791.6472,596.51827)"/>
-              <path d="M 0,0 V 25.541 H 4.816 V 15.398 h 0.658 l 8.282,10.143 h 6.167 L 9.268,12.953 20.287,0 H 13.938 L 5.474,10.363 H 4.816 V 0 Z" fill="#439fd9" transform="matrix(1.3333333,0,0,-1.3333333,818.5976,596.51827)"/>
+              <path
+                d="m 0,0 v -12.124 c -3.446,0 -6.789,-0.067 -10.124,0.072 -0.506,0.022 -1.097,0.94 -1.437,1.56 -6.221,11.342 -12.409,22.702 -18.605,34.058 -3.397,6.228 -6.797,12.455 -10.407,19.07 2.682,0 5.105,0.052 7.521,-0.054 0.381,-0.017 0.832,-0.688 1.082,-1.149 4.603,-8.466 9.169,-16.953 13.764,-25.422 3.78,-6.967 7.586,-13.92 11.383,-20.876 0.137,-0.251 0.312,-0.483 0.791,-1.216 v 7.55 C -4.614,0.362 -2.386,-0.115 0,0"
+                fill="#439fd9"
+                transform="matrix(1.3333333,0,0,-1.3333333,557.40173,582.89067)"></path>
+              <path
+                d="m 0,0 v -5.406 c -1.604,1.346 -4.203,1.877 -5.865,1.744 V 6.634 c 2.453,0 4.896,-0.104 7.325,0.034 1.816,0.103 2.888,-0.406 3.954,-2.053 8.824,-13.629 17.792,-27.165 26.723,-40.725 0.331,-0.502 0.725,-0.963 1.396,-1.847 V 6.519 h 7.463 v -54.722 c -3.079,0 -6.043,-0.063 -9,0.059 -0.508,0.022 -1.107,0.75 -1.456,1.288 C 20.552,-31.487 10.591,-16.1 0.624,-0.717 0.555,-0.611 0.458,-0.524 0,0"
+                fill="#ffffff"
+                transform="matrix(1.3333333,0,0,-1.3333333,563.64387,534.76693)"></path>
+              <path
+                d="m 0,0 c -0.028,-6.416 -5.312,-11.658 -11.676,-11.585 -6.352,0.073 -11.4,5.253 -11.36,11.656 0.041,6.477 5.208,11.698 11.568,11.69 C -5.086,11.753 0.029,6.506 0,0"
+                fill="#60c3db"
+                transform="matrix(1.3333333,0,0,-1.3333333,570.9564,561.58853)"></path>
+              <path
+                d="m 0,0 -6.786,25.541 h 4.524 L 3.503,2.811 h 0.511 l 5.801,22.73 H 14.34 L 7.517,0 Z"
+                fill="#ffffff"
+                transform="matrix(1.3333333,0,0,-1.3333333,642.84507,596.51827)"></path>
+              <path
+                d="M 0,0 C -2.043,0 -3.801,0.371 -5.272,1.111 -6.744,1.854 -7.875,2.93 -8.665,4.342 -9.456,5.752 -9.852,7.43 -9.852,9.377 v 16.674 h 4.379 V 9.268 c 0,-1.704 0.475,-3.018 1.423,-3.942 0.949,-0.924 2.299,-1.387 4.05,-1.387 1.775,0 3.132,0.463 4.068,1.387 0.937,0.924 1.406,2.238 1.406,3.942 V 26.051 H 9.853 V 9.377 C 9.853,7.43 9.463,5.752 8.685,4.342 7.905,2.93 6.774,1.854 5.291,1.111 3.807,0.371 2.044,0 0,0"
+                fill="#ffffff"
+                transform="matrix(1.3333333,0,0,-1.3333333,679.18613,597.19787)"></path>
+              <path
+                d="m 0,0 v 25.541 h 8.392 l 6.02,-22.586 h 0.584 v 22.586 h 4.342 V 0 H 10.982 L 4.962,22.586 H 4.342 V 0 Z"
+                fill="#ffffff"
+                transform="matrix(1.3333333,0,0,-1.3333333,698.88933,596.51827)"></path>
+              <path
+                d="m 0,0 c 1.897,0 3.375,0.553 4.434,1.66 1.057,1.108 1.587,2.61 1.587,4.508 v 6.348 c 0,1.898 -0.53,3.398 -1.587,4.505 -1.059,1.108 -2.537,1.661 -4.434,1.661 -1.873,0 -3.339,-0.553 -4.396,-1.661 -1.059,-1.107 -1.587,-2.607 -1.587,-4.505 V 6.168 c 0,-1.898 0.528,-3.4 1.587,-4.508 C -3.339,0.553 -1.873,0 0,0 m 0,-3.939 c -3.162,0 -5.687,0.88 -7.571,2.644 -1.885,1.764 -2.827,4.299 -2.827,7.607 v 6.057 c 0,3.309 0.942,5.844 2.827,7.61 1.884,1.761 4.409,2.644 7.571,2.644 3.187,0 5.716,-0.883 7.59,-2.644 1.873,-1.766 2.809,-4.301 2.809,-7.61 V 6.312 C 10.399,3.004 9.463,0.469 7.59,-1.295 5.716,-3.059 3.187,-3.939 0,-3.939"
+                fill="#ffffff"
+                transform="matrix(1.3333333,0,0,-1.3333333,744.42573,591.94533)"></path>
+              <path
+                d="m 0,0 v 21.164 h -7.443 v 4.377 H 12.26 V 21.164 H 4.816 V 0 Z"
+                fill="#439fd9"
+                transform="matrix(1.3333333,0,0,-1.3333333,770.92187,596.51827)"></path>
+              <path
+                d="M 0,0 V 25.541 H 16.419 V 21.164 H 4.816 V 15.07 H 15.397 V 10.691 H 4.816 V 4.379 H 16.638 V 0 Z"
+                fill="#439fd9"
+                transform="matrix(1.3333333,0,0,-1.3333333,791.6472,596.51827)"></path>
+              <path
+                d="M 0,0 V 25.541 H 4.816 V 15.398 h 0.658 l 8.282,10.143 h 6.167 L 9.268,12.953 20.287,0 H 13.938 L 5.474,10.363 H 4.816 V 0 Z"
+                fill="#439fd9"
+                transform="matrix(1.3333333,0,0,-1.3333333,818.5976,596.51827)"></path>
             </g>
           </svg>
         </a>
@@ -41,42 +76,54 @@ const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind C
 
       <!-- Navigation column -->
       <div class="md:col-span-4 flex flex-col gap-base max-sm:items-center max-sm:text-center">
-        <span class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs">
+        <h3
+          class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs"
+        >
           {f('columns.navigation_title')}
-        </span>
-        <div class="grid grid-cols-2 gap-x-md gap-y-sm">
-          <a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.solutions')}
-          <a href={p('/servicios')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.services')}</a>
-          <a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.stack')}</a>
-          <a href={isEn ? '/en/blog' : '/blog'} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.blog')}</a>
-          <a href={p('/about')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.about')}</a>
-          <a href={p('/contacto')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.contact')}</a>
-        </div>
+        </h3>
+        <nav aria-label="Footer navigation">
+          <ul class="grid grid-cols-2 gap-x-md gap-y-sm list-none p-0 m-0">
+            <li><a href={p('/')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.solutions')}</a></li>
+            <li><a href={p('/servicios')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.services')}</a></li>
+            <li><a href={p('/proyectos')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.stack')}</a></li>
+            <li><a href={isEn ? '/en/blog' : '/blog'} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.blog')}</a></li>
+            <li><a href={p('/about')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.about')}</a></li>
+            <li><a href={p('/contacto')} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.contact')}</a></li>
+          </ul>
+        </nav>
       </div>
 
       <!-- Legal column -->
       <div class="md:col-span-3 flex flex-col gap-base max-sm:items-center max-sm:text-center">
-        <span class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs">
+        <h3
+          class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest text-xs"
+        >
           {f('columns.legal_title')}
-        </span>
-        <div class="flex flex-col gap-sm">
-          <button type="button" data-open-privacy class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors text-left">{f('columns.links.privacy')}</button>
-          <button type="button" data-open-terms class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors text-left">{f('columns.links.terms')}</button>
-        </div>
+        </h3>
+        <ul class="flex flex-col gap-sm list-none p-0 m-0">
+          <li><a href={isEn ? '/en/privacy/' : '/privacidad/'} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.privacy')}</a></li>
+          <li><a href={isEn ? '/en/terms/' : '/terminos/'} class="font-body-md text-body-md text-slate-text hover:text-electric-blue transition-colors">{f('columns.links.terms')}</a></li>
+        </ul>
       </div>
     </div>
 
     <!-- Block 2: Tech bar -->
-    <div class="flex flex-col sm:flex-row max-sm:items-center max-sm:text-center items-start sm:items-center gap-sm py-md border-y border-outline-variant/10">
-      <span class="font-label-mono text-label-mono text-slate-text uppercase tracking-widest text-xs flex-shrink-0">
+    <div
+      class="flex flex-col sm:flex-row max-sm:items-center max-sm:text-center items-start sm:items-center gap-sm py-md border-y border-outline-variant/10"
+    >
+      <span
+        class="font-label-mono text-label-mono text-slate-text uppercase tracking-widest text-xs flex-shrink-0"
+      >
         {f('tech_bar.title')}
       </span>
       <div class="flex flex-wrap gap-sm">
-        {techItems.map((tech) => (
-          <span class="font-label-mono text-label-mono text-electric-blue/80 bg-electric-blue/8 border border-electric-blue/15 px-2.5 py-0.5 rounded text-xs">
-            {tech}
-          </span>
-        ))}
+        {
+          techItems.map((tech) => (
+            <span class="font-label-mono text-label-mono text-electric-blue/80 bg-electric-blue/8 border border-electric-blue/15 px-2.5 py-0.5 rounded text-xs">
+              {tech}
+            </span>
+          ))
+        }
       </div>
     </div>
 
@@ -86,11 +133,14 @@ const techItems = ['Vue.js', 'Node.js', '.NET', 'AWS', 'PostgreSQL', 'Tailwind C
         {f('credits.copyright')}
       </p>
       <div class="flex items-center gap-md">
-        <span class="font-label-mono text-label-mono text-electric-blue/80 text-xs">{f('credits.version')}</span>
+        <span class="font-label-mono text-label-mono text-electric-blue/80 text-xs"
+          >{f('credits.version')}</span
+        >
         <span class="w-px h-3 bg-outline-variant/20"></span>
-        <span class="font-label-mono text-label-mono text-slate-text/75 text-xs">{f('credits.origin')}</span>
+        <span class="font-label-mono text-label-mono text-slate-text/85 text-xs"
+          >{f('credits.origin')}</span
+        >
       </div>
     </div>
-
   </div>
 </footer>
