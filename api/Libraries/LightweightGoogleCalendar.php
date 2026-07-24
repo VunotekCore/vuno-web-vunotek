@@ -79,13 +79,13 @@ class LightweightGoogleCalendar
 
     public function createEvent($calendarId, $eventData)
     {
-        $url = self::CALENDAR_BASE_URL . $calendarId . '/events';
+        $url = self::CALENDAR_BASE_URL . $calendarId . '/events?sendUpdates=all';
         return $this->makeRequest($url, 'POST', $eventData);
     }
 
     public function createEventWithMeet($calendarId, $eventData)
     {
-        $url = self::CALENDAR_BASE_URL . $calendarId . '/events?conferenceDataVersion=1';
+        $url = self::CALENDAR_BASE_URL . $calendarId . '/events?conferenceDataVersion=1&sendUpdates=all';
         return $this->makeRequest($url, 'POST', $eventData);
     }
 }

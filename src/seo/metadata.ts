@@ -62,8 +62,8 @@ export const SEO = {
     home: (locale: 'es' | 'en') => ({
       title:
         locale === 'es'
-          ? 'Vunotek | Ingeniería de Software, Desarrollo a Medida y Automatización de Procesos'
-          : 'Vunotek | Software Engineering, Custom Development & Enterprise Automation',
+          ? 'Vunotek | Ingeniería de Software, Desarrollo y Automatización'
+          : 'Vunotek | Software Engineering & Enterprise Automation',
       description: (i18n[locale] as any).home.hero.description,
     }),
 
