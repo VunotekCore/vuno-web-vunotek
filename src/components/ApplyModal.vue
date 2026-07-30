@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import api from '../services/api'
 
 interface Question {
   question: string
@@ -84,7 +84,7 @@ async function open(positionId: number) {
   document.body.style.overflow = 'hidden'
 
   try {
-    const { data } = await axios.get('/api/careers/get.php', { params: { id: positionId, public: '1' } })
+    const { data } = await api.get('/careers/get.php', { params: { id: positionId, public: '1' } })
 
     if (data.success && data.data) {
       position.value = data.data
@@ -216,7 +216,7 @@ async function submitApplication() {
   }
 
   try {
-    const { data } = await axios.post('/api/applications/apply.php', formData)
+    const { data } = await api.post('/applications/apply.php', formData)
 
     if (data.success) {
       step.value = 'result'
