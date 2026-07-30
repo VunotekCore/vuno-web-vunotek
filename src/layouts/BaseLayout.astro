@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import PrivacyModal from '../components/PrivacyModal.astro';
+import WhatsAppChat from '../components/WhatsAppChat.astro';
 import { SEO, getBreadcrumbSchema } from '../seo';
 
 export interface Props {
@@ -20,6 +21,7 @@ export interface Props {
   articleSection?: string;
   preloadImage?: string;
   extraJsonLd?: Record<string, unknown>[];
+  showWhatsapp?: boolean;
 }
 
 const {
@@ -37,6 +39,7 @@ const {
   articleSection,
   preloadImage,
   extraJsonLd = [],
+  showWhatsapp = false,
 } = Astro.props;
 
 const currentLang = Astro.currentLocale || 'es';
@@ -209,6 +212,7 @@ const gaScript = gaId ? `window.dataLayer=window.dataLayer||[];function gtag(){d
     </main>
     <Footer />
     <PrivacyModal locale={currentLang} />
+    {showWhatsapp && <WhatsAppChat />}
 
     <script is:inline>
       (function() {

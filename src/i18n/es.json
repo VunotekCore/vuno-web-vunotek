@@ -941,6 +941,14 @@
       ]
     }
   },
+  "whatsapp": {
+    "title": "WhatsApp",
+    "placeholder": "Escribí tu mensaje...",
+    "hint": "Escribí tu mensaje y te responderemos a la brevedad:",
+    "send": "Enviar por WhatsApp",
+    "aria": "Chatear por WhatsApp",
+    "defaultMessage": "Hola Vunotek, estoy interesado en sus servicios de ingeniería de software."
+  },
   "common": {
     "close": "Cerrar",
     "closeModal": "Cerrar modal"

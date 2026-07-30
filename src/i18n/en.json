@@ -933,6 +933,14 @@
       ]
     }
   },
+  "whatsapp": {
+    "title": "WhatsApp",
+    "placeholder": "Type your message...",
+    "hint": "Write your message and we'll get back to you shortly:",
+    "send": "Send via WhatsApp",
+    "aria": "Chat on WhatsApp",
+    "defaultMessage": "Hi Vunotek, I'm interested in your software engineering services."
+  },
   "common": {
     "close": "Close",
     "closeModal": "Close modal"
