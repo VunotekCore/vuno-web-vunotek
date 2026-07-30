@@ -6,6 +6,7 @@
     "projects": "Proyectos",
     "blog": "Blog",
     "about": "Nosotros",
+    "careers": "Carreras",
     "contact": "Contacto",
     "getStarted": "Comenzar"
   },
@@ -22,6 +23,7 @@
         "stack": "Tech Stack",
         "blog": "Blog",
         "about": "Nosotros",
+        "careers": "Carreras",
         "contact": "Contacto",
         "privacy": "Política de Privacidad",
         "terms": "Términos de Servicio"
@@ -939,6 +941,118 @@
           "text": "Todos los logotipos, nombres de productos y marcas comerciales (como Salesforce, .NET, Vue.js, entre otros) que se muestran en la sección de tecnologías son propiedad exclusiva de sus respectivos titulares. Su uso en este sitio web es puramente informativo, con fines de referencia técnica, y no implica ninguna relación de afiliación, patrocinio o respaldo oficial por parte de dichas marcas hacia Vunotek."
         }
       ]
+    }
+  },
+  "careers": {
+    "meta": {
+      "title": "Carreras | Vunotek",
+      "description": "Únete al equipo de Vunotek. Explora vacantes, postúlate y demuestra tus habilidades con nuestra evaluación técnica."
+    },
+    "hero": {
+      "badge": "/// join_the_team",
+      "title": "Trabaja con",
+      "titleAccent": "Nosotros",
+      "description": "Buscamos talento apasionado por la ingeniería de software. Si te gusta resolver problemas complejos con tecnologías modernas, queremos conocerte.",
+      "cta": "Ver vacantes disponibles"
+    },
+    "stats": {
+      "positions": " vacantes activas",
+      "remote": "100% remoto",
+      "talent": "Talento global"
+    },
+    "no_positions": "No hay vacantes abiertas en este momento. Seguinos en redes para conocer nuevas oportunidades.",
+    "process": {
+      "title": "Proceso de Reclutamiento",
+      "subtitle": "Diseñamos un proceso transparente y ágil para encontrar al mejor talento en ingeniería.",
+      "steps": [
+        {
+          "icon": "description",
+          "title": "Postulá",
+          "desc": "Completá el formulario con tus datos y adjuntá tu CV. El proceso es rápido y sin complicaciones."
+        },
+        {
+          "icon": "checklist",
+          "title": "Evaluación Técnica",
+          "desc": "Respondé preguntas diseñadas para medir tus habilidades en las tecnologías clave de nuestro stack."
+        },
+        {
+          "icon": "groups",
+          "title": "Entrevista",
+          "desc": "Conversamos para conocerte, alinear expectativas y profundizar en tu experiencia y objetivos."
+        },
+        {
+          "icon": "rocket_launch",
+          "title": "Onboarding",
+          "desc": "Te acompañamos en tus primeros días con herramientas, equipo y documentación para que arranques rápido."
+        }
+      ]
+    },
+    "culture": {
+      "title": "Por Qué Vunotek",
+      "subtitle": "Esto es lo que ofrecemos a cada persona que se suma al equipo.",
+      "items": [
+        {
+          "icon": "desktop_windows",
+          "title": "Trabajo Remoto",
+          "desc": "Operamos 100% remoto. Trabajá desde donde seas más productivo, sin perder la conexión con el equipo."
+        },
+        {
+          "icon": "rocket",
+          "title": "Proyectos Desafiantes",
+          "desc": "Tecnología moderna, clientes internacionales y problemas reales que exigen lo mejor de tu skill set."
+        },
+        {
+          "icon": "monitoring",
+          "title": "Crecimiento Profesional",
+          "desc": "Invertimos en tu desarrollo con recursos, mentoring y proyectos que te llevan al siguiente nivel."
+        },
+        {
+          "icon": "code",
+          "title": "Tecnología Moderna",
+          "desc": "Stack actualizado: Vue.js, Node.js, .NET Core, Salesforce, AWS. Siempre a la vanguardia."
+        }
+      ]
+    },
+    "cta_line": {
+      "title": "¿No encontrás lo que buscás?",
+      "desc": "Enviános tu CV espontáneo y te tendremos en cuenta para futuras oportunidades.",
+      "cta": "Enviar CV espontáneo"
+    },
+    "position": {
+      "type": {
+        "remote": "Remoto",
+        "hybrid": "Híbrido",
+        "on-site": "Presencial"
+      },
+      "apply": "Postularme",
+      "read_more": "Ver más",
+      "requirements": "Requisitos",
+      "responsibilities": "Responsabilidades"
+    },
+    "apply_modal": {
+      "title": "Postularme",
+      "subtitle": "Completá el formulario y realizá la evaluación técnica",
+      "personal_info": "Información personal",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "cv": "Adjuntar CV",
+      "cv_hint": "PDF, DOC o DOCX — Máx. 5 MB",
+      "assessment": "Evaluación técnica",
+      "assessment_hint": "Respondé correctamente al menos el {{score}}% para que tu postulación sea considerada.",
+      "submit": "Enviar postulación",
+      "sending": "Enviando...",
+      "success": "¡Postulación enviada con éxito! Te contactaremos pronto.",
+      "error": "Error al enviar la postulación. Intentá de nuevo.",
+      "score_passed": "¡Excelente! Superaste la evaluación.",
+      "score_failed": "No alcanzaste el puntaje mínimo requerido.",
+      "required": "Este campo es obligatorio",
+      "select_answer": "Seleccioná una respuesta",
+      "next": "Siguiente",
+      "back": "Atrás",
+      "email_invalid": "Correo electrónico inválido",
+      "phone_invalid": "Formato de teléfono inválido (ej: +505 8888 0000)",
+      "cv_size": "El archivo no puede superar los 5 MB"
     }
   },
   "whatsapp": {
