@@ -2,6 +2,7 @@
 import Section from '../components/Section.astro'
 import ScrollReveal from '../components/ScrollReveal.astro'
 import ApplyModal from '../components/ApplyModal.vue'
+import CareerList from '../components/CareerList.vue'
 import CareersProcess from '../components/organisms/CareersProcess.astro'
 import CareersCulture from '../components/organisms/CareersCulture.astro'
 
@@ -100,15 +101,7 @@ const isEn = locale === 'en'
       </div>
     </ScrollReveal>
 
-    <div id="careers-list" data-locale={locale} class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <div class="col-span-full text-center py-12 text-on-surface-variant font-body-lg">
-        <svg class="mx-auto mb-3 h-9 w-9 animate-spin text-electric-blue" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
-        {isEn ? 'Loading positions...' : 'Cargando vacantes...'}
-      </div>
-    </div>
+    <CareerList client:load locale={locale} dict={dict} />
   </div>
 </section>
 
@@ -139,85 +132,3 @@ const isEn = locale === 'en'
 </section>
 
 <ApplyModal client:load dict={dict} locale={locale} />
-
-<script>
-  (async () => {
-    const list = document.getElementById('careers-list')
-    const statsCount = document.getElementById('stats-count')
-    if (!list) return
-
-    const locale = list.getAttribute('data-locale') || 'es'
-    const query = `status=published${locale ? `&locale=${locale}` : ''}`
-
-    try {
-      const res = await fetch(`/api/careers/list.php?${query}`)
-      const json = await res.json()
-
-      list.innerHTML = ''
-
-      const raw = json.data
-      const positions = Array.isArray(raw) ? raw : (raw?.positions || [])
-
-      if (statsCount) {
-        statsCount.textContent = String(positions.length)
-      }
-
-      if (!positions.length) {
-        const msg = locale === 'en' ? 'No open positions at this time.' : 'No hay vacantes abiertas en este momento.'
-        list.innerHTML = `<div class="col-span-full text-center py-16 text-on-surface-variant"><p class="font-body-lg text-body-lg">${msg}</p></div>`
-        return
-      }
-
-      const typeOpts = locale === 'en'
-        ? { remote: 'Remote', hybrid: 'Hybrid', 'on-site': 'On-site' }
-        : { remote: 'Remoto', hybrid: 'Híbrido', 'on-site': 'Presencial' }
-
-      const btnLabel = locale === 'en' ? 'Apply now' : 'Postularme'
-      for (const p of positions) {
-        const el = document.createElement('div')
-        const pType = String((p as any).type)
-        el.className = 'group rounded-xl border border-outline-variant/20 bg-surface p-6 md:p-8 transition-all duration-300 hover:border-electric-blue/30 hover:shadow-[0_0_30px_-8px_rgba(0,168,255,0.15)]'
-        el.innerHTML = `
-          <div class="flex flex-col gap-4">
-            <div class="flex flex-wrap items-start justify-between gap-3">
-              <div>
-                <h3 class="font-display-lg text-headline-sm text-on-surface">${esc(p.title)}</h3>
-                ${p.category ? `<span class="font-label-mono text-label-mono text-on-surface-variant/70 text-xs uppercase tracking-wider mt-1 block">${esc(p.category)}</span>` : ''}
-              </div>
-              <span class="inline-flex shrink-0 items-center gap-1 rounded-full border border-electric-blue/20 bg-electric-blue/10 px-3 py-1 text-xs font-medium text-electric-blue">${typeOpts[pType as keyof typeof typeOpts] || pType}</span>
-            </div>
-            ${p.short_description ? `<p class="font-body-md text-body-md text-slate-text line-clamp-3">${esc(p.short_description)}</p>` : ''}
-            <div class="flex flex-wrap items-center gap-4 text-sm text-on-surface-variant/80">
-              <span class="inline-flex items-center gap-1.5">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-                ${esc(p.location)}
-              </span>
-            </div>
-            <div class="pt-2">
-              <button class="apply-btn inline-flex items-center gap-2 rounded-lg bg-electric-blue px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-electric-blue/90 hover:shadow-lg hover:shadow-electric-blue/25" data-id="${p.id}">
-                ${btnLabel}
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-              </button>
-            </div>
-          </div>
-        `
-        list.appendChild(el)
-      }
-
-      list.querySelectorAll('.apply-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = parseInt((btn as HTMLElement).getAttribute('data-id') || '0', 10)
-          if (id && (window as any).__openApplyModal) (window as any).__openApplyModal(id)
-        })
-      })
-    } catch {
-      list.innerHTML = `<div class="col-span-full text-center py-16 text-on-surface-variant"><p class="font-body-lg text-body-lg">${locale === 'en' ? 'Error loading positions.' : 'Error al cargar las vacantes.'}</p></div>`
-    }
-  })()
-
-  function esc(str: string) {
-    const d = document.createElement('div')
-    d.appendChild(document.createTextNode(str))
-    return d.innerHTML
-  }
-</script>
