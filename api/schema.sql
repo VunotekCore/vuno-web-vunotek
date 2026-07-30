@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL,
     name VARCHAR(100) NOT NULL,
     role_id INT NOT NULL,
+    token_version INT NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE RESTRICT
@@ -70,8 +71,8 @@ CREATE TABLE IF NOT EXISTS projects (
 -- Roles iniciales
 INSERT INTO roles (name, slug, permissions) VALUES
 ('Admin', 'admin', '{"all": true}'),
-('Editor', 'editor', '{"blog": ["list","create","edit","delete"], "categories": ["list","create","edit","delete"], "projects": ["list","create","edit","delete"]}'),
-('Viewer', 'viewer', '{"blog": ["list"], "categories": ["list"], "projects": ["list"]}')
+('Editor', 'editor', '{"blog": ["list","create","edit","delete"], "categories": ["list","create","edit","delete"], "projects": ["list","create","edit","delete"], "careers": ["list","create","edit","delete"]}'),
+('Viewer', 'viewer', '{"blog": ["list"], "categories": ["list"], "projects": ["list"], "careers": ["list"]}')
 ON DUPLICATE KEY UPDATE permissions = VALUES(permissions);
 
 -- Admin user default (password: admin123 — cambiar en producción)
@@ -80,6 +81,40 @@ ON DUPLICATE KEY UPDATE permissions = VALUES(permissions);
 INSERT INTO users (email, password, name, role_id) VALUES
 ('admin@vunotek.com', '$2y$10$YourHashHere', 'Daniel Flores', 1)
 ON DUPLICATE KEY UPDATE email = email;
+
+CREATE TABLE IF NOT EXISTS job_positions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    short_description TEXT,
+    full_description LONGTEXT,
+    requirements TEXT,
+    responsibilities TEXT,
+    location VARCHAR(100) DEFAULT 'Remote',
+    type ENUM('remote', 'hybrid', 'on-site') DEFAULT 'remote',
+    category VARCHAR(100),
+    questions JSON,
+    passing_score INT DEFAULT 70,
+    locale ENUM('es', 'en') NOT NULL DEFAULT 'es',
+    status ENUM('draft', 'published') DEFAULT 'draft',
+    sort_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS job_applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    position_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(50),
+    cv_url VARCHAR(500),
+    assessment_score INT,
+    assessment_passed BOOLEAN DEFAULT FALSE,
+    status ENUM('pending', 'reviewed', 'rejected', 'accepted') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (position_id) REFERENCES job_positions(id) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Categorías iniciales
 INSERT INTO categories (name, slug, description, color, sort_order) VALUES

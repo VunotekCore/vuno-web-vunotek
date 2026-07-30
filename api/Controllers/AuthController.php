@@ -32,6 +32,12 @@ class AuthController
             jsonError('Email y contraseña son requeridos');
         }
 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            jsonError('Email inválido');
+        }
+
+        \rateLimitAccount($email, 5, 900); // 5 intentos / 15 min por cuenta
+
         $user = $this->userModel->findByEmail($email);
 
         if ($user === null || !$this->authService->verifyPassword($password, $user['password'])) {
@@ -44,18 +50,17 @@ class AuthController
             'role_id'     => $user['role_id'],
             'role_slug'   => $user['role_slug'],
             'permissions' => $user['permissions'],
+            'tok_v'       => $user['token_version'] ?? 0,
         ]);
 
         $config = $this->getConfig();
         $expiresIn = $config['jwt']['expires_in'] ?? 86400;
-
-        $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-                    || (!empty($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443);
+        $secureCookie = $config['app']['secure_cookie'] ?? true;
 
         setcookie('admin_token', $token, [
             'expires'  => time() + $expiresIn,
             'path'     => '/',
-            'secure'   => $isSecure,
+            'secure'   => $secureCookie,
             'httponly'  => true,
             'samesite' => 'Lax',
         ]);
@@ -83,6 +88,17 @@ class AuthController
             jsonError('Usuario no encontrado', 401);
         }
 
+        if ((int)($payload['tok_v'] ?? -1) !== (int)($user['token_version'] ?? 0)) {
+            jsonError('Sesión inválida. Iniciá sesión nuevamente.', 401);
+        }
+
         jsonSuccess(['user' => $user]);
+    }
+
+    public function invalidateSessions(): never
+    {
+        $payload = $this->requireAuth();
+        $this->userModel->incrementTokenVersion((int) $payload['sub']);
+        jsonSuccess(null, 'Sesiones invalidadas');
     }
 }
