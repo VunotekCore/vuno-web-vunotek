@@ -59,6 +59,8 @@ if [ "$BUILD_BACKEND" = true ]; then
   cp -r api/blog              dist-backend/blog
   cp -r api/categories        dist-backend/categories
   cp -r api/projects          dist-backend/projects
+  cp -r api/careers           dist-backend/careers
+  cp -r api/applications      dist-backend/applications
   cp -r api/imagekit          dist-backend/imagekit
   cp -r api/Config            dist-backend/Config
   cp -r api/Controllers       dist-backend/Controllers
