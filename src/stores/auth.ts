@@ -7,6 +7,7 @@ interface Permissions {
   blog?: string[]
   categories?: string[]
   projects?: string[]
+  careers?: string[]
 }
 
 interface User {

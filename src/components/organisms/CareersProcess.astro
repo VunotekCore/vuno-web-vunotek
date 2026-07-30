@@ -1,0 +1,48 @@
+---
+import Icon from '../Icon.astro'
+import ScrollReveal from '../ScrollReveal.astro'
+
+export interface Props {
+  dict: Record<string, unknown>
+}
+
+const { dict } = Astro.props
+const process = (dict as any).careers?.process
+const steps = process?.steps ?? []
+---
+
+<section id="proceso" class="py-lg md:py-xl relative overflow-hidden">
+  <div class="max-w-[min(90vw,1600px)] mx-auto px-margin">
+    <ScrollReveal>
+      <div class="flex flex-col items-center gap-base text-center mb-12 md:mb-16">
+        <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-3xl">
+          {process?.title}
+        </h2>
+        <p class="font-body-lg text-body-lg max-sm:text-body-md text-slate-text max-w-2xl">
+          {process?.subtitle}
+        </p>
+      </div>
+    </ScrollReveal>
+
+    <div class="grid gap-6 md:grid-cols-4">
+      {steps.map((step: any, i: number) => (
+        <ScrollReveal delay={i * 100}>
+          <div class="group relative rounded-2xl border border-outline-variant/15 bg-surface-container-lowest p-6 md:p-8 transition-all duration-300 hover:border-electric-blue/25 hover:shadow-[0_0_30px_-8px_rgba(0,168,255,0.12)] h-full flex flex-col">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-electric-blue/10 text-electric-blue shrink-0 group-hover:bg-electric-blue/20 transition-colors">
+                <Icon name={step.icon} size="22" />
+              </span>
+              <span class="font-label-mono text-label-mono text-electric-blue/60 text-sm">0{i + 1}</span>
+            </div>
+            <h3 class="font-display-lg text-headline-sm text-on-surface mb-2">
+              {step.title}
+            </h3>
+            <p class="font-body-md text-body-md text-slate-text flex-1">
+              {step.desc}
+            </p>
+          </div>
+        </ScrollReveal>
+      ))}
+    </div>
+  </div>
+</section>

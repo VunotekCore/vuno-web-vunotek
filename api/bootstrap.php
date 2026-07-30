@@ -278,6 +278,42 @@ function rateLimitIncrement(string $key): void
     file_put_contents($file, json_encode($attempts), LOCK_EX);
 }
 
+function rateLimitAccount(string $email, int $maxAttempts, int $windowSeconds): void
+{
+    $dir = sys_get_temp_dir() . '/vunotek-ratelimit';
+    if (!is_dir($dir)) {
+        mkdir($dir, 0700, true);
+    }
+
+    $key = preg_replace('/[^a-zA-Z0-9_\-]/', '_', "account_{$email}");
+    $file = $dir . '/' . $key . '.json';
+
+    $now = time();
+    $attempts = [];
+
+    if (file_exists($file)) {
+        $raw = file_get_contents($file);
+        $attempts = json_decode($raw, true) ?: [];
+    }
+
+    $attempts = array_filter($attempts, fn(int $ts) => $ts > $now - $windowSeconds);
+    $attempts = array_values($attempts);
+
+    if (count($attempts) >= $maxAttempts) {
+        $retryAfter = $attempts[0] + $windowSeconds - $now;
+        header('Retry-After: ' . $retryAfter);
+        apiLog('WARNING', "Account rate limit exceeded", [
+            'email' => $email,
+            'attempts' => count($attempts),
+            'max' => $maxAttempts,
+        ]);
+        jsonError('Demasiados intentos para esta cuenta. Intentá de nuevo en ' . ceil($retryAfter / 60) . ' minutos.', 429);
+    }
+
+    $attempts[] = $now;
+    file_put_contents($file, json_encode($attempts), LOCK_EX);
+}
+
 // --- Logging ---
 
 function apiLog(string $level, string $message, array $context = []): void

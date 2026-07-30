@@ -6,6 +6,7 @@
     "projects": "Projects",
     "blog": "Blog",
     "about": "About",
+    "careers": "Careers",
     "contact": "Contact",
     "getStarted": "Get Started"
   },
@@ -22,6 +23,7 @@
         "stack": "Tech Stack",
         "blog": "Blog",
         "about": "About Us",
+        "careers": "Careers",
         "contact": "Contact",
         "privacy": "Privacy Policy",
         "terms": "Terms of Service"
@@ -932,6 +934,126 @@
         }
       ]
     }
+  },
+  "careers": {
+    "meta": {
+      "title": "Careers | Vunotek",
+      "description": "Join the Vunotek team. Explore open positions, apply, and showcase your skills with our technical assessment."
+    },
+    "hero": {
+      "badge": "/// join_the_team",
+      "title": "Work with",
+      "titleAccent": "Us",
+      "description": "We're looking for talent passionate about software engineering. If you enjoy solving complex problems with modern technologies, we want to meet you.",
+      "cta": "View open positions"
+    },
+    "stats": {
+      "positions": " open positions",
+      "remote": "100% remote",
+      "talent": "Global talent"
+    },
+    "no_positions": "There are no open positions at this time. Follow us on social media to learn about new opportunities.",
+    "process": {
+      "title": "Recruitment Process",
+      "subtitle": "We've designed a transparent and agile process to find the best engineering talent.",
+      "steps": [
+        {
+          "icon": "description",
+          "title": "Apply",
+          "desc": "Fill out the form with your details and upload your CV. Quick and straightforward."
+        },
+        {
+          "icon": "checklist",
+          "title": "Technical Assessment",
+          "desc": "Answer questions designed to measure your skills in the key technologies of our stack."
+        },
+        {
+          "icon": "groups",
+          "title": "Interview",
+          "desc": "We'll chat to get to know you, align expectations, and dive deeper into your experience and goals."
+        },
+        {
+          "icon": "rocket_launch",
+          "title": "Onboarding",
+          "desc": "We'll support you from day one with tools, team, and documentation so you hit the ground running."
+        }
+      ]
+    },
+    "culture": {
+      "title": "Why Vunotek",
+      "subtitle": "Here's what we offer to everyone who joins the team.",
+      "items": [
+        {
+          "icon": "desktop_windows",
+          "title": "Remote Work",
+          "desc": "100% remote. Work from wherever you're most productive, without losing connection with the team."
+        },
+        {
+          "icon": "rocket",
+          "title": "Challenging Projects",
+          "desc": "Modern tech stacks, international clients, and real problems that demand the best of your skills."
+        },
+        {
+          "icon": "monitoring",
+          "title": "Professional Growth",
+          "desc": "We invest in your development with resources, mentoring, and projects that push you to the next level."
+        },
+        {
+          "icon": "code",
+          "title": "Modern Technology",
+          "desc": "Up-to-date stack: Vue.js, Node.js, .NET Core, Salesforce, AWS. Always at the cutting edge."
+        }
+      ]
+    },
+    "cta_line": {
+      "title": "Can't find what you're looking for?",
+      "desc": "Send us your spontaneous application and we'll keep you in mind for future opportunities.",
+      "cta": "Send spontaneous application"
+    },
+    "position": {
+      "type": {
+        "remote": "Remote",
+        "hybrid": "Hybrid",
+        "on-site": "On-site"
+      },
+      "apply": "Apply now",
+      "read_more": "View details",
+      "requirements": "Requirements",
+      "responsibilities": "Responsibilities"
+    },
+    "apply_modal": {
+      "title": "Apply",
+      "subtitle": "Fill out the form and take the technical assessment",
+      "personal_info": "Personal information",
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "cv": "Upload CV",
+      "cv_hint": "PDF, DOC or DOCX — Max 5 MB",
+      "assessment": "Technical assessment",
+      "assessment_hint": "Answer at least {{score}}% correctly for your application to be considered.",
+      "submit": "Submit application",
+      "sending": "Sending...",
+      "success": "Application submitted successfully! We'll contact you soon.",
+      "error": "Error submitting application. Please try again.",
+      "score_passed": "Excellent! You passed the assessment.",
+      "score_failed": "You did not meet the minimum required score.",
+      "required": "This field is required",
+      "select_answer": "Select an answer",
+      "next": "Next",
+      "back": "Back",
+      "email_invalid": "Invalid email address",
+      "phone_invalid": "Invalid phone format (e.g. +1 555 123 4567)",
+      "cv_size": "The file cannot exceed 5 MB"
+    }
+  },
+  "whatsapp": {
+    "title": "WhatsApp",
+    "placeholder": "Type your message...",
+    "hint": "Write your message and we'll get back to you shortly:",
+    "send": "Send via WhatsApp",
+    "aria": "Chat on WhatsApp",
+    "defaultMessage": "Hi Vunotek, I'm interested in your software engineering services."
   },
   "common": {
     "close": "Close",

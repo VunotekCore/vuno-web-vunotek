@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Careers from '../templates/Careers.astro'
+import { getTranslations } from '../i18n/utils'
+
+const dict = getTranslations(Astro.currentLocale ?? 'es') as any
+const careers = dict.careers
+---
+
+<BaseLayout title={careers.meta.title} description={careers.meta.description} breadcrumbName="Carreras">
+  <Careers dict={dict} locale={Astro.currentLocale ?? 'es'} />
+</BaseLayout>

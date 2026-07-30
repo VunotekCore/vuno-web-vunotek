@@ -1,0 +1,47 @@
+---
+import Icon from '../Icon.astro'
+import ScrollReveal from '../ScrollReveal.astro'
+
+export interface Props {
+  dict: Record<string, unknown>
+}
+
+const { dict } = Astro.props
+const culture = (dict as any).careers?.culture
+const items = culture?.items ?? []
+---
+
+<section class="py-lg md:py-xl relative overflow-hidden">
+  <div class="max-w-[min(90vw,1600px)] mx-auto px-margin">
+    <ScrollReveal>
+      <div class="flex flex-col items-center gap-base text-center mb-12 md:mb-16">
+        <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface max-w-3xl">
+          {culture?.title}
+        </h2>
+        <p class="font-body-lg text-body-lg max-sm:text-body-md text-slate-text max-w-2xl">
+          {culture?.subtitle}
+        </p>
+      </div>
+    </ScrollReveal>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {items.map((item: any, i: number) => (
+        <ScrollReveal delay={i * 100}>
+          <div class="group rounded-2xl border border-outline-variant/15 bg-surface-container-lowest p-6 md:p-8 transition-all duration-300 hover:border-electric-blue/25 hover:shadow-[0_0_30px_-8px_rgba(0,168,255,0.12)] flex items-start gap-5">
+            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-electric-blue/20 to-vue-green/10 text-electric-blue group-hover:scale-105 transition-transform">
+              <Icon name={item.icon} size="28" />
+            </span>
+            <div>
+              <h3 class="font-display-lg text-headline-sm text-on-surface mb-1.5">
+                {item.title}
+              </h3>
+              <p class="font-body-md text-body-md text-slate-text">
+                {item.desc}
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro'
+import CareerForm from '../../../components/admin/CareerForm.vue'
+import Icon from '../../../components/atoms/Icon.astro'
+---
+
+<AdminLayout title="Nueva vacante">
+  <div class="mb-6">
+    <a href="/admin/careers" class="inline-flex items-center gap-1 text-sm text-on-surface-variant hover:text-on-surface transition-colors">
+      <Icon name="arrow_back" size={18} />
+      Volver a carreras
+    </a>
+  </div>
+  <CareerForm client:only="vue" />
+</AdminLayout>

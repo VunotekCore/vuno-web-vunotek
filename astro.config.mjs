@@ -108,6 +108,14 @@ export default defineConfig({
     build: {
       cssMinify: 'lightningcss',
       assetsInlineLimit: 4096
+    },
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8000',
+          rewrite: (path) => path.replace(/^\/api/, '')
+        }
+      }
     }
   },
   i18n: {

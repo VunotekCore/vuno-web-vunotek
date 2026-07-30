@@ -1,0 +1,11 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro'
+import CareerTable from '../../../components/admin/CareerTable.vue'
+---
+
+<AdminLayout title="Carreras">
+  <div class="mb-6">
+    <p class="text-on-surface-variant">Gestiona las vacantes y postulaciones</p>
+  </div>
+  <CareerTable client:only="vue" />
+</AdminLayout>

@@ -28,7 +28,7 @@ class UserModel
     public function findById(int $id): ?array
     {
         $stmt = $this->db->prepare("
-            SELECT u.id, u.email, u.name, u.role_id, r.name AS role_name, r.slug AS role_slug, r.permissions, u.created_at
+            SELECT u.id, u.email, u.name, u.role_id, u.token_version, r.name AS role_name, r.slug AS role_slug, r.permissions, u.created_at
             FROM users u
             JOIN roles r ON r.id = u.role_id
             WHERE u.id = :id LIMIT 1
@@ -39,6 +39,12 @@ class UserModel
             $user['permissions'] = json_decode($user['permissions'], true);
         }
         return $user ?: null;
+    }
+
+    public function incrementTokenVersion(int $id): bool
+    {
+        $stmt = $this->db->prepare('UPDATE users SET token_version = token_version + 1 WHERE id = :id');
+        return $stmt->execute(['id' => $id]);
     }
 
     public function create(string $email, string $password, string $name, int $roleId): int
